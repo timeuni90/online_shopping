@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/online_shopping" userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator
+			targetPackage="com.timeuni.bean" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.timeuni.dao" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="tb_city" domainObjectName="City"></table>
+		
+		<table tableName="tb_collect_commodity" domainObjectName="CollectCommodity"></table>
+		
+		<table tableName="tb_collect_seller" domainObjectName="CollectSeller"></table>
+		
+		<table tableName="tb_comment" domainObjectName="Comment"></table>
+		
+		<table tableName="tb_comment_append" domainObjectName="CommentAppend">
+			<columnOverride column="comment" javaType="java.lang.String" jdbcType="VARCHAR"></columnOverride>
+			<columnOverride column="reply" javaType="java.lang.String" jdbcType="VARCHAR"></columnOverride>
+		</table>
+		
+		<table tableName="tb_commodity_media_resource" domainObjectName="CommodityMediaResource"></table>
+		
+		<table tableName="tb_commodity_extend_property" domainObjectName="CommodityExtendProperty"></table>
+		
+		<table tableName="tb_commodity" domainObjectName="Commodity"></table>
+		
+		<table tableName="tb_comment_image" domainObjectName="CommentImage"></table>
+		
+		<table tableName="tb_history" domainObjectName="History"></table>
+		
+		<table tableName="tb_commodity_variety" domainObjectName="CommodityVariety"></table>
+		
+		<table tableName="tb_commodity_variable" domainObjectName="CommodityVariable"></table>
+		
+		<table tableName="tb_commodity_select_property" domainObjectName="CommoditySelectProperty"></table>
+		
+		<table tableName="tb_order_detail" domainObjectName="OrderDetail"></table>
+		
+		<table tableName="tb_order_commodity_select_property" domainObjectName="OrderCommoditySelectProperty"></table>
+		
+		<table tableName="tb_order" domainObjectName="Order"></table>
+		
+		<table tableName="tb_variety" domainObjectName="Variety"></table>
+		
+		<table tableName="tb_user" domainObjectName="User"></table>
+		
+		<table tableName="tb_seller" domainObjectName="Seller"></table>
+		
+		<table tableName="tb_province" domainObjectName="Province"></table>
+		
+		<table tableName="tb_cart" domainObjectName="Cart"></table>
+		
+		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table>
+	</context>
+</generatorConfiguration>
