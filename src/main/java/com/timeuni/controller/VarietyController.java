@@ -1,9 +1,7 @@
 package com.timeuni.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,15 +20,19 @@ public class VarietyController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/indexclass/{string}", method = RequestMethod.GET)
-	public List<List<Variety>> handleIndexReuqest(@PathVariable String string) {
+	public List<List<Variety>> handleIndexClassReuqest(@PathVariable String string) {
 		List<Integer> ids = new ArrayList<Integer>();
 		String[] idStrings = string.split(",");
 		for (String idString : idStrings) {
 			ids.add(Integer.parseInt(idString));
 		}
 		List<List<Variety>> list = varietyService.getIndexClass(ids);
-		//Map<String, List<List<Variety>>> map = new HashMap<String, List<List<Variety>>>();
-		//map.put("msg", list);
 		return list;
+	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String handleIndexRequest() {
+		System.out.println("a");
+		return "shouye";
 	}
 }
