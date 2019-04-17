@@ -32,7 +32,6 @@ public class VarietyController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String handleIndexRequest() {
-		System.out.println("a");
 		return "shouye";
 	}
 }
