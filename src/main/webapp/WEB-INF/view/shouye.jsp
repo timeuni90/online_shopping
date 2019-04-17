@@ -26,68 +26,7 @@
 <body class="w1230" style="">
 	<div id="mallPage" class="mui-global-biz-mallfp  ">
 		<!--from fragment-->
-		<div id="site-nav" data-spm="a2226mz" role="navigation">
-			<div id="sn-bg">
-				<div class="sn-bg-right"></div>
-			</div>
-			<div id="sn-bd">
-				<b class="sn-edge"></b>
-				<div class="sn-container">
-					<p id="login-info" class="sn-login-info">
-						<em>喵，欢迎来天猫</em> <a class="sn-login"
-							href="https://login.tmall.com/?redirectURL=https%3A%2F%2Fwww.tmall.com%2F"
-							target="_top">请登录</a> <a class="sn-register"
-							href="https://register.tmall.com/" target="_top">免费注册</a>
-					</p>
-					<ul class="sn-quick-menu">
-						<li class="sn-mytaobao menu-item j_MyTaobao">
-							<div class="sn-menu">
-								<a class="menu-hd" href="https://i.taobao.com/my_taobao.htm"
-									target="_top" rel="nofollow" tabindex="0" aria-haspopup="true"
-									aria-expanded="false">我的淘宝<b></b></a>
-								<div class="menu-bd" role="menu" aria-hidden="true" id="menu-8">
-									<div class="menu-bd-panel" id="myTaobaoPanel">
-										<a
-											href="https://trade.taobao.com/trade/itemlist/list_bought_items.htm?t=20110530"
-											target="_top" rel="nofollow">已买到的宝贝</a> <a
-											href="https://trade.taobao.com/trade/itemlist/list_sold_items.htm?t=20110530"
-											target="_top" rel="nofollow">已卖出的宝贝</a>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="sn-seller-center hidden j_SellerCenter"><a
-							target="_top" href="https://mai.taobao.com/seller_admin.htm">商家中心</a>
-						</li>
-						<li class="sn-cart mini-cart menu"><i
-							class="oi mui-global-iconfont" data-glyph="cart"
-							aria-hidden="true"></i> <a class="sn-cart-link"
-							href="https://cart.tmall.com/cart/myCart.htm?from=btop"
-							target="_top" rel="nofollow" id="mc-menu-hd">购物车<span
-								class="mc-count mc-pt3">0</span>件
-						</a></li>
-						<li class="sn-favorite menu-item">
-							<div class="sn-menu">
-								<a class="menu-hd"
-									href="https://shoucang.taobao.com/shop_collect_list.htm?scjjc=c1"
-									target="_top" rel="nofollow" tabindex="0" aria-haspopup="true"
-									aria-expanded="false">收藏夹<b></b></a>
-
-								<div class="menu-bd" role="menu" aria-hidden="true" id="menu-10">
-									<div class="menu-bd-panel">
-										<a href="https://shoucang.taobao.com/item_collect.htm"
-											target="_top" rel="nofollow">收藏的宝贝</a> <a
-											href="https://shoucang.taobao.com/shop_collect_list.htm"
-											target="_top" rel="nofollow">收藏的店铺</a>
-									</div>
-								</div>
-							</div>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
+		<%@ include file="/WEB-INF/view/header.jsp" %>
 
 		<div id="header" data-spm="a2226n0"
 			data-spm-anchor-id="875.7931836/B.0.a2226n0.66144265Vx5b6f">
@@ -1144,49 +1083,7 @@
 		</div>
 
 		<b data-mark="eea298cd6a372e6741f9bd4c83a9e059"></b>
-
 	</div>
-	<div class="as-shelter"></div>
-	<div id="J_ASTotalContainer" class="as-total-container">
-		<div id="J_AttachedSearchContainer" class="attached-search-container">
-			<div class="fp-iconfont-new">
-				<span class="logo-en"></span><span class="logo-zh"></span>
-			</div>
-		</div>
-	</div>
-	<div id="J_MUIMallbar" class="mui-mbar-outer j_Mallbar_3.2.4"
-		style="height: 972px;"></div>
-	<div style="display: none;">
-		<ins
-			style="display: inline-block; padding: 0; margin: 0; width: 1180px; height: 500px; *zoom: 1; *display: inline; position: relative;"
-			id="tanxssp-outer-conmm_12852562_1778064_37676859">
-			<div id="tanxssp_con_mm_12852562_1778064_37676859"
-				style="overflow: hidden; display: inline-block; position: relative; width: 1180px; height: 500px; *display: inline; *zoom: 1; font: 12px/1.5 tahoma, 'Hiragino Sans GB', 'microsoft yahei', sans-serif;">
-				<a
-					href="https://click.mz.simba.taobao.com/ecpm?e=%2FEsk6T309Xm7plCi1eKI7euOs9sEGi%2B%2BiB9S4MMaQcoPoa3n%2F8Wh88WpogKmQjUpOMF51PBpbYH%2F6eIJKzWyc2RV5VLNsTWptbR9sxq9q4jPdxtGLmpJMKiTZU1Z7A7u9iFUaGvyKCGT5fzkODgSz1197sOzUjzt4jY1ac3z3kmf52u0Wo2aiuDXFqBoDmUIT6v%2FOaLBS9GvKuimC%2FKkq6OJrRv4yfWFydZpd%2FshJS5ZrXYPtoTW%2FI%2FBtLMureRddUGpGUcuQ1ftq01Ne8QPzstkGj%2BkpRm4SIcQ2gW2pOEW%2BA9Yy2BIe6jHUabSKFb5gBiBUvDSAQFF%2FMtfArTlb8c3GltbsAwrJJ1R8TJ8bf0Yx%2B5SvdQ0aV%2Be1pPfZzoa156lWIShdHeKH8M8ztwTcelrPXHrKtGk&amp;u=https%3A%2F%2Fwww.tmall.com%2Fwow%2Fbrand%2Fact%2Ffashion%3Facm%3Dlb-zebra-2386-265936.1003.4.410386%26scm%3D1003.4.lb-zebra-2386-265936.OTHER_1_410386&amp;k=417"
-					target="_blank"><img
-					src="shouye_files/TB1W4nPJFXXXXbSXpXXSutbFXXX.jpg" width="1180px"
-					height="500px" border="0"></a>
-			</div>
-		</ins>
-		<div id="tanx-a-mm_12852562_1778064_37676859"></div>
-	</div>
-	<div style="display: none;">
-		<ins
-			style="display: inline-block; padding: 0; margin: 0; width: 1180px; height: 500px; *zoom: 1; *display: inline; position: relative;"
-			id="tanxssp-outer-conmm_12852562_1778064_37676870">
-			<div id="tanxssp_con_mm_12852562_1778064_37676870"
-				style="overflow: hidden; display: inline-block; position: relative; width: 1180px; height: 500px; *display: inline; *zoom: 1; font: 12px/1.5 tahoma, 'Hiragino Sans GB', 'microsoft yahei', sans-serif;">
-				<a
-					href="https://click.mz.simba.taobao.com/ecpm?e=rU6PSrX1sJO7plCi1eKI7euOs9sEGi%2B%2BttUodpfholA425aMrkNpku3jlAfWpGg2OMF51PBpbYF6rGKtMBt8C8R92%2BP%2FC62ktbR9sxq9q4jPdxtGLmpJMKeFzZhjx1TouB4VMot2Z8qNmOOEIouSXIOBnwnLo8Fb0G7opvdXLoaf52u0Wo2aiuDXFqBoDmUIT6v%2FOaLBS9GvKuimC%2FKkq6OJrRv4yfWFydZpd%2FshJS5ZrXYPtoTW%2FI%2FBtLMureRddUGpGUcuQ1ftq01Ne8QPzstkGj%2BkpRm4SIcQ2gW2pOEW%2BA9Yy2BIe%2BEdDbKSe4T%2BNwd7peiSLZtF%2FMtfArTlb8c3GltbsAwrgSpT1pDWk1wYx%2B5SvdQ0aV%2Be1pPfZzoa156lWIShdHeKH8M8ztwTcelrPXHrKtGk&amp;u=https%3A%2F%2Falimarket.tmall.com%2Fmarkets%2Falimama%2Fmingdian&amp;k=417"
-					target="_blank"><img
-					src="shouye_files/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg" width="1180px"
-					height="500px" border="0"></a>
-			</div>
-		</ins>
-		<div id="tanx-a-mm_12852562_1778064_37676870"></div>
-	</div>
-
 	<script type="text/javascript" src="static/js/shouye.js"></script>
 </body>
 </html>
