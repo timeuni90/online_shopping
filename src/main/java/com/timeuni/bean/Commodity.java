@@ -16,6 +16,12 @@ public class Commodity {
     private String coverImage;
 
     private String detail;
+    
+    private Seller seller;
+    
+    private Float minPrice;
+    
+    private Integer monthSale;
 
     public Integer getId() {
         return id;
@@ -80,4 +86,28 @@ public class Commodity {
     public void setDetail(String detail) {
         this.detail = detail == null ? null : detail.trim();
     }
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
+	}
+
+	public Float getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(Float minPrice) {
+		this.minPrice = minPrice;
+	}
+
+	public Integer getMonthSale() {
+		return monthSale;
+	}
+
+	public void setMonthSale(Integer monthSale) {
+		this.monthSale = monthSale;
+	}
 }

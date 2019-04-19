@@ -33,4 +33,9 @@ public interface CommodityMapper {
     int updateByPrimaryKeyWithBLOBs(Commodity record);
 
     int updateByPrimaryKey(Commodity record);
+    
+    /* 以下为新增方法 */
+    
+    /* 按照关键字查找商品 */
+    List<Commodity> selectByKey(@Param("key")String key, @Param("sortType")Integer sortType);
 }

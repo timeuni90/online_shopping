@@ -15,6 +15,8 @@ public class OrderDetail {
 
     private Float promotionPrice;
 
+    private Integer quantity;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class OrderDetail {
 
     public void setPromotionPrice(Float promotionPrice) {
         this.promotionPrice = promotionPrice;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

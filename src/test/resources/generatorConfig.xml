@@ -34,7 +34,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="tb_city" domainObjectName="City"></table>
+		<!-- <table tableName="tb_city" domainObjectName="City"></table>
 		
 		<table tableName="tb_collect_commodity" domainObjectName="CollectCommodity"></table>
 		
@@ -79,6 +79,10 @@
 		
 		<table tableName="tb_cart" domainObjectName="Cart"></table>
 		
-		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table>
+		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table> -->
+		
+		<table tableName="tb_order_detail" domainObjectName="OrderDetail"></table>
+		
+		<table tableName="tb_order_commodity_select_property" domainObjectName="OrderCommoditySelectProperty"></table>
 	</context>
 </generatorConfiguration>

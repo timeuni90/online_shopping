@@ -3,7 +3,7 @@
 <mapper namespace="com.timeuni.dao.OrderCommoditySelectPropertyMapper">
   <resultMap id="BaseResultMap" type="com.timeuni.bean.OrderCommoditySelectProperty">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
+    <result column="order_detail_id" jdbcType="INTEGER" property="orderDetailId" />
     <result column="property_name" jdbcType="VARCHAR" property="propertyName" />
     <result column="property_value" jdbcType="VARCHAR" property="propertyValue" />
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, commodity_id, property_name, property_value
+    id, order_detail_id, property_name, property_value
   </sql>
   <select id="selectByExample" parameterType="com.timeuni.bean.OrderCommoditySelectPropertyExample" resultMap="BaseResultMap">
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.timeuni.bean.OrderCommoditySelectProperty">
-    insert into tb_order_commodity_select_property (id, commodity_id, property_name, 
+    insert into tb_order_commodity_select_property (id, order_detail_id, property_name, 
       property_value)
-    values (#{id,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, #{propertyName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{orderDetailId,jdbcType=INTEGER}, #{propertyName,jdbcType=VARCHAR}, 
       #{propertyValue,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.timeuni.bean.OrderCommoditySelectProperty">
@@ -110,8 +110,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="commodityId != null">
-        commodity_id,
+      <if test="orderDetailId != null">
+        order_detail_id,
       </if>
       <if test="propertyName != null">
         property_name,
@@ -124,8 +124,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="commodityId != null">
-        #{commodityId,jdbcType=INTEGER},
+      <if test="orderDetailId != null">
+        #{orderDetailId,jdbcType=INTEGER},
       </if>
       <if test="propertyName != null">
         #{propertyName,jdbcType=VARCHAR},
@@ -147,8 +147,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.commodityId != null">
-        commodity_id = #{record.commodityId,jdbcType=INTEGER},
+      <if test="record.orderDetailId != null">
+        order_detail_id = #{record.orderDetailId,jdbcType=INTEGER},
       </if>
       <if test="record.propertyName != null">
         property_name = #{record.propertyName,jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
   <update id="updateByExample" parameterType="map">
     update tb_order_commodity_select_property
     set id = #{record.id,jdbcType=INTEGER},
-      commodity_id = #{record.commodityId,jdbcType=INTEGER},
+      order_detail_id = #{record.orderDetailId,jdbcType=INTEGER},
       property_name = #{record.propertyName,jdbcType=VARCHAR},
       property_value = #{record.propertyValue,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -174,8 +174,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.timeuni.bean.OrderCommoditySelectProperty">
     update tb_order_commodity_select_property
     <set>
-      <if test="commodityId != null">
-        commodity_id = #{commodityId,jdbcType=INTEGER},
+      <if test="orderDetailId != null">
+        order_detail_id = #{orderDetailId,jdbcType=INTEGER},
       </if>
       <if test="propertyName != null">
         property_name = #{propertyName,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.timeuni.bean.OrderCommoditySelectProperty">
     update tb_order_commodity_select_property
-    set commodity_id = #{commodityId,jdbcType=INTEGER},
+    set order_detail_id = #{orderDetailId,jdbcType=INTEGER},
       property_name = #{propertyName,jdbcType=VARCHAR},
       property_value = #{propertyValue,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

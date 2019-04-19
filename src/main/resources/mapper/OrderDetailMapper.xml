@@ -9,6 +9,7 @@
     <result column="commodity_cover" jdbcType="VARCHAR" property="commodityCover" />
     <result column="price" jdbcType="REAL" property="price" />
     <result column="promotion_price" jdbcType="REAL" property="promotionPrice" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_id, commodity_id, commotity_name, commodity_cover, price, promotion_price
+    id, order_id, commodity_id, commotity_name, commodity_cover, price, promotion_price, 
+    quantity
   </sql>
   <select id="selectByExample" parameterType="com.timeuni.bean.OrderDetailExample" resultMap="BaseResultMap">
     select
@@ -104,10 +106,10 @@
   <insert id="insert" parameterType="com.timeuni.bean.OrderDetail">
     insert into tb_order_detail (id, order_id, commodity_id, 
       commotity_name, commodity_cover, price, 
-      promotion_price)
+      promotion_price, quantity)
     values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
       #{commotityName,jdbcType=VARCHAR}, #{commodityCover,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
-      #{promotionPrice,jdbcType=REAL})
+      #{promotionPrice,jdbcType=REAL}, #{quantity,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.timeuni.bean.OrderDetail">
     insert into tb_order_detail
@@ -133,6 +135,9 @@
       <if test="promotionPrice != null">
         promotion_price,
       </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,6 +160,9 @@
       </if>
       <if test="promotionPrice != null">
         #{promotionPrice,jdbcType=REAL},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -188,6 +196,9 @@
       <if test="record.promotionPrice != null">
         promotion_price = #{record.promotionPrice,jdbcType=REAL},
       </if>
+      <if test="record.quantity != null">
+        quantity = #{record.quantity,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +212,8 @@
       commotity_name = #{record.commotityName,jdbcType=VARCHAR},
       commodity_cover = #{record.commodityCover,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=REAL},
-      promotion_price = #{record.promotionPrice,jdbcType=REAL}
+      promotion_price = #{record.promotionPrice,jdbcType=REAL},
+      quantity = #{record.quantity,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +239,9 @@
       <if test="promotionPrice != null">
         promotion_price = #{promotionPrice,jdbcType=REAL},
       </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +252,8 @@
       commotity_name = #{commotityName,jdbcType=VARCHAR},
       commodity_cover = #{commodityCover,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
-      promotion_price = #{promotionPrice,jdbcType=REAL}
+      promotion_price = #{promotionPrice,jdbcType=REAL},
+      quantity = #{quantity,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

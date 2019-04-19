@@ -3,7 +3,7 @@ package com.timeuni.bean;
 public class OrderCommoditySelectProperty {
     private Integer id;
 
-    private Integer commodityId;
+    private Integer orderDetailId;
 
     private String propertyName;
 
@@ -17,12 +17,12 @@ public class OrderCommoditySelectProperty {
         this.id = id;
     }
 
-    public Integer getCommodityId() {
-        return commodityId;
+    public Integer getOrderDetailId() {
+        return orderDetailId;
     }
 
-    public void setCommodityId(Integer commodityId) {
-        this.commodityId = commodityId;
+    public void setOrderDetailId(Integer orderDetailId) {
+        this.orderDetailId = orderDetailId;
     }
 
     public String getPropertyName() {
