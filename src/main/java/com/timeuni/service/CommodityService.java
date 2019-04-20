@@ -7,15 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.timeuni.bean.Commodity;
 import com.timeuni.dao.CommodityMapper;
+import com.timeuni.resourcebundle.ResourceLocation;
 
 @Service
 public class CommodityService {
 	@Autowired
 	private CommodityMapper commodityMapper;
 	
+	/* 处理搜索请求 */
 	public List<Commodity> getCommoditiesBySearchKey(String key, Integer sortType) {
 		key = "%" + key + "%";
-		List<Commodity> commodities = commodityMapper.selectByKey(key, sortType);
+		String commodityCoverImageLocation = new ResourceLocation().getCommodityCoverImageLocation();
+		List<Commodity> commodities = commodityMapper.selectByKey(key, sortType, commodityCoverImageLocation);
 		return commodities;
 	}
 	

@@ -378,7 +378,7 @@
 	<select id="selectByKey" resultMap="CommodityMapWithSeller">
 		SELECT
 		c.title,
-		c.cover_image,
+		CONCAT(#{commodityCoverImageLocation}, c.cover_image) cover_image,
 		s.store_name,
 		c_csp_cv.min_price,
 		IFNULL(SUM(od.quantity),0) month_sale

@@ -65,11 +65,19 @@
 
 		<!-- 开发web标配：jstl，servlet-api，junit -->
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>1.1.2</version>
+		</dependency> -->
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -77,6 +85,7 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>

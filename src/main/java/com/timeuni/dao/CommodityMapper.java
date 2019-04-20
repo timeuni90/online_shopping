@@ -37,5 +37,5 @@ public interface CommodityMapper {
     /* 以下为新增方法 */
     
     /* 按照关键字查找商品 */
-    List<Commodity> selectByKey(@Param("key")String key, @Param("sortType")Integer sortType);
+    List<Commodity> selectByKey(@Param("key")String key, @Param("sortType")Integer sortType, @Param("commodityCoverImageLocation")String commodityCoverImageLocation);
 }
