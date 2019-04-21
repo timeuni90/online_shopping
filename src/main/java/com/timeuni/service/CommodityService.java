@@ -14,12 +14,18 @@ public class CommodityService {
 	@Autowired
 	private CommodityMapper commodityMapper;
 	
-	/* 处理搜索请求 */
+	/* 按关键字获取商品 */
 	public List<Commodity> getCommoditiesBySearchKey(String key, Integer sortType) {
 		key = "%" + key + "%";
 		String commodityCoverImageLocation = new ResourceLocation().getCommodityCoverImageLocation();
 		List<Commodity> commodities = commodityMapper.selectByKey(key, sortType, commodityCoverImageLocation);
 		return commodities;
+	}
+	
+	/* 按商品id获取商品信息 */
+	public Commodity getCommodityById(Integer commodityId) {
+		
+		return null;
 	}
 	
 }

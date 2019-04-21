@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% pageContext.setAttribute("APP_PATH", request.getContextPath()); %>
 <!DOCTYPE html>
@@ -606,7 +606,7 @@ button {
 						data-spm="a220m.1000858.1000725" data-area="杭州"
 						data-atp-a="{p},{id},,,spu,1,spu,{user_id}"
 						data-atp-b="{p},{id},,,spu,2,spu,{user_id}">
-						<c:forEach items="${requestScope.commodities }" var="commodity">
+						<c:forEach items="${commodities }" var="commodity">
 						<div class="product  " data-id="585067159409"
 							data-atp="a!,,50010158,,,,,,,,">
 							<div class="product-iWrap">
