@@ -1,5 +1,7 @@
 package com.timeuni.bean;
 
+import java.util.List;
+
 public class Commodity {
     private Integer id;
 
@@ -21,9 +23,32 @@ public class Commodity {
     
     private Float minPrice;
     
+    private Float maxPrice;
+    
+    private Float minPromotionPrice;
+    
+    private Float maxPromotionPrice;
+    
     private Integer monthSale;
+    
+    private Integer commentQuantity;
+    
+    private List<CommoditySelectProperty> commoditySelectProperties;
+    
+    private List<CommodityVariable> commodityVariables;
+    
+    private List<CommodityExtendProperty> commodityExtendProperties;
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Commodity [id=" + id + ", sellerId=" + sellerId + ", title=" + title + ", subtitle=" + subtitle
+				+ ", status=" + status + ", isDelete=" + isDelete + ", coverImage=" + coverImage + ", detail=" + detail
+				+ ", seller=" + seller + ", minPrice=" + minPrice + ", monthSale=" + monthSale + ", commentQuantity="
+				+ commentQuantity + ", commoditySelectProperties=" + commoditySelectProperties + ", commodityVariables="
+				+ commodityVariables + ", commodityExtendProperties=" + commodityExtendProperties + "]";
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -110,4 +135,61 @@ public class Commodity {
 	public void setMonthSale(Integer monthSale) {
 		this.monthSale = monthSale;
 	}
+
+	public Integer getCommentQuantity() {
+		return commentQuantity;
+	}
+
+	public void setCommentQuantity(Integer commentQuantity) {
+		this.commentQuantity = commentQuantity;
+	}
+
+	public List<CommodityVariable> getCommodityVariables() {
+		return commodityVariables;
+	}
+
+	public void setCommodityVariables(List<CommodityVariable> commodityVariables) {
+		this.commodityVariables = commodityVariables;
+	}
+
+	public List<CommodityExtendProperty> getCommodityExtendProperties() {
+		return commodityExtendProperties;
+	}
+
+	public void setCommodityExtendProperties(List<CommodityExtendProperty> commodityExtendProperties) {
+		this.commodityExtendProperties = commodityExtendProperties;
+	}
+
+	public List<CommoditySelectProperty> getCommoditySelectProperties() {
+		return commoditySelectProperties;
+	}
+
+	public void setCommoditySelectProperties(List<CommoditySelectProperty> commoditySelectProperties) {
+		this.commoditySelectProperties = commoditySelectProperties;
+	}
+
+	public Float getMaxPrice() {
+		return maxPrice;
+	}
+
+	public void setMaxPrice(Float maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public Float getMinPromotionPrice() {
+		return minPromotionPrice;
+	}
+
+	public void setMinPromotionPrice(Float minPromotionPrice) {
+		this.minPromotionPrice = minPromotionPrice;
+	}
+
+	public Float getMaxPromotionPrice() {
+		return maxPromotionPrice;
+	}
+
+	public void setMaxPromotionPrice(Float maxPromotionPrice) {
+		this.maxPromotionPrice = maxPromotionPrice;
+	}
+	
 }

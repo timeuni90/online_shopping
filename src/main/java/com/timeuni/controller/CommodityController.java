@@ -32,6 +32,9 @@ public class CommodityController {
 	/* 处理获取商品信息请求 */
 	@RequestMapping(value = "/product/{commodityId}", method = RequestMethod.GET)
 	public ModelAndView handleGetCommodityRequest(@PathVariable Integer commodityId) {
-		return null;
+		Commodity commodity = commodityService.getCommodityById(commodityId);
+		ModelAndView modelAndView = new ModelAndView("commodity_detail");
+		modelAndView.addObject("commodity", commodity);
+		return modelAndView;
 	}
 }

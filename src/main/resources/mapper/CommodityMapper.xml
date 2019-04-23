@@ -358,7 +358,11 @@
 	<resultMap extends="ResultMapWithBLOBs"
 		type="com.timeuni.bean.Commodity" id="CommodityMapWithSeller">
 		<result column="min_price" property="minPrice" />
+		<result column="max_price" property="maxPrice" />
+		<result column="min_promotion_price" property="minPromotionPrice" />
+		<result column="max_promotion_price" property="maxPromotionPrice" />
 		<result column="month_sale" property="monthSale" />
+		<result column="comment_quantity" property="commentQuantity" />
 		<association property="seller"
 			javaType="com.timeuni.bean.Seller">
 			<id column="seller_id" property="id" />
@@ -377,30 +381,39 @@
 	<!-- List<Commodity> selectByKey(String key, Integer sortType); -->
 	<select id="selectByKey" resultMap="CommodityMapWithSeller">
 		SELECT
+		c.id,
 		c.title,
-		CONCAT(#{commodityCoverImageLocation}, c.cover_image) cover_image,
+		c.seller_id,
+		CONCAT(#{commodityCoverImageLocation}, c.cover_image)
+		cover_image,
 		s.store_name,
 		c_csp_cv.min_price,
 		IFNULL(SUM(od.quantity),0) month_sale
 		FROM
 		tb_commodity c
-		INNER JOIN tb_seller s ON c.seller_id = s.id
+		INNER JOIN
+		tb_seller s ON c.seller_id = s.id
 		INNER JOIN (
 		SELECT
 		c.id commodity_id,
 		MIN(cv.price) min_price
 		FROM
 		tb_commodity c
-		INNER JOIN tb_commodity_select_property csp ON c.id = csp.commodity_id
-		INNER JOIN tb_commodity_variable cv ON csp.select_property_row =
+		INNER JOIN
+		tb_commodity_select_property csp ON c.id = csp.commodity_id
+		INNER JOIN
+		tb_commodity_variable cv ON csp.select_property_row =
 		cv.select_property_row
 		GROUP BY
 		c.id
-		) c_csp_cv ON c.id = c_csp_cv.commodity_id
-		LEFT JOIN tb_order_detail od ON c.id = od.commodity_id
+		) c_csp_cv ON c.id =
+		c_csp_cv.commodity_id
+		LEFT JOIN tb_order_detail od ON c.id =
+		od.commodity_id
 		LEFT JOIN tb_order o ON od.order_id = o.id
 		WHERE
-		c.title LIKE #{key}
+		c.title
+		LIKE #{key}
 		OR s.store_name LIKE #{key}
 		AND ABS(
 		DATEDIFF(o.generate_time, now())
@@ -417,5 +430,36 @@
 		<if test="sortType == 2">
 			min_price ASC
 		</if>
+	</select>
+
+	<!-- public Commodity selectByCommodityIdFromMultiTable(Integer commodityId); -->
+	<select id="selectByCommodityIdFromMultiTable"
+		resultMap="CommodityMapWithSeller">
+		SELECT
+		c.id,
+		c.seller_id,
+		c.title,
+		c.subtitle,
+		MIN(cv.price) min_price,
+		MAX(cv.price) max_price,
+		MIN(cv.promotion_price) min_promotion_price,
+		MAX(cv.promotion_price) max_promotion_price,
+		IFNULL(SUM(od.quantity), 0) month_sale,
+		s.store_name,
+		s.activity,
+		IFNULL(COUNT(com.order_id),0) comment_quantity
+		FROM
+		tb_commodity c
+		INNER JOIN tb_seller s ON c.seller_id = s.id
+		LEFT JOIN tb_order_detail od ON c.id = od.commodity_id
+		LEFT JOIN tb_order o ON od.order_id = o.id
+		LEFT JOIN tb_comment com ON c.id = com.commodity_id
+		LEFT JOIN tb_commodity_select_property csp ON c.id = csp.commodity_id
+		LEFT JOIN tb_commodity_variable cv ON csp.select_property_row = cv.select_property_row
+		WHERE
+		c.id = #{commodityId}
+		AND ABS(
+		DATEDIFF(o.generate_time, now())
+		) &lt; 31
 	</select>
 </mapper>
