@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.tm-price1 {
+	color: #FF0036;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.tm-yen1 {
+	color: #FF0036;
+    font-size: 18px;
+}

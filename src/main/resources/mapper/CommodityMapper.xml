@@ -359,8 +359,10 @@
 		type="com.timeuni.bean.Commodity" id="CommodityMapWithSeller">
 		<result column="min_price" property="minPrice" />
 		<result column="max_price" property="maxPrice" />
-		<result column="min_promotion_price" property="minPromotionPrice" />
-		<result column="max_promotion_price" property="maxPromotionPrice" />
+		<result column="min_promotion_price"
+			property="minPromotionPrice" />
+		<result column="max_promotion_price"
+			property="maxPromotionPrice" />
 		<result column="month_sale" property="monthSale" />
 		<result column="comment_quantity" property="commentQuantity" />
 		<association property="seller"
@@ -384,7 +386,8 @@
 		c.id,
 		c.title,
 		c.seller_id,
-		CONCAT(#{commodityCoverImageLocation}, c.cover_image)
+		CONCAT(#{commodityCoverImageLocation},
+		c.cover_image)
 		cover_image,
 		s.store_name,
 		c_csp_cv.min_price,
@@ -440,26 +443,56 @@
 		c.seller_id,
 		c.title,
 		c.subtitle,
-		MIN(cv.price) min_price,
+		CONCAT(#{commodityCoverLoc}, c.cover_image)
+		cover_image,
+		MIN(cv.price)
+		min_price,
 		MAX(cv.price) max_price,
-		MIN(cv.promotion_price) min_promotion_price,
+		MIN(cv.promotion_price)
+		min_promotion_price,
 		MAX(cv.promotion_price) max_promotion_price,
-		IFNULL(SUM(od.quantity), 0) month_sale,
 		s.store_name,
 		s.activity,
-		IFNULL(COUNT(com.order_id),0) comment_quantity
+		CONCAT(#{storeLogoLoc}, s.store_cover) store_cover
 		FROM
 		tb_commodity c
-		INNER JOIN tb_seller s ON c.seller_id = s.id
-		LEFT JOIN tb_order_detail od ON c.id = od.commodity_id
-		LEFT JOIN tb_order o ON od.order_id = o.id
-		LEFT JOIN tb_comment com ON c.id = com.commodity_id
-		LEFT JOIN tb_commodity_select_property csp ON c.id = csp.commodity_id
-		LEFT JOIN tb_commodity_variable cv ON csp.select_property_row = cv.select_property_row
+		INNER JOIN tb_seller s ON
+		c.seller_id = s.id
+		INNER JOIN tb_commodity_select_property csp ON c.id
+		= csp.commodity_id
+		INNER JOIN tb_commodity_variable cv ON
+		csp.select_property_row =
+		cv.select_property_row
+		WHERE
+		c.id =
+		#{commodityId}
+	</select>
+
+	<!-- public Integer selectMonthSaleByCommodityId(Integer commodityId); -->
+	<select id="selectMonthSaleByCommodityId" resultType="int">
+		SELECT
+		IFNULL(SUM(od.quantity), 0) month_sale
+		FROM
+		tb_commodity c
+		INNER JOIN
+		tb_order_detail od ON c.id = od.commodity_id
+		INNER JOIN tb_order o ON
+		o.id = od.order_id
 		WHERE
 		c.id = #{commodityId}
 		AND ABS(
-		DATEDIFF(o.generate_time, now())
+		DATEDIFF(o.generate_time, NOW())
 		) &lt; 31
+	</select>
+
+	<!-- public Integer selectCountCommodityComment(Integer commodityId); -->
+	<select id="selectCountCommodityComment" resultType="int">
+		SELECT
+		IFNULL(count(cmt.commodity_id), 0) comment_quantity
+		FROM
+		tb_commodity cdy
+		INNER JOIN tb_comment cmt ON cdy.id = cmt.commodity_id
+		WHERE
+		cdy.id = #{commodityId}
 	</select>
 </mapper>

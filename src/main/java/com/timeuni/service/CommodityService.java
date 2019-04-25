@@ -40,9 +40,14 @@ public class CommodityService {
 	
 	/* 按商品id获取商品信息 */
 	public Commodity getCommodityById(Integer commodityId) {
-		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId);
+		/* 获取商品基本信息 */
+		ResourceLocation resourceLocation = new ResourceLocation();
+		String commodityCoverImageLocation = resourceLocation.getCommodityCoverImageLocation();
+		String storeLogoLocation = resourceLocation.getStoreLogoLocation();
+		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId, commodityCoverImageLocation, storeLogoLocation);
 		CommoditySelectPropertyExample commoditySelectPropertyExample = new CommoditySelectPropertyExample();
 		commoditySelectPropertyExample.createCriteria().andCommodityIdEqualTo(commodity.getId());
+		/* 封装商品的可选属性 */
 		List<CommoditySelectProperty> commoditySelectProperties = commoditySelectPropertyMapper.selectByExample(commoditySelectPropertyExample);
 		commodity.setCommoditySelectProperties(commoditySelectProperties);
 		CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
@@ -51,12 +56,17 @@ public class CommodityService {
 			rows.add(commoditySelectProperty.getSelectPropertyRow());
 		}
 		commodityVariableExample.createCriteria().andSelectPropertyRowIn(rows);
+		/* 封装商品的变量信息 */
 		List<CommodityVariable> commodityVariables = commodityVariableMapper.selectByExample(commodityVariableExample);
 		commodity.setCommodityVariables(commodityVariables);
 		CommodityExtendPropertyExample commodityExtendPropertyExample = new CommodityExtendPropertyExample();
 		commodityExtendPropertyExample.createCriteria().andCommodityIdEqualTo(commodity.getId());
 		List<CommodityExtendProperty> commodityExtendProperties = commodityExtendPropertyMapper.selectByExample(commodityExtendPropertyExample);
 		commodity.setCommodityExtendProperties(commodityExtendProperties);
+		/* 封装商品的月销量 */
+		commodity.setMonthSale(commodityMapper.selectMonthSaleByCommodityId(commodityId));
+		/* 封装商品的累计评价  */
+		commodity.setCommentQuantity(commodityMapper.selectCountCommodityComment(commodityId));
 		return commodity;
 	}
 	

@@ -13,4 +13,7 @@ public class ResourceLocation {
 		return resourceBundle.getString("commodity_cover_image");
 	}
 	
+	public String getStoreLogoLocation() {
+		return resourceBundle.getString("store_logo");
+	}
 }
