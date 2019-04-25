@@ -12,12 +12,21 @@ public class CommoditySelectProperty {
     private String propertyName;
 
     private String propertyValue;
+    
+    private String rows;
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "CommoditySelectProperty [id=" + id + ", commodityId=" + commodityId + ", selectPropertyRow="
+				+ selectPropertyRow + ", mediaType=" + mediaType + ", propertyName=" + propertyName + ", propertyValue="
+				+ propertyValue + ", rows=" + rows + "]";
+	}
+
+	public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+	public void setId(Integer id) {
         this.id = id;
     }
 
@@ -60,4 +69,12 @@ public class CommoditySelectProperty {
     public void setPropertyValue(String propertyValue) {
         this.propertyValue = propertyValue == null ? null : propertyValue.trim();
     }
+
+	public String getRows() {
+		return rows;
+	}
+
+	public void setRows(String rows) {
+		this.rows = rows;
+	}
 }
