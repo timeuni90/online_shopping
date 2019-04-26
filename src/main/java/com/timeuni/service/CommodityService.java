@@ -69,8 +69,8 @@ public class CommodityService {
 		commodity.setMonthSale(commodityMapper.selectMonthSaleByCommodityId(commodityId));
 		/* 封装商品的累计评价 */
 		commodity.setCommentQuantity(commodityMapper.selectCountCommodityComment(commodityId));
-		/* 提取可选属性value的所有行 */
-		for(int i = 0; i < commoditySelectProperties.size() - 1; i++) {
+		/* 去除重复value，提取可选属性value的所有行 */
+		for(int i = 0; i < commoditySelectProperties.size(); i++) {
 			CommoditySelectProperty commoditySelectProperty1 = commoditySelectProperties.get(i);
 			commoditySelectProperty1.setRows(commoditySelectProperty1.getSelectPropertyRow());
 			for(int j = i + 1; j < commoditySelectProperties.size(); j++) {
@@ -100,7 +100,6 @@ public class CommodityService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("commodity", commodity);
 		map.put("commodityPropertyGroup", commodityPropertyGroup);
-		System.out.println(commodity.getMinPrice());
 		return map;
 	}
 

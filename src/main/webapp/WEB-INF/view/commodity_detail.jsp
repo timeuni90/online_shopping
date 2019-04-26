@@ -11,41 +11,22 @@
 		<meta charset="utf-8">
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-
-		<meta name="keywords" content="【官方旗舰2298元起】Meizu/魅族 16th骁龙845 超窄边框全面屏 屏下指纹解锁 双摄拍照旗舰手机">
-		<meta name="description" content="欢迎前来淘宝网实力旺铺，选购【官方旗舰2298元起】Meizu/魅族 16th骁龙845 超窄边框全面屏 屏下指纹解锁 双摄拍照旗舰手机,想了解详情【官方旗舰2298元起】Meizu/魅族 16th骁龙845 超窄边框全面屏 屏下指纹解锁 双摄拍照旗舰手机，请进入魅族官方旗舰店的魅族官方旗舰店实力旺铺，更多商品任你选购">
-
 		<title>商品</title>
 
 		<!-- globalmodule version: 3.0.83 -->
 		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail.css">
-
 		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
-
 		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/modules-other-tmall-default-min.css">
-
-		<meta name="spm-id" content="a220o">
-		<meta name="referrer" content="always">
-		<meta name="microscope-data" content="pageId=1322100871;prototypeId=2;siteId=2; shopId=104682877; userid=1695308781;">
-		
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/tmall.css">
-
 		<link href="${APP_PATH }/static/css/commodity_detail/cart-layer.css" rel="stylesheet">
 		<link href="${APP_PATH }/static/css/commodity_detail/cspu.css" rel="stylesheet">
 		<link href="${APP_PATH}/static/css/commodity_detail/relateGroup.css" rel="stylesheet">
 		<link href="${APP_PATH }/static/css/commodity_detail/combo.css" rel="stylesheet">
 		<link href="${APP_PATH }/static/css/commodity_detail/progressive.css" rel="stylesheet">
-		
-		
 		<link href="${APP_PATH }/static/css/commodity_detail/index.css" rel="stylesheet">
-		
-		
 		<link href="${APP_PATH }/static/css/commodity_detail/suggest.css" rel="stylesheet">
 		<link href="${APP_PATH }/static/css/commodity_detail/brandbar.css" rel="stylesheet">
 		<link href="${APP_PATH }/static/css/commodity_detail/mallbar.css" rel="stylesheet">
-		
-		
-		
 		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tstart.css">
 		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tdog.css">
 		<link href="${APP_PATH }/static/css/commodity_detail/floatcartlink.css" rel="stylesheet">
@@ -56,8 +37,8 @@
 		
 		<!-- 新增css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
-		
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
+		<script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 	</head>
 
 <body class="enableHover" data-spm="1000855">
@@ -388,7 +369,7 @@ button {
 													<c:if test="${commodityProperty.value[0].mediaType==0 }">
 													<ul class="tm-clear J_TSaleProp">
 														<c:forEach items="${commodityProperty.value }" var="item">
-														<li data-rows=${item.rows }>
+														<li class="property-value" data-rows=${item.rows }>
 															<a href="#" role="button" tabindex="0">
 																<span>${item.propertyValue }</span>
 															</a>
@@ -399,7 +380,7 @@ button {
 													<c:if test="${commodityProperty.value[0].mediaType==1 }">
 													<ul class="tm-clear J_TSaleProp tb-img">
 														<c:forEach items="${commodityProperty.value }" var="item">					
-					  									<li data-rows=${item.rows }>
+					  									<li class="property-value" data-rows=${item.rows }>
 															<a href="#" 
 																style="background:url(${com_sel }${item.propertyValue }) center no-repeat;" 
 																role="button" tabindex="0">
@@ -411,7 +392,7 @@ button {
 													<c:if test="${commodityProperty.value[0].mediaType==2 }">
 													<ul class="tm-clear J_TSaleProp tb-img tb-img-alias">
 														<c:forEach items="${commodityProperty.value }" var="item">
-														<li data-rows=${item.rows }>
+														<li class="property-value" data-rows=${item.rows }>
 															<a href="#"
 																style="background: url(${com_sel }${fn:substring(item.propertyValue, 0, fn:indexOf(item.propertyValue, '+')) } ) center no-repeat;"
 																role="button" tabindex="0">
@@ -2425,5 +2406,5 @@ button {
 		</div>
 	</div>
 </body>
-<script type="text/javascript"></script>
+<script type="text/javascript" src="${APP_PATH }/static/js/commodity_detail.js"></script>
 </html>
