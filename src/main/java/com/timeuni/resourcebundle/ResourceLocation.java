@@ -16,4 +16,8 @@ public class ResourceLocation {
 	public String getStoreLogoLocation() {
 		return resourceBundle.getString("store_logo");
 	}
+	
+	public String getCommoditySelectPropertyMediaLocation() {
+		return resourceBundle.getString("commodity_select_property_media");
+	}
 }

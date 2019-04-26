@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <% pageContext.setAttribute("APP_PATH", request.getContextPath()); %>
+<% pageContext.setAttribute("com_sel", new com.timeuni.resourcebundle.ResourceLocation().getCommoditySelectPropertyMediaLocation()); %>
 <!DOCTYPE html>
 <html
 	class="w1190 ks-webkit537 ks-webkit ks-chrome73 ks-chrome browser-Chromium">
@@ -379,7 +381,50 @@ button {
 									<div class="tb-skin">
 										<div class="tb-sku">
 											<div id="J_WtSKU" class="clearfix j-mdv"></div>
-											<dl class="tb-prop tm-sale-prop tm-clear">
+											<c:forEach items="${commodityPropertyGroup }" var="commodityProperty">
+										    <dl class="tb-prop tm-sale-prop tm-clear">
+												<dt class="tb-metatit">${commodityProperty.key }</dt>
+												<dd>
+													<c:if test="${commodityProperty.value[0].mediaType==0 }">
+													<ul class="tm-clear J_TSaleProp">
+														<c:forEach items="${commodityProperty.value }" var="item">
+														<li data-rows=${item.rows }>
+															<a href="#" role="button" tabindex="0">
+																<span>${item.propertyValue }</span>
+															</a>
+														</li>
+														</c:forEach>
+													</ul>
+													</c:if>
+													<c:if test="${commodityProperty.value[0].mediaType==1 }">
+													<ul class="tm-clear J_TSaleProp tb-img">
+														<c:forEach items="${commodityProperty.value }" var="item">					
+					  									<li data-rows=${item.rows }>
+															<a href="#" 
+																style="background:url(${com_sel }${item.propertyValue }) center no-repeat;" 
+																role="button" tabindex="0">
+															</a>
+														</li>
+														</c:forEach>
+						    						</ul>
+													</c:if>
+													<c:if test="${commodityProperty.value[0].mediaType==2 }">
+													<ul class="tm-clear J_TSaleProp tb-img tb-img-alias">
+														<c:forEach items="${commodityProperty.value }" var="item">
+														<li data-rows=${item.rows }>
+															<a href="#"
+																style="background: url(${com_sel }${fn:substring(item.propertyValue, 0, fn:indexOf(item.propertyValue, '+')) } ) center no-repeat;"
+																role="button" tabindex="0">
+																<span>${fn:substring(item.propertyValue, fn:indexOf(item.propertyValue, '+')+1, fn:length(item.propertyValue)) }</span>
+															</a>
+														</li>
+														</c:forEach>
+													</ul>
+													</c:if>
+												</dd>
+											</dl>
+											</c:forEach>
+											<!-- <dl class="tb-prop tm-sale-prop tm-clear">
 												<dt class="tb-metatit">网络类型</dt>
 												<dd>
 													<ul class="tm-clear J_TSaleProp">
@@ -389,9 +434,8 @@ button {
 														</li>
 													</ul>
 												</dd>
-											</dl>
-
-											<dl class="tb-prop tm-sale-prop tm-clear">
+											</dl> -->
+											<!-- <dl class="tb-prop tm-sale-prop tm-clear">
 												<dt class="tb-metatit">机身颜色</dt>
 												<dd>
 													<ul class="tm-clear J_TSaleProp tb-img tb-img-alias">
@@ -408,7 +452,7 @@ button {
 														</a></li>
 													</ul>
 												</dd>
-											</dl>
+											</dl> -->
 
 											<div class="tb-prop tm-clear J_tmSaleTime"
 												style="display: none;"></div>
@@ -2381,5 +2425,5 @@ button {
 		</div>
 	</div>
 </body>
-
+<script type="text/javascript"></script>
 </html>

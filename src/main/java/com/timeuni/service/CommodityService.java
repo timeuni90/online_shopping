@@ -1,7 +1,9 @@
 package com.timeuni.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ import com.timeuni.resourcebundle.ResourceLocation;
 @Service
 public class CommodityService {
 	@Autowired
-	private CommodityMapper commodityMapper;	
+	private CommodityMapper commodityMapper;
 	@Autowired
 	private CommoditySelectPropertyMapper commoditySelectPropertyMapper;
 	@Autowired
@@ -39,26 +41,26 @@ public class CommodityService {
 	}
 	
 	/* 按商品id获取商品信息 */
-	public Commodity getCommodityById(Integer commodityId) {
+	public Map<String, Object> getCommodityById(Integer commodityId) {
 		/* 获取商品基本信息 */
 		ResourceLocation resourceLocation = new ResourceLocation();
 		String commodityCoverImageLocation = resourceLocation.getCommodityCoverImageLocation();
 		String storeLogoLocation = resourceLocation.getStoreLogoLocation();
 		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId, commodityCoverImageLocation, storeLogoLocation);
+		/* 封装商品的可选属性 */
 		CommoditySelectPropertyExample commoditySelectPropertyExample = new CommoditySelectPropertyExample();
 		commoditySelectPropertyExample.createCriteria().andCommodityIdEqualTo(commodity.getId());
-		/* 封装商品的可选属性 */
 		List<CommoditySelectProperty> commoditySelectProperties = commoditySelectPropertyMapper.selectByExample(commoditySelectPropertyExample);
-		commodity.setCommoditySelectProperties(commoditySelectProperties);
+		/* 封装商品的变量信息 */
 		CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
 		List<String> rows = new ArrayList<String>();
 		for (CommoditySelectProperty commoditySelectProperty : commoditySelectProperties) {
 			rows.add(commoditySelectProperty.getSelectPropertyRow());
 		}
 		commodityVariableExample.createCriteria().andSelectPropertyRowIn(rows);
-		/* 封装商品的变量信息 */
 		List<CommodityVariable> commodityVariables = commodityVariableMapper.selectByExample(commodityVariableExample);
 		commodity.setCommodityVariables(commodityVariables);
+		/* 封装商品的扩展属性 */
 		CommodityExtendPropertyExample commodityExtendPropertyExample = new CommodityExtendPropertyExample();
 		commodityExtendPropertyExample.createCriteria().andCommodityIdEqualTo(commodity.getId());
 		List<CommodityExtendProperty> commodityExtendProperties = commodityExtendPropertyMapper.selectByExample(commodityExtendPropertyExample);
@@ -82,8 +84,24 @@ public class CommodityService {
 				}
 			}
 		}
-		/* 将可选属性分组装配 */
-		return commodity;
+		/* 按属性名分组装配 */
+		Map<String, List<CommoditySelectProperty>> commodityPropertyGroup = new HashMap<String, List<CommoditySelectProperty>>();
+		for (CommoditySelectProperty commoditySelectProperty : commoditySelectProperties) {
+			String propertyName = commoditySelectProperty.getPropertyName();
+			if(commodityPropertyGroup.containsKey(propertyName)) {
+				List<CommoditySelectProperty> list = commodityPropertyGroup.get(propertyName);
+				list.add(commoditySelectProperty);
+			} else {
+				List<CommoditySelectProperty> list = new ArrayList<CommoditySelectProperty>();
+				list.add(commoditySelectProperty);
+				commodityPropertyGroup.put(propertyName, list);
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("commodity", commodity);
+		map.put("commodityPropertyGroup", commodityPropertyGroup);
+		System.out.println(commodity.getMinPrice());
+		return map;
 	}
-	
+
 }

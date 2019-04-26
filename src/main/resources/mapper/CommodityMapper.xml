@@ -357,11 +357,11 @@
 
 	<resultMap extends="ResultMapWithBLOBs"
 		type="com.timeuni.bean.Commodity" id="CommodityMapWithSeller">
-		<result column="min_price" property="minPrice" />
-		<result column="max_price" property="maxPrice" />
-		<result column="min_promotion_price"
+		<result column="min_price" jdbcType="REAL" property="minPrice" />
+		<result column="max_price" jdbcType="REAL" property="maxPrice" />
+		<result column="min_promotion_price" jdbcType="REAL"
 			property="minPromotionPrice" />
-		<result column="max_promotion_price"
+		<result column="max_promotion_price" jdbcType="REAL"
 			property="maxPromotionPrice" />
 		<result column="month_sale" property="monthSale" />
 		<result column="comment_quantity" property="commentQuantity" />
