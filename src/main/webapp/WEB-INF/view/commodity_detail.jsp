@@ -293,8 +293,22 @@ button {
 									<dl class="tm-price-panel" id="J_StrPriceModBox">
 										<dt class="tb-metatit">价格</dt>
 										<dd>
-											<em class="tm-yen1">¥</em>
+											<c:if test="${commodity.minPromotionPrice==null }">
+											<em class="tm-yen1">
+												¥
+											</em>
+											</c:if>
+											<c:if test="${commodity.minPromotionPrice!=null }">
+											<em class="tm-yen">
+												¥
+											</em>
+											</c:if>
+											<c:if test="${commodity.minPromotionPrice==null }">
 											<span class="tm-price1">
+											</c:if>
+											<c:if test="${commodity.minPromotionPrice!=null }">
+											<span class="tm-price">
+											</c:if>
 												<c:if test="${commodity.minPrice != commodity.maxPrice}">
 												${commodity.minPrice }-${commodity.maxPrice }
 												</c:if>
@@ -304,14 +318,14 @@ button {
 											</span>
 										</dd>
 									</dl>
-									<c:if test="${commodity.minPromotionPrice!=null || commodity.minPromotionPrice }">
+									<c:if test="${commodity.minPromotionPrice!=null }">
 									<dl class="tm-promo-panel tm-promo-cur" id="J_PromoPrice"
 										data-label="促销价">
 										<dt class="tb-metatit">促销价</dt>
 										<dd>
 											<div class="tm-promo-price">
-												<em class="tm-yen">¥</em> 
-												<span class="tm-price">
+												<em class="tm-yen1">¥</em> 
+												<span class="tm-price1">
 													<c:if test="${commodity.minPromotionPrice != commodity.minPromotionPrice }">
 													${commodity.minPromotionPrice }-${commodtity.maxPromotionPrice }
 													</c:if>
@@ -2406,5 +2420,42 @@ button {
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	var min_price = ${commodity.minPrice};
+		min_price = min_price.toFixed(2);
+	var max_price = ${commodity.maxPrice};
+		max_price = max_price.toFixed(2);
+	var min_promotion_price = 
+		<c:if test="${commodity.minPromotionPrice==null}">
+		null;
+		</c:if>
+		<c:if test="${commodity.minPromotionPrice!=null}">
+		${commodity.minPromotionPrice};
+		min_promotion_price = min_promotion_price.toFixed(2);
+		</c:if>
+	var max_promotion_price = 
+		<c:if test="${commodity.maxPromotionPrice==null}">
+		null;
+		</c:if>
+		<c:if test="${commodity.maxPromotionPrice!=null}">
+		${commodity.maxPromotionPrice};
+		max_promotion_price = max_promotion_price.toFixed(2);
+		</c:if>
+	var commodity_variables = new Array();
+	<c:forEach items='${commodity.commodityVariables }' var='commodityVariable'>
+	commodity_variables.push({
+		row: '${commodityVariable.selectPropertyRow }',
+		price: ${commodityVariable.price },
+		promotion_price: 
+			<c:if test='${commodityVariable.promotionPrice!=null }'>
+			${commodityVariable.promotionPrice },
+			</c:if>
+			<c:if test='${commodityVariable.promotionPrice==null }'>
+			null,
+			</c:if>
+		stock: ${commodityVariable.stock}
+	});
+	</c:forEach>
+</script>
 <script type="text/javascript" src="${APP_PATH }/static/js/commodity_detail.js"></script>
 </html>
