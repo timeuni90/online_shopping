@@ -98,8 +98,19 @@ $(".property-value").click(function() {
 
 /* 给increase绑定事件 */
 $(".mui-amount-increase").click(function() {
-	var value = parseInt($(".tb-text.mui-amount-input").attr("value"));
-	$(".tb-text.mui-amount-input").attr("value", ++value);
+	var value = parseInt($(".tb-text.mui-amount-input").val());
+	var stock = parseInt($("#J_EmStock").text().match(/\d{1,}/));
+	if(value < stock) {
+		$(".tb-text.mui-amount-input").val(++value);
+	}
+});
+
+/* 给decrease绑定事件 */
+$(".mui-amount-decrease").click(function() {
+	var value = parseInt($(".tb-text.mui-amount-input").val());
+	if(value > 1) {
+		$(".tb-text.mui-amount-input").val(--value);
+	}
 });
 
 
