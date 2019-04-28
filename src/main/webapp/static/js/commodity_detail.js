@@ -3,7 +3,7 @@
 /* 给property-value类绑定点击事件 */
 var selected_property_value = null;
 $(".property-value").click(function() {
-	/* 现实选中或不选中 */
+	/* 显示选中或不选中 */
 	if($(this).hasClass("tb-selected")) {
 		$(this).removeClass("tb-selected");
 	} else {
@@ -64,6 +64,7 @@ $(".property-value").click(function() {
 			}
 		});
 	} else {	/* 属性未选满 */
+		$("#J_EmStock").text("库存"+commodity_stock+"件");
 		$(".tm-fcs-panel").empty();
 		if(min_promotion_price == null) {
 			var html_string = "<dl class='tm-price-panel' id='J_StrPriceModBox'>" +
@@ -113,4 +114,29 @@ $(".mui-amount-decrease").click(function() {
 	}
 });
 
+/* 给输入框绑定键盘事件，每一键入时校验输入是否合法  */
+$(".tb-text.mui-amount-input").keyup(function() {
+	var value = $(this).val();
+	$(this).val(value.replace(/^(0+)|[^\d]+/g, ""));
+});
+
+/* 给输入框绑定失去焦点事件，若输入框的里值为空，则默认为1 */
+$(".tb-text.mui-amount-input").blur(function() {
+	if($(this).val() == "") {
+		$(this).val("1");
+	}
+});
+
+/*  */
+$("#J_UlThumb li").mouseenter(function() {
+	$("#J_UlThumb li").removeClass("tb-selected");
+	$(this).addClass("tb-selected");
+	$("#J_ImgBooth").attr("src", $(this).find("img").attr("src"));
+});
+
+/*  */
+$(".tm-clear.J_TSaleProp.tb-img").click(function() {
+	var url = $(this).find("a").css("backgroundImage").split('("')[1].split('")')[0];
+	$("#J_ImgBooth").attr("src", url);
+});
 

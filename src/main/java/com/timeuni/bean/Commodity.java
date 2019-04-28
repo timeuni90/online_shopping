@@ -38,6 +38,10 @@ public class Commodity {
     private List<CommodityVariable> commodityVariables;
     
     private List<CommodityExtendProperty> commodityExtendProperties;
+    
+    private List<CommodityMediaResource> commodityMediaResources;
+    
+    private Integer stock;
 
     @Override
 	public String toString() {
@@ -190,6 +194,22 @@ public class Commodity {
 
 	public void setMaxPromotionPrice(Float maxPromotionPrice) {
 		this.maxPromotionPrice = maxPromotionPrice;
+	}
+
+	public List<CommodityMediaResource> getCommodityMediaResources() {
+		return commodityMediaResources;
+	}
+
+	public void setCommodityMediaResources(List<CommodityMediaResource> commodityMediaResources) {
+		this.commodityMediaResources = commodityMediaResources;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
 	}
 	
 }

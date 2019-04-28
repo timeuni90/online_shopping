@@ -11,12 +11,15 @@ import org.springframework.stereotype.Service;
 import com.timeuni.bean.Commodity;
 import com.timeuni.bean.CommodityExtendProperty;
 import com.timeuni.bean.CommodityExtendPropertyExample;
+import com.timeuni.bean.CommodityMediaResource;
+import com.timeuni.bean.CommodityMediaResourceExample;
 import com.timeuni.bean.CommoditySelectProperty;
 import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.dao.CommodityExtendPropertyMapper;
 import com.timeuni.dao.CommodityMapper;
+import com.timeuni.dao.CommodityMediaResourceMapper;
 import com.timeuni.dao.CommoditySelectPropertyMapper;
 import com.timeuni.dao.CommodityVariableMapper;
 import com.timeuni.resourcebundle.ResourceLocation;
@@ -31,6 +34,8 @@ public class CommodityService {
 	private CommodityVariableMapper commodityVariableMapper;
 	@Autowired
 	private CommodityExtendPropertyMapper commodityExtendPropertyMapper;
+	@Autowired
+	private CommodityMediaResourceMapper commodityMediaResourceMapper;
 	
 	/* 按关键字获取商品 */
 	public List<Commodity> getCommoditiesBySearchKey(String key, Integer sortType) {
@@ -47,11 +52,16 @@ public class CommodityService {
 		String commodityCoverImageLocation = resourceLocation.getCommodityCoverImageLocation();
 		String storeLogoLocation = resourceLocation.getStoreLogoLocation();
 		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId, commodityCoverImageLocation, storeLogoLocation);
+		/* 封装商品的媒体资源 */
+		CommodityMediaResourceExample commodityMediaResourceExample = new CommodityMediaResourceExample();
+		commodityMediaResourceExample.createCriteria().andCommodityIdEqualTo(commodityId);
+		List<CommodityMediaResource> commodityMediaResources = commodityMediaResourceMapper.selectByExample(commodityMediaResourceExample);
+		commodity.setCommodityMediaResources(commodityMediaResources);
 		/* 封装商品的可选属性 */
 		CommoditySelectPropertyExample commoditySelectPropertyExample = new CommoditySelectPropertyExample();
 		commoditySelectPropertyExample.createCriteria().andCommodityIdEqualTo(commodity.getId());
 		List<CommoditySelectProperty> commoditySelectProperties = commoditySelectPropertyMapper.selectByExample(commoditySelectPropertyExample);
-		/* 封装商品的变量信息 */
+		/* 封装商品的变量信息，总库存 */
 		CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
 		List<String> rows = new ArrayList<String>();
 		for (CommoditySelectProperty commoditySelectProperty : commoditySelectProperties) {
@@ -60,6 +70,11 @@ public class CommodityService {
 		commodityVariableExample.createCriteria().andSelectPropertyRowIn(rows);
 		List<CommodityVariable> commodityVariables = commodityVariableMapper.selectByExample(commodityVariableExample);
 		commodity.setCommodityVariables(commodityVariables);
+		int stock = 0;
+		for (CommodityVariable commodityVariable : commodityVariables) {
+			stock += commodityVariable.getStock();
+		}
+		commodity.setStock(stock);
 		/* 封装商品的扩展属性 */
 		CommodityExtendPropertyExample commodityExtendPropertyExample = new CommodityExtendPropertyExample();
 		commodityExtendPropertyExample.createCriteria().andCommodityIdEqualTo(commodity.getId());

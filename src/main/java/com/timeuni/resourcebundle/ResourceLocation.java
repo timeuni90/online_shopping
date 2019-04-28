@@ -20,4 +20,8 @@ public class ResourceLocation {
 	public String getCommoditySelectPropertyMediaLocation() {
 		return resourceBundle.getString("commodity_select_property_media");
 	}
+	
+	public String getCommdotiyMediaResourcesLocation() {
+		return resourceBundle.getString("commodity_media_resources");
+	}
 }

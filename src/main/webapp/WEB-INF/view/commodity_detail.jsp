@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <% pageContext.setAttribute("APP_PATH", request.getContextPath()); %>
 <% pageContext.setAttribute("com_sel", new com.timeuni.resourcebundle.ResourceLocation().getCommoditySelectPropertyMediaLocation()); %>
+<% pageContext.setAttribute("com_media_loc", new com.timeuni.resourcebundle.ResourceLocation().getCommdotiyMediaResourcesLocation()); %>
 <!DOCTYPE html>
 <html
 	class="w1190 ks-webkit537 ks-webkit ks-chrome73 ks-chrome browser-Chromium">
@@ -462,7 +463,7 @@ button {
 															class="mui-amount-decrease"></span>
 													</span> <span class="mui-amount-unit">件</span>
 													</span> <em id="J_EmStock" class="tb-hidden"
-														style="display: inline;">库存67件</em> <span id="J_StockTips">
+														style="display: inline;">库存${commodity.stock }件</em> <span id="J_StockTips">
 													</span>
 												</dd>
 											</dl>
@@ -516,30 +517,6 @@ button {
 											</ul>
 										</dd>
 									</dl>
-									<div class="tm-pay-box">
-										<div class="tm-pay">
-											<em class="pay-title">支付方式</em> <em title="显示所有信息"
-												class="pay-toggler" id="J_Toggler" style="display: inline;"
-												data-spm-anchor-id="a220o.1000855.0.i1.7b036adb8j58J2"></em>
-											<div data-spm="1998099674" class="pay-credit J_Paylist">
-												<a title="支持使用信用卡支付" target="_blank"
-													href="//payservice.alipay.com/intro/index.htm?c=xyk">信用卡<s
-													style="background: url1(// img.alicdn.com/ tps/ i4/ TB1gNG3JpXXXXbcXVXXAz6UFXXX-16-16.png) no-repeat center center;"></s></a>
-												<a title="支持用绑定了支付宝的银行卡付款"
-													href="//payservice.alipay.com/intro/index.htm?c=kjzf"
-													target="_blank">快捷支付 <s
-													style="background: url1(// gtms04.alicdn.com/ tps/ i4/ TB1fnvXJpXXXXcTXpXXAz6UFXXX-16-16.png) no-repeat center center;"></s></a>
-												<a title="免费利用花呗额度支付，下月10号还款"
-													href="//payservice.alipay.com/intro/index.htm?c=hb"
-													target="_blank">蚂蚁花呗 <s
-													style="background: url1(// gtms03.alicdn.com/ tps/ i3/ TB1rf58JpXXXXc5XFXXAz6UFXXX-16-16.png) no-repeat center center;"></s></a>
-												<a title="支持使用余额宝付款，边赚边花"
-													href="//payservice.alipay.com/intro/index.htm?c=yeb"
-													target="_blank">余额宝 <s
-													style="background: url1(// gtms02.alicdn.com/ tps/ i2/ TB1HAHaJpXXXXX0XFXXAz6UFXXX-16-16.png) no-repeat center center;"></s></a>
-											</div>
-										</div>
-									</div>
 								</div>
 
 							</div>
@@ -562,21 +539,16 @@ button {
 								<a class="tb-thumb-left disabled"><i></i></a>
 								<div class="tb-thumb-content">
 									<ul id="J_UlThumb" class="tb-thumb tm-clear" style="left: 0px;">
-										<li class="tb-selected"><a><img
-												src="//img.alicdn.com/imgextra/i2/1695308781/O1CN01Ovvz4u2EjkMl8IAr7_!!0-item_pic.jpg_60x60q90.jpg"
-												alt="商品预览图"></a></li>
-										<li class=""><a><img
-												src="//img.alicdn.com/imgextra/i3/1695308781/O1CN01n5Mtbn2EjkMlwk6Qt_!!1695308781.jpg_60x60q90.jpg"
-												alt="商品预览图"></a></li>
-										<li class=""><a><img
-												src="//img.alicdn.com/imgextra/i3/1695308781/TB2teAFmQUmBKNjSZFOXXab2XXa_!!1695308781.jpg_60x60q90.jpg"
-												alt="商品预览图"></a></li>
-										<li><a><img
-												src="//img.alicdn.com/imgextra/i4/1695308781/TB2dBNmBxuTBuNkHFNRXXc9qpXa_!!1695308781.jpg_60x60q90.jpg"
-												alt="商品预览图"></a></li>
-										<li><a><img
-												src="//img.alicdn.com/imgextra/i3/1695308781/TB2gVfmJQ9WBuNjSspeXXaz5VXa_!!1695308781.jpg_60x60q90.jpg"
-												alt="商品预览图"></a></li>
+										<c:forEach items="${commodity.commodityMediaResources }" var="commodityMediaResource">
+										<c:if test="${commodityMediaResource.mediaType==0 }">
+										<li>
+											<a><img
+												src="${com_media_loc }${commodityMediaResource.location }"
+												alt="商品预览图">
+											</a>
+										</li>
+										</c:if>
+										</c:forEach>
 									</ul>
 								</div>
 								<a class="tb-thumb-right"><i></i></a>
@@ -2421,6 +2393,7 @@ button {
 	</div>
 </body>
 <script type="text/javascript">
+	var commodity_stock = ${commodity.stock };
 	var min_price = ${commodity.minPrice};
 		min_price = min_price.toFixed(2);
 	var max_price = ${commodity.maxPrice};
