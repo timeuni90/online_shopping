@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.timeuni.bean.CollectCommodityExample;
 import com.timeuni.bean.Commodity;
 import com.timeuni.bean.CommodityExtendProperty;
 import com.timeuni.bean.CommodityExtendPropertyExample;
@@ -17,6 +18,7 @@ import com.timeuni.bean.CommoditySelectProperty;
 import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
+import com.timeuni.dao.CollectCommodityMapper;
 import com.timeuni.dao.CommodityExtendPropertyMapper;
 import com.timeuni.dao.CommodityMapper;
 import com.timeuni.dao.CommodityMediaResourceMapper;
@@ -36,6 +38,8 @@ public class CommodityService {
 	private CommodityExtendPropertyMapper commodityExtendPropertyMapper;
 	@Autowired
 	private CommodityMediaResourceMapper commodityMediaResourceMapper;
+	@Autowired
+	private CollectCommodityMapper collectCommodityMapper;
 	
 	/* 按关键字获取商品 */
 	public List<Commodity> getCommoditiesBySearchKey(String key, Integer sortType) {
@@ -52,6 +56,10 @@ public class CommodityService {
 		String commodityCoverImageLocation = resourceLocation.getCommodityCoverImageLocation();
 		String storeLogoLocation = resourceLocation.getStoreLogoLocation();
 		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId, commodityCoverImageLocation, storeLogoLocation);
+		/* 获取商品的收藏量（人气）*/
+		CollectCommodityExample collectCommodityExample = new CollectCommodityExample();
+		collectCommodityExample.createCriteria().andCommodityIdEqualTo(commodityId);
+		commodity.setCollectQuantity(collectCommodityMapper.countByExample(collectCommodityExample));
 		/* 封装商品的媒体资源 */
 		CommodityMediaResourceExample commodityMediaResourceExample = new CommodityMediaResourceExample();
 		commodityMediaResourceExample.createCriteria().andCommodityIdEqualTo(commodityId);

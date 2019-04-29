@@ -1,46 +1,77 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<% pageContext.setAttribute("APP_PATH", request.getContextPath()); %>
-<% pageContext.setAttribute("com_sel", new com.timeuni.resourcebundle.ResourceLocation().getCommoditySelectPropertyMediaLocation()); %>
-<% pageContext.setAttribute("com_media_loc", new com.timeuni.resourcebundle.ResourceLocation().getCommdotiyMediaResourcesLocation()); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
+<%
+	pageContext.setAttribute("com_sel",
+			new com.timeuni.resourcebundle.ResourceLocation().getCommoditySelectPropertyMediaLocation());
+%>
+<%
+	pageContext.setAttribute("com_media_loc",
+			new com.timeuni.resourcebundle.ResourceLocation().getCommdotiyMediaResourcesLocation());
+%>
 <!DOCTYPE html>
 <html
 	class="w1190 ks-webkit537 ks-webkit ks-chrome73 ks-chrome browser-Chromium">
 
 <head>
-		<meta charset="utf-8">
-		<meta name="renderer" content="webkit">
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-		<title>商品</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>商品</title>
 
-		<!-- globalmodule version: 3.0.83 -->
-		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail.css">
-		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
-		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/modules-other-tmall-default-min.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/tmall.css">
-		<link href="${APP_PATH }/static/css/commodity_detail/cart-layer.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/cspu.css" rel="stylesheet">
-		<link href="${APP_PATH}/static/css/commodity_detail/relateGroup.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/combo.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/progressive.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/index.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/suggest.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/brandbar.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/mallbar.css" rel="stylesheet">
-		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tstart.css">
-		<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tdog.css">
-		<link href="${APP_PATH }/static/css/commodity_detail/floatcartlink.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/tabRight.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/waterfall.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/mallphotos.css" rel="stylesheet">
-		<link href="${APP_PATH }/static/css/commodity_detail/try.css" rel="stylesheet">
-		
-		<!-- 新增css -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
-		<script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
-	</head>
+<!-- globalmodule version: 3.0.83 -->
+<link rel="stylesheet"
+	href="${APP_PATH }/static/css/commodity_detail/detail.css">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/css/commodity_detail/modules-other-tmall-default-min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/static/css/commodity_detail/tmall.css">
+<link href="${APP_PATH }/static/css/commodity_detail/cart-layer.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/cspu.css"
+	rel="stylesheet">
+<link href="${APP_PATH}/static/css/commodity_detail/relateGroup.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/combo.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/progressive.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/index.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/suggest.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/brandbar.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/mallbar.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/css/commodity_detail/tstart.css">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/css/commodity_detail/tdog.css">
+<link href="${APP_PATH }/static/css/commodity_detail/floatcartlink.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/tabRight.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/waterfall.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/mallphotos.css"
+	rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/try.css"
+	rel="stylesheet">
+
+<!-- 新增css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
+<script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
+</head>
 
 <body class="enableHover" data-spm="1000855">
 	<div style="position: relative; width: 0; height: 0; overflow: hidden;">
@@ -209,23 +240,18 @@ button {
 													target="_blank"
 													data-spm-wangpu-module-id="14208996-14888858591"
 													data-spm-anchor-id="a220o.1000855.w14208996-14888858591.1">
-													<img
-													class=" "
+													<img class=" "
 													style="width: 110px; height: 114px; background: url1(// gdp.alicdn.com/ imgextra/ i1/ 1695308781/ TB2DGnmpSXlpuFjy0FeXXcJbFXa_ !! 1695308781.png) 50% 50% no-repeat;"
 													src="//assets.alicdn.com/s.gif">
-												</a> 
-												<a
-													class="jsib abs aB2BQ-SNYq"
+												</a> <a class="jsib abs aB2BQ-SNYq"
 													href="//meizu.tmall.com/?spm=a220o.1000855.w14208996-14888858591.16.7b036adb8j58J2&amp;scene=taobao_shop"
 													target="_blank"
 													style="outline-color: #FFFFFF; margin-top: 30px; display: block; width: 323px; height: 114px; top: 0px; left: 360px; border: none; z-index: 10;"
 													data-linkmode="ptlink" data-appid="aB2BQ-SNYq"
 													data-spm-wangpu-module-id="14208996-14888858591"
 													data-spm-anchor-id="a220o.1000855.w14208996-14888858591.16">
-													<img
-													class="abs sy img-ks-lazyload"
-													src="${commodity.seller.storeCover }"
-													width="100%"
+													<img class="abs sy img-ks-lazyload"
+													src="${commodity.seller.storeCover }" width="100%"
 													data-spm-anchor-id="a220o.1000855.14208996-14888858591.i2.7b036adb8j58J2">
 												</a>
 											</div>
@@ -282,9 +308,7 @@ button {
 
 								<div class="tb-detail-hd">
 
-									<h1 data-spm="1000983">
-										${commodity.title }
-									</h1>
+									<h1 data-spm="1000983">${commodity.title }</h1>
 
 									<p class="newp">${commodity.subtitle }</p>
 									<div class="tb-detail-sellpoint"></div>
@@ -295,57 +319,53 @@ button {
 										<dt class="tb-metatit">价格</dt>
 										<dd>
 											<c:if test="${commodity.minPromotionPrice==null }">
-											<em class="tm-yen1">
-												¥
-											</em>
+												<em class="tm-yen1"> ¥ </em>
 											</c:if>
 											<c:if test="${commodity.minPromotionPrice!=null }">
-											<em class="tm-yen">
-												¥
-											</em>
+												<em class="tm-yen"> ¥ </em>
 											</c:if>
 											<c:if test="${commodity.minPromotionPrice==null }">
-											<span class="tm-price1">
+												<span class="tm-price1">
 											</c:if>
 											<c:if test="${commodity.minPromotionPrice!=null }">
-											<span class="tm-price">
+												<span class="tm-price">
 											</c:if>
-												<c:if test="${commodity.minPrice != commodity.maxPrice}">
+											<c:if test="${commodity.minPrice != commodity.maxPrice}">
 												${commodity.minPrice }-${commodity.maxPrice }
 												</c:if>
-												<c:if test="${commodity.minPrice == commodity.maxPrice}">
+											<c:if test="${commodity.minPrice == commodity.maxPrice}">
 												${commodity.minPrice }
 												</c:if>
 											</span>
 										</dd>
 									</dl>
 									<c:if test="${commodity.minPromotionPrice!=null }">
-									<dl class="tm-promo-panel tm-promo-cur" id="J_PromoPrice"
-										data-label="促销价">
-										<dt class="tb-metatit">促销价</dt>
-										<dd>
-											<div class="tm-promo-price">
-												<em class="tm-yen1">¥</em> 
-												<span class="tm-price1">
-													<c:if test="${commodity.minPromotionPrice != commodity.minPromotionPrice }">
+										<dl class="tm-promo-panel tm-promo-cur" id="J_PromoPrice"
+											data-label="促销价">
+											<dt class="tb-metatit">促销价</dt>
+											<dd>
+												<div class="tm-promo-price">
+													<em class="tm-yen1">¥</em> <span class="tm-price1">
+														<c:if
+															test="${commodity.minPromotionPrice != commodity.minPromotionPrice }">
 													${commodity.minPromotionPrice }-${commodtity.maxPromotionPrice }
-													</c:if>
-													<c:if test="${commodity.minPromotionPrice == commodity.minPromotionPrice }">
+													</c:if> <c:if
+															test="${commodity.minPromotionPrice == commodity.minPromotionPrice }">
 													${commodity.minPromotionPrice }
 													</c:if>
-												</span>
-											</div>
-											<p></p>
-										</dd>
-									</dl>
+													</span>
+												</div>
+												<p></p>
+											</dd>
+										</dl>
 									</c:if>
 									<c:if test="${commodity.seller.activity != null }">
-									<dl class="tm-shopPromo-panel">
-										<div class="tm-shopPromotion-title tm-gold ">
-											<dt class="tb-metatit">本店活动</dt>
-											<dd>${commodity.seller.activity }</dd>
-										</div>
-									</dl>
+										<dl class="tm-shopPromo-panel">
+											<div class="tm-shopPromotion-title tm-gold ">
+												<dt class="tb-metatit">本店活动</dt>
+												<dd>${commodity.seller.activity }</dd>
+											</div>
+										</dl>
 									</c:if>
 								</div>
 								<div class="tb-meta">
@@ -377,48 +397,49 @@ button {
 									<div class="tb-skin">
 										<div class="tb-sku">
 											<div id="J_WtSKU" class="clearfix j-mdv"></div>
-											<c:forEach items="${commodityPropertyGroup }" var="commodityProperty">
-										    <dl class="tb-prop tm-sale-prop tm-clear">
-												<dt class="tb-metatit">${commodityProperty.key }</dt>
-												<dd>
-													<c:if test="${commodityProperty.value[0].mediaType==0 }">
-													<ul class="tm-clear J_TSaleProp">
-														<c:forEach items="${commodityProperty.value }" var="item">
-														<li class="property-value" data-rows=${item.rows }>
-															<a href="#" role="button" tabindex="0">
-																<span>${item.propertyValue }</span>
-															</a>
-														</li>
-														</c:forEach>
-													</ul>
-													</c:if>
-													<c:if test="${commodityProperty.value[0].mediaType==1 }">
-													<ul class="tm-clear J_TSaleProp tb-img">
-														<c:forEach items="${commodityProperty.value }" var="item">					
-					  									<li class="property-value" data-rows=${item.rows }>
-															<a href="#" 
-																style="background:url(${com_sel }${item.propertyValue }) center no-repeat;" 
-																role="button" tabindex="0">
-															</a>
-														</li>
-														</c:forEach>
-						    						</ul>
-													</c:if>
-													<c:if test="${commodityProperty.value[0].mediaType==2 }">
-													<ul class="tm-clear J_TSaleProp tb-img tb-img-alias">
-														<c:forEach items="${commodityProperty.value }" var="item">
-														<li class="property-value" data-rows=${item.rows }>
-															<a href="#"
-																style="background: url(${com_sel }${fn:substring(item.propertyValue, 0, fn:indexOf(item.propertyValue, '+')) } ) center no-repeat;"
-																role="button" tabindex="0">
-																<span>${fn:substring(item.propertyValue, fn:indexOf(item.propertyValue, '+')+1, fn:length(item.propertyValue)) }</span>
-															</a>
-														</li>
-														</c:forEach>
-													</ul>
-													</c:if>
-												</dd>
-											</dl>
+											<c:forEach items="${commodityPropertyGroup }"
+												var="commodityProperty">
+												<dl class="tb-prop tm-sale-prop tm-clear">
+													<dt class="tb-metatit">${commodityProperty.key }</dt>
+													<dd>
+														<c:if test="${commodityProperty.value[0].mediaType==0 }">
+															<ul class="tm-clear J_TSaleProp">
+																<c:forEach items="${commodityProperty.value }"
+																	var="item">
+																	<li class="property-value" data-rows=${item.rows }>
+																		<a href="#" role="button" tabindex="0"> <span>${item.propertyValue }</span>
+																	</a>
+																	</li>
+																</c:forEach>
+															</ul>
+														</c:if>
+														<c:if test="${commodityProperty.value[0].mediaType==1 }">
+															<ul class="tm-clear J_TSaleProp tb-img">
+																<c:forEach items="${commodityProperty.value }"
+																	var="item">
+																	<li class="property-value" data-rows=${item.rows }>
+																		<a href="#"
+																		style="background:url(${com_sel }${item.propertyValue }) center no-repeat;"
+																		role="button" tabindex="0"> </a>
+																	</li>
+																</c:forEach>
+															</ul>
+														</c:if>
+														<c:if test="${commodityProperty.value[0].mediaType==2 }">
+															<ul class="tm-clear J_TSaleProp tb-img tb-img-alias">
+																<c:forEach items="${commodityProperty.value }"
+																	var="item">
+																	<li class="property-value" data-rows=${item.rows }>
+																		<a href="#"
+																		style="background: url(${com_sel }${fn:substring(item.propertyValue, 0, fn:indexOf(item.propertyValue, '+')) }) center/40px 40px no-repeat;"
+																		role="button" tabindex="0"> <span>${fn:substring(item.propertyValue, fn:indexOf(item.propertyValue, '+')+1, fn:length(item.propertyValue)) }</span>
+																	</a>
+																	</li>
+																</c:forEach>
+															</ul>
+														</c:if>
+													</dd>
+												</dl>
 											</c:forEach>
 											<!-- <dl class="tb-prop tm-sale-prop tm-clear">
 												<dt class="tb-metatit">网络类型</dt>
@@ -463,8 +484,8 @@ button {
 															class="mui-amount-decrease"></span>
 													</span> <span class="mui-amount-unit">件</span>
 													</span> <em id="J_EmStock" class="tb-hidden"
-														style="display: inline;">库存${commodity.stock }件</em> <span id="J_StockTips">
-													</span>
+														style="display: inline;">库存${commodity.stock }件</em> <span
+														id="J_StockTips"> </span>
 												</dd>
 											</dl>
 
@@ -526,8 +547,7 @@ button {
 							<div class="tb-booth">
 								<a href="javascript:void(0);"> <span class="zoomIcon"
 									style="">󰄬</span><span class="ks-imagezoom-wrap"><img
-										id="J_ImgBooth"
-										src="${commodity.coverImage }"
+										id="J_ImgBooth" src="${commodity.coverImage }"
 										data-haszoom="700"><span
 										style="position: absolute; top: 1.00637px; left: 302.018px; width: 116.483px; height: 116.483px; display: none;"
 										class="ks-imagezoom-lens"></span></span>
@@ -539,35 +559,29 @@ button {
 								<a class="tb-thumb-left disabled"><i></i></a>
 								<div class="tb-thumb-content">
 									<ul id="J_UlThumb" class="tb-thumb tm-clear" style="left: 0px;">
-										<c:forEach items="${commodity.commodityMediaResources }" var="commodityMediaResource">
-										<c:if test="${commodityMediaResource.mediaType==0 }">
-										<li>
-											<a><img
-												src="${com_media_loc }${commodityMediaResource.location }"
-												alt="商品预览图">
-											</a>
-										</li>
-										</c:if>
+										<c:forEach items="${commodity.commodityMediaResources }"
+											var="commodityMediaResource">
+											<c:if test="${commodityMediaResource.mediaType==0 }">
+												<li><a><img
+														src="${com_media_loc }${commodityMediaResource.location }"
+														alt="商品预览图"> </a></li>
+											</c:if>
 										</c:forEach>
 									</ul>
 								</div>
 								<a class="tb-thumb-right"><i></i></a>
 							</div>
 							<p class="tm-action tm-clear">
-								<span id="J_EditItem"><a
-									href="//jubao.taobao.com/index.htm?itemId=574189749365&amp;spm=a1z6q.7847058"
-									target="_blank">举报</a></span> <a id="J_IShare" class="iShare tm-event"
-									href="#"><i></i>分享</a> <a id="J_AddFavorite"
-									href="javascript:;"
+								<a id="J_AddFavorite" href="javascript:;"
 									data-aldurl1="//ald.taobao.com/recommend.htm?appId=03136&amp;itemId=574189749365 "
 									class="favorite"><i></i><span>收藏商品</span></a>
 								<!-- ruleBanner-->
-								<span id="J_CollectCount">（156016人气）</span>
+								<span id="J_CollectCount">（${commodity.collectQuantity }人气）</span>
 							</p>
 							<ul class="tb-meta-icons">
 								<li title="天猫网厅"
 									href="//wt.tmall.com/?spm=813.7729269.1998733182.d4920745"
-									style="width: 40px; height: 42px; background: url1(&amp; quot; // img .alicdn.com/tps/i4/TB1dicEIXXXXXXyXFXX03.AGpXX-40-42.png&amp;quot; ) no-repeat; margin-left: 5px; position: relative; top: 20px; display: block; zoom: 1; float: left;">
+									style="width: 40px; height: 42px; background: url1(&amp; amp; quot; // img .alicdn.com/tps/i4/TB1dicEIXXXXXXyXFXX03.AGpXX-40-42.png&amp;amp; quot; ) no-repeat; margin-left: 5px; position: relative; top: 20px; display: block; zoom: 1; float: left;">
 									<a href="//wt.tmall.com/?spm=813.7729269.1998733182.d4920745"
 									title="天猫网厅" target="_blank"
 									style="width: 40px; height: 42px; display: block; position: absolute; top: 0px; left: 0px;"></a>
@@ -611,20 +625,20 @@ button {
 						<div id="mainwrap" class="main-wrap" role="main">
 							<div id="J_TabBarBox" style="width: 788px;">
 								<ul id="J_TabBar" class="tabbar tm-clear">
-									<li tabindex="0" role="tab" class="tm-selected"
+									<li id="my_detail" tabindex="0" role="tab" class="tm-selected"
 										aria-selected="true"><a tabindex="-1" href="#description"
 										rel="nofollow" hidefocus="true" data-index="0"
-										data-spm-anchor-id="a220o.1000855.0.0">商品详情</a></li>
-									<li tabindex="0" role="tab" aria-selected="false" class="">
+										data-spm-anchor-id="a220o.1000855.0.0"> 商品详情 </a></li>
+									<li id="my_attrs" tabindex="0" role="tab" aria-selected="false" class="">
 										<a tabindex="-1" href="#J_Attrs" rel="nofollow"
 										hidefocus="true" data-index="1"
 										data-spm-anchor-id="a220o.1000855.0.0">规格参数</a>
 									</li>
-									<li tabindex="0" role="tab" aria-selected="false"
+									<li id="my_review" tabindex="0" role="tab" aria-selected="false"
 										data-spm-anchor-id="a220o.1000855.0.i3.7b036adb8j58J2"
 										class=""><a tabindex="-1" href="#J_Reviews"
 										rel="nofollow" hidefocus="true" data-index="2">累计评价 <em
-											class="J_ReviewsCount" style="display: inline;">14179</em></a></li>
+											class="J_ReviewsCount" style="display: inline;">${commodity.commentQuantity }</em></a></li>
 								</ul>
 							</div>
 							<div class="tabbar-bg" style="display: none;"></div>
@@ -687,7 +701,202 @@ button {
 
 							</div>
 							<div id="J_TmpActBanner"></div>
+							<div id="J_Detail">
+								<div id="J_Attrs" class="J_DetailSection">
+									<h4 class="hd">规格参数</h4>
+									<table class="tm-tableAttr">
+										<thead>
+											<tr>
+												<td colspan="2">规格参数</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="tm-tableAttrSub">
+												<th colspan="2">拍照功能</th>
+											</tr>
+											<tr>
+												<th>后置摄像头</th>
+												<td>&nbsp;1200万+2000万双摄</td>
+											</tr>
+										</tbody>
+									</table>
 
+									<table class="tm-tableAttr">
+										<thead>
+											<tr>
+												<td colspan="2">包装清单</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>主机</th>
+												<td>1 件</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+
+								<div id="J_Reviews" class="J_DetailSection">
+
+									<div class="tm-rate">
+										<div class="rate-toolbar">
+											<span class="rate-filter"><input
+												class="rate-list-all rate-radio-group"
+												id="J_RateWithFilterall1556517878823" type="radio"
+												name="radiogrounp" checked=""><label
+												for="J_RateWithFilterall1556517878823">全部</label><input
+												class="rate-list-append rate-radio-group"
+												id="J_RateWithAppend1556517878823" type="radio"
+												name="radiogrounp"><label
+												for="J_RateWithAppend1556517878823">追评 (1047)</label><input
+												class="rate-list-picture rate-radio-group"
+												id="J_RateWithPicture1556517878823" type="radio"
+												name="radiogrounp"><label
+												for="J_RateWithPicture1556517878823">图片 (2804)</label></span><span
+												class="rate-chat-btn" style="display: none;"><input
+												class="rate-list-chat rate-radio-group"
+												id="J_ReviewChat1556517878823" type="radio"
+												name="radiogrounp"><label
+												for="J_ReviewChat1556517878823">一起逛</label></span><span
+												class="tm-toolbar-lft"><span class="tm-rate-addin"></span><input
+												class="rate-list-hascontent"
+												id="J_RateWithContent1556517878823" type="checkbox"
+												name="content" checked=""><label
+												for="J_RateWithContent1556517878823">有内容</label>
+												<div class="rate-sort ">
+													<div class="tm-selectbtn tm-rate-sort">
+														<span z-index="0" class="tm-current">按默认</span>
+														<ul>
+															<li event-val="sort_3"
+																event-data="{userPropertyId:10,userPropertyIndex:0}"
+																class="tm-r-default"><a"> 按默认 </a"></li>
+															<li event-val="sort_1"
+																event-data="{userPropertyId:&quot;10&quot;,userPropertyIndex:&quot;1&quot;}"
+																class="tm-r-time"><a"> 按时间 </a"></li>
+														</ul>
+													</div>
+												</div> </span>
+										</div>
+										<div class="rate-grid">
+											<table>
+												<tbody>
+													<tr>
+														<td class="tm-col-master">
+															<div class="tm-rate-premiere">
+																<div class="tm-rate-tag">
+																	<div class="tm-rate-title">初次评价:</div>
+																	<div class="tm-rate-date">04.22</div>
+																</div>
+																<div class="tm-rate-content">
+																	<div class="tm-rate-fulltxt">此用户没有填写评论!</div>
+																	<div class="tm-m-photos">
+																		<ul class="tm-m-photos-thumb">
+																		</ul>
+																		<div class="tm-m-photo-viewer"
+																			style="width: 0px; height: 0px; display: none;">
+																			<img src=""> <a
+																				class="tm-m-photo-viewer-navleft"><i
+																				class="tm-m-photo-viewer-navicon"></i></a> <a
+																				class="tm-m-photo-viewer-navright"><i
+																				class="tm-m-photo-viewer-navicon"></i></a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="tm-rate-append">
+																<div class="tm-rate-tag">
+																	<div class="tm-rate-title">
+																		<span class="tm-rate-daydiff">收货当天追加：</span>
+																	</div>
+																	<div class="tm-rate-date"></div>
+																</div>
+																<div class="tm-rate-content">
+																	<div class="tm-rate-fulltxt">手机很不错！指纹识别的速度也很快。不过才上手屏下指纹所以有点不习惯，过段时间就好了。我也算是魅族的一枚忠实粉丝了，从最开始的魅族Mx5、到现在魅族16th仔细算来我已经用了将近8个魅族手机了，喜欢魅族的外观自以及给我带来的很不错的感觉。毕竟是魅族官方旗舰店的商品质量是真不错。下次一定还会再来关顾的，祝店家生意兴隆！事事顺心。</div>
+																	<div class="tm-m-photos">
+																		<ul class="tm-m-photos-thumb">
+																			<li
+																				data-src="//img.alicdn.com/bao/uploaded/i3/O1CN0185bZy52IOuoygUsK0_!!0-rate.jpg_400x400.jpg">
+																				<img
+																				src="//img.alicdn.com/bao/uploaded/i3/O1CN0185bZy52IOuoygUsK0_!!0-rate.jpg_40x40.jpg">
+																				<b class="tm-photos-arrow"></b>
+																			</li>
+																			<li
+																				data-src="//img.alicdn.com/bao/uploaded/i4/O1CN01ZTdpqi2IOuozVh49n_!!0-rate.jpg_400x400.jpg">
+																				<img
+																				src="//img.alicdn.com/bao/uploaded/i4/O1CN01ZTdpqi2IOuozVh49n_!!0-rate.jpg_40x40.jpg">
+																				<b class="tm-photos-arrow"></b>
+																			</li>
+																			<li
+																				data-src="//img.alicdn.com/bao/uploaded/i4/O1CN01GYKKIU2IOuoznv4ey_!!0-rate.jpg_400x400.jpg">
+																				<img
+																				src="//img.alicdn.com/bao/uploaded/i4/O1CN01GYKKIU2IOuoznv4ey_!!0-rate.jpg_40x40.jpg">
+																				<b class="tm-photos-arrow"></b>
+																			</li>
+																			<li
+																				data-src="//img.alicdn.com/bao/uploaded/i2/O1CN01S0pDVo2IOup17ELoH_!!0-rate.jpg_400x400.jpg">
+																				<img
+																				src="//img.alicdn.com/bao/uploaded/i2/O1CN01S0pDVo2IOup17ELoH_!!0-rate.jpg_40x40.jpg">
+																				<b class="tm-photos-arrow"></b>
+																			</li>
+																			<li
+																				data-src="//img.alicdn.com/bao/uploaded/i2/O1CN01ZyrAvI2IOup2ZcTHX_!!0-rate.jpg_400x400.jpg">
+																				<img
+																				src="//img.alicdn.com/bao/uploaded/i2/O1CN01ZyrAvI2IOup2ZcTHX_!!0-rate.jpg_40x40.jpg">
+																				<b class="tm-photos-arrow"></b>
+																			</li>
+																		</ul>
+																		<div class="tm-m-photo-viewer"
+																			style="width: 0px; height: 0px; display: none;">
+																			<img src=""> <a
+																				class="tm-m-photo-viewer-navleft"><i
+																				class="tm-m-photo-viewer-navicon"></i></a> <a
+																				class="tm-m-photo-viewer-navright"><i
+																				class="tm-m-photo-viewer-navicon"></i></a>
+																		</div>
+																	</div>
+																</div>
+																<s></s>
+															</div>
+														</td>
+														<td class="col-meta">
+															<div class="rate-sku">
+																<p title="网络类型:4G全网通">
+																	<span>网络类型：</span>4G全网通
+																</p>
+																<p title="机身颜色:远山白">
+																	<span>机身颜色：</span>远山白
+																</p>
+																<p title="套餐类型:官方标配">
+																	<span>套餐类型：</span>官方标配
+																</p>
+																<p title="存储容量:6+64GB">
+																	<span>存储容量：</span>6+64GB
+																</p>
+															</div>
+															<div class="rate-user-profile">
+																<p title=""></p>
+															</div>
+														</td>
+														<td class="col-author">
+															<div class="rate-user-info">
+																守<span>***</span>8<span>（匿名）</span>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="rate-page">
+											<div class="rate-paginator">
+												<span class="rate-page-prev">&lt;&lt;上一页</span><span>1</span>
+												<a href="?page=2">2</a> <a href="?page=3">3</a><span
+													class="rate-page-break">...</span> <a data-page="2"
+													href="?page=2">下一页&gt;&gt;</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -771,8 +980,7 @@ button {
 														href="//detail.tmall.com/item.htm?spm=a220o.1000855.0.da321h.4dd85ac1VmRPGv&amp;id=567942383251&amp;sku_properties=10004:385316259;5919063:6536025&amp;scene=taobao_shop"
 														target="_blank"><img
 														src="//gdp.alicdn.com/imgextra/i2/1695308781/O1CN0156Wnzi2EjkLb37pUZ_!!1695308781.jpg"
-														alt="" class="img-ks-lazyload"></a><br>
-													<a
+														alt="" class="img-ks-lazyload"></a><br> <a
 														href="//detail.tmall.com/item.htm?spm=a1z10.3-b-s.w4011-14678610272.52.dab873f2dkI2er&amp;id=564771106545&amp;scene=taobao_shop"
 														target="_blank"><img
 														src="//gdp.alicdn.com/imgextra/i4/1695308781/O1CN012EjkJvxDkYdbzLT_!!1695308781.jpg"
@@ -780,8 +988,7 @@ button {
 														href="//detail.tmall.com/item.htm?id=577388624764&amp;scene=taobao_shop"
 														target="_blank"><img
 														src="//gdp.alicdn.com/imgextra/i3/1695308781/O1CN012EjkJTtNEXvwGuW_!!1695308781.jpg"
-														class="img-ks-lazyload"></a><br>
-													<a
+														class="img-ks-lazyload"></a><br> <a
 														href="//detail.tmall.com/item.htm?spm=0.0.0.0.k8to57&amp;id=542299604342&amp;scene=taobao_shop"
 														target="_blank"></a>
 												</p>
@@ -2430,5 +2637,6 @@ button {
 	});
 	</c:forEach>
 </script>
-<script type="text/javascript" src="${APP_PATH }/static/js/commodity_detail.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH }/static/js/commodity_detail.js"></script>
 </html>

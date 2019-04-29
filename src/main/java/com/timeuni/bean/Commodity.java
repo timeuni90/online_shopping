@@ -42,7 +42,9 @@ public class Commodity {
     private List<CommodityMediaResource> commodityMediaResources;
     
     private Integer stock;
-
+    
+    private Long collectQuantity;
+    
     @Override
 	public String toString() {
 		return "Commodity [id=" + id + ", sellerId=" + sellerId + ", title=" + title + ", subtitle=" + subtitle
@@ -211,5 +213,12 @@ public class Commodity {
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
-	
+
+	public Long getCollectQuantity() {
+		return collectQuantity;
+	}
+
+	public void setCollectQuantity(Long collectQuantity) {
+		this.collectQuantity = collectQuantity;
+	}
 }

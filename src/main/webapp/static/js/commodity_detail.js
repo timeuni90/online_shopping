@@ -1,5 +1,4 @@
 
-
 /* 给property-value类绑定点击事件 */
 var selected_property_value = null;
 $(".property-value").click(function() {
@@ -135,8 +134,37 @@ $("#J_UlThumb li").mouseenter(function() {
 });
 
 /*  */
-$(".tm-clear.J_TSaleProp.tb-img").click(function() {
-	var url = $(this).find("a").css("backgroundImage").split('("')[1].split('")')[0];
-	$("#J_ImgBooth").attr("src", url);
+$(".tm-clear.J_TSaleProp.tb-img li").click(function() {
+	if($(this).hasClass("tb-selected")) {
+		$("#J_UlThumb li").removeClass("tb-selected");
+		var url = $(this).find("a").css("backgroundImage").split('("')[1].split('")')[0];
+		$("#J_ImgBooth").attr("src", url);
+	}
 });
 
+/*  */
+$("#J_TabBar li").click(function() {
+	$("#J_TabBar li").removeClass("tm-selected");
+	$(this).addClass("tm-selected");
+});
+
+/* 点击评论 */
+$("#my_review").click(function() {
+	$("#bd").addClass("tm-tabOther");
+	$("#J_Attrs").removeClass("tm-curTab");
+	$("#J_Reviews").addClass("tm-curTab");
+});
+
+/* 点击规格参数 */
+$("#my_attrs").click(function() {
+	$("#bd").addClass("tm-tabOther");
+	$("#J_Reviews").removeClass("tm-curTab");
+	$("#J_Attrs").addClass("tm-curTab");
+});
+
+/* 点击商品详情 */
+$("#my_detail").click(function() {
+	$("#J_Reviews").removeClass("tm-curTab");
+	$("#J_Attrs").removeClass("tm-curTab");
+	$("#bd").removeClass("tm-tabOther");
+});
