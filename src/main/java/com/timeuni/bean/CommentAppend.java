@@ -1,6 +1,7 @@
 package com.timeuni.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class CommentAppend {
     private Integer id;
@@ -12,6 +13,8 @@ public class CommentAppend {
     private String reply;
 
     private Date commentTime;
+    
+    private List<CommentImage> commentImages;
 
     public Integer getId() {
         return id;
@@ -52,4 +55,12 @@ public class CommentAppend {
     public void setCommentTime(Date commentTime) {
         this.commentTime = commentTime;
     }
+
+	public List<CommentImage> getCommentImages() {
+		return commentImages;
+	}
+
+	public void setCommentImages(List<CommentImage> commentImages) {
+		this.commentImages = commentImages;
+	}
 }

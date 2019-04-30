@@ -24,4 +24,8 @@ public class ResourceLocation {
 	public String getCommdotiyMediaResourcesLocation() {
 		return resourceBundle.getString("commodity_media_resources");
 	}
+	
+	public String getCommentImagesLocation() {
+		return resourceBundle.getString("comment_images");
+	}
 }

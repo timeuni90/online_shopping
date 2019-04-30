@@ -27,4 +27,8 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+    
+    /* 找特定商品的评论 */
+    public List<Comment> selectByCommodityIdWithUserName(Integer commodityId);
+    
 }

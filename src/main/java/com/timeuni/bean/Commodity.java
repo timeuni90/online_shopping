@@ -45,6 +45,8 @@ public class Commodity {
     
     private Long collectQuantity;
     
+    private List<Comment> comments;
+    
     @Override
 	public String toString() {
 		return "Commodity [id=" + id + ", sellerId=" + sellerId + ", title=" + title + ", subtitle=" + subtitle
@@ -220,5 +222,13 @@ public class Commodity {
 
 	public void setCollectQuantity(Long collectQuantity) {
 		this.collectQuantity = collectQuantity;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 }
