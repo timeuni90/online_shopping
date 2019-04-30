@@ -38,4 +38,9 @@ public class CommodityController {
 		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}
+	
+	@RequestMapping(value = "/order")
+	public String abcdefg() {
+		return "order_confirm";
+	}
 }
