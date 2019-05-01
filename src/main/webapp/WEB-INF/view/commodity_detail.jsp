@@ -79,128 +79,13 @@
 </head>
 
 <body class="enableHover" data-spm="1000855">
-	<div style="position: relative; width: 0; height: 0; overflow: hidden;">
-		<img
-			src="//img.alicdn.com/imgextra/i4/1695308781/TB2A1GKJL5TBuNjSspcXXbnGFXa_!!1695308781.jpg_430x430q90.jpg"><img
-			src="//img.alicdn.com/imgextra/i4/1695308781/TB2A1GKJL5TBuNjSspcXXbnGFXa_!!1695308781.jpg"><img
-			src="https://img.alicdn.com/imgextra/i3/1695308781/O1CN01n5Mtbn2EjkMlwk6Qt_!!1695308781.jpg_430x430q90.jpg"><img
-			src="https://img.alicdn.com/imgextra/i3/1695308781/O1CN01n5Mtbn2EjkMlwk6Qt_!!1695308781.jpg"><img
-			src="https://img.alicdn.com/imgextra/i3/1695308781/TB2teAFmQUmBKNjSZFOXXab2XXa_!!1695308781.jpg_430x430q90.jpg"><img
-			src="https://img.alicdn.com/imgextra/i3/1695308781/TB2teAFmQUmBKNjSZFOXXab2XXa_!!1695308781.jpg"><img
-			src="https://img.alicdn.com/imgextra/i2/1695308781/O1CN01Ovvz4u2EjkMl8IAr7_!!0-item_pic.jpg_430x430q90.jpg"><img
-			src="https://img.alicdn.com/imgextra/i2/1695308781/O1CN01Ovvz4u2EjkMl8IAr7_!!0-item_pic.jpg">
-	</div>
 	<style>
 button {
 	border-radius: 0;
 }
 </style>
 	<!--from fragment-->
-	<div id="site-nav" data-spm="a2226mz" role="navigation">
-		<div id="sn-bg">
-			<div class="sn-bg-right"></div>
-		</div>
-		<div id="sn-bd">
-			<b class="sn-edge"></b>
-			<div class="sn-container">
-				<p class="sn-back-home">
-					<i class="mui-global-iconfont">󰄫</i> <a href="//www.tmall.com/">天猫首页</a>
-				</p>
-				<p id="login-info" class="sn-login-info">
-					<em>喵，欢迎来天猫</em> <a class="sn-login"
-						href="//login.tmall.com/?redirecturl1=https%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fspm%3Da220m.1000858.1000725.6.566b7ecdRpIbJS%26id%3D574189749365%26skuId%3D4072840611837%26areaId%3D513400%26user_id%3D1695308781%26cat_id%3D2%26is_b%3D1%26rn%3D1e49bbb910e059b25d9073f3208d9de1"
-						target="_top">请登录</a> <a class="sn-register"
-						href="//register.tmall.com/" target="_top">免费注册</a>
-				</p>
-				<ul class="sn-quick-menu">
-					<li class="sn-mytaobao menu-item j_MyTaobao">
-						<div class="sn-menu">
-							<a class="menu-hd" href="//i.taobao.com/my_taobao.htm"
-								target="_top" rel="nofollow" tabindex="0" aria-haspopup="true"
-								aria-expanded="false">我的淘宝<b></b></a>
-							<div class="menu-bd" role="menu" aria-hidden="true" id="menu-2">
-								<div class="menu-bd-panel" id="myTaobaoPanel">
-									<a
-										href="//trade.taobao.com/trade/itemlist/list_bought_items.htm?t=20110530"
-										target="_top" rel="nofollow">已买到的宝贝</a> <a
-										href="//trade.taobao.com/trade/itemlist/list_sold_items.htm?t=20110530"
-										target="_top" rel="nofollow">已卖出的宝贝</a>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="sn-seller-center hidden j_SellerCenter"><a
-						target="_top" href="//mai.taobao.com/seller_admin.htm">商家中心</a></li>
-					<li class="sn-cart mini-cart menu"><i
-						class="mui-global-iconfont">󰅈</i> <a class="sn-cart-link"
-						href="//cart.tmall.com/cart/myCart.htm?from=btop" target="_top"
-						rel="nofollow" id="mc-menu-hd">购物车<span
-							class="mc-count mc-pt3">0</span>件
-					</a></li>
-					<li class="sn-favorite menu-item">
-						<div class="sn-menu">
-							<a class="menu-hd"
-								href="//shoucang.taobao.com/shop_collect_list.htm?scjjc=c1"
-								target="_top" rel="nofollow" tabindex="0" aria-haspopup="true"
-								aria-expanded="false">收藏夹<b></b></a>
-
-							<div class="menu-bd" role="menu" aria-hidden="true" id="menu-4">
-								<div class="menu-bd-panel">
-									<a href="//shoucang.taobao.com/item_collect.htm" target="_top"
-										rel="nofollow">收藏的宝贝</a> <a
-										href="//shoucang.taobao.com/shop_collect_list.htm"
-										target="_top" rel="nofollow">收藏的店铺</a>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="sn-separator"></li>
-					<li class="sn-mobile"><i class="mui-global-iconfont">㑈</i> <a
-						title="天猫无线" target="_top" class="sn-mobile-link"
-						href="//pages.tmall.com/wow/portal/act/app-download?scm=1027.1.1.1">手机版</a>
-						<style>
-#site-nav .sn-qrcode-content {
-	width: 175px;
-	height: 175px;
-	margin: 5px 0 0px;
-	background: url1(// img.alicdn.com/ tfs/ TB1vJ0POwTqK1RjSZPhXXXfOFXa-175-215.png)
-		0 0 no-repeat;
-}
-
-#site-nav .sn-qrcode p {
-	background: url1(// img.alicdn.com/ tps/ TB1sR93OFXXXXaAXXXXXXXXXXXX-145-30.png)
-		center bottom no-repeat;
-	text-indent: -9999px;
-	overflow: hidden;
-	margin: 0 15px;
-	line-height: 35px;
-}
-</style>
-						<div class="sn-qrcode" style="display: none;">
-							<div class="sn-qrcode-content"></div>
-							<p>扫一扫，定制我的天猫！</p>
-							<b></b>
-						</div></li>
-					<li class="sn-home"><a href="//www.taobao.com/">淘宝网</a></li>
-					<li class="sn-seller menu-item">
-						<div class="sn-menu J_DirectPromo">
-							<a class="menu-hd" href="//mai.taobao.com" target="_top">商家支持<b></b></a>
-							<div class="menu-bd sn-seller-lazy"></div>
-						</div>
-					</li>
-					<li class="sn-sitemap">
-						<div class="sn-menu">
-							<h3 class="menu-hd">
-								<i class="mui-global-iconfont"></i><span>网站导航</span><b></b>
-							</h3>
-							<div class="menu-bd sn-sitemap-lazy sn-sitemap-bd"
-								data-spm="a2228l4"></div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<%@ include file="/WEB-INF/view/header.jsp" %>
 
 	<div data-spm="1998132232" id="J_dingtian">
 
@@ -499,12 +384,12 @@ button {
 												data-spm="1000987" style="display: none;"></dl>
 											<div class="tb-action tm-clear">
 												<div class="tb-btn-buy tb-btn-sku">
-													<a id="J_LinkBuy" href="#" rel="nofollow"
+													<a id="J_LinkBuy" class="noPost" href="#" rel="nofollow"
 														data-addfastbuy="true" title="点击此按钮，到下一步确认购买信息。"
 														role="button">立即购买<span class="ensureText">确认</span></a>
 												</div>
 												<div class="tb-btn-basket tb-btn-sku">
-													<a href="#" rel="nofollow" id="J_LinkBasket" role="button"><i></i>加入购物车<span
+													<a href="#" rel="nofollow" id="J_LinkBasket" class="noPost" role="button"><i></i>加入购物车<span
 														class="ensureText">确认</span></a>
 												</div>
 												<div class="tb-btn-add tb-btn-sku tb-hidden">
@@ -2328,6 +2213,8 @@ button {
 	</div>
 </body>
 <script type="text/javascript">
+	var commodity_id = ${commodity.id};
+	var select_property_row = null;
 	var commodity_stock = ${commodity.stock };
 	var min_price = ${commodity.minPrice};
 		min_price = min_price.toFixed(2);

@@ -22,8 +22,10 @@ $(".property-value").click(function() {
 					rows.splice(i, 1);
 				}
 			});
-			if(rows.length == 1)
+			if(rows.length == 1) {
+				select_property_row = rows[0];
 				return false;
+			}
 		});
 		/* 寻找价格 */
 		$.each(commodity_variables, function(i, n) {
@@ -62,7 +64,16 @@ $(".property-value").click(function() {
 				return false;
 			}
 		});
+		/* */
+		var value = parseInt($(".tb-text.mui-amount-input").val());
+		var stock = parseInt($("#J_EmStock").text().match(/\d{1,}/));
+		if(value <= stock) {
+			$("#J_LinkBuy, #J_LinkBasket").removeClass("noPost");
+		} else {
+			$("#J_LinkBuy, #J_LinkBasket").addClass("noPost");
+		}
 	} else {	/* 属性未选满 */
+		$("#J_LinkBuy, #J_LinkBasket").addClass("noPost");
 		$("#J_EmStock").text("库存"+commodity_stock+"件");
 		$(".tm-fcs-panel").empty();
 		if(min_promotion_price == null) {
@@ -124,6 +135,13 @@ $(".tb-text.mui-amount-input").blur(function() {
 	if($(this).val() == "") {
 		$(this).val("1");
 	}
+	var value = parseInt($(".tb-text.mui-amount-input").val());
+	var stock = parseInt($("#J_EmStock").text().match(/\d{1,}/));
+	if(value <= stock) {
+		$("#J_LinkBuy, #J_LinkBasket").removeClass("noPost");
+	} else {
+		$("#J_LinkBuy, #J_LinkBasket").addClass("noPost");
+	}
 });
 
 /*  */
@@ -167,4 +185,15 @@ $("#my_detail").click(function() {
 	$("#J_Reviews").removeClass("tm-curTab");
 	$("#J_Attrs").removeClass("tm-curTab");
 	$("#bd").removeClass("tm-tabOther");
+});
+
+/* 点击购买 */
+$("#J_LinkBuy").click(function() {
+	if(!$(this).hasClass("noPost")) {
+		var url = "http://localhost:8080/online-shopping/prepareorder?";
+		url += "commodityId=" + commodity_id + "&";
+		url += "row=" + select_property_row + "&";
+		url += "quantity=" + $(".tb-text.mui-amount-input").val();
+		window.location.href = url;
+	}
 });
