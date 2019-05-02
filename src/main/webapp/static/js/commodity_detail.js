@@ -128,6 +128,13 @@ $(".mui-amount-decrease").click(function() {
 $(".tb-text.mui-amount-input").keyup(function() {
 	var value = $(this).val();
 	$(this).val(value.replace(/^(0+)|[^\d]+/g, ""));
+	var value = parseInt($(".tb-text.mui-amount-input").val());
+	var stock = parseInt($("#J_EmStock").text().match(/\d{1,}/));
+	if(value <= stock) {
+		$("#J_LinkBuy, #J_LinkBasket").removeClass("noPost");
+	} else {
+		$("#J_LinkBuy, #J_LinkBasket").addClass("noPost");
+	}
 });
 
 /* 给输入框绑定失去焦点事件，若输入框的里值为空，则默认为1 */
@@ -195,5 +202,19 @@ $("#J_LinkBuy").click(function() {
 		url += "row=" + select_property_row + "&";
 		url += "quantity=" + $(".tb-text.mui-amount-input").val();
 		window.location.href = url;
+	}
+});
+
+/* 加入购物车 */
+$("#J_LinkBasket").click(function() {
+	if(!$(this).hasClass("noPost")) {
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:8080/online-shopping/cart",
+			data: "selectPropertyRow=" + select_property_row + "&quantity=" + $(".tb-text.mui-amount-input").val(),
+			success: function() {
+				alert("success");
+			}
+		});
 	}
 });

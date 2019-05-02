@@ -2,6 +2,8 @@ package com.timeuni.dao;
 
 import com.timeuni.bean.Cart;
 import com.timeuni.bean.CartExample;
+import com.timeuni.mybean.CartItem;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,7 @@ public interface CartMapper {
     int updateByPrimaryKeySelective(Cart record);
 
     int updateByPrimaryKey(Cart record);
+    
+    /* 获取购物车 */
+    public List<CartItem> selectCartItemsByUserId(@Param("userId")Integer userId, @Param("coverLocation")String coverLocation);
 }
