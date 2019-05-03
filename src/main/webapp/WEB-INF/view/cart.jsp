@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <% pageContext.setAttribute("APP_PATH", request.getContextPath()); %>
 <!DOCTYPE html>
 <html>
@@ -58,7 +59,7 @@
 						</div>
 						<table class="cart-merchant-body">	
 							<c:forEach items="${group.value }" var="cartItem">
-							<tr class="cart-product">
+							<tr class="cart-product" data-row="${cartItem.row }">
 								<td class="cart-col-select">
 
 									<div class="mz-checkbox"></div>
@@ -90,10 +91,10 @@
 
 									<div class="cart-product-number-adder">
 										<p class="cart-product-number-max show">
-
+										
 										</p>
 										<div class="mz-adder">
-											<button class="mz-adder-subtract disabled"></button>
+											<button class="mz-adder-subtract"></button>
 											<div class="mz-adder-num"><input type="text" class="mz-adder-input" value="${cartItem.quantity }"></div>
 											<button class="mz-adder-add"></button>
 										</div>
@@ -130,7 +131,7 @@
 						</div>
 						<span class="cart-remove-selected" data-mdesc="删除选中商品" data-mtype="store_cart_batch" data-bh="click_store_cart_batch" id="removeSelected">删除选中的商品</span>
 						<span class="cart-footer-count">
-          共<span class="cart-footer-num" id="totalCount">2</span>件商品， 已选择
+          共<span class="cart-footer-num" id="totalCount">${totalCount }</span>件商品， 已选择
 						<span class="cart-footer-num blue" id="totalSelectedCount">0</span>件
 						</span>
 					</div>
@@ -144,7 +145,7 @@
 			</div>
 		</div>
 
-		<div class="mz-mask hide">
+		<!-- <div class="mz-mask hide">
 			<div class="mz-dialog tips ">
 				<div class="mz-dialog-header">
 					<div class="mz-dialog-title">提示</div>
@@ -164,8 +165,8 @@
 				</div>
 
 			</div>
-		</div>
-		<div class="mz-mask hide">
+		</div> -->
+		<div class="mz-mask hide" id="confirm_box">
 			<div class="mz-dialog dialog ">
 				<div class="mz-dialog-header">
 					<div class="mz-dialog-title">删除</div>
@@ -195,7 +196,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="mz-mask hide">
+		<!-- <div class="mz-mask hide">
 			<div class="mz-dialog tips ">
 				<div class="mz-dialog-header">
 					<div class="mz-dialog-title">提示</div>
@@ -215,8 +216,8 @@
 				</div>
 
 			</div>
-		</div>
-		<div class="mz-mask hide">
+		</div> -->
+		<!-- <div class="mz-mask hide">
 			<div class="mz-dialog dialog ">
 				<div class="mz-dialog-header">
 					<div class="mz-dialog-title">删除</div>
@@ -238,7 +239,7 @@
 				</div>
 
 			</div>
-		</div>
+		</div> -->
 
 	</body>
 <script src="${APP_PATH }/static/js/cart.js"></script>

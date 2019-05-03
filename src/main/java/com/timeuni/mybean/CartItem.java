@@ -9,6 +9,7 @@ public class CartItem {
 	private Float promotionPrice;
 	private Integer quantity;
 	private String storeName;
+	private String row;
 	
 	public String getCoverImage() {
 		return coverImage;
@@ -72,6 +73,14 @@ public class CartItem {
 
 	public void setCommodityId(Integer commodityId) {
 		this.commodityId = commodityId;
+	}
+
+	public String getRow() {
+		return row;
+	}
+
+	public void setRow(String row) {
+		this.row = row;
 	}
 
 }

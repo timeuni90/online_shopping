@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.timeuni.bean.Cart;
 import com.timeuni.bean.CartExample;
+import com.timeuni.bean.CommodityVariable;
+import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.dao.CartMapper;
+import com.timeuni.dao.CommodityVariableMapper;
 import com.timeuni.mybean.CartItem;
 import com.timeuni.resourcebundle.ResourceLocation;
 
@@ -18,15 +21,26 @@ import com.timeuni.resourcebundle.ResourceLocation;
 public class CartService {
 	@Autowired
 	private CartMapper cartMapper;
+	@Autowired
+	private CommodityVariableMapper commodityVariableMapper;
 	
 	/* 添加商品到购物车 */
-	public void addItemToCart(Cart cartItem) {
+	public Boolean addItemToCart(Cart cartItem) {
+		/* 检查库存是否足够 */
+		CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
+		commodityVariableExample.createCriteria().andSelectPropertyRowEqualTo(cartItem.getSelectPropertyRow());
+		List<CommodityVariable> commodityVariables = commodityVariableMapper.selectByExample(commodityVariableExample);
+		if(commodityVariables.get(0).getStock() < cartItem.getQuantity()) {
+			return false;
+		}
+		/* 更新购物车 */
 		CartExample cartExample = new CartExample();
 		cartExample.createCriteria().andSelectPropertyRowEqualTo(cartItem.getSelectPropertyRow()).andUserIdEqualTo(cartItem.getUserId());
 		int row = cartMapper.updateByExampleSelective(cartItem, cartExample);
 		if(row == 0) {
-			cartMapper.insertSelective(cartItem);
+			row = cartMapper.insertSelective(cartItem);
 		}
+		return true;
 	}
 	
 	/* 获得购物车商品 */
@@ -45,6 +59,14 @@ public class CartService {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("groups", groups);
+		map.put("totalCount", cartItems.size());
 		return map;
+	}
+	
+	/* 删除购物车物品 */
+	public Integer removeCartItems(List<String> rows, Integer userId) {
+		CartExample cartExample = new CartExample();
+		cartExample.createCriteria().andSelectPropertyRowIn(rows).andUserIdEqualTo(userId);
+		return cartMapper.deleteByExample(cartExample);
 	}
 }

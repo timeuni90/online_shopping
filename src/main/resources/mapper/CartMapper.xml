@@ -216,6 +216,7 @@
 	<!-- public void selectCartItemsByUserId(Integer userId); -->
 	<select id="selectCartItemsByUserId" resultType="com.timeuni.mybean.CartItem">
 		SELECT
+		c.select_property_row row,
 		co.id commodity_id,
 		co.title,
 		s.store_name,
