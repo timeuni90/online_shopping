@@ -10,6 +10,11 @@ $(".order-address-checkbox.add").click(function() {
 	$("#address_inf").removeClass("hide");
 });
 
+/* 点击取消 */
+$(".mz-btn.cancel, #address_inf .mz-dialog-close").click(function() {
+	$("#address_inf").addClass("hide");
+});
+
 /* 获取所有的省 */
 $("#province_input").one("click", function() {
 	$.ajax({
