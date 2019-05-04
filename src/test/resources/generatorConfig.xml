@@ -81,8 +81,9 @@
 		
 		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table> -->
 		
-		<table tableName="tb_order_detail" domainObjectName="OrderDetail"></table>
-		
-		<table tableName="tb_order_commodity_select_property" domainObjectName="OrderCommoditySelectProperty"></table>
+		<table tableName="tb_province" domainObjectName="Province"></table>
+		<table tableName="tb_city" domainObjectName="City"></table>
+		<table tableName="tb_area" domainObjectName="Area"></table>
+		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table>
 	</context>
 </generatorConfiguration>

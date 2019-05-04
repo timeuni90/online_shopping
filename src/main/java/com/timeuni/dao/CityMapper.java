@@ -10,7 +10,7 @@ public interface CityMapper {
 
     int deleteByExample(CityExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(City record);
 
@@ -18,7 +18,7 @@ public interface CityMapper {
 
     List<City> selectByExample(CityExample example);
 
-    City selectByPrimaryKey(Integer id);
+    City selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") City record, @Param("example") CityExample example);
 

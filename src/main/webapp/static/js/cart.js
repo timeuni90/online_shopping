@@ -263,13 +263,7 @@ $("#cartSubmit").click(function() {
 				datas += "&";
 			}
 		});
-		$.ajax({
-			method: "GET",
-			url: "http://localhost:8080/online-shopping/prepareorders?" + datas,
-			success: function() {
-				
-			}
-		});
+		window.location.href="http://localhost:8080/online-shopping/prepareorders?" + datas;
 	}
 });
 

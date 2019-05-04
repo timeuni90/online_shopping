@@ -27,4 +27,7 @@ public interface AddressDetailMapper {
     int updateByPrimaryKeySelective(AddressDetail record);
 
     int updateByPrimaryKey(AddressDetail record);
+    
+    /* 获取用户的收货地址 */
+    public List<AddressDetail> selectAllAdressByUserId(Integer userId);
 }

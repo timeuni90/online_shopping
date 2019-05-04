@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,15 +13,16 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>确认订单</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="static/css/sousuo/global.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/sousuo/global.css">
 <link rel="stylesheet"
-	href="static/css/order_confirm/layout-a2ae44047d.css">
-<link href="static/css/order_confirm/add-8f4ba0d484.css"
+	href="${APP_PATH }/static/css/order_confirm/layout-a2ae44047d.css">
+<link href="${APP_PATH }/static/css/order_confirm/add-8f4ba0d484.css"
 	rel="stylesheet">
+<script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
-	<%@ include file="/WEB-INF/view/header.jsp" %>
+	<%@ include file="/WEB-INF/view/header.jsp"%>
 	<!-- common header -->
 	<!-- <div class="layout-header clearfix layout-header-order login"
 		id="layoutHeader">
@@ -96,32 +104,24 @@
 						<i class="order-address-tips-icon"></i>因配送地址库升级，部分地址需升级后方可使用！
 					</div>
 				</div>
+				<fmt:formatNumber value="${(fn:length(addressDetails)-fn:length(addressDetails)%4)/4}" pattern="##" type="NUMBER" var="count"></fmt:formatNumber>
+				<c:set value="${(count+1)*174 }" var="height"></c:set>
 				<ul class="order-address-list clearfix" id="addressList"
-					style="height: 174px;">
+					style="height: ${height }px;">
+					<c:forEach items="${addressDetails }" var="addressDetail" varStatus="status">
+					<c:if test="${status.index == 0 }">
 					<li class="order-address-checkbox checked" data-mdesc="收货人信息"
 						data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
-						<div class="order-address-checkbox-top">
-							<div class="order-address-checkbox-name" title="张三">张三</div>
-							<div class="order-address-checkbox-phone">13652145236</div>
-						</div>
-						<div class="order-address-checkbox-content">四川省凉山彝族自治州西昌市北城街道西昌学院北校区</div>
-						<div class="order-address-checkbox-checked">
-							<div class="order-address-checkbox-tick"></div>
-						</div>
-
-						<div class="order-address-checkbox-ctrl">
-							<div class="order-address-checkbox-delete"></div>
-							<div class="order-address-checkbox-edit"></div>
-						</div>
-
-					</li>
+					</c:if>
+					<c:if test="${status.index != 0 }">
 					<li class="order-address-checkbox" data-mdesc="收货人信息"
 						data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
+					</c:if>
 						<div class="order-address-checkbox-top">
-							<div class="order-address-checkbox-name" title="李四">李四</div>
-							<div class="order-address-checkbox-phone">23423411342</div>
+							<div class="order-address-checkbox-name">${addressDetail.receiver }</div>
+							<div class="order-address-checkbox-phone">${addressDetail.phoneNumber }</div>
 						</div>
-						<div class="order-address-checkbox-content">四川省广安市前锋区前锋镇纤细地址</div>
+						<div class="order-address-checkbox-content">${addressDetail.detailAddress }</div>
 						<div class="order-address-checkbox-checked">
 							<div class="order-address-checkbox-tick"></div>
 						</div>
@@ -130,8 +130,8 @@
 							<div class="order-address-checkbox-delete"></div>
 							<div class="order-address-checkbox-edit"></div>
 						</div>
-
 					</li>
+					</c:forEach>
 					<li class="order-address-checkbox add">
 						<div class="order-add-icon"></div>
 						<div class="order-address-add-text">添加新地址</div>
@@ -156,182 +156,132 @@
 			<div class="mzcontainer order-product">
 				<div class="order-product-title">确认订单信息</div>
 				<div class="order-product-list" id="orderProductList">
-					<table cellpadding="0" cellspacing="0" class="order-product-table">
-						<thead>
-							<tr>
-								<th class="order-product-table-name">
-									<div class="order-product-supplier">
-										供应商：<span class="order-product-supplier-name">魅族</span>
-										<!--<div class="order-product-supplier-tips">由“魅族”负责发货，并提供售后服务</div>-->
-									</div>
-								</th>
-								<th class="order-product-table-price">单价</th>
-								<th class="order-product-table-num">数量</th>
-								<th class="order-product-table-total">小计</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="order-product-table-name"><a target="_blank"
-									class="order-product-link"
-									href="//detail.meizu.com/item/meizu_power_bank_3.html"
-									data-mdesc="确认订单信息" data-mtype="click_store_se_ord"
-									data-bh="click_store_se_ord"> <img
-										class="order-product-image"
-										data-original="//openfile.meizu.com/group1/M00/06/CC/Cgbj0VvJjKeATLxsAAF7_uDseks390.png@120x120.jpg"
-										src="//openfile.meizu.com/group1/M00/06/CC/Cgbj0VvJjKeATLxsAAF7_uDseks390.png@120x120.jpg"
-										style="display: inline;">
-								</a>
-									<div class="order-product-name">
-										<a target="_blank" class="order-product-link"
+					<c:forEach items="${groups }" var="group">
+						<c:set value="0.0" var="sellerTotalPrice"></c:set>
+						<table cellpadding="0" cellspacing="0" class="order-product-table">
+							<thead>
+								<tr>
+									<th class="order-product-table-name">
+										<div class="order-product-supplier">
+											供应商：<span class="order-product-supplier-name">${group.key }</span>
+										</div>
+									</th>
+									<th class="order-product-table-price">单价</th>
+									<th class="order-product-table-num">数量</th>
+									<th class="order-product-table-total">小计</th>
+									<th class="order-product-table-express table-express-header">配送方式</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${group.value }" var="item" varStatus="status">
+									<tr>
+										<td class="order-product-table-name"><a target="_blank"
+											class="order-product-link"
 											href="//detail.meizu.com/item/meizu_power_bank_3.html"
 											data-mdesc="确认订单信息" data-mtype="click_store_se_ord"
-											data-bh="click_store_se_ord">
-											<p class="order-product-name-item item-name">魅族移动电源3</p>
-											<p class="order-product-name-item cspu-desc">简约白 双向快充</p>
-
+											data-bh="click_store_se_ord"> <img
+												class="order-product-image" src="${item.coverImage }"
+												style="display: inline;">
 										</a>
-									</div></td>
-								<td class="order-product-table-price">
-									<p>
-										<span class="order-product-price">79.00</span>
-
-									</p>
-
-								</td>
-								<td class="order-product-table-num">1</td>
-								<td class="order-product-table-total">
-									<p class="order-product-price red">79.00</p>
-								</td>
-
-							</tr>
-
-							<!-- 套餐 -->
-
-							<!-- 赠品 -->
-
-							<!-- 加价购商品 -->
-							<tr>
-								<td class="order-product-table-name"><a target="_blank"
-									class="order-product-link"
-									href="//detail.meizu.com/item/meizu16x.html"
-									data-mdesc="确认订单信息" data-mtype="click_store_se_ord"
-									data-bh="click_store_se_ord"> <img
-										class="order-product-image"
-										data-original="//openfile.meizu.com/group1/M00/06/CC/Cgbj0VvINL-AGM20AAw4GirVtYA698.png@120x120.jpg"
-										src="//openfile.meizu.com/group1/M00/06/CC/Cgbj0VvINL-AGM20AAw4GirVtYA698.png@120x120.jpg"
-										style="display: inline;">
-								</a>
-									<div class="order-product-name">
-										<a target="_blank" class="order-product-link"
-											href="//detail.meizu.com/item/meizu16x.html"
-											data-mdesc="确认订单信息" data-mtype="click_store_se_ord"
-											data-bh="click_store_se_ord">
-											<p class="order-product-name-item item-name">魅族 16 X</p>
-											<p class="order-product-name-item cspu-desc">全网通公开版 砚墨黑
-												6+64GB</p>
-
-										</a>
-									</div></td>
-								<td class="order-product-table-price">
-									<p>
-										<span class="order-product-price">1798.00</span>
-
-									</p>
-
-								</td>
-								<td class="order-product-table-num">1</td>
-								<td class="order-product-table-total">
-									<p class="order-product-price red">1798.00</p>
-								</td>
-
-							</tr>
-
-							<!-- 套餐 -->
-
-							<!-- 赠品 -->
-
-							<!-- 加价购商品 -->
-							<tr>
-								<td class="order-product-table-name"><a target="_blank"
-									class="order-product-link"
-									href="//detail.meizu.com/item/meizunote9.html"
-									data-mdesc="确认订单信息" data-mtype="click_store_se_ord"
-									data-bh="click_store_se_ord"> <img
-										class="order-product-image"
-										data-original="//openfile.meizu.com/group1/M00/07/12/Cgbj0Vx_ZK6AaEObAAa1DJqn7us376.png@120x120.jpg"
-										src="//openfile.meizu.com/group1/M00/07/12/Cgbj0Vx_ZK6AaEObAAa1DJqn7us376.png@120x120.jpg"
-										style="display: inline;">
-								</a>
-									<div class="order-product-name">
-										<a target="_blank" class="order-product-link"
-											href="//detail.meizu.com/item/meizunote9.html"
-											data-mdesc="确认订单信息" data-mtype="click_store_se_ord"
-											data-bh="click_store_se_ord">
-											<p class="order-product-name-item item-name">魅族 Note9</p>
-											<p class="order-product-name-item cspu-desc">全网通公开版 幻黑
-												4+64GB</p>
-
-										</a>
-									</div></td>
-								<td class="order-product-table-price">
-									<p>
-										<span class="order-product-price">1398.00</span>
-
-									</p>
-
-								</td>
-								<td class="order-product-table-num">1</td>
-								<td class="order-product-table-total">
-									<p class="order-product-price red">1398.00</p>
-								</td>
-
-							</tr>
-
-							<!-- 套餐 -->
-
-							<!-- 赠品 -->
-
-							<!-- 加价购商品 -->
-						</tbody>
-						<tfoot>
-							<tr class="order-product-footer">
-								<td colspan="3" class="order-product-info">
-
-									<div class="order-product-invoice clearfix">
-
-										<div class="order-product-invoice-type">
-											发票类型：电子发票
-											<div class="order-product-invoice-icon"></div>
-										</div>
-
-										<span class="order-product-invoice-edit">修改</span>
-										<div class="order-product-invoice-info">
+											<div class="order-product-name">
+												<a target="_blank" class="order-product-link"
+													href="${APP_PATH }/product/${item.commodityId }">
+													<p class="order-product-name-item item-name"
+														title="${item.title}">${item.title}</p>
+													<p class="order-product-name-item cspu-desc"
+														title="${item.commodityParameter }">${item.commodityParameter }</p>
+												</a>
+											</div></td>
+										<td class="order-product-table-price">
 											<p>
-												发票抬头：<span class="order-product-invoice-title">默认为收货人姓名</span>
+												<span class="order-product-price"> <c:if
+														test="${item.promotionPrice==null }">
+														<fmt:formatNumber value="${item.price }"
+															minFractionDigits="2" maxFractionDigits="2"
+															groupingUsed="false">
+														</fmt:formatNumber>
+													</c:if> <c:if test="${item.promotionPrice!=null }">
+														<fmt:formatNumber value="${item.promotionPrice }"
+															minFractionDigits="2" maxFractionDigits="2"
+															groupingUsed="false">
+														</fmt:formatNumber>
+													</c:if>
+												</span>
 											</p>
-											<p class="order-product-company">
-												纳税人识别号：<span class="order-product-invoice-identify"></span>
+										</td>
+										<td class="order-product-table-num">${item.quantity }</td>
+										<td class="order-product-table-total">
+											<p class="order-product-price red">
+												<c:if test="${item.promotionPrice==null }">
+													<fmt:formatNumber value="${item.price*item.quantity }"
+														minFractionDigits="2" maxFractionDigits="2"
+														groupingUsed="false"></fmt:formatNumber>
+													<c:set value="${sellerTotalPrice+item.price*item.quantity }" var="sellerTotalPrice"></c:set>
+												</c:if>
+												<c:if test="${item.promotionPrice!=null }">
+													<fmt:formatNumber
+														value="${item.promotionPrice*item.quantity }"
+														minFractionDigits="2" maxFractionDigits="2"
+														groupingUsed="false"></fmt:formatNumber>
+													<c:set value="${sellerTotalPrice+item.promotionPrice*item.quantity }" var="sellerTotalPrice"></c:set>
+												</c:if>
 											</p>
-											<p class="order-product-company">
-												开户行及账号：<span class="order-product-invoice-bank"></span>
+										</td>
+										<c:if test="${status.index==0 }">
+										<td class="order-product-table-express" rowspan="999">
+											<p>
+												快递配送：运费<span
+													class="order-product-price red express-fee has-express-fee">0.00</span>
 											</p>
-										</div>
-									</div>
+										</td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr class="order-product-footer">
+									<td colspan="3" class="order-product-info">
 
-								</td>
-								<td colspan="2" class="order-product-total">合计：<span
-									class="order-product-price red total-has-express-fee">3275.00</span>
-								</td>
-							</tr>
-							<tr class="order-product-remark">
-								<td colspan="5"><span class="order-product-remark-title">备注：</span>
-									<textarea class="order-product-remark-input" maxlength="45"></textarea>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
+										<div class="order-product-invoice clearfix">
+
+											<div class="order-product-invoice-type">
+												发票类型：电子发票
+												<div class="order-product-invoice-icon"></div>
+											</div>
+
+											<span class="order-product-invoice-edit">修改</span>
+											<div class="order-product-invoice-info">
+												<p>
+													发票抬头：<span class="order-product-invoice-title">默认为收货人姓名</span>
+												</p>
+												<p class="order-product-company">
+													纳税人识别号：<span class="order-product-invoice-identify"></span>
+												</p>
+												<p class="order-product-company">
+													开户行及账号：<span class="order-product-invoice-bank"></span>
+												</p>
+											</div>
+										</div>
+
+									</td>
+									<td colspan="2" class="order-product-total">合计：
+										<span class="order-product-price red total-has-express-fee">
+											<fmt:formatNumber
+														value="${sellerTotalPrice }"
+														minFractionDigits="2" maxFractionDigits="2"
+														groupingUsed="false">
+											</fmt:formatNumber>
+										</span>
+									</td>
+								</tr>
+								<tr class="order-product-remark">
+									<td colspan="5"><span class="order-product-remark-title">备注：</span>
+										<textarea class="order-product-remark-input" maxlength="45"></textarea>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</c:forEach>
 				</div>
 			</div>
 
@@ -373,99 +323,16 @@
 							</ul>
 
 						</div>
-
-						<div class="order-total-pay-row clearfix">
-							<div class="order-total-pay-title">网上银行</div>
-							<ul class="order-total-pay-list clearfix">
-
-								<li class="order-total-pay-label boc"
-									data-bh="click_store_pay_pm_boc">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label ccb"
-									data-bh="click_store_pay_pm_ccb">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label abc"
-									data-bh="click_store_pay_pm_abc">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label icbc"
-									data-bh="click_store_pay_pm_icbc">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label comm"
-									data-bh="click_store_pay_pm_comm">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label cmb"
-									data-bh="click_store_pay_pm_cmb">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label psbc"
-									data-bh="click_store_pay_pm_psbc">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label cib"
-									data-bh="click_store_pay_pm_cib">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-								<li class="order-total-pay-label shbank"
-									data-bh="click_store_pay_pm_shbank">
-									<div class="order-total-pay-radio"></div>
-									<div class="order-total-pay-img"></div>
-
-								</li>
-
-							</ul>
-
-							<table class="order-total-pay-banks-detail" cellspacing="0"
-								cellpadding="0">
-								<thead>
-									<tr>
-										<th width="150px">银行名称</th>
-										<th width="400px">限额</th>
-										<th width="140px">支持卡种</th>
-										<th width="140px">客服电话</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-
-						</div>
-
 					</div>
 				</div>
 
 				<div class="order-total-content">
 					<div class="order-total-row">
 						总金额：
-						<div class="order-total-price" id="totalOrderPrice">3275.00</div>
+						<div class="order-total-price" id="totalOrderPrice">
+							<fmt:formatNumber value="${totalPrice }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2">
+							</fmt:formatNumber>
+						</div>
 					</div>
 					<div class="order-total-row order-total-discount"
 						id="totalCouponRow">
@@ -492,7 +359,10 @@
 					<div class="order-total-line"></div>
 					<div class="order-total-row">
 						应付：
-						<div class="order-total-price total" id="totalPayPrice">3275.00</div>
+						<div class="order-total-price total" id="totalPayPrice">
+							<fmt:formatNumber value="${totalPrice }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2">
+							</fmt:formatNumber>
+						</div>
 					</div>
 					<div class="order-total-row order-total-valid-row clearfix">
 						<div class="order-total-valid" id="validCode"></div>
@@ -572,7 +442,7 @@
 
 		</div>
 	</div>
-	<div class="mz-mask hide">
+	<div class="mz-mask hide" id="address_inf">
 		<div class="mz-dialog dialog address-adder"
 			style="margin-left: -380px; margin-top: -181.5px;">
 			<div class="mz-dialog-header">
@@ -607,7 +477,7 @@
 								<div class="mz-input-warp address-adder-select mz-address"
 									data-tips=" ">
 									<div class="mz-selectmenu">
-										<input type="text" readonly="readonly" tabindex="-1"
+										<input id="province_input" type="text" readonly="readonly" tabindex="-1"
 											class="mz-downmenu-input" placeholder="省份/直辖市"><input
 											type="hidden" tabindex="-1" value="27304" name="">
 									</div>
@@ -663,95 +533,20 @@
 		</div>
 	</div>
 	<div class="mz-downmenu"
-		style="top: 484.969px; left: 728.5px; width: 118px; display: none;">
+		style="top: 273.969px; left: 728.5px; width: 118px; display: none;">
 		<ul class="mz-downmenu-list">
-			<li class="mz-downmenu-item">北京</li>
-			<li class="mz-downmenu-item">天津</li>
-			<li class="mz-downmenu-item">吉林省</li>
-			<li class="mz-downmenu-item">辽宁省</li>
-			<li class="mz-downmenu-item">浙江省</li>
-			<li class="mz-downmenu-item">福建省</li>
-			<li class="mz-downmenu-item">上海</li>
-			<li class="mz-downmenu-item">广东省</li>
-			<li class="mz-downmenu-item">海南省</li>
-			<li class="mz-downmenu-item">湖北省</li>
-			<li class="mz-downmenu-item">湖南省</li>
-			<li class="mz-downmenu-item">安徽省</li>
-			<li class="mz-downmenu-item">江苏省</li>
-			<li class="mz-downmenu-item">江西省</li>
-			<li class="mz-downmenu-item">四川省</li>
-			<li class="mz-downmenu-item">重庆</li>
-			<li class="mz-downmenu-item">云南省</li>
-			<li class="mz-downmenu-item">贵州省</li>
-			<li class="mz-downmenu-item">广西壮族自治区</li>
-			<li class="mz-downmenu-item">西藏自治区</li>
-			<li class="mz-downmenu-item">山东省</li>
-			<li class="mz-downmenu-item">河南省</li>
-			<li class="mz-downmenu-item">甘肃省</li>
-			<li class="mz-downmenu-item">河北省</li>
-			<li class="mz-downmenu-item">内蒙古自治区</li>
-			<li class="mz-downmenu-item">宁夏回族自治区</li>
-			<li class="mz-downmenu-item">青海省</li>
-			<li class="mz-downmenu-item">山西省</li>
-			<li class="mz-downmenu-item">陕西省</li>
-			<li class="mz-downmenu-item">新疆维吾尔自治区</li>
-			<li class="mz-downmenu-item">黑龙江省</li>
 		</ul>
 	</div>
 	<div class="mz-downmenu"
-		style="top: 484.969px; left: 858.5px; width: 118px; display: none;">
+		style="top: 273.969px; left: 858.5px; width: 118px; display: none;">
 		<ul class="mz-downmenu-list">
 			<li class="mz-downmenu-item">成都市</li>
-			<li class="mz-downmenu-item">眉山市</li>
-			<li class="mz-downmenu-item">资阳市</li>
-			<li class="mz-downmenu-item">攀枝花市</li>
-			<li class="mz-downmenu-item">自贡市</li>
-			<li class="mz-downmenu-item">绵阳市</li>
-			<li class="mz-downmenu-item">南充市</li>
-			<li class="mz-downmenu-item">达州市</li>
-			<li class="mz-downmenu-item">遂宁市</li>
-			<li class="mz-downmenu-item">广安市</li>
-			<li class="mz-downmenu-item">巴中市</li>
-			<li class="mz-downmenu-item">泸州市</li>
-			<li class="mz-downmenu-item">宜宾市</li>
-			<li class="mz-downmenu-item">内江市</li>
-			<li class="mz-downmenu-item">乐山市</li>
-			<li class="mz-downmenu-item">凉山彝族自治州</li>
-			<li class="mz-downmenu-item">雅安市</li>
-			<li class="mz-downmenu-item">甘孜藏族自治州</li>
-			<li class="mz-downmenu-item">阿坝藏族羌族自治州</li>
-			<li class="mz-downmenu-item">德阳市</li>
-			<li class="mz-downmenu-item">广元市</li>
 		</ul>
 	</div>
 	<div class="mz-downmenu"
-		style="top: 484.969px; left: 988.5px; width: 118px; display: none;">
+		style="top: 273.969px; left: 988.5px; width: 118px; display: none;">
 		<ul class="mz-downmenu-list">
 			<li class="mz-downmenu-item">前锋区</li>
-			<li class="mz-downmenu-item">广安区</li>
-			<li class="mz-downmenu-item">岳池县</li>
-			<li class="mz-downmenu-item">武胜县</li>
-			<li class="mz-downmenu-item">邻水县</li>
-			<li class="mz-downmenu-item">华蓥市</li>
-		</ul>
-	</div>
-	<div class="mz-downmenu"
-		style="top: 484.969px; left: 1118.5px; width: 118px; display: none;">
-		<ul class="mz-downmenu-list">
-			<li class="mz-downmenu-item">奎阁街道</li>
-			<li class="mz-downmenu-item">观阁镇</li>
-			<li class="mz-downmenu-item">广兴镇</li>
-			<li class="mz-downmenu-item">前锋镇</li>
-			<li class="mz-downmenu-item">桂兴镇</li>
-			<li class="mz-downmenu-item">代市镇</li>
-			<li class="mz-downmenu-item">观塘镇</li>
-			<li class="mz-downmenu-item">护安镇</li>
-			<li class="mz-downmenu-item">光辉乡</li>
-			<li class="mz-downmenu-item">龙滩乡</li>
-			<li class="mz-downmenu-item">小井乡</li>
-			<li class="mz-downmenu-item">新桥乡</li>
-			<li class="mz-downmenu-item">虎城乡</li>
-			<li class="mz-downmenu-item">其他</li>
 		</ul>
 	</div>
 	<div class="mz-mask hide">
@@ -854,5 +649,5 @@
 		</a>
 	</div>
 </body>
-
+<script type="text/javascript" src="${APP_PATH }/static/js/order_confirm.js"></script>
 </html>

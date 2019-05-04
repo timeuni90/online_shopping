@@ -29,7 +29,10 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/prepareorders", method = RequestMethod.GET)
-	public void handlePrepareOrdersRequest(HttpSession httpSession, @RequestParam(name = "rows")List<String> rows) {
-		orderService.getPrepareOrdersInformationFromCart((Integer) httpSession.getAttribute("userId"), rows);
+	public ModelAndView handlePrepareOrdersRequest(HttpSession httpSession, @RequestParam(name = "rows")List<String> rows) {
+		Map<String, Object> map = orderService.getPrepareOrdersInformationFromCart((Integer) httpSession.getAttribute("userId"), rows);
+		ModelAndView modelAndView = new ModelAndView("order_confirm");
+		modelAndView.addAllObjects(map);
+		return modelAndView;
 	}
 }

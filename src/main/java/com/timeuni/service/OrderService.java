@@ -8,12 +8,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.timeuni.bean.AddressDetail;
 import com.timeuni.bean.Commodity;
 import com.timeuni.bean.CommoditySelectProperty;
 import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.bean.Seller;
+import com.timeuni.dao.AddressDetailMapper;
 import com.timeuni.dao.CartMapper;
 import com.timeuni.dao.CommodityMapper;
 import com.timeuni.dao.CommoditySelectPropertyMapper;
@@ -34,6 +36,8 @@ public class OrderService {
 	private CommodityVariableMapper commodityVariableMapper;
 	@Autowired
 	private CartMapper cartMapper;
+	@Autowired
+	private AddressDetailMapper addressDetailMapper;
 	
 	/* 直接购买，获取待确认订单的信息 */
 	public Map<String, Object> getPrepareOrderInformation(Integer commodityId, String row, Integer quantity, Integer userId) {
@@ -65,10 +69,19 @@ public class OrderService {
 	
 	/* 购物车生成确认订单信息 */
 	public Map<String, Object> getPrepareOrdersInformationFromCart(Integer userId, List<String> rows) {
+		/* 获取用户的收货地址 */
+		List<AddressDetail> addressDetails = addressDetailMapper.selectAllAdressByUserId(userId);
+		/* 获取提交的购物车商品信息 */
 		String coverLocation = new ResourceLocation().getCommodityCoverImageLocation();
 		List<CartItem> cartItems = cartMapper.selectCartItemsByUserId(userId, coverLocation, rows);
 		Map<String, List<CartItem>> groups = new HashMap<String, List<CartItem>>();
+		Float totalPrice = (float)0;
 		for (CartItem cartItem : cartItems) {
+			if(cartItem.getPromotionPrice() != null) {
+				totalPrice += cartItem.getPromotionPrice() * cartItem.getQuantity();
+			} else {
+				totalPrice += cartItem.getPrice() * cartItem.getQuantity();
+			}
 			if(groups.containsKey(cartItem.getStoreName())) {
 				groups.get(cartItem.getStoreName()).add(cartItem);
 			} else {
@@ -79,7 +92,8 @@ public class OrderService {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("groups", groups);
-		map.put("totalCount", cartItems.size());
+		map.put("totalPrice", totalPrice);
+		map.put("addressDetails", addressDetails);
 		return map;
 	}
 	

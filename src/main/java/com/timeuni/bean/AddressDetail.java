@@ -5,7 +5,7 @@ public class AddressDetail {
 
     private Integer userId;
 
-    private Integer cityId;
+    private String areaId;
 
     private String detailAddress;
 
@@ -29,12 +29,12 @@ public class AddressDetail {
         this.userId = userId;
     }
 
-    public Integer getCityId() {
-        return cityId;
+    public String getAreaId() {
+        return areaId;
     }
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
+    public void setAreaId(String areaId) {
+        this.areaId = areaId == null ? null : areaId.trim();
     }
 
     public String getDetailAddress() {

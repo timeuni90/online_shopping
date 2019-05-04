@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.timeuni.dao.ProvinceMapper">
-  <resultMap id="BaseResultMap" type="com.timeuni.bean.Province">
+<mapper namespace="com.timeuni.dao.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.timeuni.bean.Area">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
-    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="area_id" jdbcType="VARCHAR" property="areaId" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, province_id, province
+    id, area_id, area, city_id
   </sql>
-  <select id="selectByExample" parameterType="com.timeuni.bean.ProvinceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.timeuni.bean.AreaExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_province
+    from tb_area
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_province
+    from tb_area
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tb_province
+    delete from tb_area
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.timeuni.bean.ProvinceExample">
-    delete from tb_province
+  <delete id="deleteByExample" parameterType="com.timeuni.bean.AreaExample">
+    delete from tb_area
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.timeuni.bean.Province">
-    insert into tb_province (id, province_id, province
-      )
-    values (#{id,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.timeuni.bean.Area">
+    insert into tb_area (id, area_id, area, 
+      city_id)
+    values (#{id,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.timeuni.bean.Province">
-    insert into tb_province
+  <insert id="insertSelective" parameterType="com.timeuni.bean.Area">
+    insert into tb_area
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="provinceId != null">
-        province_id,
+      <if test="areaId != null">
+        area_id,
       </if>
-      <if test="province != null">
-        province,
+      <if test="area != null">
+        area,
+      </if>
+      <if test="cityId != null">
+        city_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="provinceId != null">
-        #{provinceId,jdbcType=VARCHAR},
+      <if test="areaId != null">
+        #{areaId,jdbcType=VARCHAR},
       </if>
-      <if test="province != null">
-        #{province,jdbcType=VARCHAR},
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.timeuni.bean.ProvinceExample" resultType="java.lang.Long">
-    select count(*) from tb_province
+  <select id="countByExample" parameterType="com.timeuni.bean.AreaExample" resultType="java.lang.Long">
+    select count(*) from tb_area
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_province
+    update tb_area
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.provinceId != null">
-        province_id = #{record.provinceId,jdbcType=VARCHAR},
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=VARCHAR},
       </if>
-      <if test="record.province != null">
-        province = #{record.province,jdbcType=VARCHAR},
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null">
+        city_id = #{record.cityId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_province
+    update tb_area
     set id = #{record.id,jdbcType=VARCHAR},
-      province_id = #{record.provinceId,jdbcType=VARCHAR},
-      province = #{record.province,jdbcType=VARCHAR}
+      area_id = #{record.areaId,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.timeuni.bean.Province">
-    update tb_province
+  <update id="updateByPrimaryKeySelective" parameterType="com.timeuni.bean.Area">
+    update tb_area
     <set>
-      <if test="provinceId != null">
-        province_id = #{provinceId,jdbcType=VARCHAR},
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=VARCHAR},
       </if>
-      <if test="province != null">
-        province = #{province,jdbcType=VARCHAR},
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.timeuni.bean.Province">
-    update tb_province
-    set province_id = #{provinceId,jdbcType=VARCHAR},
-      province = #{province,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.timeuni.bean.Area">
+    update tb_area
+    set area_id = #{areaId,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
