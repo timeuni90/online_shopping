@@ -138,7 +138,7 @@
 					<div class="cart-footer-right">
 						<span class="cart-footer-sum">          合计：<span class="cart-footer-total" id="totalPrice">0.00</span>
 						</span>
-						<div class="mz-btn success to-order-btn" id="cartSubmit" data-mdesc="去结算按钮" data-mtype="store_cart_checkout" data-bh="click_store_cart_checkout" disabled="disabled">去结算
+						<div class="mz-btn success to-order-btn disabled" id="cartSubmit" data-mdesc="去结算按钮" data-mtype="store_cart_checkout" data-bh="click_store_cart_checkout">去结算
 						</div>
 					</div>
 				</div>

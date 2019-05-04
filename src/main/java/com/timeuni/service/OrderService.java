@@ -1,5 +1,6 @@
 package com.timeuni.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +14,13 @@ import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.bean.Seller;
+import com.timeuni.dao.CartMapper;
 import com.timeuni.dao.CommodityMapper;
 import com.timeuni.dao.CommoditySelectPropertyMapper;
 import com.timeuni.dao.CommodityVariableMapper;
 import com.timeuni.dao.SellerMapper;
+import com.timeuni.mybean.CartItem;
+import com.timeuni.resourcebundle.ResourceLocation;
 
 @Service
 public class OrderService {
@@ -28,8 +32,10 @@ public class OrderService {
 	private CommoditySelectPropertyMapper commoditySelectPropertyMapper;
 	@Autowired
 	private CommodityVariableMapper commodityVariableMapper;
+	@Autowired
+	private CartMapper cartMapper;
 	
-	/* 获取待确认订单的信息 */
+	/* 直接购买，获取待确认订单的信息 */
 	public Map<String, Object> getPrepareOrderInformation(Integer commodityId, String row, Integer quantity, Integer userId) {
 		/* 获得商品 */
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -54,6 +60,26 @@ public class OrderService {
 			allPrice = commodityVariables.get(0).getPromotionPrice() * quantity;
 		}
 		map.put("allPrice", allPrice);
+		return map;
+	}
+	
+	/* 购物车生成确认订单信息 */
+	public Map<String, Object> getPrepareOrdersInformationFromCart(Integer userId, List<String> rows) {
+		String coverLocation = new ResourceLocation().getCommodityCoverImageLocation();
+		List<CartItem> cartItems = cartMapper.selectCartItemsByUserId(userId, coverLocation, rows);
+		Map<String, List<CartItem>> groups = new HashMap<String, List<CartItem>>();
+		for (CartItem cartItem : cartItems) {
+			if(groups.containsKey(cartItem.getStoreName())) {
+				groups.get(cartItem.getStoreName()).add(cartItem);
+			} else {
+				List<CartItem> list = new ArrayList<CartItem>();
+				list.add(cartItem);
+				groups.put(cartItem.getStoreName(), list);
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("groups", groups);
+		map.put("totalCount", cartItems.size());
 		return map;
 	}
 	

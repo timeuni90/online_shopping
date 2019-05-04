@@ -243,6 +243,12 @@
 		INNER JOIN tb_seller s ON co.seller_id = s.id
 		WHERE
 		user_id = #{userId}
+		<if test="rows != null">
+			and c.select_property_row in
+			<foreach collection="rows" item="row" separator="," open="(" close=")">
+				#{row}
+			</foreach>
+		</if>
 		GROUP BY
 		c.select_property_row
 	</select>

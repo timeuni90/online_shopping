@@ -46,7 +46,7 @@ public class CartService {
 	/* 获得购物车商品 */
 	public Map<String, Object> getCartItemsByUserId(Integer userId) {
 		String coverLocation = new ResourceLocation().getCommodityCoverImageLocation();
-		List<CartItem> cartItems = cartMapper.selectCartItemsByUserId(userId, coverLocation);
+		List<CartItem> cartItems = cartMapper.selectCartItemsByUserId(userId, coverLocation, null);
 		Map<String, List<CartItem>> groups = new HashMap<String, List<CartItem>>();
 		for (CartItem cartItem : cartItems) {
 			if(groups.containsKey(cartItem.getStoreName())) {

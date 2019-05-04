@@ -1,5 +1,6 @@
 package com.timeuni.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.timeuni.service.OrderService;
@@ -26,4 +28,8 @@ public class OrderController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/prepareorders", method = RequestMethod.GET)
+	public void handlePrepareOrdersRequest(HttpSession httpSession, @RequestParam(name = "rows")List<String> rows) {
+		orderService.getPrepareOrdersInformationFromCart((Integer) httpSession.getAttribute("userId"), rows);
+	}
 }

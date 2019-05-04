@@ -50,17 +50,27 @@ $(".mz-checkbox").click(function() {
 	var selective_commodity_quantity = $(".cart-merchant-body .mz-checkbox.checked").length;
 	$("#totalSelectedCount").text(selective_commodity_quantity);
 	/* 总价格变化 */
+	totalPrice();
+	isOpenSubmit();
+});
+
+/* 使提交按钮生效或失效 */
+function isOpenSubmit() {
+	if($(".cart-merchant-body .mz-checkbox.checked").length != 0) {
+		$("#cartSubmit").removeClass("disabled");
+	} else {
+		$("#cartSubmit").addClass("disabled");
+	}
+}
+
+/* 总价格变化 */
+function totalPrice() {
 	var total_price = 0.0;
 	$.each($(".cart-merchant-body .mz-checkbox.checked").parent().parent().find(".cart-product-price.total.main-goods"), function(i, n) {
 		total_price += parseFloat($(n).text());
 	});
 	$("#totalPrice").text(total_price.toFixed(2));
-	if(selective_commodity_quantity != 0) {
-		$("#cartSubmit").attr("disabled", false);
-	} else {
-		$("#cartSubmit").attr("disabled", true);
-	}
-});
+}
 
 /* 点击减号 */
 $(".mz-adder-subtract").click(function() {
@@ -78,6 +88,8 @@ $(".mz-adder-subtract").click(function() {
 					if(message) {
 						$(current).parent().find(".mz-adder-add").removeClass("disabled");
 						$(current).parent().parent().find(".cart-product-number-max").removeClass("show");
+						/* 数量改变，总价变化 */
+						totalPrice();
 					} else {
 						$(current).parent().find(".mz-adder-add").addClass("disabled");
 						$(current).parent().parent().find(".cart-product-number-max").text("库存不足");
@@ -106,6 +118,8 @@ $(".mz-adder-add").click(function() {
 					$(current).parent().find(".mz-adder-num input").val(value + 1);
 					$(current).parent().find(".mz-adder-subtract").removeClass("disabled");
 					varyPrice(current);
+					/* 数量改变，总价变化 */
+					totalPrice();
 				} else {
 					$(current).addClass("disabled");
 					$(current).parent().parent().find(".cart-product-number-max").text("库存不足");
@@ -142,6 +156,8 @@ $(".mz-adder-input").keyup(function() {
 				$(current).parent().parent().find(".mz-adder-add").removeClass("disabled");
 				$(current).parent().parent().find(".mz-adder-subtract").removeClass("disabled");
 				$(current).parent().parent().parent().find(".cart-product-number-max").removeClass("show");
+				/* 数量改变，总价变化 */
+				totalPrice();
 			} else {
 				$(current).parent().parent().find(".mz-adder-add").addClass("disabled");
 				$(current).parent().parent().parent().find(".cart-product-number-max").text("库存不足");
@@ -165,6 +181,8 @@ $(".mz-adder-input").blur(function() {
 					varyPrice($(current).parent());
 					$(current).parent().parent().find(".mz-adder-add").removeClass("disabled");
 					$(current).parent().parent().parent().find(".cart-product-number-max").removeClass("show");
+					/* 数量改变，总价变化 */
+					totalPrice();
 				} else {
 					$(current).parent().parent().find(".mz-adder-add").addClass("disabled");
 					$(current).parent().parent().parent().find(".cart-product-number-max").text("库存不足");
@@ -226,7 +244,35 @@ $("#confirm_box .mz-btn.cancel").click(function() {
 						n.remove();
 					}
 				});
+				/* 数量改变，总价变化 */
+				totalPrice();
+				/* 使提交按钮生效或失效 */
+				isOpenSubmit()
 			}
 		}
 	});
 });
+
+/* 提交结算 */
+$("#cartSubmit").click(function() {
+	if(!$(this).hasClass("disabled")) {
+		var datas = "";
+		$.each($(".cart-product .mz-checkbox.checked"), function(i, n) {
+			datas += "rows=" + $(n).parent().parent().attr("data-row");
+			if(i < $(".cart-product .mz-checkbox.checked").length - 1) {
+				datas += "&";
+			}
+		});
+		$.ajax({
+			method: "GET",
+			url: "http://localhost:8080/online-shopping/prepareorders?" + datas,
+			success: function() {
+				
+			}
+		});
+	}
+});
+
+
+
+

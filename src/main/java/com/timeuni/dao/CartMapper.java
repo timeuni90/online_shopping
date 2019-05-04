@@ -31,5 +31,5 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
     
     /* 获取购物车 */
-    public List<CartItem> selectCartItemsByUserId(@Param("userId")Integer userId, @Param("coverLocation")String coverLocation);
+    public List<CartItem> selectCartItemsByUserId(@Param("userId")Integer userId, @Param("coverLocation")String coverLocation, @Param("rows")List<String> rows);
 }
