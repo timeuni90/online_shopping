@@ -252,4 +252,8 @@ $(".order-address-checkbox-delete").click(function() {
 	});
 });
 
-
+/* 选着收货地址 */
+$(".order-address-checkbox").click(function() {
+	$(".order-address-checkbox.checked").removeClass("checked");
+	$(this).addClass("checked");
+});

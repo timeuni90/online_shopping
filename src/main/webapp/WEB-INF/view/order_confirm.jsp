@@ -131,7 +131,7 @@
 
 						<div class="order-address-checkbox-ctrl">
 							<div class="order-address-checkbox-delete"></div>
-							<div class="order-address-checkbox-edit"></div>
+							<!-- <div class="order-address-checkbox-edit"></div> -->
 						</div>
 						</li>
 					</c:forEach>
