@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
@@ -104,19 +104,22 @@
 						<i class="order-address-tips-icon"></i>因配送地址库升级，部分地址需升级后方可使用！
 					</div>
 				</div>
-				<fmt:formatNumber value="${(fn:length(addressDetails)-fn:length(addressDetails)%4)/4}" pattern="##" type="NUMBER" var="count"></fmt:formatNumber>
+				<fmt:formatNumber
+					value="${(fn:length(addressDetails)-fn:length(addressDetails)%4)/4}"
+					pattern="##" type="NUMBER" var="count"></fmt:formatNumber>
 				<c:set value="${(count+1)*174 }" var="height"></c:set>
 				<ul class="order-address-list clearfix" id="addressList"
 					style="height: ${height }px;">
-					<c:forEach items="${addressDetails }" var="addressDetail" varStatus="status">
-					<c:if test="${status.index == 0 }">
-					<li class="order-address-checkbox checked" data-mdesc="收货人信息"
-						data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
-					</c:if>
-					<c:if test="${status.index != 0 }">
-					<li class="order-address-checkbox" data-mdesc="收货人信息"
-						data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
-					</c:if>
+					<c:forEach items="${addressDetails }" var="addressDetail"
+						varStatus="status">
+						<c:if test="${status.index == 0 }">
+							<li class="order-address-checkbox checked" data-mdesc="收货人信息"
+								data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
+						</c:if>
+						<c:if test="${status.index != 0 }">
+							<li class="order-address-checkbox" data-mdesc="收货人信息"
+								data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
+						</c:if>
 						<div class="order-address-checkbox-top">
 							<div class="order-address-checkbox-name">${addressDetail.receiver }</div>
 							<div class="order-address-checkbox-phone">${addressDetail.phoneNumber }</div>
@@ -130,7 +133,7 @@
 							<div class="order-address-checkbox-delete"></div>
 							<div class="order-address-checkbox-edit"></div>
 						</div>
-					</li>
+						</li>
 					</c:forEach>
 					<li class="order-address-checkbox add">
 						<div class="order-add-icon"></div>
@@ -216,24 +219,28 @@
 													<fmt:formatNumber value="${item.price*item.quantity }"
 														minFractionDigits="2" maxFractionDigits="2"
 														groupingUsed="false"></fmt:formatNumber>
-													<c:set value="${sellerTotalPrice+item.price*item.quantity }" var="sellerTotalPrice"></c:set>
+													<c:set
+														value="${sellerTotalPrice+item.price*item.quantity }"
+														var="sellerTotalPrice"></c:set>
 												</c:if>
 												<c:if test="${item.promotionPrice!=null }">
 													<fmt:formatNumber
 														value="${item.promotionPrice*item.quantity }"
 														minFractionDigits="2" maxFractionDigits="2"
 														groupingUsed="false"></fmt:formatNumber>
-													<c:set value="${sellerTotalPrice+item.promotionPrice*item.quantity }" var="sellerTotalPrice"></c:set>
+													<c:set
+														value="${sellerTotalPrice+item.promotionPrice*item.quantity }"
+														var="sellerTotalPrice"></c:set>
 												</c:if>
 											</p>
 										</td>
 										<c:if test="${status.index==0 }">
-										<td class="order-product-table-express" rowspan="999">
-											<p>
-												快递配送：运费<span
-													class="order-product-price red express-fee has-express-fee">0.00</span>
-											</p>
-										</td>
+											<td class="order-product-table-express" rowspan="999">
+												<p>
+													快递配送：运费<span
+														class="order-product-price red express-fee has-express-fee">0.00</span>
+												</p>
+											</td>
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -264,14 +271,13 @@
 										</div>
 
 									</td>
-									<td colspan="2" class="order-product-total">合计：
-										<span class="order-product-price red total-has-express-fee">
-											<fmt:formatNumber
-														value="${sellerTotalPrice }"
-														minFractionDigits="2" maxFractionDigits="2"
-														groupingUsed="false">
+									<td colspan="2" class="order-product-total">合计： <span
+										class="order-product-price red total-has-express-fee">
+											<fmt:formatNumber value="${sellerTotalPrice }"
+												minFractionDigits="2" maxFractionDigits="2"
+												groupingUsed="false">
 											</fmt:formatNumber>
-										</span>
+									</span>
 									</td>
 								</tr>
 								<tr class="order-product-remark">
@@ -330,7 +336,8 @@
 					<div class="order-total-row">
 						总金额：
 						<div class="order-total-price" id="totalOrderPrice">
-							<fmt:formatNumber value="${totalPrice }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2">
+							<fmt:formatNumber value="${totalPrice }" groupingUsed="false"
+								maxFractionDigits="2" minFractionDigits="2">
 							</fmt:formatNumber>
 						</div>
 					</div>
@@ -360,7 +367,8 @@
 					<div class="order-total-row">
 						应付：
 						<div class="order-total-price total" id="totalPayPrice">
-							<fmt:formatNumber value="${totalPrice }" groupingUsed="false" maxFractionDigits="2" minFractionDigits="2">
+							<fmt:formatNumber value="${totalPrice }" groupingUsed="false"
+								maxFractionDigits="2" minFractionDigits="2">
 							</fmt:formatNumber>
 						</div>
 					</div>
@@ -477,24 +485,18 @@
 								<div class="mz-input-warp address-adder-select mz-address"
 									data-tips=" ">
 									<div class="mz-selectmenu">
-										<input id="province_input" type="text" readonly="readonly" tabindex="-1"
-											class="mz-downmenu-input" placeholder="省份/直辖市"><input
-											type="hidden" tabindex="-1" value="27304" name="">
+										<input id="province_input" type="text" readonly="readonly"
+											tabindex="-1" class="mz-downmenu-input" placeholder="省份/直辖市">
+										<input type="hidden" tabindex="-1" value="27304" name="">
 									</div>
 									<div class="mz-selectmenu">
-										<input type="text" readonly="readonly" tabindex="-1"
-											class="mz-downmenu-input" placeholder="城市"><input
-											type="hidden" tabindex="-1" value="29316" name="">
+										<input id="city_input" type="text" readonly="readonly" tabindex="-1" class="mz-downmenu-input" placeholder="城市">
+										<input type="hidden" tabindex="-1" value="29316" name="">
 									</div>
 									<div class="mz-selectmenu">
-										<input type="text" readonly="readonly" tabindex="-1"
+										<input id="area_input" type="text" readonly="readonly" tabindex="-1"
 											class="mz-downmenu-input" placeholder="区/县"><input
 											type="hidden" tabindex="-1" value="29317" name="">
-									</div>
-									<div class="mz-selectmenu">
-										<input type="text" readonly="readonly" tabindex="-1"
-											class="mz-downmenu-input" placeholder="乡镇/街道"><input
-											type="hidden" tabindex="-1" value="29321" name="">
 									</div>
 									<div class="mz-address-other mz-input-warp" name=""
 										style="display: none;">
@@ -540,13 +542,13 @@
 	<div class="mz-downmenu"
 		style="top: 484.969px; left: 858.5px; width: 118px; display: none;">
 		<ul class="mz-downmenu-list">
-			<li class="mz-downmenu-item">成都市</li>
+			
 		</ul>
 	</div>
 	<div class="mz-downmenu"
 		style="top: 484.969px; left: 988.5px; width: 118px; display: none;">
 		<ul class="mz-downmenu-list">
-			<li class="mz-downmenu-item">前锋区</li>
+			
 		</ul>
 	</div>
 	<div class="mz-mask hide">
@@ -649,5 +651,6 @@
 		</a>
 	</div>
 </body>
-<script type="text/javascript" src="${APP_PATH }/static/js/order_confirm.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH }/static/js/order_confirm.js"></script>
 </html>
