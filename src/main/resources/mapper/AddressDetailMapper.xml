@@ -131,7 +131,7 @@
 		#{phoneNumber,jdbcType=VARCHAR}
 		)
 	</insert>
-	<insert id="insertSelective"
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
 		parameterType="com.timeuni.bean.AddressDetail">
 		insert into tb_address_detail
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -267,6 +267,7 @@
 	<!-- public List<AddressDetail> selectAllAdressByUserId(Integer userId); -->
 	<select id="selectAllAdressByUserId" resultMap="BaseResultMap">
 		SELECT
+		ad.id,
 		ad.receiver,
 		CONCAT(
 		p.province,

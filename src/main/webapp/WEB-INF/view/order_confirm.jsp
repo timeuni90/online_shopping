@@ -113,11 +113,11 @@
 					<c:forEach items="${addressDetails }" var="addressDetail"
 						varStatus="status">
 						<c:if test="${status.index == 0 }">
-							<li class="order-address-checkbox checked" data-mdesc="收货人信息"
+						<li class="order-address-checkbox checked" data-id="${addressDetail.id }" data-mdesc="收货人信息"
 								data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
 						</c:if>
 						<c:if test="${status.index != 0 }">
-							<li class="order-address-checkbox" data-mdesc="收货人信息"
+						<li class="order-address-checkbox" data-id="${addressDetail.id }" data-mdesc="收货人信息"
 								data-mtype="click_store_se_adr" data-bh="click_store_se_adr">
 						</c:if>
 						<div class="order-address-checkbox-top">
@@ -497,11 +497,6 @@
 										<input id="area_input" type="text" readonly="readonly" tabindex="-1"
 											class="mz-downmenu-input" placeholder="区/县"><input
 											type="hidden" tabindex="-1" value="29317" name="">
-									</div>
-									<div class="mz-address-other mz-input-warp" name=""
-										style="display: none;">
-										<input type="text" class="mz-input mz-address-input"
-											placeholder="请输入其他街道名称" maxlength="10">
 									</div>
 								</div>
 							</div>
