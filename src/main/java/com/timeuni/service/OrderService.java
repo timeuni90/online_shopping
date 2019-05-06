@@ -11,6 +11,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alipay.api.AlipayApiException;
 import com.timeuni.bean.AddressDetail;
 import com.timeuni.bean.Area;
 import com.timeuni.bean.AreaExample;
@@ -24,6 +25,8 @@ import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.bean.Order;
 import com.timeuni.bean.OrderCommoditySelectProperty;
 import com.timeuni.bean.OrderDetail;
+import com.timeuni.bean.OrderDetailExample;
+import com.timeuni.bean.OrderExample;
 import com.timeuni.bean.Province;
 import com.timeuni.bean.ProvinceExample;
 import com.timeuni.bean.Seller;
@@ -46,6 +49,7 @@ import com.timeuni.mybean.SubmitOrder;
 import com.timeuni.mybean.SubmitOrderCommodity;
 import com.timeuni.resourcebundle.ResourceLocation;
 import com.timeuni.status.OrderStatus;
+import com.timeuni.pay.Alipay;;
 
 @Service
 public class OrderService {
@@ -208,5 +212,24 @@ public class OrderService {
 			}
 		}
 		return orderIds;
+	}
+	
+	public String  Alipay(List<Integer> orderIds) throws AlipayApiException {
+		OrderExample orderExample = new OrderExample();
+		orderExample.createCriteria().andIdIn(orderIds);
+		List<Order> orders = orderMapper.selectByExample(orderExample);
+		OrderDetailExample orderDetailExample = new OrderDetailExample();
+		orderDetailExample.createCriteria().andOrderIdIn(orderIds);
+		List<OrderDetail> orderDetails = orderDetailMapper.selectByExample(orderDetailExample);
+		Float payPrice = (float) 0;
+		for (OrderDetail orderDetail : orderDetails) {
+			if(orderDetail.getPromotionPrice() != null) {
+				payPrice += orderDetail.getPromotionPrice() * orderDetail.getQuantity();
+			} else {
+				payPrice += orderDetail.getPrice() * orderDetail.getQuantity();
+			}
+		}
+		Alipay alipay = new Alipay();
+		return alipay.pay(orders.get(0).getOrderNumber(), payPrice, "pay");
 	}
 }

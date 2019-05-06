@@ -292,12 +292,12 @@ $("#submitForm").click(function() {
 		success: function(orderIds) {
 			var param = "";
 			$.each(orderIds, function(i, n) {
-				param += "orderId=" + n;
-				if(n < orderIds.length - 1) {
+				param += "orderIds=" + n;
+				if(i < orderIds.length - 1) {
 					param += "&";
 				}
 			});
-			window.location.href = "http://localhost:8080/online-shopping/sss?" + param;
+			window.location.href = "http://localhost:8080/online-shopping/alipay?" + param;
 		}
 	});
 }); 

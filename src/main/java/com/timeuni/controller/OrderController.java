@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alipay.api.AlipayApiException;
 import com.timeuni.mybean.SubmitOrder;
 import com.timeuni.service.OrderService;
 
@@ -51,8 +52,9 @@ public class OrderController {
 		return orderService.addOrder((Integer) httpSession.getAttribute("userId"), submitOrder);
 	}
 	
+	@RequestMapping(value = "/alipay", method = RequestMethod.GET)
 	@ResponseBody
-	public void handleAlipayRequest(List<Integer> orderId) {
-		
+	public String handleAlipayRequest(@RequestParam(name = "orderIds")List<Integer> orderIds) throws AlipayApiException {
+		return orderService.Alipay(orderIds);
 	}
 }
