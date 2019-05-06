@@ -13,31 +13,35 @@ public class OrderCommoditySelectProperty {
         return id;
     }
 
-    public void setId(Integer id) {
+    public OrderCommoditySelectProperty setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public Integer getOrderDetailId() {
         return orderDetailId;
     }
 
-    public void setOrderDetailId(Integer orderDetailId) {
+    public OrderCommoditySelectProperty setOrderDetailId(Integer orderDetailId) {
         this.orderDetailId = orderDetailId;
+        return this;
     }
 
     public String getPropertyName() {
         return propertyName;
     }
 
-    public void setPropertyName(String propertyName) {
+    public OrderCommoditySelectProperty setPropertyName(String propertyName) {
         this.propertyName = propertyName == null ? null : propertyName.trim();
+        return this;
     }
 
     public String getPropertyValue() {
         return propertyValue;
     }
 
-    public void setPropertyValue(String propertyValue) {
+    public OrderCommoditySelectProperty setPropertyValue(String propertyValue) {
         this.propertyValue = propertyValue == null ? null : propertyValue.trim();
+        return this;
     }
 }

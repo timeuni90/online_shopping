@@ -21,63 +21,71 @@ public class OrderDetail {
         return id;
     }
 
-    public void setId(Integer id) {
+    public OrderDetail setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public OrderDetail setOrderId(Integer orderId) {
         this.orderId = orderId;
+        return this;
     }
 
     public Integer getCommodityId() {
         return commodityId;
     }
 
-    public void setCommodityId(Integer commodityId) {
+    public OrderDetail setCommodityId(Integer commodityId) {
         this.commodityId = commodityId;
+        return this;
     }
 
     public String getCommotityName() {
         return commotityName;
     }
 
-    public void setCommotityName(String commotityName) {
+    public OrderDetail setCommotityName(String commotityName) {
         this.commotityName = commotityName == null ? null : commotityName.trim();
+        return this;
     }
 
     public String getCommodityCover() {
         return commodityCover;
     }
 
-    public void setCommodityCover(String commodityCover) {
+    public OrderDetail setCommodityCover(String commodityCover) {
         this.commodityCover = commodityCover == null ? null : commodityCover.trim();
+        return this;
     }
 
     public Float getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public OrderDetail setPrice(Float price) {
         this.price = price;
+        return this;
     }
 
     public Float getPromotionPrice() {
         return promotionPrice;
     }
 
-    public void setPromotionPrice(Float promotionPrice) {
+    public OrderDetail setPromotionPrice(Float promotionPrice) {
         this.promotionPrice = promotionPrice;
+        return this;
     }
 
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public OrderDetail setQuantity(Integer quantity) {
         this.quantity = quantity;
+        return this;
     }
 }

@@ -111,7 +111,7 @@
       #{commotityName,jdbcType=VARCHAR}, #{commodityCover,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
       #{promotionPrice,jdbcType=REAL}, #{quantity,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.timeuni.bean.OrderDetail">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.timeuni.bean.OrderDetail">
     insert into tb_order_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

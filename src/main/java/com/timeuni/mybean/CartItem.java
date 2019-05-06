@@ -15,72 +15,81 @@ public class CartItem {
 		return coverImage;
 	}
 
-	public void setCoverImage(String coverImage) {
+	public CartItem setCoverImage(String coverImage) {
 		this.coverImage = coverImage;
+		return this;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public CartItem setTitle(String title) {
 		this.title = title;
+		return this;
 	}
 
 	public String getCommodityParameter() {
 		return commodityParameter;
 	}
 
-	public void setCommodityParameter(String commodityParameter) {
+	public CartItem setCommodityParameter(String commodityParameter) {
 		this.commodityParameter = commodityParameter;
+		return this;
 	}
 
 	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public CartItem setQuantity(Integer quantity) {
 		this.quantity = quantity;
+		return this;
 	}
 
 	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public CartItem setPrice(Float price) {
 		this.price = price;
+		return this;
 	}
 
 	public Float getPromotionPrice() {
 		return promotionPrice;
 	}
 
-	public void setPromotionPrice(Float promotionPrice) {
+	public CartItem setPromotionPrice(Float promotionPrice) {
 		this.promotionPrice = promotionPrice;
+		return this;
 	}
 
 	public String getStoreName() {
 		return storeName;
 	}
 
-	public void setStoreName(String storeName) {
+	public CartItem setStoreName(String storeName) {
 		this.storeName = storeName;
+		return this;
 	}
 
 	public Integer getCommodityId() {
 		return commodityId;
 	}
 
-	public void setCommodityId(Integer commodityId) {
+	public CartItem setCommodityId(Integer commodityId) {
 		this.commodityId = commodityId;
+		return this;
 	}
 
 	public String getRow() {
 		return row;
 	}
 
-	public void setRow(String row) {
+	public CartItem setRow(String row) {
 		this.row = row;
+		return this;
 	}
 
 }

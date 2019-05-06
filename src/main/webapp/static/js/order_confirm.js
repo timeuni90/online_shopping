@@ -252,8 +252,75 @@ $(".order-address-checkbox-delete").click(function() {
 	});
 });
 
-/* 选着收货地址 */
+/* 选择收货地址 */
 $(".order-address-checkbox").click(function() {
 	$(".order-address-checkbox.checked").removeClass("checked");
 	$(this).addClass("checked");
 });
+
+/* 提交订单 */
+$("#submitForm").click(function() {
+	/* 若未选着收货地址，直接返回 */
+	if($(".order-address-checkbox.checked").length < 1) {
+		$($(".mz-mask")[0]).find(".mz-dialog-content").text("请选着收货地址");
+		$($(".mz-mask")[0]).removeClass("hide");
+		return;
+	}
+	/* 准备数据 */
+	var commodity_group_list = new Array();
+	$.each($(".order-product-table"), function(i, n) {
+		var commodity_list = new Array();
+		$.each($(n).find("tbody tr"), function(i, n) {
+			var commodity = {
+					commodityId: $(n).data("commodityid"),
+					row: $(n).data("row"),
+					quantity: $(n).find(".order-product-table-num").text()
+			}
+			commodity_list.push(commodity);
+		});
+		commodity_group_list.push(commodity_list);
+	});
+	var order = {
+			detailAddressId: $(".order-address-checkbox.checked").data("id"),
+			submitOrderCommodityGroups: commodity_group_list
+	}
+	$.ajax({
+		method: "POST",
+		url: "http://localhost:8080/online-shopping/order",
+		contentType: "application/json",
+		data: JSON.stringify(order),
+		success: function(orderIds) {
+			var param = "";
+			$.each(orderIds, function(i, n) {
+				param += "orderId=" + n;
+				if(n < orderIds.length - 1) {
+					param += "&";
+				}
+			});
+			window.location.href = "http://localhost:8080/online-shopping/sss?" + param;
+		}
+	});
+}); 
+
+/* 点击提示框的确定和叉叉按钮 */
+$($(".mz-mask")[0]).find(".mz-btn.success, .mz-dialog-close").click(function() {
+	$($(".mz-mask")[0]).addClass("hide");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

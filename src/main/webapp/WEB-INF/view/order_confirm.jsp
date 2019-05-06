@@ -177,7 +177,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${group.value }" var="item" varStatus="status">
-									<tr>
+									<tr data-row="${item.row }" data-commodityid="${item.commodityId }">
 										<td class="order-product-table-name"><a target="_blank"
 											class="order-product-link"
 											href="//detail.meizu.com/item/meizu_power_bank_3.html"
