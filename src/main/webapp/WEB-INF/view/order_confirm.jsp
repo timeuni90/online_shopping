@@ -645,6 +645,7 @@
 			class="layout-font layout-font-minimize"></i>
 		</a>
 	</div>
+	<%@ include file="/WEB-INF/view/public/loading.jsp"%>
 </body>
 <script type="text/javascript"
 	src="${APP_PATH }/static/js/order_confirm.js"></script>

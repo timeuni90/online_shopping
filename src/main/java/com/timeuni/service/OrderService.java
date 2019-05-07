@@ -160,8 +160,7 @@ public class OrderService {
 	}
 	
 	/* 添加订单 */
-	public List<Integer> addOrder(Integer userId, SubmitOrder submitOrder) {
-		List<Integer> orderIds = new ArrayList<Integer>();
+	public String addOrder(Integer userId, SubmitOrder submitOrder) {
 		AddressDetail addressDetail = addressDetailMapper.selectByPrimaryKey(submitOrder.getDetailAddressId());
 		AreaExample areaExample = new AreaExample();
 		areaExample.createCriteria().andAreaIdEqualTo(addressDetail.getAreaId());
@@ -173,6 +172,13 @@ public class OrderService {
 		provinceExample.createCriteria().andProvinceIdEqualTo(city.getProvinceId());
 		Province province = provinceMapper.selectByExample(provinceExample).get(0);
 		String receiveAddress = province.getProvince() + city.getCity() + area.getArea() + "+" + addressDetail.getDetailAddress() + "+" + addressDetail.getReceiver() + "+" + addressDetail.getPhoneNumber();
+		/* 生成唯一订单组 */
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+	    String groupId = dateFormat.format(new Date());
+	    Random ran = new Random();
+        for(int i = 0; i < 10; i++){
+        	groupId += ran.nextInt(10);
+        }
 		for(List<SubmitOrderCommodity> SubmitOrderCommodities : submitOrder.getSubmitOrderCommodityGroups()) {
 			/* 生成唯一订单号 */
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMddHHmmss");
@@ -186,11 +192,10 @@ public class OrderService {
 			Seller seller = sellerMapper.selectByPrimaryKey(commodity.getSellerId());
 			Order order = new Order();
 			order.setUserId(userId).setSellerId(commodity.getSellerId()).setUserName(user.getName()).
-				setOrderNumber(orderNumber).setStoreName(seller.getStoreName()).
+				setOrderNumber(orderNumber).setStoreName(seller.getStoreName()).setGroupId(groupId).
 				setStatus(OrderStatus.UNPAID.ordinal()).setReceiveAddress(receiveAddress);
 			/* 插入订单 */
 			orderMapper.insertSelective(order);
-			orderIds.add(order.getId());
 			for (SubmitOrderCommodity submitOrderCommodity : SubmitOrderCommodities) {
 				CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
 				commodityVariableExample.createCriteria().andSelectPropertyRowEqualTo(submitOrderCommodity.getRow());
@@ -211,13 +216,18 @@ public class OrderService {
 				}
 			}
 		}
-		return orderIds;
+		return groupId;
 	}
 	
-	public String  Alipay(List<Integer> orderIds) throws AlipayApiException {
+	/* alipay支付 */
+	public String  Alipay(String groupId) throws AlipayApiException {
 		OrderExample orderExample = new OrderExample();
-		orderExample.createCriteria().andIdIn(orderIds);
+		orderExample.createCriteria().andGroupIdEqualTo(groupId);
 		List<Order> orders = orderMapper.selectByExample(orderExample);
+		List<Integer> orderIds = new ArrayList<Integer>();
+		for (Order order : orders) {
+			orderIds.add(order.getId());
+		}
 		OrderDetailExample orderDetailExample = new OrderDetailExample();
 		orderDetailExample.createCriteria().andOrderIdIn(orderIds);
 		List<OrderDetail> orderDetails = orderDetailMapper.selectByExample(orderDetailExample);
@@ -230,6 +240,15 @@ public class OrderService {
 			}
 		}
 		Alipay alipay = new Alipay();
-		return alipay.pay(orders.get(0).getOrderNumber(), payPrice, "pay");
+		return alipay.pay(groupId, payPrice, "pay");
+	}
+	
+	/* alipay支付成功，改变订单状态 */
+	public void alipaySuccess(String groupId) {
+		Order order = new Order();
+		order.setStatus(OrderStatus.UNDELIVERED.ordinal());
+		OrderExample orderExample = new OrderExample();
+		orderExample.createCriteria().andGroupIdEqualTo(groupId);
+		orderMapper.updateByExampleSelective(order, orderExample);
 	}
 }

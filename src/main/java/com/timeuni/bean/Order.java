@@ -23,6 +23,8 @@ public class Order {
 
     private String receiveAddress;
 
+    private String groupId;
+
     public Integer getId() {
         return id;
     }
@@ -110,6 +112,15 @@ public class Order {
 
     public Order setReceiveAddress(String receiveAddress) {
         this.receiveAddress = receiveAddress == null ? null : receiveAddress.trim();
+        return this;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public Order setGroupId(String groupId) {
+        this.groupId = groupId == null ? null : groupId.trim();
         return this;
     }
 }

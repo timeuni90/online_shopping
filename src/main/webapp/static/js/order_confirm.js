@@ -266,6 +266,7 @@ $("#submitForm").click(function() {
 		$($(".mz-mask")[0]).removeClass("hide");
 		return;
 	}
+	$("#my_loading").css("display", "block");
 	/* 准备数据 */
 	var commodity_group_list = new Array();
 	$.each($(".order-product-table"), function(i, n) {
@@ -289,15 +290,8 @@ $("#submitForm").click(function() {
 		url: "http://localhost:8080/online-shopping/order",
 		contentType: "application/json",
 		data: JSON.stringify(order),
-		success: function(orderIds) {
-			var param = "";
-			$.each(orderIds, function(i, n) {
-				param += "orderIds=" + n;
-				if(i < orderIds.length - 1) {
-					param += "&";
-				}
-			});
-			window.location.href = "http://localhost:8080/online-shopping/alipay?" + param;
+		success: function(groupId) {
+			window.location.href = "http://localhost:8080/online-shopping/alipay?groupId=" + groupId;
 		}
 	});
 }); 

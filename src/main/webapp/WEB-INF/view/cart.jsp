@@ -85,7 +85,6 @@
 										</span>
 										</c:if>
 									</p>
-
 								</td>
 								<td class="cart-col-number">
 
@@ -188,13 +187,7 @@
 				</div>
 
 			</div>
-			<div class="mz-loading-mask" style="width: 1903px; height: 975px; display: none;">
-				<div class="mz-loading spinner">
-					<div class="mz-bounce mz-bounce1"></div>
-					<div class="mz-bounce mz-bounce2"></div>
-					<div class="mz-bounce mz-bounce3"></div>
-				</div>
-			</div>
+
 		</div>
 		<!-- <div class="mz-mask hide">
 			<div class="mz-dialog tips ">
@@ -225,22 +218,17 @@
 				</div>
 				<div class="mz-dialog-main">
 					<div class="mz-dialog-warp">
-
 						<div class="mz-dialog-content">您确定要删除选中商品吗？</div>
 					</div>
 				</div>
 
 				<div class="mz-dialog-bottom">
-
 					<div class="mz-btn cancel">删除</div>
-
 					<div class="mz-btn success">取消</div>
-
 				</div>
-
 			</div>
 		</div> -->
-
+		<%@ include file="/WEB-INF/view/public/loading.jsp"%>
 	</body>
 <script src="${APP_PATH }/static/js/cart.js"></script>
 </html>

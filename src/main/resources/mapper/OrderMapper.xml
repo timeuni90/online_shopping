@@ -12,6 +12,7 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="is_delete" jdbcType="BIT" property="isDelete" />
     <result column="receive_address" jdbcType="CHAR" property="receiveAddress" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, user_id, seller_id, order_number, user_name, store_name, generate_time, status, 
-    is_delete, receive_address
+    is_delete, receive_address, group_id
   </sql>
   <select id="selectByExample" parameterType="com.timeuni.bean.OrderExample" resultMap="BaseResultMap">
     select
@@ -109,11 +110,11 @@
     insert into tb_order (id, user_id, seller_id, 
       order_number, user_name, store_name, 
       generate_time, status, is_delete, 
-      receive_address)
+      receive_address, group_id)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sellerId,jdbcType=INTEGER}, 
       #{orderNumber,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{storeName,jdbcType=VARCHAR}, 
       #{generateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
-      #{receiveAddress,jdbcType=CHAR})
+      #{receiveAddress,jdbcType=CHAR}, #{groupId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.timeuni.bean.Order">
     insert into tb_order
@@ -148,6 +149,9 @@
       <if test="receiveAddress != null">
         receive_address,
       </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +183,9 @@
       </if>
       <if test="receiveAddress != null">
         #{receiveAddress,jdbcType=CHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.receiveAddress != null">
         receive_address = #{record.receiveAddress,jdbcType=CHAR},
       </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       generate_time = #{record.generateTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
       is_delete = #{record.isDelete,jdbcType=BIT},
-      receive_address = #{record.receiveAddress,jdbcType=CHAR}
+      receive_address = #{record.receiveAddress,jdbcType=CHAR},
+      group_id = #{record.groupId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="receiveAddress != null">
         receive_address = #{receiveAddress,jdbcType=CHAR},
       </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -285,7 +299,8 @@
       generate_time = #{generateTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=BIT},
-      receive_address = #{receiveAddress,jdbcType=CHAR}
+      receive_address = #{receiveAddress,jdbcType=CHAR},
+      group_id = #{groupId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

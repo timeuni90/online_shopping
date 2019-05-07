@@ -22,7 +22,9 @@ import com.timeuni.service.OrderService;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
-
+	
+	/*  */
+	
 	/* 准备订单 */
 	@RequestMapping(value = "/prepareorder", method = RequestMethod.GET)
 	public ModelAndView handlePrepareOrderRequest(HttpSession httpSession, Integer commodityId, String row,
@@ -48,13 +50,20 @@ public class OrderController {
 	/* 提交订单 */
 	@RequestMapping(value = "/order", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Integer> handleCommitOrderRequest(HttpSession httpSession, @RequestBody SubmitOrder submitOrder) {
+	public String handleCommitOrderRequest(HttpSession httpSession, @RequestBody SubmitOrder submitOrder) {
 		return orderService.addOrder((Integer) httpSession.getAttribute("userId"), submitOrder);
 	}
 	
+	/* 支付 */
 	@RequestMapping(value = "/alipay", method = RequestMethod.GET)
 	@ResponseBody
-	public String handleAlipayRequest(@RequestParam(name = "orderIds")List<Integer> orderIds) throws AlipayApiException {
-		return orderService.Alipay(orderIds);
+	public String handleAlipayRequest(String groupId) throws AlipayApiException {
+		return orderService.Alipay(groupId);
+	}
+	
+	/* 付款成功 */
+	@RequestMapping(value = "/alipay/success")
+	public void handleAlipaySuceessRequest(String out_trade_no) {
+		orderService.alipaySuccess(out_trade_no);
 	}
 }
