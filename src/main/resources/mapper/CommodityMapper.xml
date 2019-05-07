@@ -495,4 +495,7 @@
 		WHERE
 		cdy.id = #{commodityId}
 	</select>
+	
+	<!-- public List<Commodity> selectRotCommodities(); -->
+	<select id="selectRotCommodities" resultMap="BaseResultMap"></select>
 </mapper>

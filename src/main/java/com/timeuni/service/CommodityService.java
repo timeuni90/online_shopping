@@ -65,6 +65,11 @@ public class CommodityService {
 	@Autowired
 	private CommentImageMapper commentImageMapper;
 	
+	/* 按收藏量来获取热门商品 */
+	public void getRotCommodities() {
+		
+	}
+	
 	/* 按关键字获取商品 */
 	public List<Commodity> getCommoditiesBySearchKey(String key, Integer sortType) {
 		key = "%" + key + "%";

@@ -49,4 +49,7 @@ public interface CommodityMapper {
 
 	/* 查询商品累计评价数量 */
 	public Integer selectCountCommodityComment(Integer commodityId);
+	
+	/* 获取收藏量前10的商品 */
+	public List<Commodity> selectRotCommodities();
 }

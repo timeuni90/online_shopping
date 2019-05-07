@@ -49,15 +49,14 @@
 						</div>
 
 						<div id="mallSearch" class="mall-search">
-							<form name="searchTop"
+							<form name="searchTop" style="border: solid #00c3f5;"
 								action="//list.tmall.com/search_product.htm"
 								class="mallSearch-form clearfix" target="_top"
 								acceptcharset="gbk" accept-charset="gbk">
 								<fieldset>
 									<legend>天猫搜索</legend>
 									<div class="mallSearch-input clearfix">
-										<label for="mq" style="visibility: visible; display: none;">搜索
-											天猫 商品/品牌/店铺</label>
+										<label for="mq" style="visibility: visible; display: none;">搜索商品/店铺</label>
 										<div class="s-combobox" id="s-combobox-137"
 											aria-pressed="false">
 											<div class="s-combobox-input-wrap">
@@ -68,10 +67,9 @@
 													data-spm-anchor-id="875.7931836/B.0.i0.66144265Vx5b6f">
 											</div>
 											<label for="mq" class="s-combobox-placeholder"
-												style="color: rgb(102, 102, 102); visibility: visible;">搜索
-												天猫 商品/品牌/店铺</label>
+												style="color: rgb(102, 102, 102); visibility: visible;">搜索  商品/店铺</label>
 										</div>
-										<button type="submit">
+										<button type="submit" style="background-color: #00c3f5;">
 											搜索
 										</button>
 										<input id="J_Type" type="hidden" name="type" value="p">
@@ -82,41 +80,7 @@
 									</div>
 								</fieldset>
 							</form>
-							<ul data-spm="a1z5h" class="hot-query">
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.0_hq&amp;click_id=%E9%92%88%E7%BB%87%E8%A1%AB&amp;q=%E9%92%88%E7%BB%87%E8%A1%AB">针织衫</a>
-								</li>
-								<li class="hot-query-highlight"><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.1_hq&amp;click_id=%E8%BF%9E%E8%A1%A3%E8%A3%99&amp;q=%E8%BF%9E%E8%A1%A3%E8%A3%99">连衣裙</a>
-								</li>
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.2_hq&amp;click_id=%E5%9B%9B%E4%BB%B6%E5%A5%97&amp;q=%E5%9B%9B%E4%BB%B6%E5%A5%97">四件套</a>
-								</li>
-								<li class="hot-query-highlight"><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.3_hq&amp;click_id=%E6%91%84%E5%83%8F%E5%A4%B4&amp;q=%E6%91%84%E5%83%8F%E5%A4%B4">摄像头</a>
-								</li>
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.4_hq&amp;click_id=%E5%AE%A2%E5%8E%85%E7%81%AF&amp;q=%E5%AE%A2%E5%8E%85%E7%81%AF">客厅灯</a>
-								</li>
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.5_hq&amp;click_id=%E5%8F%A3%E7%BA%A2&amp;q=%E5%8F%A3%E7%BA%A2">口红</a>
-								</li>
-								<li class="hot-query-highlight"><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.6_hq&amp;click_id=%E6%89%8B%E6%9C%BA&amp;q=%E6%89%8B%E6%9C%BA">手机</a>
-								</li>
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.7_hq&amp;click_id=%E8%BF%90%E5%8A%A8%E9%9E%8B&amp;q=%E8%BF%90%E5%8A%A8%E9%9E%8B">运动鞋</a>
-								</li>
-								<li class="hot-query-highlight"><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.8_hq&amp;click_id=%E7%89%9B%E5%A5%B6&amp;q=%E7%89%9B%E5%A5%B6">牛奶</a>
-								</li>
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.9_hq&amp;click_id=%E4%BB%BF%E7%9C%9F%E8%8A%B1&amp;q=%E4%BB%BF%E7%9C%9F%E8%8A%B1">仿真花</a>
-								</li>
-								<li><a
-									href="https://list.tmall.com/search_product.htm?from=mallfp..pc_1.10_hq&amp;click_id=%E6%B4%97%E5%8F%91%E6%B0%B4&amp;q=%E6%B4%97%E5%8F%91%E6%B0%B4">洗发水</a>
-								</li>
-							</ul>
+							
 						</div>
 					</div>
 				</div>
@@ -125,7 +89,7 @@
 
 		<div id="content">
 
-			<div class="main-nav" data-spm="2016004"></div>
+			<div class="main-nav" data-spm="2016004" style="border-color: #00c3f5;"></div>
 
 			<style>
 .banner-con:before {
@@ -146,7 +110,7 @@
 						<!--<img class="tmall-logo-img" src="static/images/shouye/logo.png" style="margin: 1px auto;display:block" width="240px" height="130px">-->
 					</div>
 
-					<div class="category-type">
+					<div class="category-type" style="background-color: #00c3f5;">
 						<i class="oi fp-iconfont" data-glyph="menu" aria-hidden="true"></i>
 						<div class="text">商品分类</div>
 					</div>
@@ -562,7 +526,7 @@
 			<div class="j_wonderful wonderful-con" id="J_FloorCNXH">
 				<h2 class="wonderful-title">
 					<span class="text-ctn"> <i
-						class="fp-iconfont nav-item-icon icon"></i>猜你喜欢
+						class="fp-iconfont nav-item-icon icon"></i>热门商品
 					</span>
 				</h2>
 				<div class="module-content j_wonderfulList">
@@ -882,205 +846,7 @@
 
 		</div>
 
-		<div id="footer" data-spm="a2226n1" style="display: block;">
-
-			<div id="tmall-ensure">
-
-				<div class="mui-global-fragment-load"
-					data-fragment="tmbase/global_footer_ensure">
-					<a href="https://pages.tmall.com/wow/seller/act/newpinzhibaozhang"></a>
-					<a href="https://www.tmall.com/wow/seller/act/seven-day"></a> <a
-						href="https://www.tmall.com/wow/seller/act/special-service"></a> <a
-						href="https://service.tmall.com/support/tmall/tmallHelp.htm"></a>
-				</div>
-
-			</div>
-
-			<div id="tmall-desc">
-
-				<div class="mui-global-fragment-load"
-					data-fragment="tmbase/mui_footer_desc">
-					<dl id="ensure">
-						<dt>
-							<span>购物指南</span>
-						</dt>
-						<dd>
-							<a href="https://register.tmall.com/" target="_blank">免费注册</a> <a
-								href="https://www.alipay.com/user/reg_select.htm"
-								target="_blank">开通支付宝</a> <a
-								href="https://www.alipay.com/user/login.htm?goto=https%3A%2F%2Fwww.alipay.com%2Fuser%2Finpour_request.htm"
-								target="_blank">支付宝充值</a>
-						</dd>
-					</dl>
-					<dl id="beginner">
-						<dt>
-							<span>天猫保障</span>
-						</dt>
-						<dd>
-							<a
-								href="https://service.tmall.com/support/tmall/knowledge-1140860.htm"
-								target="_blank">发票保障</a> <a
-								href="https://service.tmall.com/support/tmall/knowledge-1124063.htm"
-								target="_blank">售后规则</a> <a
-								href="https://service.tmall.com/support/tmall/knowledge-1126800.htm"
-								target="_blank">缺货赔付</a>
-						</dd>
-					</dl>
-					<dl id="payment">
-						<dt>
-							<span>支付方式</span>
-						</dt>
-						<dd>
-							<a href="https://payservice.alipay.com/intro/index.htm?c=kjzf"
-								target="_blank">快捷支付</a> <a
-								href="https://payservice.alipay.com/intro/index.htm?c=xyk"
-								target="_blank">信用卡</a> <a
-								href="https://payservice.alipay.com/intro/index.htm?c=yeb"
-								target="_blank">余额宝</a> <a
-								href="https://payservice.alipay.com/intro/index.htm?c=hb"
-								target="_blank">蚂蚁花呗</a> <a
-								href="https://tms.alicdn.com/market/cainiao/codchn.php"
-								target="_blank">货到付款</a>
-						</dd>
-					</dl>
-					<dl id="seller">
-						<dt>
-							<span>商家服务</span>
-						</dt>
-						<dd>
-							<a href="https://guize.tmall.com/" target="_blank">天猫规则</a> <a
-								href="https://zhaoshang.tmall.com/" target="_blank" class="join">商家入驻</a>
-							<a href="https://shangjia.tmall.com/portal.htm" target="_blank">商家中心</a>
-							<a href="https://peixun.tmall.com/" target="_blank">天猫智库</a> <a
-								href="https://e56.tmall.com/" target="_blank">物流服务</a> <a
-								href="https://maowo.tmall.com/" target="_blank">喵言喵语</a> <a
-								href="https://fw.tmall.com/" target="_blank">运营服务</a>
-						</dd>
-					</dl>
-					<style>
-#tmall-desc {
-	background-repeat: no-repeat;
-	background-size: 68px 25px;
-}
-</style>
-				</div>
-
-			</div>
-			<div id="tmall-copyright">
-				<div class="mui-global-fragment-load"
-					data-fragment="tmbase/mui_footer_link">
-					<p class="footer-tmallinfo">
-						<a href="https://pages.tmall.com/wow/seller/act/zhaoshangproduce"
-							target="_blank">关于天猫</a> <a
-							href="https://service.tmall.com/support/tmall/tmallHelp.htm"
-							target="_blank">帮助中心</a> <a href="https://open.taobao.com/"
-							target="_blank">开放平台</a> <a
-							href="https://job.alibaba.com/zhaopin/index.htm" target="_blank">诚聘英才</a>
-						<a href="https://consumerservice.taobao.com/contact-us"
-							target="_blank">联系我们</a> <a
-							href="https://xtao.tmall.com/?tracelog=tmallfoot" target="_blank">网站合作</a>
-						<a
-							href="https://terms.alicdn.com/legal-agreement/terms/suit_bu1_tmall/suit_bu1_tmall201801121425_43176.html"
-							target="_blank">法律声明</a> <a
-							href="https://rule.tmall.com/tdetail-6684.htm?spm=a223k.10052707.0.0.56c2959bWQ974w&amp;tag=self"
-							target="_blank">隐私权政策</a> <a href="http://ipp.alibabagroup.com/"
-							target="_blank">知识产权</a> <a
-							href="https://jubao.alibaba.com/index.html?site=TMALL"
-							target="_blank">廉正举报</a> <a class="footer-fp-rule"
-							style="display: none;"
-							href="https://rule.tmall.com/trulecycle.htm" target="_blank">规则意见征集</a>
-					</p>
-					<p class="footer-otherlink">
-						<a href="http://www.alibabagroup.com/cn/global/home"
-							target="_blank">阿里巴巴集团</a>| <a href="https://www.taobao.com/"
-							target="_blank">淘宝网</a> | <a href="https://www.tmall.com/"
-							target="_blank">天猫</a> | <a href="https://ju.taobao.com/"
-							target="_blank">聚划算</a> | <a href="http://www.aliexpress.com/"
-							target="_blank">全球速卖通</a> | <a href="http://www.alibaba.com/"
-							target="_blank">阿里巴巴国际交易市场</a>| <a href="https://www.1688.com/"
-							target="_blank">1688</a> | <a href="https://www.alimama.com/"
-							target="_blank">阿里妈妈</a> | <a href="https://www.fliggy.com/"
-							target="_blank">飞猪</a> | <a href="http://www.aliyun.com/"
-							target="_blank">阿里云计算</a> | <a href="http://www.alios.cn/"
-							target="_blank">AliOS</a> | <a href="http://aliqin.cn/"
-							target="_blank">阿里通信</a> | <a href="http://www.net.cn/"
-							target="_blank">万网</a> | <a href="http://www.autonavi.com/"
-							target="_blank">高德</a> | <a href="http://www.uc.cn/"
-							target="_blank">UC</a> | <a href="http://www.umeng.com/"
-							target="_blank">友盟</a> | <a href="http://www.xiami.com/"
-							target="_blank">虾米</a> | <a
-							href="http://www.dingtalk.com/?lwfrom=20150205115110773"
-							target="_blank">钉钉</a> | <a href="https://www.alipay.com/"
-							target="_blank">支付宝</a>
-					</p>
-					<div class="footer-copyright">
-						增值电信业务经营许可证： <a data-spm-protocol="i"
-							href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action">浙B2-20110446</a>
-						<span style="margin-right: 65px;">市场名称登记证：工商网市字3301004119号</span>
-						<span>出版物网络交易平台服务经营备案证： 新出发浙备字第001号</span> <br> <span
-							style="margin-right: 65px;">互联网违法和不良信息举报电话：0571-81683755
-							blxxjb@alibaba-inc.com</span> <span class="footer-liangxinyao-cert"
-							style="display: none;"> <br> 互联网药品交易服务资格证：<a href=""
-							target="_blank">粤c20150002</a> <a
-							href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602001483"
-							target="_blank"> <img
-								src="shouye_files/TB1_qAKKVXXXXXjapXXXXXXXXXX-20-20.png">粤公网安备
-								44010602001483号
-						</a> <a style="margin-right: 30px" href="http://www.miitbeian.gov.cn/"
-							target="_blank">粤ICP备14088652号-2</a> 医疗器械经营许可证：<a
-							style="margin-right: 30px"
-							href="https://pages.tmall.com/wow/yao/act/medical-cert?spm=a312d.7832054.0.0.7c6dc3095FoAP2"
-							target="_blank">粤穗食药监械经营许20171161号</a> <a
-							style="margin-right: 50px"
-							href="https://gw.alicdn.com/tfs/TB1mEJFkYvpK1RjSZPiXXbmwXXa-2479-1752.jpg"
-							target="_blank">食品经营许可证</a> 互联网药品信息服务资格证：<a
-							href="https://img.alicdn.com/tfs/TB11W3xrpOWBuNjy0FiXXXFxVXa-2479-1752.jpg"
-							target="_blank">（粤）—经营性—2018—0092</a> <a
-							style="margin-right: 30px"
-							href="http://air.gzaic.gov.cn:88/outsys/commonquery/viewBusinessLicence?uniscid=91440101681325547Y&amp;regno=440106000067508"
-							target="_blank">阿里健康大药房营业执照</a> <a
-							href="https://img.alicdn.com/tfs/TB1xzdfAFYqK1RjSZLeXXbXppXa-1310-930.jpg"
-							target="_blank">药品经营许可证</a> <a
-							href="https://img.alicdn.com/tfs/TB1OMpnAQvoK1RjSZFwXXciCFXa-642-915.jpg"
-							target="_blank">第二类医疗器械备案凭证</a> <a
-							href="http://www.nmpa.gov.cn/WS04/CL2042/" target="_blank">国家药品监督管理局</a>
-							<a href="http://www.12315.cn/" target="_blank">全国12315互联网平台</a> <a
-							href="http://www.gdnet110.gov.cn/?top_keyword" target="_blank">广东省公安厅</a>
-							<a
-							href="https://img.alicdn.com/tfs/TB1Ri7_AzDpK1RjSZFrXXa78VXa-1308-928.jpg"
-							target="_blank">GSP</a> <a
-							href="https://img.alicdn.com/tfs/TB1gIinAMHqK1RjSZFPXXcwapXa-1007-734.png"
-							target="_blank">二类医疗器械网络销售备案</a> <a
-							href="https://img.alicdn.com/tfs/TB1guunAQPoK1RjSZKbXXX1IXXa-1018-699.png"
-							target="_blank">三类医疗器械网络销售备案</a> <a
-							href="https://img.alicdn.com/tfs/TB1or0iAFzqK1RjSZSgXXcpAVXa-650-924.jpg"
-							target="_blank">食品经营备案</a> <br>
-						</span> 互联网药品信息服务资质证书编号： <a
-							href="https://img.alicdn.com/tps/TB1vi6vPVXXXXbVXVXXXXXXXXXX-927-653.png">浙-（经营性）-2017-0005</a>
-						<a
-							href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010002000120"><img
-							src="shouye_files/TB1yEqRPXXXXXXPXpXXXXXXXXXX-20-20.png"
-							style="position: relative; top: 5px; vertical-align: baseline;">
-							浙公网安备 33010002000120号</a> <br> <span style="margin-right: 65px;">医疗器械网络交易服务第三方平台备案：（浙）网械平台备字[2018]第00002号</span>
-						<span style="margin-right: 65px;">互联网药品交易服务资格证书：国A20150001</span>
-						<br> <span style="margin-right: 65px;">浙江省网络食品销售第三方平台提供者备案：浙网食A33010002</span>
-
-						<a href="http://jb.ccm.gov.cn/">12318举报</a> <b>© 2003-2018
-							TMALL.COM 版权所有</b>
-						<p style="padding-top: 10px; display: none;" class="footer-fp-img">
-							<a style="margin-right: 10px" target="_blank"
-								href="http://idinfo.zjaic.gov.cn/bscx.do?method=lzxx&amp;id=3301843301840000201049"><img
-								src="shouye_files/TB1j5gtHXXXXXXjaXXXydRxIFXX-73-30.jpg"></a>
-							<a target="_blank"
-								href="http://sq.ccm.gov.cn/ccnt/sczr/service/business/emark/toDetail/CB964ABC7B904B7BA3472DDF700A2D6D"><img
-								src="shouye_files/TB13mgzHXXXXXbjXVXXzby4IVXX-80-30.jpg"></a>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div id="server-num">wormholesource011009062040.na61.production</div>
-		</div>
+		
 
 		<b data-mark="eea298cd6a372e6741f9bd4c83a9e059"></b>
 	</div>
