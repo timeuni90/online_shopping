@@ -1,6 +1,8 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<% pageContext.setAttribute("APP_PATH", request.getContextPath()); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +11,9 @@
 <title>我的订单</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="static/css/myorder/layout-a2ae44047d.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/myorder/layout-a2ae44047d.css">
 
-<link rel="stylesheet" href="static/css/myorder/c53414.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/myorder/c53414.css">
 <style>
 .sureGet .ui-pop-main .ui-pop-cont {
 	line-height: 28px !important;
@@ -74,13 +76,21 @@
 							<input id="unPayNum" type="hidden" value="0">
 							<table class="orderItem">
 								<tbody>
+									<c:forEach items="${orders }" var="order">
 									<tr class="trHead">
 										<td colspan="4" class="title clearfix">
 											<div class="f-fl">
-												下单时间：<span class="time">2019-05-06 09:59:43</span>订单号：<span
-													class="orderNumber">51050643590921833081</span> <a
-													href="javascript:;" class="kefu j-kefu"><i
-													class="iconfont icon-kefu"></i>&nbsp;联系客服</a>
+												下单时间：
+												<span class="time">
+													<fmt:formatDate value="${order.key.generateTime }" pattern="yyyy-MM-dd HH:ss" />
+												</span>
+												订单号：
+												<span class="orderNumber">
+													${order.key.orderNumber }
+												</span>
+												 <a href="javascript:;" class="kefu j-kefu">
+												 	<i class="iconfont icon-kefu"></i>&nbsp;联系客服
+												 </a>
 											</div>
 										</td>
 									</tr>
@@ -88,63 +98,89 @@
 										<td class="list b-r j-iamCart">
 											<div class="cart-wrap j-CartWrap">
 												<div class="shop j-shop">
+													<c:set value="0.0" var="totalPrice"></c:set>
+													<c:forEach items="${order.value }" var="commodity">
 													<div class="item b-t clearfix j-iamMain">
 														<a class="productDetail nameWidth"
 															href="//detail.meizu.com/item/meizu_power_bank_3.html"
-															target="_blank"> <img
-															src="https://openfile.meizu.com/group1/M00/06/CC/Cgbj0VvJjKeATLxsAAF7_uDseks390.png"
-															class="f-fl"></a>
+															target="_blank"> 
+															<img
+																src="${commodity.key.commodityCover }"
+																class="f-fl">
+														</a>
 														<div class="describe f-fl ">
 															<div class="vertic clearfix">
-																<span class="clearfix"> <a
-																	class="productDetail nameWidth"
-																	href="//detail.meizu.com/item/meizu_power_bank_3.html"
-																	target="_blank"> 魅族移动电源3 简约白 双向快充</a>
-
-																	<p>￥79 ×1</p>
+																<span class="clearfix"> 
+																	<a
+																		title="${commodity.key.commotityName }"
+																		class="productDetail nameWidth"
+																		href="//detail.meizu.com/item/meizu_power_bank_3.html"
+																		target="_blank"> 
+																		${commodity.key.commotityName }
+																	</a>
+																	<p>${commodity.value }</p>
+																	<p>
+																		￥<fmt:formatNumber value="${commodity.key.price }" maxFractionDigits="2" minFractionDigits="2">
+																		</fmt:formatNumber>
+																		×${commodity.key.quantity }
+																	</p>
+																	<c:set value="${totalPrice + commodity.key.price * commodity.key.quantity }" var="totalPrice"></c:set>
 																</span>
 															</div>
 														</div>
-														<input type="hidden" class="orderSn"
-															value="51050643590921833081"> <input
-															type="hidden" class="isCart" value="1"> <input
-															class="orderSnSon" type="hidden"
-															value="21050643590921835081"> <input
-															type="hidden" class="supplierId" value="1"> <input
-															type="hidden" class="supportXiaoneng" value="1">
+														<input type="hidden" class="orderSn" value="51050643590921833081">
+														<input type="hidden" class="isCart" value="1">
+														<input class="orderSnSon" type="hidden" value="21050643590921835081"> 
+														<input type="hidden" class="supplierId" value="1"> 
+														<input type="hidden" class="supportXiaoneng" value="1">
 														<input type="hidden" class="brandName" value="魅族">
 													</div>
+													</c:forEach>
 												</div>
 
 											</div>
 										</td>
 										<td class="b-r w125 center price b-t">
-											<div class="priceDiv">￥ 89</div>
+											<div class="priceDiv">
+												￥ <fmt:formatNumber value="${totalPrice }" maxFractionDigits="2" minFractionDigits="2">
+												</fmt:formatNumber>
+											</div>
 										</td>
 										<td class="b-r w125 center state b-t">
 											<div class="stateDiv">
 												<div>
-													已取消<br>
+													<c:if test="${order.key.status == 0 }">待付款</c:if>
+													<c:if test="${order.key.status == 1 }">待发货</c:if>
+													<c:if test="${order.key.status == 2 }">已发货</c:if>
+													<c:if test="${order.key.status == 3 }">已收货</c:if>
+													<br>
 												</div>
 
 											</div>
 										</td>
 										<td class="w125 center opreat b-t">
 											<ul>
-
-												<li class="more"><a
+												<c:if test="${order.key.status == 0 }">
+												<li class="goPay">
+													<a href="${APP_PATH }/alipay?groupId=${order.key.groupId }">
+														立即付款
+													</a>
+												</li>
+												</c:if>
+												<li class="more">
+													<a
 													href="//ordercenter.meizu.com/detail.html?sn=51050643590921833081&amp;isOld=0&amp;isCart=1"
-													target="_blank">查看详情</a></li>
+													target="_blank">
+														查看详情
+													</a>
+												</li>
 											</ul>
 										</td>
-									</tr>
-									<tr class="b-b b-l b-r show-more-order j-showOrder hide">
-										<td colspan="4">还有<span class="j-orderNum"></span>种商品<i
-											class="iconfont icon-arrow-xx"></i></td>
 									</tr>
 									<tr class="empty">
 										<td></td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

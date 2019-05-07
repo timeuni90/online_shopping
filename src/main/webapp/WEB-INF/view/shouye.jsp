@@ -10,11 +10,13 @@
 <meta name="spm-id" content="875.7931836/B">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
 <link rel="stylesheet" href="${APP_PATH }/static/css/shouye/a_003.css">
 <link href="${APP_PATH }/static/css/shouye/a_005.css" rel="stylesheet">
 <link href="${APP_PATH }/static/css/shouye/a.css" rel="stylesheet">
 <link href="${APP_PATH }/static/css/shouye/a_002.css" rel="stylesheet">
 <link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
+
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 <script>
 	var APP_PATH = "${APP_PATH}";
@@ -22,10 +24,10 @@
 <title>首页</title>
 </head>
 <body class="w1230" style="">
+	
 	<div id="mallPage" class="mui-global-biz-mallfp  ">
 		<!--from fragment-->
 		<%@ include file="/WEB-INF/view/header.jsp" %>
-
 		<div id="header" data-spm="a2226n0"
 			data-spm-anchor-id="875.7931836/B.0.a2226n0.66144265Vx5b6f">
 			<div class="headerLayout">

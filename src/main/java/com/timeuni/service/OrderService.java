@@ -24,6 +24,7 @@ import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.bean.Order;
 import com.timeuni.bean.OrderCommoditySelectProperty;
+import com.timeuni.bean.OrderCommoditySelectPropertyExample;
 import com.timeuni.bean.OrderDetail;
 import com.timeuni.bean.OrderDetailExample;
 import com.timeuni.bean.OrderExample;
@@ -79,6 +80,56 @@ public class OrderService {
 	private OrderDetailMapper orderDetailMapper;
 	@Autowired
 	OrderCommoditySelectPropertyMapper orderCommoditySelectPropertyMapper;
+	
+	/* 获取用户所有订单 */
+	public Map<String, Object> getOrders(Integer userId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		OrderExample orderExample = new OrderExample();
+		orderExample.setOrderByClause("status asc, generate_time desc");
+		orderExample.createCriteria().andUserIdEqualTo(userId);
+		List<Order> orders = orderMapper.selectByExample(orderExample);
+		List<Integer> orderIds = new ArrayList<Integer>();
+		for (Order order : orders) {
+			orderIds.add(order.getId());
+		}
+		OrderDetailExample orderDetailExample = new OrderDetailExample();
+		orderDetailExample.createCriteria().andOrderIdIn(orderIds);
+		List<OrderDetail> orderDetails = orderDetailMapper.selectByExample(orderDetailExample);
+		List<Integer> orderDetailIds = new ArrayList<Integer>();
+		for (OrderDetail orderDetail : orderDetails) {
+			orderDetailIds.add(orderDetail.getId());
+		}
+		OrderCommoditySelectPropertyExample orderCommoditySelectPropertyExample = new OrderCommoditySelectPropertyExample();
+		orderCommoditySelectPropertyExample.createCriteria().andOrderDetailIdIn(orderDetailIds);
+		List<OrderCommoditySelectProperty> commoditySelectProperties = orderCommoditySelectPropertyMapper.selectByExample(orderCommoditySelectPropertyExample);
+		Map<Order, Map<OrderDetail, String>> ordersMap = new HashMap<Order, Map<OrderDetail,String>>();
+		/* 分组装配 */
+		for (Order order : orders) {
+			Map<OrderDetail, String> map1 = new HashMap<OrderDetail,String>();
+			for (OrderDetail orderDetail : orderDetails) {
+				if(orderDetail.getOrderId() == order.getId()) {
+					String location = new ResourceLocation().getCommodityCoverImageLocation();
+					orderDetail.setCommodityCover(location + orderDetail.getCommodityCover());
+					String param = "";
+					for (OrderCommoditySelectProperty orderCommoditySelectProperty : commoditySelectProperties) {
+						if(orderCommoditySelectProperty.getOrderDetailId() == orderDetail.getId()) {
+							String[] split = orderCommoditySelectProperty.getPropertyValue().split("jpg\\+");
+							if(split.length > 1) {
+								param += split[1] + " ";
+							} else {
+								param += split[0] + " ";
+							}
+						}
+						
+					}
+					map1.put(orderDetail, param);
+				}
+			}
+			ordersMap.put(order, map1);
+		}
+		map.put("orders", ordersMap);
+		return map;
+	}
 	
 	/* 直接购买，获取待确认订单的信息 */
 	public Map<String, Object> getPrepareOrderInformation(Integer commodityId, String row, Integer quantity, Integer userId) {

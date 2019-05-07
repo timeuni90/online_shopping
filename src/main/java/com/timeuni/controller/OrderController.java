@@ -23,7 +23,15 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-	/*  */
+	/* 获取订单 */
+	@RequestMapping(value = "/orders", method = RequestMethod.GET)
+	public ModelAndView handleOrdersRequest(HttpSession httpSession) {
+		Map<String, Object> map = orderService.getOrders((Integer) httpSession.getAttribute("userId"));
+		ModelAndView modelAndView = new ModelAndView("myorder");
+		modelAndView.addAllObjects(map);
+		return modelAndView;
+	}
+	
 	
 	/* 准备订单 */
 	@RequestMapping(value = "/prepareorder", method = RequestMethod.GET)
@@ -63,7 +71,8 @@ public class OrderController {
 	
 	/* 付款成功 */
 	@RequestMapping(value = "/alipay/success")
-	public void handleAlipaySuceessRequest(String out_trade_no) {
+	public String handleAlipaySuceessRequest(String out_trade_no) {
 		orderService.alipaySuccess(out_trade_no);
+		return "redirect:/orders";
 	}
 }
