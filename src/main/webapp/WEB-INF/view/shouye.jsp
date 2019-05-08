@@ -17,13 +17,25 @@
 <link href="${APP_PATH }/static/css/shouye/a_005.css" rel="stylesheet">
 <link href="${APP_PATH }/static/css/shouye/a.css" rel="stylesheet">
 <link href="${APP_PATH }/static/css/shouye/a_002.css" rel="stylesheet">
-<link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
-
+<%@ include file="/WEB-INF/view/public/public_css.jsp" %>
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 <script>
 	var APP_PATH = "${APP_PATH}";
 </script>
 <title>首页</title>
+<style type="text/css">
+	.oi {
+		font-size: 12px !important;
+	}
+	input::-webkit-input-placeholder{
+        font-size: 15px;
+        font-family: 微软雅黑;
+	}
+	input::-moz-placeholder{
+        font-size: 15px;
+        font-family: 微软雅黑;
+	}
+</style>
 </head>
 <body class="w1230" style="">
 	
@@ -131,8 +143,8 @@
 								<li class="j_MenuNav nav-item nav-item-1"
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="globe" aria-hidden="true"></i><i
-									class="dot fp-iconfont"></i> <a
-									href="#">男装</a>
+									class="dot fp-iconfont"></i> 
+									<a href="${APP_PATH }/products?varietyId=100">男装</a>
 
 									/ <a
 									href="#">运动户外</a>
@@ -386,7 +398,7 @@
 			<div class="j_wonderful wonderful-con" id="J_FloorCNXH">
 				<h2 class="wonderful-title">
 					<span class="text-ctn"> <i
-						class="fp-iconfont nav-item-icon icon"></i>热门商品
+						class="oi icon" data-glyph="random"></i>热门商品
 					</span>
 				</h2>
 				<div class="module-content j_wonderfulList">

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 import com.timeuni.bean.Commodity;
+import com.timeuni.myexception.NoFindException;
 import com.timeuni.service.CommodityService;
 
 @Controller
@@ -43,8 +44,19 @@ public class CommodityController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/order")
-	public String abcdefg() {
-		return "order_confirm";
+	/* 按类别获取商品 */
+	@RequestMapping(value = "/products", method = RequestMethod.GET)
+	public ModelAndView handleGetProductsByCategoryIdRequest(Integer varietyId, @RequestParam(required = false) Integer page,
+			@RequestParam(required = false) Integer sortType) throws NoFindException {
+		if(page == null) {
+			page = 1;
+		}
+		if(sortType == null) {
+			sortType = 0;
+		}
+		PageInfo<Commodity> pageInfo = commodityService.getCommoditiesByCategoryId(varietyId, page, sortType);
+		ModelAndView modelAndView = new ModelAndView("sousuo");
+		modelAndView.addObject("pageInfo", pageInfo);
+		return modelAndView;
 	}
 }

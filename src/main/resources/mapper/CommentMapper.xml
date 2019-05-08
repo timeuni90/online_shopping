@@ -220,8 +220,13 @@
 		FROM
 		tb_comment c
 		INNER JOIN tb_order o ON c.order_id = o.id
+		INNER JOIN tb_comment_append ca ON c.id = ca.comment_id
 		WHERE
 		c.commodity_id = #{commodityId}
+		GROUP BY
+		c.id
+		ORDER BY
+		MIN(ca.comment_time) ASC
 	</select>
 
 </mapper>

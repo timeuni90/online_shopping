@@ -86,7 +86,7 @@ public class OrderService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		OrderExample orderExample = new OrderExample();
 		orderExample.setOrderByClause("status asc, generate_time desc");
-		orderExample.createCriteria().andUserIdEqualTo(userId);
+		orderExample.createCriteria().andUserIdEqualTo(userId).andUserIsDeleteEqualTo(false);
 		List<Order> orders = orderMapper.selectByExample(orderExample);
 		List<Integer> orderIds = new ArrayList<Integer>();
 		for (Order order : orders) {

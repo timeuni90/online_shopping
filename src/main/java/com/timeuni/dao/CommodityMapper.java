@@ -49,7 +49,11 @@ public interface CommodityMapper {
 
 	/* 查询商品累计评价数量 */
 	public Integer selectCountCommodityComment(Integer commodityId);
-	
+
 	/* 获取收藏量前10的商品 */
 	public List<Commodity> selectRotCommodities(String coverLocation);
+
+	/* 按一些列商品id获取商品 */
+	public List<Commodity> selectByCommodityIds(@Param("commodityIds")List<Integer> commodityIds, @Param("sortType") Integer sortType,
+			@Param("commodityCoverImageLocation") String commodityCoverImageLocation);
 }

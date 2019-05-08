@@ -75,6 +75,7 @@
 	href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
+<%@ include file="/WEB-INF/view/public/public_css.jsp" %>
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 </head>
 
@@ -123,7 +124,6 @@ button {
 												style="position: relative; overflow: hidden; width: 1920px; height: 150px; background: #FFFFFF; line-height: normal; margin-left: 50%; left: -960px; z-index: 1;"
 												data-rn="abqns">
 												<a
-													href="//favorite.taobao.com/popup/add_collection.htm?spm=a220o.1000855.w14208996-14888858591.1.7b036adb8j58J2&amp;id=104682877&amp;itemid=104682877&amp;itemtype=0&amp;ownerid=d5f9d85f714d80f326b071bdc89360a9&amp;scjjc=2&amp;scene=taobao_shop"
 													class="job  abs imghover none  asHMt-Hju6"
 													data-linkmode="ptlink" data-appid="asHMt-Hju6"
 													style="text-decoration: none; margin-top: 30px; overflow: hidden; background: url(${APP_PATH }/static/images/other/guanzhu.png) 50% 50% no-repeat; width: 110px; height: 114px; top: 0px; left: 683px; z-index: 10; opacity: 1;"
@@ -134,7 +134,6 @@ button {
 													style="width: 110px; height: 114px; background: url1(// gdp.alicdn.com/ imgextra/ i1/ 1695308781/ TB2DGnmpSXlpuFjy0FeXXcJbFXa_ !! 1695308781.png) 50% 50% no-repeat;"
 													src="//assets.alicdn.com/s.gif">
 												</a> <a class="jsib abs aB2BQ-SNYq"
-													href="//meizu.tmall.com/?spm=a220o.1000855.w14208996-14888858591.16.7b036adb8j58J2&amp;scene=taobao_shop"
 													target="_blank"
 													style="outline-color: #FFFFFF; margin-top: 30px; display: block; width: 323px; height: 114px; top: 0px; left: 360px; border: none; z-index: 10;"
 													data-linkmode="ptlink" data-appid="aB2BQ-SNYq"
@@ -369,8 +368,8 @@ button {
 														type="text" class="tb-text mui-amount-input" value="1"
 														maxlength="8" title="请输入购买量"> <span
 														class="mui-amount-btn"> <span
-															class="mui-amount-increase"></span> <span
-															class="mui-amount-decrease"></span>
+															class="mui-amount-increase oi icon" data-glyph="chevron-top" style="font-size: 2px;"></span><span
+															class="mui-amount-decrease oi icon" data-glyph="chevron-bottom" style="font-size: 2px;"></span>
 													</span> <span class="mui-amount-unit">件</span>
 													</span> <em id="J_EmStock" class="tb-hidden"
 														style="display: inline;">库存${commodity.stock }件</em> <span
@@ -429,13 +428,13 @@ button {
 						<div data-spm="1997427645" class="tb-gallery">
 
 							<div class="tb-booth">
-								<a href="javascript:void(0);"> <span class="zoomIcon"
-									style="">󰄬</span><span class="ks-imagezoom-wrap"><img
+								<a href="javascript:void(0);"> <!-- <span class="zoomIcon"
+									style="">󰄬</span> --><span class="ks-imagezoom-wrap"><img
 										id="J_ImgBooth" src="${commodity.coverImage }"
 										data-haszoom="700"><span
 										style="position: absolute; top: 1.00637px; left: 302.018px; width: 116.483px; height: 116.483px; display: none;"
 										class="ks-imagezoom-lens"></span></span>
-								</a> <i class="tm-video-play J_playVideo" style="">󰀓</i><i
+								</a> <!-- <i class="tm-video-play J_playVideo" style="">󰀓</i> --><i
 									class="tm-video-stop J_stopVideo" style="display: none;"><b></b><s
 									data-spm-anchor-id="a220o.1000855.1997427645.i0.7b036adb8j58J2"></s></i>
 							</div>
@@ -456,9 +455,9 @@ button {
 								<a class="tb-thumb-right"><i></i></a>
 							</div>
 							<p class="tm-action tm-clear">
-								<a id="J_AddFavorite" href="javascript:;"
-									data-aldurl1="//ald.taobao.com/recommend.htm?appId=03136&amp;itemId=574189749365 "
-									class="favorite"><i></i><span>收藏商品</span></a>
+								<a id="J_AddFavorite" href="javascript:;" class="favorite">
+									<i class="oi icon" data-glyph="star"></i><span>收藏商品</span>
+								</a>
 								<!-- ruleBanner-->
 								<span id="J_CollectCount">（${commodity.collectQuantity }人气）</span>
 							</p>
@@ -693,14 +692,14 @@ button {
 												</tbody>
 											</table>
 										</div>
-										<div class="rate-page">
+										<!-- <div class="rate-page">
 											<div class="rate-paginator">
 												<span class="rate-page-prev">&lt;&lt;上一页</span><span>1</span>
 												<a href="?page=2">2</a> <a href="?page=3">3</a><span
 													class="rate-page-break">...</span> <a data-page="2"
 													href="?page=2">下一页&gt;&gt;</a>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
@@ -715,7 +714,7 @@ button {
 									<h3 class="hd" style="">
 										<div class="name">
 											<a data-spm="d4918065" class="shopLink"
-												href="//meizu.tmall.com" target="_blank">${commodity.seller.storeName }</a> <span
+												 target="_blank">${commodity.seller.storeName }</a> <span
 												class="ww-light ww-small" data-icon="small"
 												data-nick="%E9%AD%85%E6%97%8F%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97"
 												data-tnick="%E9%AD%85%E6%97%8F%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97"
@@ -732,10 +731,9 @@ button {
 										style="height: 0px; margin-top: 0px; margin-bottom: 0px; overflow: hidden; width: 123px;"></div>
 
 									<div class="btnArea">
-										<a data-spm="d4918061" href="//meizu.tmall.com"
+										<a data-spm="d4918061"
 											target="_blank" class="enterShop">进店逛逛</a> <a
 											id="xshop_collection_href"
-											href="//favorite.taobao.com/popup/add_collection.htm?id=104682877&amp;itemid=104682877&amp;itemtype=0&amp;ownerid=d5f9d85f714d80f326b071bdc89360a9&amp;scjjc=2"
 											mercury:params="id=104682877&amp;itemid=104682877&amp;itemtype=0&amp;ownerid=d5f9d85f714d80f326b071bdc89360a9"
 											class="J_PopupTrigger collection xshop_sc J_TDialogTrigger J_TokenSign favShop"
 											data-width="440" data-height="260" data-closebtn="true">收藏店铺</a>

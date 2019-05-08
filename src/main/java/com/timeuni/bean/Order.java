@@ -19,11 +19,13 @@ public class Order {
 
     private Integer status;
 
-    private Boolean isDelete;
-
     private String receiveAddress;
 
     private String groupId;
+
+    private Boolean userIsDelete;
+
+    private Boolean sellerIsDelete;
 
     public Integer getId() {
         return id;
@@ -97,15 +99,6 @@ public class Order {
         return this;
     }
 
-    public Boolean getIsDelete() {
-        return isDelete;
-    }
-
-    public Order setIsDelete(Boolean isDelete) {
-        this.isDelete = isDelete;
-        return this;
-    }
-
     public String getReceiveAddress() {
         return receiveAddress;
     }
@@ -121,6 +114,24 @@ public class Order {
 
     public Order setGroupId(String groupId) {
         this.groupId = groupId == null ? null : groupId.trim();
+        return this;
+    }
+
+    public Boolean getUserIsDelete() {
+        return userIsDelete;
+    }
+
+    public Order setUserIsDelete(Boolean userIsDelete) {
+        this.userIsDelete = userIsDelete;
+        return this;
+    }
+
+    public Boolean getSellerIsDelete() {
+        return sellerIsDelete;
+    }
+
+    public Order setSellerIsDelete(Boolean sellerIsDelete) {
+        this.sellerIsDelete = sellerIsDelete;
         return this;
     }
 }

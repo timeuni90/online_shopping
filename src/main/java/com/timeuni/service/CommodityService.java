@@ -25,6 +25,8 @@ import com.timeuni.bean.CommoditySelectProperty;
 import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
+import com.timeuni.bean.CommodityVariety;
+import com.timeuni.bean.CommodityVarietyExample;
 import com.timeuni.bean.OrderCommoditySelectProperty;
 import com.timeuni.bean.OrderCommoditySelectPropertyExample;
 import com.timeuni.bean.OrderDetail;
@@ -38,8 +40,11 @@ import com.timeuni.dao.CommodityMapper;
 import com.timeuni.dao.CommodityMediaResourceMapper;
 import com.timeuni.dao.CommoditySelectPropertyMapper;
 import com.timeuni.dao.CommodityVariableMapper;
+import com.timeuni.dao.CommodityVarietyMapper;
 import com.timeuni.dao.OrderCommoditySelectPropertyMapper;
 import com.timeuni.dao.OrderDetailMapper;
+import com.timeuni.dao.VarietyMapper;
+import com.timeuni.myexception.NoFindException;
 import com.timeuni.resourcebundle.ResourceLocation;
 
 @Service
@@ -66,6 +71,49 @@ public class CommodityService {
 	private CommentAppendMapper commentAppendMapper;
 	@Autowired
 	private CommentImageMapper commentImageMapper;
+	@Autowired
+	private VarietyMapper varietyMapper;
+	@Autowired
+	private CommodityVarietyMapper commodityVarietyMapper;
+	
+	/* 按照类别获取商品 */
+	public PageInfo<Commodity> getCommoditiesByCategoryId(Integer varietyId, Integer page, Integer sortType) throws NoFindException {
+		/* 记录所有子类别 */
+		List<Integer> varietyIds = new ArrayList<Integer>();
+		varietyIds.add(varietyId);
+		List<Integer> parentIds = new ArrayList<Integer>();
+		parentIds.add(varietyId);
+		int a = 0;
+		/* 层序遍历 */
+		while(true) {
+			List<Integer> childrenIds = varietyMapper.selectIdsByParentIds(parentIds);
+			/* 查看是否到叶子节点 */
+			if(childrenIds == null || childrenIds.size() < 1) {
+				break;
+			}
+			varietyIds.addAll(childrenIds);
+			parentIds = childrenIds;
+		}
+		CommodityVarietyExample commodityVarietyExample = new CommodityVarietyExample();
+		commodityVarietyExample.createCriteria().andVarietyIdIn(varietyIds);
+		List<CommodityVariety> commodityVarieties = commodityVarietyMapper.selectByExample(commodityVarietyExample);
+		List<Integer> commodityIds = new ArrayList<Integer>();
+		for (CommodityVariety commodityVariety : commodityVarieties) {
+			Integer commodityId = commodityVariety.getCommodityId();
+			if(commodityIds.contains(commodityId)) {
+				continue;
+			}
+			commodityIds.add(commodityId);
+		}
+		if(commodityIds.size() < 1) {
+			throw new NoFindException();
+		}
+		String commodityCoverImageLocation = new ResourceLocation().getCommodityCoverImageLocation();
+		PageHelper.startPage(page, 30);
+		List<Commodity> commodities = commodityMapper.selectByCommodityIds(commodityIds, sortType, commodityCoverImageLocation);
+		PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodities, 5);
+		return pageInfo;
+	}
 	
 	/* 按收藏量来获取热门商品 */
 	public List<Commodity> getRotCommodities() {

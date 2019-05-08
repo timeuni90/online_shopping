@@ -536,4 +536,60 @@
 		count(cc.commodity_id) DESC
 		LIMIT 10
 	</select>
+	
+	<!-- public List<Commodity> selectByCommodityIds(List<Integer> commodityId); -->
+	<select id="selectByCommodityIds" resultMap="CommodityMapWithSeller">
+		SELECT
+		c.id,
+		c.title,
+		c.seller_id,
+		CONCAT(#{commodityCoverImageLocation},
+		c.cover_image)
+		cover_image,
+		s.store_name,
+		c_csp_cv.min_price,
+		IFNULL(SUM(od.quantity),0) month_sale
+		FROM
+		tb_commodity c
+		INNER JOIN
+		tb_seller s ON c.seller_id = s.id
+		INNER JOIN (
+		SELECT
+		c.id commodity_id,
+		MIN(cv.price) min_price
+		FROM
+		tb_commodity c
+		INNER JOIN
+		tb_commodity_select_property csp ON c.id = csp.commodity_id
+		INNER JOIN
+		tb_commodity_variable cv ON csp.select_property_row =
+		cv.select_property_row
+		GROUP BY
+		c.id
+		) c_csp_cv ON c.id =
+		c_csp_cv.commodity_id
+		LEFT JOIN tb_order_detail od ON c.id =
+		od.commodity_id
+		LEFT JOIN tb_order o ON od.order_id = o.id
+		WHERE
+		c.id IN 
+		<foreach collection="commodityIds" item="commodityId" separator="," open="(" close=")">
+		#{commodityId}
+		</foreach>
+		AND ABS(
+		DATEDIFF(o.generate_time, now())
+		) &lt; 31
+		GROUP BY
+		c.id
+		ORDER BY
+		<if test="sortType == 0">
+			month_sale DESC
+		</if>
+		<if test="sortType == 1">
+			min_price DESC
+		</if>
+		<if test="sortType == 2">
+			min_price ASC
+		</if>
+	</select>
 </mapper>

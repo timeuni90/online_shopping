@@ -615,66 +615,6 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIsNull() {
-            addCriterion("is_delete is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteIsNotNull() {
-            addCriterion("is_delete is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteEqualTo(Boolean value) {
-            addCriterion("is_delete =", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteNotEqualTo(Boolean value) {
-            addCriterion("is_delete <>", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteGreaterThan(Boolean value) {
-            addCriterion("is_delete >", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("is_delete >=", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteLessThan(Boolean value) {
-            addCriterion("is_delete <", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteLessThanOrEqualTo(Boolean value) {
-            addCriterion("is_delete <=", value, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteIn(List<Boolean> values) {
-            addCriterion("is_delete in", values, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteNotIn(List<Boolean> values) {
-            addCriterion("is_delete not in", values, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteBetween(Boolean value1, Boolean value2) {
-            addCriterion("is_delete between", value1, value2, "isDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsDeleteNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("is_delete not between", value1, value2, "isDelete");
-            return (Criteria) this;
-        }
-
         public Criteria andReceiveAddressIsNull() {
             addCriterion("receive_address is null");
             return (Criteria) this;
@@ -812,6 +752,126 @@ public class OrderExample {
 
         public Criteria andGroupIdNotBetween(String value1, String value2) {
             addCriterion("group_id not between", value1, value2, "groupId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteIsNull() {
+            addCriterion("user_is_delete is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteIsNotNull() {
+            addCriterion("user_is_delete is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteEqualTo(Boolean value) {
+            addCriterion("user_is_delete =", value, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteNotEqualTo(Boolean value) {
+            addCriterion("user_is_delete <>", value, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteGreaterThan(Boolean value) {
+            addCriterion("user_is_delete >", value, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("user_is_delete >=", value, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteLessThan(Boolean value) {
+            addCriterion("user_is_delete <", value, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteLessThanOrEqualTo(Boolean value) {
+            addCriterion("user_is_delete <=", value, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteIn(List<Boolean> values) {
+            addCriterion("user_is_delete in", values, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteNotIn(List<Boolean> values) {
+            addCriterion("user_is_delete not in", values, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteBetween(Boolean value1, Boolean value2) {
+            addCriterion("user_is_delete between", value1, value2, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIsDeleteNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("user_is_delete not between", value1, value2, "userIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteIsNull() {
+            addCriterion("seller_is_delete is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteIsNotNull() {
+            addCriterion("seller_is_delete is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteEqualTo(Boolean value) {
+            addCriterion("seller_is_delete =", value, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteNotEqualTo(Boolean value) {
+            addCriterion("seller_is_delete <>", value, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteGreaterThan(Boolean value) {
+            addCriterion("seller_is_delete >", value, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("seller_is_delete >=", value, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteLessThan(Boolean value) {
+            addCriterion("seller_is_delete <", value, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteLessThanOrEqualTo(Boolean value) {
+            addCriterion("seller_is_delete <=", value, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteIn(List<Boolean> values) {
+            addCriterion("seller_is_delete in", values, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteNotIn(List<Boolean> values) {
+            addCriterion("seller_is_delete not in", values, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteBetween(Boolean value1, Boolean value2) {
+            addCriterion("seller_is_delete between", value1, value2, "sellerIsDelete");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsDeleteNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("seller_is_delete not between", value1, value2, "sellerIsDelete");
             return (Criteria) this;
         }
     }

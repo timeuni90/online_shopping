@@ -27,4 +27,7 @@ public interface VarietyMapper {
     int updateByPrimaryKeySelective(Variety record);
 
     int updateByPrimaryKey(Variety record);
+    
+    /* 根据parentIds查找类别id */
+    public List<Integer> selectIdsByParentIds(@Param("parentIds")List<Integer> parentIds);
 }

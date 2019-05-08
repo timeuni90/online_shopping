@@ -80,8 +80,7 @@
 		<table tableName="tb_cart" domainObjectName="Cart"></table>
 		
 		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table> -->
-		<table tableName="tb_cart" domainObjectName="Cart"></table>
 		
-		<table tableName="tb_address_detail" domainObjectName="AddressDetail"></table> 
+		<table tableName="tb_order" domainObjectName="Order"></table>
 	</context>
 </generatorConfiguration>
