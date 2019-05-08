@@ -533,7 +533,7 @@ button {
 </style>
 							</div>
 							<div id="mallSearch" class="mall-search">
-								<form name="searchTop"
+								<form name="searchTop" style="border: solid #00c3f5;"
 									action="//list.tmall.com/search_product.htm"
 									class="mallSearch-form clearfix" target="_top"
 									accept-charset="gbk">
@@ -545,16 +545,13 @@ button {
 											<div class="s-combobox" id="s-combobox-660">
 												<div class="s-combobox-input-wrap">
 													<input type="text" name="q" accesskey="s"
-														autocomplete="off" x-webkit-speech=""
-														x-webkit-grammar="builtin:translate" value="外套" id="mq"
-														data-bts="" class="s-combobox-input" role="combobox"
-														aria-haspopup="true" title="请输入搜索文字" aria-label="请输入搜索文字">
+														value="${key }" id="mq"  class="s-combobox-input">
 												</div>
 												<label for="mq" class="s-combobox-placeholder"
 													style="color: rgb(102, 102, 102); display: none; visibility: hidden;">搜索
 													天猫 商品/品牌/店铺</label>
 											</div>
-											<button type="submit">
+											<button type="submit" style="background-color: #00c3f5">
 												搜索
 											</button>
 											<input id="J_Type" type="hidden" name="type" value="p">
@@ -606,47 +603,34 @@ button {
 						data-spm="a220m.1000858.1000725" data-area="杭州"
 						data-atp-a="{p},{id},,,spu,1,spu,{user_id}"
 						data-atp-b="{p},{id},,,spu,2,spu,{user_id}">
-						<c:forEach items="${commodities }" var="commodity">
+						<c:forEach items="${pageInfo.list }" var="commodity">
 						<div class="product  " data-id="585067159409"
 							data-atp="a!,,50010158,,,,,,,,">
 							<div class="product-iWrap">
 								<div class="productImg-wrap">
 									<a
-										href="//detail.tmall.com/item.htm?id=585067159409&amp;skuId=3955097889553&amp;areaId=513400&amp;user_id=397247991&amp;cat_id=2&amp;is_b=1&amp;rn=3c98f30f355c9ba19bb1198d369684e6"
-										class="productImg" target="_blank" data-p="59-10"> 
-										<img
-										data-ks-lazyload="//img.alicdn.com/bao/uploaded/i4/397247991/O1CN01vhMAlR28tvTiQorjY_!!0-item_pic.jpg"
-										src="${commodity.coverImage }">
+										href="${APP_PATH }/product/${commodity.id }"
+										class="productImg" target="_blank"> 
+										<img src="${commodity.coverImage }">
 									</a>
 								</div>
-								<div class="productThumb clearfix"
-									style="width: 210px; height: 39px"></div>
-
+								<div class="productThumb clearfix" style="width: 210px; height: 39px"></div>
 								<p class="productPrice">
 									<em title="${commodity.minPrice }"><b>￥</b>${commodity.minPrice }</em>
 								</p>
 								<p class="productTitle">
-									<a
-										href="//detail.tmall.com/item.htm?id=585067159409&amp;skuId=3955097889553&amp;areaId=513400&amp;user_id=397247991&amp;cat_id=2&amp;is_b=1&amp;rn=3c98f30f355c9ba19bb1198d369684e6"
-										target="_blank" title="${commodity.title }"
-										data-p="59-11"> ${commodity.title } </a>
+									<a href="${APP_PATH }/product/${commodity.id }" target="_blank" title="${commodity.title }"> 
+									${commodity.title } 
+									</a>
 								</p>
 
-								<div class="productShop" data-atp="b!59-3,{user_id},,,,,,">
-									<a class="productShop-name"
-										href="//store.taobao.com/search.htm?user_number_id=397247991&amp;rn=3c98f30f355c9ba19bb1198d369684e6&amp;keyword=外套"
-										target="_blank"> ${commodity.seller.storeName } </a>
+								<div class="productShop">
+									<a class="productShop-name" target="_blank"> ${commodity.seller.storeName } </a>
 								</div>
 								<p class="productStatus">
-									<span>月销量 <em>${commodity.monthSale }</em></span> <span>评价 <a
-										href="//detail.tmall.com/item.htm?id=585067159409&amp;skuId=3955097889553&amp;areaId=513400&amp;user_id=397247991&amp;cat_id=2&amp;is_b=1&amp;rn=3c98f30f355c9ba19bb1198d369684e6&amp;on_comment=1#J_TabBar"
-										target="_blank" data-p="59-1">2966</a></span> <span data-icon="small"
-										class="ww-light ww-small" data-item="585067159409"
-										data-nick="千纸鹤旗舰店" data-tnick="千纸鹤旗舰店" data-display="inline"
-										data-atp="a!59-2,,,,,,,397247991"><a
-										href="https://amos.alicdn.com/getcid.aw?v=3&amp;groupid=0&amp;s=1&amp;charset=utf-8&amp;uid=%E5%8D%83%E7%BA%B8%E9%B9%A4%E6%97%97%E8%88%B0%E5%BA%97&amp;site=cntaobao&amp;fromid=cntaobao飞离世界到世界"
-										target="_blank" class="ww-inline ww-online"
-										title="点此可以直接和卖家交流选好的宝贝，或相互交流网购体验，还支持语音视频噢。"><span>旺旺在线</span></a>
+									<span>月销量 <em>${commodity.monthSale }</em></span> <span>评价 <a>${commodity.commentQuantity }</a></span> <span data-icon="small"
+										class="ww-light ww-small"><a class="ww-inline ww-online"
+										title="点此可以直接和卖家交流"><span>在线服务</span></a>
 									</span>
 								</p>
 							</div>
@@ -657,50 +641,36 @@ button {
 					<!--end PCSceneVideo -->
 					<div class="ui-page">
 						<div class="ui-page-wrap">
-							<b class="ui-page-num"> <b class="ui-page-prev">&lt;&lt;上一页</b>
-								<b class="ui-page-cur">1</b> <a
-								href="?s=60&amp;q=%CD%E2%CC%D7&amp;sort=s&amp;style=g&amp;from=mallfp..pc_1_searchbutton&amp;spm=875.7931836/B.a2227oh.d100&amp;type=pc#J_Filter"
-								>2</a> <a
-								href="?s=120&amp;q=%CD%E2%CC%D7&amp;sort=s&amp;style=g&amp;from=mallfp..pc_1_searchbutton&amp;spm=875.7931836/B.a2227oh.d100&amp;type=pc#J_Filter"
-								>3</a> <b class="ui-page-break">...</b>
-								<a class="ui-page-next"
-								href="?s=60&amp;q=%CD%E2%CC%D7&amp;sort=s&amp;style=g&amp;from=mallfp..pc_1_searchbutton&amp;spm=875.7931836/B.a2227oh.d100&amp;type=pc#J_Filter"
-								>下一页&gt;&gt;</a>
-							</b> <b class="ui-page-skip">
-								<form name="filterPageForm" method="get">
-									<input type="hidden" name="type" value="pc"> <input
-										type="hidden" name="q" value="外套"> <input
-										type="hidden" name="totalPage" value="80"> <input
-										type="hidden" name="sort" value="s"><input
-										type="hidden" name="style" value="g"><input
-										type="hidden" name="from" value="mallfp..pc_1_searchbutton">
-									共80页，到第<input type="text" name="jumpto" class="ui-page-skipTo"
-										size="3" value="1">页
-									<button type="submit" class="ui-btn-s"
-										>确定</button>
+							<b class="ui-page-num"> 
+								<c:if test="${pageInfo.hasPreviousPage }">
+									<a class="ui-page-prev" href="${APP_PATH }/search_product?key=${key }&page=${pageInfo.prePage }">上一页</a>
+								</c:if>
+								<c:if test="${!pageInfo.hasPreviousPage }">
+									<b class="ui-page-prev">上一页</b>
+								</c:if>
+								<c:forEach items="${pageInfo.navigatepageNums }" var="pageNum">
+								<c:if test="${pageInfo.pageNum == pageNum }">
+								<b class="ui-page-cur">${pageNum }</b>
+								</c:if>
+								<c:if test="${pageInfo.pageNum != pageNum }">
+								<a href="${APP_PATH }/search_product?key=${key }&page=${pageNum }">${pageNum }</a> 
+								</c:if>
+								</c:forEach>
+								<c:if test="${pageInfo.hasNextPage }">
+									<a class="ui-page-next" href="${APP_PATH }/search_product?key=${key }&page=${pageInfo.nextPage }">下一页</a>
+								</c:if>
+								<c:if test="${!pageInfo.hasNextPage }">
+									<b class="ui-page-next">下一页</b>
+								</c:if>
+							</b> 
+							<b class="ui-page-skip">
+								<form action="${APP_PATH }/search_product" method="get">								
+									共${pageInfo.pages }页，到第
+									<input type="text" name="page" class="ui-page-skipTo" size="3" value="${pageInfo.pageNum }">页
+									<input type="hidden" name="key" value=${key }>
+									<button type="submit" class="ui-btn-s">确定</button>
 								</form>
 							</b>
-						</div>
-					</div>
-					<div class="btmSearch-loading" id="J_BtmSearch">
-						<div class="btmSearch" data-spm="a220m.1000858.1000729">
-							<div class="btmSearch-main">
-								<form class="btmSearch-form clearfix" action="" target="_top"
-									name="searchTop">
-									<fieldset>
-										<div class="btmSearch-input clearfix">
-											<input type="text" value="外套" autocomplete="off" tabindex="9"
-												accesskey="s" class="btmSearch-mq" id="btm-mq" data-bts="0"
-												name="q" aria-label="搜索关键词">
-											<button type="submit" class="ui-btn-search-l" aria-label="搜索">
-												搜索
-											</button>
-											<input type="hidden" name="type" value="p"> <input
-												type="hidden" name="redirect" value="notRedirect">
-										</div>
-									</fieldset>
-								</form>
-							</div>
 						</div>
 					</div>
 				</div>

@@ -22,6 +22,9 @@ public class VarietyService {
 			VarietyExample varietyExample = new VarietyExample();
 			varietyExample.createCriteria().andParentIdEqualTo(id);
 			List<Variety> varieties = varietyMapper.selectByExample(varietyExample);
+			if(varieties == null || varieties.size() == 0 ) {
+				continue;
+			}
 			for (Variety variety : varieties) {
 				VarietyExample varietyExample2 = new VarietyExample();
 				varietyExample2.createCriteria().andParentIdEqualTo(variety.getId());

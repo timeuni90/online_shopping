@@ -261,8 +261,13 @@ public class OrderService {
 				/* 插入订单详情 */
 				orderDetailMapper.insertSelective(orderDetail);
 				for (CommoditySelectProperty commoditySelectProperty : commoditySelectProperties) {
+					String[] split = commoditySelectProperty.getPropertyValue().split("jpg\\+");
+					String value = split[0];
+					if(split.length > 1) {
+						value = split[1];
+					}
 					OrderCommoditySelectProperty orderCommoditySelectProperty = new OrderCommoditySelectProperty();
-					orderCommoditySelectProperty.setOrderDetailId(orderDetail.getId()).setPropertyName(commoditySelectProperty.getPropertyName()).setPropertyValue(commoditySelectProperty.getPropertyValue());
+					orderCommoditySelectProperty.setOrderDetailId(orderDetail.getId()).setPropertyName(commoditySelectProperty.getPropertyName()).setPropertyValue(value);
 					orderCommoditySelectPropertyMapper.insertSelective(orderCommoditySelectProperty);
 				}
 			}

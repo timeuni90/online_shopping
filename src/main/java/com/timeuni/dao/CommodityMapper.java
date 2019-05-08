@@ -51,5 +51,5 @@ public interface CommodityMapper {
 	public Integer selectCountCommodityComment(Integer commodityId);
 	
 	/* 获取收藏量前10的商品 */
-	public List<Commodity> selectRotCommodities();
+	public List<Commodity> selectRotCommodities(String coverLocation);
 }

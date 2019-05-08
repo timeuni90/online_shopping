@@ -453,13 +453,16 @@
 		MAX(cv.promotion_price) max_promotion_price,
 		s.store_name,
 		s.activity,
-		CONCAT(#{storeLogoLoc}, s.store_cover) store_cover
+		CONCAT(#{storeLogoLoc}, s.store_cover)
+		store_cover
 		FROM
 		tb_commodity c
 		INNER JOIN tb_seller s ON
-		c.seller_id = s.id
+		c.seller_id =
+		s.id
 		INNER JOIN tb_commodity_select_property csp ON c.id
-		= csp.commodity_id
+		=
+		csp.commodity_id
 		INNER JOIN tb_commodity_variable cv ON
 		csp.select_property_row =
 		cv.select_property_row
@@ -490,12 +493,47 @@
 		SELECT
 		IFNULL(count(cmt.commodity_id), 0) comment_quantity
 		FROM
-		tb_commodity cdy
+		tb_commodity
+		cdy
 		INNER JOIN tb_comment cmt ON cdy.id = cmt.commodity_id
 		WHERE
-		cdy.id = #{commodityId}
+		cdy.id =
+		#{commodityId}
 	</select>
-	
-	<!-- public List<Commodity> selectRotCommodities(); -->
-	<select id="selectRotCommodities" resultMap="BaseResultMap"></select>
+
+	<!-- public List<Commodity> selectRotCommodities(String coverLocation); -->
+	<select id="selectRotCommodities"
+		resultMap="CommodityMapWithSeller">
+		SELECT
+		c.id,
+		CONCAT(
+		#{coverLocation},
+		c.cover_image
+		) cover_image,
+		c.title,
+		tmp.min_price,
+		tmp.min_promotion_price
+		FROM
+		tb_commodity c
+		LEFT JOIN tb_collect_commodity cc ON c.id =
+		cc.commodity_id
+		INNER JOIN (
+		SELECT
+		MIN(cv.price) min_price,
+		MIN(cv.promotion_price) min_promotion_price,
+		csp.commodity_id
+		FROM
+		tb_commodity_select_property csp
+		INNER JOIN tb_commodity_variable cv ON
+		csp.select_property_row =
+		cv.select_property_row
+		GROUP BY
+		csp.commodity_id
+		) tmp ON tmp.commodity_id = c.id
+		GROUP BY
+		c.id
+		ORDER BY
+		count(cc.commodity_id) DESC
+		LIMIT 10
+	</select>
 </mapper>

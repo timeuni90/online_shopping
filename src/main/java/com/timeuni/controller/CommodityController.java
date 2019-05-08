@@ -1,6 +1,5 @@
 package com.timeuni.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageInfo;
 import com.timeuni.bean.Commodity;
 import com.timeuni.service.CommodityService;
 
@@ -18,18 +18,22 @@ import com.timeuni.service.CommodityService;
 public class CommodityController {
 	@Autowired
 	private CommodityService commodityService;
-	
+
 	/* 处理搜索商品请求请求 */
 	@RequestMapping(value = "/search_product", method = RequestMethod.GET)
-	public ModelAndView handleSearchProductRequest(String key, @RequestParam(required = false)Integer sortType) {
-		if(sortType == null)
+	public ModelAndView handleSearchProductRequest(String key, @RequestParam(required = false) Integer sortType,
+			@RequestParam(required = false) Integer page) {
+		if (sortType == null)
 			sortType = 0;
-		List<Commodity> commodities = commodityService.getCommoditiesBySearchKey(key, sortType);
+		if (page == null)
+			page = 1;
+		PageInfo<Commodity> pageInfo = commodityService.getCommoditiesBySearchKey(key.trim(), sortType, page);
 		ModelAndView modelAndView = new ModelAndView("sousuo");
-		modelAndView.addObject("commodities", commodities);
+		modelAndView.addObject("pageInfo", pageInfo);
+		modelAndView.addObject("key", key.trim());
 		return modelAndView;
 	}
-	
+
 	/* 处理获取商品信息请求 */
 	@RequestMapping(value = "/product/{commodityId}", method = RequestMethod.GET)
 	public ModelAndView handleGetCommodityRequest(@PathVariable Integer commodityId) {
@@ -38,7 +42,7 @@ public class CommodityController {
 		modelAndView.addAllObjects(map);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/order")
 	public String abcdefg() {
 		return "order_confirm";

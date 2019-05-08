@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.timeuni.bean.CollectCommodityExample;
 import com.timeuni.bean.Comment;
 import com.timeuni.bean.CommentAppend;
@@ -66,16 +68,24 @@ public class CommodityService {
 	private CommentImageMapper commentImageMapper;
 	
 	/* 按收藏量来获取热门商品 */
-	public void getRotCommodities() {
-		
+	public List<Commodity> getRotCommodities() {
+		String string = new ResourceLocation().getCommodityCoverImageLocation();
+		return commodityMapper.selectRotCommodities(string);
 	}
 	
 	/* 按关键字获取商品 */
-	public List<Commodity> getCommoditiesBySearchKey(String key, Integer sortType) {
+	public PageInfo<Commodity> getCommoditiesBySearchKey(String key, Integer sortType, Integer page) {
 		key = "%" + key + "%";
 		String commodityCoverImageLocation = new ResourceLocation().getCommodityCoverImageLocation();
+		/* 分页插件，每页显示多少数据 */
+		PageHelper.startPage(page, 30);
 		List<Commodity> commodities = commodityMapper.selectByKey(key, sortType, commodityCoverImageLocation);
-		return commodities;
+		/* 封装查询结果，连续显示的页码 */
+		PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodities, 5);
+		for (Commodity commodity : commodities) {
+			commodity.setCommentQuantity(commodityMapper.selectCountCommodityComment(commodity.getId()));
+		}
+		return pageInfo;
 	}
 	
 	/* 按商品id获取商品信息 */
@@ -87,7 +97,7 @@ public class CommodityService {
 		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId, commodityCoverImageLocation, storeLogoLocation);
 		/* 封装商品的评论 */
 		List<Comment> comments = commentMapper.selectByCommodityIdWithUserName(commodityId);
-		commodity.setComments(comments);	
+		commodity.setComments(comments);
 		if(comments != null && comments.size() > 0) {
 			List<Integer> orderIds = new ArrayList<Integer>();
 			List<Integer> commentIds = new ArrayList<Integer>();
