@@ -296,6 +296,7 @@ public class OrderService {
 			}
 		}
 		Alipay alipay = new Alipay();
+		System.out.println(payPrice);
 		return alipay.pay(groupId, payPrice, "pay");
 	}
 	
