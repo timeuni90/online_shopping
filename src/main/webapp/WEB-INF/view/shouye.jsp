@@ -12,7 +12,7 @@
 <meta name="spm-id" content="875.7931836/B">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	
+
 <link rel="stylesheet" href="${APP_PATH }/static/css/shouye/a_003.css">
 <link href="${APP_PATH }/static/css/shouye/a_005.css" rel="stylesheet">
 <link href="${APP_PATH }/static/css/shouye/a.css" rel="stylesheet">
@@ -133,10 +133,10 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="heart" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">女装</a>
+									href="${APP_PATH }/products?varietyId=1000">女装</a>
 
 									/ <a
-									href="#">内衣</a>
+									href="${APP_PATH }/products?varietyId=1001">内衣</a>
 
 									<b class="arrow"></b></li>
 
@@ -144,10 +144,10 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="globe" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> 
-									<a href="${APP_PATH }/products?varietyId=100">男装</a>
+									<a href="${APP_PATH }/products?varietyId=1002">男装</a>
 
 									/ <a
-									href="#">运动户外</a>
+									href="${APP_PATH }/products?varietyId=1003">运动户外</a>
 
 									<b class="arrow"></b></li>
 
@@ -155,13 +155,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="dashboard" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">女鞋</a>
+									href="${APP_PATH }/products?varietyId=1004">女鞋</a>
 
 									/ <a
-									href="#">男鞋</a>
+									href="${APP_PATH }/products?varietyId=1005">男鞋</a>
 
 									/ <a
-									href="#">箱包</a>
+									href="${APP_PATH }/products?varietyId=1006">箱包</a>
 
 									<b class="arrow"></b></li>
 
@@ -169,10 +169,10 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="brush" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">美妆</a>
+									href="${APP_PATH }/products?varietyId=1007">美妆</a>
 
 									/ <a
-									href="#">个人护理</a>
+									href="${APP_PATH }/products?varietyId=1008">个人护理</a>
 
 									<b class="arrow"></b></li>
 
@@ -180,13 +180,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="clock" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">腕表</a>
+									href="${APP_PATH }/products?varietyId=1009">腕表</a>
 
 									/ <a
-									href="#">眼镜</a>
+									href="${APP_PATH }/products?varietyId=1010">眼镜</a>
 
 									/ <a
-									href="#">珠宝饰品</a>
+									href="${APP_PATH }/products?varietyId=1011">珠宝饰品</a>
 
 									<b class="arrow"></b></li>
 
@@ -194,13 +194,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="phone" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">手机</a>
+									href="${APP_PATH }/products?varietyId=1012">手机</a>
 
 									/ <a
-									href="#">数码</a>
+									href="${APP_PATH }/products?varietyId=1013">数码</a>
 
 									/ <a
-									href="#">电脑办公</a>
+									href="${APP_PATH }/products?varietyId=1014">电脑办公</a>
 
 									<b class="arrow"></b></li>
 
@@ -208,7 +208,7 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="map" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">母婴玩具</a>
+									href="${APP_PATH }/products?varietyId=1015">母婴玩具</a>
 
 									<b class="arrow"></b></li>
 
@@ -216,13 +216,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="dial" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">零食</a>
+									href="${APP_PATH }/products?varietyId=1016">零食</a>
 
 									/ <a
-									href="#">茶酒</a>
+									href="${APP_PATH }/products?varietyId=1017">茶酒</a>
 
 									/ <a
-									href="#">进口食品</a>
+									href="${APP_PATH }/products?varietyId=1018">进口食品</a>
 
 									<b class="arrow"></b></li>
 
@@ -230,7 +230,7 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="laptop" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">生鲜水果</a>
+									href="${APP_PATH }/products?varietyId=1019">生鲜水果</a>
 
 									<b class="arrow"></b></li>
 
@@ -238,10 +238,10 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="tablet" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">大家电</a>
+									href="${APP_PATH }/products?varietyId=1020">大家电</a>
 
 									/ <a
-									href="#">生活电器</a>
+									href="${APP_PATH }/products?varietyId=1021">生活电器</a>
 
 									<b class="arrow"></b></li>
 
@@ -249,7 +249,7 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="spreadsheet" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">家具建材</a>
+									href="${APP_PATH }/products?varietyId=1022">家具建材</a>
 
 									<b class="arrow"></b></li>
 
@@ -257,13 +257,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="battery-empty" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">汽车</a>
+									href="${APP_PATH }/products?varietyId=1023">汽车</a>
 
 									/ <a
-									href="#">配件</a>
+									href="${APP_PATH }/products?varietyId=1024">配件</a>
 
 									/ <a
-									href="#">用品</a>
+									href="${APP_PATH }/products?varietyId=1025">用品</a>
 
 									<b class="arrow"></b></li>
 
@@ -271,13 +271,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="badge" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">家纺</a>
+									href="${APP_PATH }/products?varietyId=1026">家纺</a>
 
 									/ <a
-									href="#">家饰</a>
+									href="${APP_PATH }/products?varietyId=1027">家饰</a>
 
 									/ <a
-									href="#">鲜花</a>
+									href="${APP_PATH }/products?varietyId=1028">鲜花</a>
 
 									<b class="arrow"></b></li>
 
@@ -285,7 +285,7 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="command" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">医药保健</a>
+									href="${APP_PATH }/products?varietyId=1029">医药保健</a>
 
 									<b class="arrow"></b></li>
 
@@ -293,13 +293,13 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="flag" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">厨具</a>
+									href="${APP_PATH }/products?varietyId=1030">厨具</a>
 
 									/ <a
-									href="#">收纳</a>
+									href="${APP_PATH }/products?varietyId=1031">收纳</a>
 
 									/ <a
-									href="#">宠物</a>
+									href="${APP_PATH }/products?varietyId=1032">宠物</a>
 
 									<b class="arrow"></b></li>
 
@@ -307,7 +307,7 @@
 									data-spm="110,11121,131,11322,1232"><i class="oi icon"
 									data-glyph="pin" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> <a
-									href="#">图书音像</a>
+									href="${APP_PATH }/products?varietyId=1033">图书音像</a>
 
 									<b class="arrow"></b></li>
 
@@ -548,11 +548,7 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-
-		
-
 		<b data-mark="eea298cd6a372e6741f9bd4c83a9e059"></b>
 	</div>
 	<script type="text/javascript" src="static/js/shouye.js"></script>

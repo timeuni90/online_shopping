@@ -83,7 +83,6 @@ public class CommodityService {
 		varietyIds.add(varietyId);
 		List<Integer> parentIds = new ArrayList<Integer>();
 		parentIds.add(varietyId);
-		int a = 0;
 		/* 层序遍历 */
 		while(true) {
 			List<Integer> childrenIds = varietyMapper.selectIdsByParentIds(parentIds);
@@ -122,12 +121,15 @@ public class CommodityService {
 	}
 	
 	/* 按关键字获取商品 */
-	public PageInfo<Commodity> getCommoditiesBySearchKey(String key, Integer sortType, Integer page) {
+	public PageInfo<Commodity> getCommoditiesBySearchKey(String key, Integer sortType, Integer page) throws NoFindException {
 		key = "%" + key + "%";
 		String commodityCoverImageLocation = new ResourceLocation().getCommodityCoverImageLocation();
 		/* 分页插件，每页显示多少数据 */
 		PageHelper.startPage(page, 30);
 		List<Commodity> commodities = commodityMapper.selectByKey(key, sortType, commodityCoverImageLocation);
+		if(commodities == null || commodities.size() < 1) {
+			throw new NoFindException();
+		}
 		/* 封装查询结果，连续显示的页码 */
 		PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodities, 5);
 		for (Commodity commodity : commodities) {

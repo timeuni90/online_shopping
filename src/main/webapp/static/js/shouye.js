@@ -29,11 +29,11 @@ $(".j_MenuNav.nav-item").mouseenter(function() {
 						$(n).addClass("category-loaded");
 						var str = "";
 						$.each(msg, function(i, n) {
-							str += "<div class='hot-word-line'><div class='line-title'><div class='title-text'>"+n[0].name+
-							"</div><i class='oi icon' data-glyph='chevron-right'></i></div><div class='line-con'>";
+							str += "<div class='hot-word-line'><div class='line-title'><div class='title-text'><a href='http://localhost:8080/online-shopping/products?varietyId=" + n[0].id + "'>"+n[0].name+
+							"</a></div><i class='oi icon' data-glyph='chevron-right'></i></div><div class='line-con'>";
 							$.each(n, function(i, n) {
 								if(i != 0) 
-									str += "<a class='hot-word highlight' href='#'>"+n.name+"</a>";
+									str += "<a class='hot-word highlight' href='http://localhost:8080/online-shopping/products?varietyId="+ n.id +"'>"+n.name+"</a>";
 							});
 							str += "<div class='seprate clearfix'></div></div></div>";
 						});

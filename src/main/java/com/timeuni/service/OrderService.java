@@ -92,6 +92,9 @@ public class OrderService {
 		for (Order order : orders) {
 			orderIds.add(order.getId());
 		}
+		if(orders == null || orders.size() < 1) {
+			return null;
+		}
 		OrderDetailExample orderDetailExample = new OrderDetailExample();
 		orderDetailExample.createCriteria().andOrderIdIn(orderIds);
 		List<OrderDetail> orderDetails = orderDetailMapper.selectByExample(orderDetailExample);
@@ -296,7 +299,6 @@ public class OrderService {
 			}
 		}
 		Alipay alipay = new Alipay();
-		System.out.println(payPrice);
 		return alipay.pay(groupId, payPrice, "pay");
 	}
 	

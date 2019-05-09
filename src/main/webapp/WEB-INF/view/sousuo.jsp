@@ -534,31 +534,20 @@ button {
 							</div>
 							<div id="mallSearch" class="mall-search">
 								<form name="searchTop" style="border: solid #00c3f5;"
-									action="//list.tmall.com/search_product.htm"
-									class="mallSearch-form clearfix" target="_top"
-									accept-charset="gbk">
+									action="${APP_PATH }/search_product"
+									class="mallSearch-form clearfix" >
 									<fieldset>
 										<legend>天猫搜索</legend>
 										<div class="mallSearch-input clearfix">
-											<label for="mq" style="display: none;">搜索 天猫 商品/品牌/店铺</label>
-
 											<div class="s-combobox" id="s-combobox-660">
 												<div class="s-combobox-input-wrap">
-													<input type="text" name="q" accesskey="s"
+													<input type="text" name="key" accesskey="s"
 														value="${key }" id="mq"  class="s-combobox-input">
 												</div>
-												<label for="mq" class="s-combobox-placeholder"
-													style="color: rgb(102, 102, 102); display: none; visibility: hidden;">搜索
-													天猫 商品/品牌/店铺</label>
 											</div>
 											<button type="submit" style="background-color: #00c3f5">
 												搜索
 											</button>
-											<input id="J_Type" type="hidden" name="type" value="p">
-											<input id="J_MallSearchStyle" type="hidden" name="style"
-												value=""> <input id="J_Cat" type="hidden" name="cat"
-												value="all"> <input type="hidden" name="vmarket"
-												value="">
 										</div>
 									</fieldset>
 								</form>

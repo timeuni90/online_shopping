@@ -35,13 +35,13 @@
 	<div id="nTalk_post_hiddenElement"
 		style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
 	<!-- common header -->
-	<%@ include file="/WEB-INF/view/public/header.jsp"%>
+	<%-- <%@ include file="/WEB-INF/view/header.jsp"%> --%>
 	<div class="store-wrap">
-		<div class="crumbs">
+		<!-- <div class="crumbs">
 			<a href="//store.meizu.com/index.html">首页 &gt;&nbsp;</a> <a
 				href="//me.meizu.com/member/index">我的商城 &gt;&nbsp;</a> <a href=""
 				class="active">我的订单&nbsp;</a>
-		</div>
+		</div> -->
 		<div class="main clearfix">
 			<%@ include file="/WEB-INF/view/public/mysider.jsp"%>
 			<div class="right-content f-fr">
@@ -72,6 +72,10 @@
 						</ul>
 					</div>
 					<div id="tableList" class="type-contain ui-load-container">
+						<c:if test="${orders == null }">
+						<div class="ui-load-content J_no_data"><p class="J_no_data_des">您暂无此类订单，赶快去下单吧！</p></div>
+						</c:if>
+						<c:if test="${orders != null }">
 						<div class="ui-load-content">
 							<input id="unPayNum" type="hidden" value="0">
 							<table class="orderItem">
@@ -184,6 +188,7 @@
 								</tbody>
 							</table>
 						</div>
+						</c:if>
 					</div>
 					<input type="hidden" id="pageId" value="0">
 				</div>
@@ -194,6 +199,6 @@
 	<!-- common js -->
 
 	<!-- end content -->
-	<%@ include file="/WEB-INF/view/public/footer.jsp" %>
+	<%-- <%@ include file="/WEB-INF/view/public/footer.jsp" %> --%>
 </body>
 </html>

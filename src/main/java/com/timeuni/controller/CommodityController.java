@@ -23,7 +23,7 @@ public class CommodityController {
 	/* 处理搜索商品请求请求 */
 	@RequestMapping(value = "/search_product", method = RequestMethod.GET)
 	public ModelAndView handleSearchProductRequest(String key, @RequestParam(required = false) Integer sortType,
-			@RequestParam(required = false) Integer page) {
+			@RequestParam(required = false) Integer page) throws NoFindException {
 		if (sortType == null)
 			sortType = 0;
 		if (page == null)
