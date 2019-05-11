@@ -592,4 +592,49 @@
 			min_price ASC
 		</if>
 	</select>
+	
+	<!-- public List<SellerProduct> selectBySellerId(Integer sellerId); -->
+	<select id="selectBySellerId"
+		resultType="com.timeuni.mybean.SellerProduct">
+		SELECT
+		c.id,
+		c.title,
+		c_csp_cv.min_price price,
+		c.`status`,
+		IFNULL(SUM(od.quantity), 0) month_sale,
+		c_csp_cv.stock
+		FROM
+		tb_commodity c
+		INNER JOIN (
+		SELECT
+		tmp.commodity_id,
+		IFNULL(SUM(cv.stock), 0) stock,
+		MIN(cv.price)
+		min_price
+		FROM
+		tb_commodity_variable cv
+		INNER JOIN (
+		SELECT
+		c.id commodity_id,
+		csp.select_property_row `row`
+		FROM
+		tb_commodity c
+		INNER JOIN tb_commodity_select_property csp ON c.id =
+		csp.commodity_id
+		GROUP BY
+		csp.select_property_row
+		) tmp ON cv.select_property_row = tmp.`row`
+		GROUP BY
+		tmp.commodity_id
+		) c_csp_cv ON c.id = c_csp_cv.commodity_id
+		LEFT JOIN tb_order_detail od ON c.id = od.commodity_id
+		LEFT JOIN tb_order o ON od.order_id = o.id
+		WHERE
+		c.seller_id = #{sellerId}
+		AND c.is_delete = 0
+		GROUP BY
+		c.id
+		ORDER BY
+		c.`status`
+	</select>
 </mapper>

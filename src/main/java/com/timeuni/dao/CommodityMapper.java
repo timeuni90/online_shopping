@@ -2,6 +2,8 @@ package com.timeuni.dao;
 
 import com.timeuni.bean.Commodity;
 import com.timeuni.bean.CommodityExample;
+import com.timeuni.mybean.SellerProduct;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -56,4 +58,7 @@ public interface CommodityMapper {
 	/* 按一些列商品id获取商品 */
 	public List<Commodity> selectByCommodityIds(@Param("commodityIds")List<Integer> commodityIds, @Param("sortType") Integer sortType,
 			@Param("commodityCoverImageLocation") String commodityCoverImageLocation);
+	
+	/* 获取商家的商品 */
+	public List<SellerProduct> selectBySellerId(Integer sellerId);
 }

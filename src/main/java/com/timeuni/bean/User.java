@@ -13,7 +13,13 @@ public class User {
 
     private String profilePhoto;
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name + ", gender="
+				+ gender + ", profilePhoto=" + profilePhoto + "]";
+	}
+
+	public Integer getId() {
         return id;
     }
 
