@@ -4,10 +4,12 @@ package com.timeuni.mybean;
 public class BackStageProductKeyValue {
 	private String propertyName;
 	private String propertyValue;
+	private Integer type;
 
 	@Override
 	public String toString() {
-		return "BackStageProductKeyValue [propertyName=" + propertyName + ", propertyValue=" + propertyValue + "]";
+		return "BackStageProductKeyValue [propertyName=" + propertyName + ", propertyValue=" + propertyValue + ", type="
+				+ type + "]";
 	}
 
 	public String getPropertyName() {
@@ -24,5 +26,13 @@ public class BackStageProductKeyValue {
 
 	public void setPropertyValue(String propertyValue) {
 		this.propertyValue = propertyValue;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
 	}
 }

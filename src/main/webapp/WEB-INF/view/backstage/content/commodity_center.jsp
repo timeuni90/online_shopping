@@ -160,7 +160,7 @@
 												<div class="col-sm-7">
 													<div class="input-group">
 														<input type="text" readonly="readonly" class="form-control">
-														<span class="input-group-addon post_file" title="上传图片">
+														<span class="input-group-addon post_file post_image" title="上传图片">
 															<input type="file" accept="image/*" multiple="multiple" style="display: none;">
 															<i class="fa fa-fw fa-image (alias)"></i>
 														</span>
@@ -172,7 +172,7 @@
 												<div class="col-sm-7">
 													<div class="input-group">
 														<input type="text" readonly="readonly" class="form-control">
-														<span class="input-group-addon post_file" title="上传视频">
+														<span class="input-group-addon post_file post_video" title="上传视频">
 															<input type="file" accept="video/*" style="display: none;">
 															<i class="fa fa-fw fa-video-camera"></i>
 														</span>
@@ -299,7 +299,7 @@
 									}
 									$(".post_file").click(selectImages);
 									/* file内容发生改变时触发 */
-									$(".post_file input").on("change", function() {
+									$(".post_file.post_image input, .post_file.post_video input").on("change", function() {
 										var value = "";
 										$.each($(this)[0].files, function(i, n) {
 											value += n.name + "   ";
@@ -322,9 +322,14 @@
 												if(i >= size - 2) {
 													return false;
 												}
+												var type = 2;
+												if($(n).find("input:file").val() == null || $(n).find("input:file").val() == "") {
+													type = 0;
+												}
 												var key_value = {
 														propertyName: $(n).find("span").first().text(),
-														propertyValue: $(n).find("input:text").val()
+														propertyValue: $(n).find("input:text").val(),
+														type: type
 												}
 												key_value_list.push(key_value);
 											});

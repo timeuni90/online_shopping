@@ -35,6 +35,6 @@ public class BackStageCommodityController {
 	@RequestMapping(value = "/backstageproduct", method = RequestMethod.POST)
 	@ResponseBody
 	public void handleAddProductRquest(@RequestBody BackstageProduct product) {
-		
+		System.out.println(product);
 	}
 }
