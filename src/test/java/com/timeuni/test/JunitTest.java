@@ -3,10 +3,12 @@ package com.timeuni.test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.UUID;
 
 import org.junit.Test;
 
 import com.timeuni.resourcebundle.ResourceLocation;
+import com.timeuni.status.CommodityPropertyType;
 
 public class JunitTest {
 
@@ -25,5 +27,17 @@ public class JunitTest {
         	orderNumber += random.nextInt(10);
         }
         System.out.println(orderNumber);
+	}
+	
+	@Test
+	public void test2() {
+		System.out.println(UUID.randomUUID().toString());
+	}
+	
+	@Test
+	public void test3() {
+		System.out.println(CommodityPropertyType.TEXT.ordinal());
+		System.out.println(CommodityPropertyType.IMAGE.ordinal());
+		System.out.println(CommodityPropertyType.TEXT_IMAGE.ordinal());
 	}
 }

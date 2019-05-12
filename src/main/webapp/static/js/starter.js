@@ -51,7 +51,7 @@ function getCommditiesByPageNumber(pageNum) {
 					name = n.title.substr(0, 15) + '...';
 				}
 				string += `<tr>
-							  	<td><input type="checkbox"></td>
+							  	<td><input data-productid="` + n.id + `" class="my_checkbox" type="checkbox"></td>
 					 		  	<td>` + i + `</td>
 								<td title="` + n.title + `">` + name + `</td>
 								<td><span class="` + cls + `" style="font-weight: bolder;">` + status + `</span></td>
@@ -61,7 +61,7 @@ function getCommditiesByPageNumber(pageNum) {
 								<td>
 									<button type="button" class="btn btn-sm btn-success">查看</button>
 									<button type="button" class="btn btn-sm btn-warning">修改</button>
-									<button type="button" class="btn btn-sm btn-danger">删除</button>
+									<button type="button" class="my_remove_product btn btn-sm btn-danger">删除</button>
 								</td>
 							</tr>`;
 			});
@@ -107,6 +107,39 @@ function getCommditiesByPageNumber(pageNum) {
 				}
 				getCommditiesByPageNumber($(this).find("a").data("pagenum"));
 			});
+			/* 点击单选 */
+			$(".my_checkbox").click(function() {
+				if($(".my_checkbox:checked").length < $(".my_checkbox").length) {
+					$("#my_check_all").prop("checked", false);
+				} else {
+					$("#my_check_all").prop("checked", true);
+				}
+			});
+			/* 单个删除 */
+			$(".my_remove_product").click(function() {
+				var cur = this;
+				$.confirm({
+					title: '删除提示',
+				    content: '确认删除吗？',
+				    confirmButton: '确认',
+				    cancelButton: '取消',
+				    confirmButtonClass: 'btn-warning',
+				    cancelButtonClass: 'btn-success',
+				    confirm: function() {
+				    	$.ajax({
+							method: "POST",
+							url: APP_PATH + "/backstage/products",
+							data: "_method=delete&productIds=" + $(cur).parent().parent().find(".my_checkbox").data("productid"),
+							success: function(data) {
+								if(data > 0) {
+				    				getCommditiesByPageNumber(1);
+				    				$.scojs_message('删除商品成功', $.scojs_message.TYPE_OK);
+				    			}
+							}
+						});
+				    }
+				});
+			});
 		}
-	});	
+	});
 }

@@ -22,7 +22,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		
 		<!-- 新增style -->
 		<link rel="stylesheet" href="${APP_PATH }/static/backstage/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-		
+		<!-- 消息提示 -->
+		<link rel="stylesheet" href="${APP_PATH }/static/css/sco.message.css">
+		<!-- 确认框 -->
+		<link rel="stylesheet" href="${APP_PATH }/static/css/jquery-confirm.min.css">
 		<style>
 			td {
 				text-align: center;
@@ -395,7 +398,11 @@ desired effect
 		<script src="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="${APP_PATH }/static/backstage/dist/js/adminlte.min.js"></script>
 		
+		<script src="${APP_PATH }/static/js/sco.message.js"></script>
+		
 		<script src="${APP_PATH }/static/js/starter.js"></script>
+		
+		<script src="${APP_PATH }/static/js/jquery-confirm.min.js"></script>
 	</body>
 
 </html>

@@ -24,12 +24,12 @@
 							<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-product">
         						<i class="fa fa-fw fa-plus-circle"></i>添加
         					</button>
-							<button type="button" class="btn btn-sm bg-orange">
+							<button type="button" id="my_shangjia" class="btn btn-sm bg-orange">
         						<i class="fa fa-fw fa-check-square"></i>上架</button>
-							<button type="button" class="btn btn-sm bg-olive">
+							<button type="button" id="my_xiajia" class="btn btn-sm bg-olive">
         						<i class="fa fa-fw  fa-info-circle"></i>下架
         					</button>
-							<button type="button" class="btn btn-sm btn-danger">
+							<button type="button" id="batch_remove" class="btn btn-sm btn-danger">
 								<i class="fa fa-fw fa-times-circle"></i>删除
 							</button>
 						</div>
@@ -54,7 +54,7 @@
 													<thead>
 														<tr>
 															<td>
-																<input type="checkbox" value="">
+																<input id="my_check_all" type="checkbox">
 															</td>
 															<td>序号</td>
 															<td>商品名</td>
@@ -202,7 +202,7 @@
 															<div class="input-group">
 																<span class="input-group-addon"></span>
 																<input type="text" class="form-control">
-																<span class="input-group-addon post_file" id="hapi" title="上传图片">
+																<span class="input-group-addon post_file" title="上传图片">
 																	<input type="file" accept="image/*" style="display: none;">
 																	<i class="fa fa-fw fa-file-image-o"></i>
 																</span>
@@ -305,7 +305,7 @@
 											value += n.name + "   ";
 										});
 										$(this).parent().prev().val(value);
-									})
+									});
 								</script>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
@@ -349,8 +349,58 @@
 											url: APP_PATH + "/backstageproduct",
 											data: JSON.stringify(product),
 											contentType: "application/json",
-											success: function() {
-												
+											success: function(data) {
+												/* 上传宣传图片 */
+												if($(".post_file.post_image input").val() != null && $(".post_file.post_image input").val() != ""){
+													var formData = new FormData();
+													$.each($(".post_file.post_image input")[0].files, function(i, n) {
+														formData.append("files", n);
+													});
+													formData.append("commodityId", data.commodityId);
+													$.ajax({
+														method: "POST",
+														url: APP_PATH + "/backstage/product_images",
+														data: formData,
+														processData: false,
+														contentType: false
+													});	
+												}
+												var formData = new FormData();
+												var hasFile = false;
+												/* 搜寻文件 */
+												$.each($("#my_params_value_group .post_file"), function(i, n) {
+													if($(n).find("input").val() != null && $(n).find("input").val() != "") {				
+														var cur = n;
+														var parent = $(n).parent();
+														var key = parent.find("span").first().text();
+														key += parent.find("input:text").val();
+														$.each(data.propertyMap, function(i, n) {
+															if(key == i) {
+																if(!formData.has(n)) {
+																	formData.append("files", $(cur).find("input:file")[0].files[0]);
+																	formData.append("fileNames", n);
+																	formData.append(n, null);
+																	hasFile = true;
+																}
+																return false;
+															}
+														});
+													}
+												});
+												var ite = formData.entries();
+												/* 传参数图片 */
+												if(hasFile) {
+													$.ajax({
+														method: "POST",
+														url: APP_PATH + "/backstage/product_prop_images",
+														data: formData,
+														processData: false,
+														contentType: false
+													});
+												}
+												$('#modal-product').modal('hide');
+												getCommditiesByPageNumber(1);
+												$.scojs_message('添加商品成功', $.scojs_message.TYPE_OK);
 											}
 										});
 									});
@@ -360,4 +410,114 @@
 						</div>
 						<!-- /.modal-dialog -->
 					</div>
+					
+					<script type="text/javascript">
+						/* 点击全选 */
+						$("#my_check_all").click(function() {
+							if($(this).prop("checked")) {
+								$(".my_checkbox").prop("checked", true);
+							} else {
+								$(".my_checkbox").prop("checked", false);
+							}
+						});
+						
+						/* 批量删除 */
+						$("#batch_remove").click(function() {
+							if($(".my_checkbox:checked").length < 1) {
+								$.scojs_message('请选择商品', $.scojs_message.TYPE_ERROR);
+								return ;
+							}
+							$.confirm({
+								title: '删除提示',
+							    content: '确认删除吗？',
+							    confirmButton: '确认',
+							    cancelButton: '取消',
+							    confirmButtonClass: 'btn-warning',
+							    cancelButtonClass: 'btn-success',
+							    confirm: function(){
+							    	var string = "";
+							    	$.each($(".my_checkbox:checked"), function(i, n) {
+							    		string += "productIds=" + $(n).data("productid");
+							    		if(i < $(".my_checkbox:checked").length - 1) {
+							    			string += "&";
+							    		}
+							    	});
+							    	$.ajax({
+							    		method: "POST",
+							    		url: APP_PATH + "/backstage/products",
+							    		data: "_method=delete&" + string,
+							    		success: function(data) {
+							    			if(data > 0) {
+							    				getCommditiesByPageNumber(1);
+							    				$.scojs_message('删除商品成功', $.scojs_message.TYPE_OK);
+							    			}
+							    		}
+							    	});
+								}
+							});
+						});
+						/* 上架 */
+						$("#my_shangjia").click(function() {
+							if($(".my_checkbox:checked").length < 1) {
+								$.scojs_message('请选择商品', $.scojs_message.TYPE_ERROR);
+								return ;
+							}
+							var string = "";
+							$.each($(".my_checkbox:checked"), function(i, n) {
+					    		string += "productIds=" + $(n).data("productid");
+					    		if(i < $(".my_checkbox:checked").length - 1) {
+					    			string += "&";
+					    		}
+					    	});
+							$.ajax({
+								method: "POST",
+								url: APP_PATH + "/backstage/shangjia",
+								data: string,
+								success: function(data) {
+									if(data > 0) {
+										getCommditiesByPageNumber($(".paginate_button.active a").data("pagenum"));
+									}
+								}
+							});
+						});
+						/* 下架 */
+						$("#my_xiajia").click(function() {
+							if($(".my_checkbox:checked").length < 1) {
+								$.scojs_message('请选择商品', $.scojs_message.TYPE_ERROR);
+								return ;
+							}
+							var string = "";
+							$.each($(".my_checkbox:checked"), function(i, n) {
+					    		string += "productIds=" + $(n).data("productid");
+					    		if(i < $(".my_checkbox:checked").length - 1) {
+					    			string += "&";
+					    		}
+					    	});
+							$.ajax({
+								method: "POST",
+								url: APP_PATH + "/backstage/xiajia",
+								data: string,
+								success: function(data) {
+									if(data > 0) {
+										getCommditiesByPageNumber($(".paginate_button.active a").data("pagenum"));
+									}
+								}
+							});
+						});
+					</script>
 				</section>
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				

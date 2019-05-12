@@ -1,5 +1,10 @@
 package com.timeuni.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageInfo;
 import com.timeuni.mybean.BackstageProduct;
@@ -19,22 +25,67 @@ import com.timeuni.service.BackStageCommodityService;
 public class BackStageCommodityController {
 	@Autowired
 	private BackStageCommodityService backStageCommodityService;
-	
+
 	/* 获得商家商品 */
 	@RequestMapping(value = "/backstageproducts", method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo<SellerProduct> HandleGetProductsRequest(HttpSession httpSession, @RequestParam(required = false)Integer pageNum) {
-		if(pageNum == null) {
+	public PageInfo<SellerProduct> HandleGetProductsRequest(HttpSession httpSession,
+			@RequestParam(required = false) Integer pageNum) {
+		if (pageNum == null) {
 			pageNum = 1;
 		}
 		Integer sellerId = (Integer) httpSession.getAttribute("sellerId");
 		return backStageCommodityService.getCommoditiesBySellerId(sellerId, pageNum);
 	}
-	
+
 	/* 添加商品 */
 	@RequestMapping(value = "/backstageproduct", method = RequestMethod.POST)
 	@ResponseBody
-	public void handleAddProductRquest(@RequestBody BackstageProduct product) {
-		System.out.println(product);
+	public Map<String, Object> handleAddProductRquest(HttpSession httpSession, @RequestBody BackstageProduct product) {
+		return backStageCommodityService.addProduct(product, (Integer) httpSession.getAttribute("sellerId"));
+	}
+
+	/* 添加商品参数的图片 */
+	@RequestMapping(value = "/backstage/product_prop_images", method = RequestMethod.POST)
+	@ResponseBody
+	public String handleAddProductParamsImagesRequest(HttpSession session, MultipartFile[] files, String[] fileNames)
+			throws IllegalStateException, IOException {
+		String realPath = session.getServletContext().getRealPath("static/images/commodity_select_property");
+		for (int i = 0; i < files.length; i++) {
+			File image = new File(realPath + "/" + fileNames[i]);
+			files[i].transferTo(image);
+		}
+		return null;
+	}
+	
+	/* 添加商品图片 */
+	@RequestMapping(value = "/backstage/product_images", method = RequestMethod.POST)
+	@ResponseBody
+	public String handleAddProductImagesRequest(HttpSession session, MultipartFile[] files, Integer commodityId)
+			throws IllegalStateException, IOException {
+		String realPath = session.getServletContext().getRealPath("static/images/commodity_media_resources");
+		backStageCommodityService.addProductImages(commodityId, realPath, files);
+		return null;
+	}
+	
+	/* 批量删除商品 */
+	@RequestMapping(value = "/backstage/products", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Integer handleRemoveProductsRequest(@RequestParam(name = "productIds")List<Integer> productIds) {
+		return backStageCommodityService.removeProdutes(productIds);
+	}
+	
+	/* 商品上架 */
+	@RequestMapping(value = "/backstage/shangjia", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer handleProductsShangjiaRequest(@RequestParam(name = "productIds")List<Integer> productIds) {
+		return backStageCommodityService.shangjia(productIds);
+	}
+	
+	/* 商品上架 */
+	@RequestMapping(value = "/backstage/xiajia", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer handleProductsXiajiaRequest(@RequestParam(name = "productIds")List<Integer> productIds) {
+		return backStageCommodityService.xiajia(productIds);
 	}
 }

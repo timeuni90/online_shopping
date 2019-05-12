@@ -160,7 +160,7 @@
 		#{coverImage,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARCHAR})
 	</insert>
 	<insert id="insertSelective"
-		parameterType="com.timeuni.bean.Commodity">
+		parameterType="com.timeuni.bean.Commodity" useGeneratedKeys="true" keyProperty="id">
 		insert into tb_commodity
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -635,6 +635,6 @@
 		GROUP BY
 		c.id
 		ORDER BY
-		c.`status`
+		c.create_time desc
 	</select>
 </mapper>
