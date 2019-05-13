@@ -3,13 +3,15 @@ package com.timeuni.mybean;
 import java.util.List;
 
 public class BackStageProductRow {
+	private String rowId;
 	private Float price;
 	private Integer stock;
 	private List<BackStageProductKeyValue> properties;
 	
 	@Override
 	public String toString() {
-		return "BackStageProductRow [price=" + price + ", stock=" + stock + ", properties=" + properties + "]";
+		return "BackStageProductRow [rowId=" + rowId + ", price=" + price + ", stock=" + stock + ", properties="
+				+ properties + "]";
 	}
 
 	public Float getPrice() {
@@ -34,5 +36,13 @@ public class BackStageProductRow {
 
 	public void setProperties(List<BackStageProductKeyValue> properties) {
 		this.properties = properties;
+	}
+
+	public String getRowId() {
+		return rowId;
+	}
+
+	public void setRowId(String rowId) {
+		this.rowId = rowId;
 	}
 }

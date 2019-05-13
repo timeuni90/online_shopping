@@ -2,6 +2,8 @@ package com.timeuni.dao;
 
 import com.timeuni.bean.Order;
 import com.timeuni.bean.OrderExample;
+import com.timeuni.mybean.BackStageOrder;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+    
+    /* 获取商家的订单 */
+    public List<BackStageOrder> selectBySellerId(Integer sellerId);
 }

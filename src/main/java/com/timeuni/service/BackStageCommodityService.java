@@ -2,6 +2,7 @@ package com.timeuni.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,10 @@ import com.github.pagehelper.PageInfo;
 import com.timeuni.bean.Commodity;
 import com.timeuni.bean.CommodityExample;
 import com.timeuni.bean.CommodityMediaResource;
-import com.timeuni.bean.CommodityMediaResourceExample;
 import com.timeuni.bean.CommoditySelectProperty;
+import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
+import com.timeuni.bean.CommodityVariableExample;
 import com.timeuni.dao.CommodityMapper;
 import com.timeuni.dao.CommodityMediaResourceMapper;
 import com.timeuni.dao.CommoditySelectPropertyMapper;
@@ -132,5 +134,47 @@ public class BackStageCommodityService {
 		Commodity commodity = new Commodity();
 		commodity.setStatus(ProductStatus.xiajia.ordinal());
 		return commodityMapper.updateByExampleSelective(commodity, commodityExample);
+	}
+	
+	/* 通过商品id获取商品 */
+	public Map<String, Object> getProduct(Integer id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Commodity commodity = commodityMapper.selectByPrimaryKey(id);
+		CommoditySelectPropertyExample commoditySelectPropertyExample = new CommoditySelectPropertyExample();
+		commoditySelectPropertyExample.createCriteria().andCommodityIdEqualTo(id);
+		List<CommoditySelectProperty> commoditySelectProperties = commoditySelectPropertyMapper.selectByExample(commoditySelectPropertyExample);
+		List<String> rowIds = new ArrayList<String>();
+		for (CommoditySelectProperty commoditySelectProperty : commoditySelectProperties) {
+			rowIds.add(commoditySelectProperty.getSelectPropertyRow());
+		}
+		CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
+		commodityVariableExample.createCriteria().andSelectPropertyRowIn(rowIds);
+		List<CommodityVariable> commodityVariables = commodityVariableMapper.selectByExample(commodityVariableExample);
+		List<BackStageProductRow> backStageProductRows = new ArrayList<BackStageProductRow>();
+		for (CommodityVariable commodityVariable : commodityVariables) {
+			BackStageProductRow backStageProductRow = new BackStageProductRow();
+			backStageProductRow.setRowId(commodityVariable.getSelectPropertyRow());
+			backStageProductRow.setPrice(commodityVariable.getPrice());
+			backStageProductRow.setStock(commodityVariable.getStock());
+			List<BackStageProductKeyValue> backStageProductKeyValues =  new ArrayList<BackStageProductKeyValue>();
+			for (CommoditySelectProperty commoditySelectProperty : commoditySelectProperties) {
+				if(commoditySelectProperty.getSelectPropertyRow().equals(commodityVariable.getSelectPropertyRow())) {
+					BackStageProductKeyValue backStageProductKeyValue = new BackStageProductKeyValue();
+					backStageProductKeyValue.setType(commoditySelectProperty.getMediaType());
+					backStageProductKeyValue.setPropertyName(commoditySelectProperty.getPropertyName());
+					if(commoditySelectProperty.getMediaType() == CommodityPropertyType.TEXT_IMAGE.ordinal()) {
+						String propertyValue = commoditySelectProperty.getPropertyValue();
+						commoditySelectProperty.setPropertyValue(propertyValue.split("jpg\\+")[1]);
+					}
+					backStageProductKeyValue.setPropertyValue(commoditySelectProperty.getPropertyValue());
+					backStageProductKeyValues.add(backStageProductKeyValue);
+				}
+			}
+			backStageProductRow.setProperties(backStageProductKeyValues);
+			backStageProductRows.add(backStageProductRow);
+		}
+		map.put("commodity", commodity);
+		map.put("backStageProductRows", backStageProductRows);
+		return map;
 	}
 }

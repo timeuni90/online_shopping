@@ -19,5 +19,10 @@ public class BackStageViewController {
 		return "backstage/content/commodity_center";
 	}
 	
+	/* 获取订单列表界面 */
+	@RequestMapping(value = "/backstage/orderview", method = RequestMethod.GET)
+	public String handleGetOrderViewRequest() {
+		return "backstage/content/order";
+	}
 	
 }

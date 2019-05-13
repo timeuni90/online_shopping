@@ -25,8 +25,15 @@ import com.timeuni.service.BackStageCommodityService;
 public class BackStageCommodityController {
 	@Autowired
 	private BackStageCommodityService backStageCommodityService;
-
-	/* 获得商家商品 */
+	
+	/* 获得具体商品 */
+	@RequestMapping(value = "/backstage/product", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> handleGetProductRequest(Integer productId) {
+		return backStageCommodityService.getProduct(productId);
+	}
+	
+	/* 获得商家所有商品 */
 	@RequestMapping(value = "/backstageproducts", method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<SellerProduct> HandleGetProductsRequest(HttpSession httpSession,

@@ -18,6 +18,25 @@ $("#commodity_center_opener").click(function() {
 	});
 });
 
+/* 打开订单中心 */
+$("#my_order_opener").click(function() {
+	if($(this).hasClass("active")) {
+		return;
+	}
+	myLoadding();
+	$(".sidebar-menu.tree li").removeClass("active");
+	$(this).addClass("active");
+	$.ajax({
+		method: "GET",
+		url: APP_PATH + "/backstage/orderview",
+		success: function(orderview) {
+			$(".content-wrapper").empty();
+			$(".content-wrapper").append(orderview);
+			getOrdersByPageNum(1);
+		}
+	});
+});
+
 /* loadding */
 function myLoadding() {
 	var string = `<div class="container">
@@ -59,7 +78,7 @@ function getCommditiesByPageNumber(pageNum) {
 							  	<td>` + n.stock + `</td>
 								<td>` + n.monthSale + `</td>
 								<td>
-									<button type="button" class="btn btn-sm btn-success">查看</button>
+									<button type="button" data-toggle="modal" data-target="#modal-product-detail" class="btn btn-sm btn-success my_detail">查看</button>
 									<button type="button" class="btn btn-sm btn-warning">修改</button>
 									<button type="button" class="my_remove_product btn btn-sm btn-danger">删除</button>
 								</td>
@@ -140,6 +159,166 @@ function getCommditiesByPageNumber(pageNum) {
 				    }
 				});
 			});
+			/*点击查看*/
+			$(".my_detail").click(function() {
+				var productId = $(this).parent().parent().find(".my_checkbox").data("productid");
+				$.ajax({
+					mothod: "GET",
+					url: APP_PATH + '/backstage/product?productId=' + productId,
+					success: function(data) {
+						var html = `<div class="form-group">
+										<label class="col-sm-2 control-label">商品名</label>
+										<div class="col-sm-10" title="`+ data.commodity.title +`">
+											<input type="text" class="form-control" value="`+ data.commodity.title +`">
+										</div>
+									</div>`;
+						$.each(data.backStageProductRows, function(i, n) {
+							html += `<div id="my_params_value_group">`;
+							$.each(n.properties, function(i, n) {
+								html += `<div class="my_params_value">
+											<h5 class="page-header fengexian"></h5>
+											<div class="form-group">
+												<label class="col-sm-2 control-label">
+													参数值
+												</label>
+												<div class="col-sm-7">
+													<div class="input-group">
+														<span class="input-group-addon">` + n.propertyName + `</span>
+														<input type="text" class="form-control" value="`+ n.propertyValue +`">
+													</div>
+												</div>
+											</div>
+										</div>`;
+							});
+							html += `<div class="form-group my_sale_price">
+										<label class="col-sm-2 control-label"></label>
+										<div class="col-sm-7">
+											<div class="input-group">
+												<span class="input-group-addon">售价￥</span>
+												<input type="text" class="form-control" value="`+ parseFloat(n.price).toFixed(2) +`">
+											</div>
+										</div>
+									</div>`;
+							html += `<div class="form-group">
+										<label class="col-sm-2 control-label"></label>
+										<div class="col-sm-7">
+											<div class="input-group">
+												<span class="input-group-addon">库存</span>
+												<input type="text" class="form-control" value="`+ n.stock +`">
+											</div>
+										</div>
+									</div>`;
+						});
+						$("#modal-product-detail .box-body").empty();
+						$("#modal-product-detail .box-body").append(html);
+					}
+				});
+			});
 		}
 	});
 }
+
+/* 获取订单列表 */
+function getOrdersByPageNum(pageNum) {
+	$.ajax({
+		method: "GET",
+		url: APP_PATH + "/backstage/orders?pageNum=" + pageNum,
+		success: function(pageInfo) {
+			$(".table.table-hover").find("tbody").empty();
+			var html = "";
+			$.each(pageInfo.list, function(i, n) {
+				html = `<tr>	
+								<td><input type="checkbox"></td>
+								<td>` + i + `</td>
+								<td>` + n.orderNumber + `</td>
+								<td>` + n.generateTime + `</td>`;
+				switch(n.status) {
+					case 1: html += `<td><span class="label label-warning">待发货</span></td>`; break;
+					case 2: html += `<td><span class="label label-primary">已发货</span></td>`; break;
+					case 3: html += `<td><span class="label label-success">已完成</span></td>`; break;
+				}
+				html += 	`<td>` + n.userName + `</td>
+							<td>` + parseFloat(n.totalPrice).toFixed(2) + `</td>
+							<td>
+								<button type="button" class="my_order_detail btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-order-detail">查看</button>
+								<button type="button" class="my_remove_product btn btn-sm btn-danger" data-orderid="` + n.id + `">删除</button>
+							</td>
+						</tr>`;
+				$(".table.table-hover").find("tbody").append(html);
+			});
+			/* 更新页码 */
+			var navigatepageNums = '';
+			if(pageInfo.hasPreviousPage) {
+				navigatepageNums += `<li>
+										<a href="#" data-pageNum="` + (parseInt(pageInfo.pageNum)-1) + `">上一页</a>
+									</li>`;
+			} else {
+				navigatepageNums += `<li class="disabled">
+										<a href="#" data-pageNum="` + (parseInt(pageInfo.pageNum)-1) + `">上一页</a>
+									</li>`;
+			}
+			$.each(pageInfo.navigatepageNums, function(i, n) {
+				if(pageInfo.pageNum == n) {
+					navigatepageNums += `<li class="active">
+											<a href="#" data-pageNum="` + n + `">` + n + `</a>
+										</li>`;
+				} else {
+					navigatepageNums += `<li>
+											<a href="#" data-pageNum="` + n + `">` + n + `</a>
+										</li>`;
+				}
+			});
+			if(pageInfo.hasNextPage) {
+				navigatepageNums += `<li>
+										<a href="#" data-pageNum="` + (parseInt(pageInfo.pageNum)+1) + `">下一页</a>
+									</li>`;
+			} else {
+				navigatepageNums += `<li class="disabled">
+										<a href="#" data-pageNum="` + (parseInt(pageInfo.pageNum)+1) + `">下一页</a>
+									</li>`;
+			}
+			$(".pagination").empty();
+			$(".pagination").append(navigatepageNums);
+			/* 点击页码 */
+			$(".pagination li").click(function() {
+				if($(this).hasClass("disabled") || $(this).hasClass("active")) {
+					return;
+				}
+				getOrdersByPageNum($(this).find("a").data("pagenum"));
+			});
+			/* 点击删除 */
+			$(".my_remove_product.btn.btn-sm.btn-danger").click(function() {
+				var orderIds = $(this).data("orderid");
+				$.confirm({
+					title: '删除提示',
+				    content: '确认删除吗？',
+				    confirmButton: '确认',
+				    cancelButton: '取消',
+				    confirmButtonClass: 'btn-warning',
+				    cancelButtonClass: 'btn-success',
+				    confirm: function() {
+				    	$.ajax({
+				    		method: "POST",
+				    		url: APP_PATH + "/backstage/orders",
+				    		data: "_method=delete&orderIds=" + orderIds,
+				    		success: function(data) {
+				    			if(data < 1) {
+				    				$.scojs_message('未完成订单无法删除', $.scojs_message.TYPE_ERROR);
+				    				return;
+				    			}
+				    			getOrdersByPageNum(1);
+				    			$.scojs_message('删除商品成功', $.scojs_message.TYPE_OK);
+				    		}
+				    	});
+				    }
+				});
+			});
+			/* 订单明细 */
+			$(".my_order_detail").click(function() {
+				
+			});
+		}
+	});
+}
+
+

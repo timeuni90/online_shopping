@@ -276,8 +276,8 @@ desired effect
 					<ul class="sidebar-menu" data-widget="tree">
 						<li class="header">HEADER</li>
 						<!-- Optionally, you can add icons to the links -->
-						<li class="active">
-							<a href="#"><i class="fa fa-link"></i> <span>Link</span></a>
+						<li class="active" id="my_order_opener">
+							<a href="#"><i class="fa fa-link"></i> <span>订单中心</span></a>
 						</li>
 						<li id="commodity_center_opener">
 							<a href="#"><i class="fa fa-link"></i> <span>商品中心</span></a>
