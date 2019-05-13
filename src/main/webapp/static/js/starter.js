@@ -240,7 +240,7 @@ function getOrdersByPageNum(pageNum) {
 				html += 	`<td>` + n.userName + `</td>
 							<td>` + parseFloat(n.totalPrice).toFixed(2) + `</td>
 							<td>
-								<button type="button" class="my_order_detail btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-order-detail">查看</button>
+								<button type="button" class="my_order_detail btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-order-detail" data-orderid="` + n.id + `">查看</button>
 								<button type="button" class="my_remove_product btn btn-sm btn-danger" data-orderid="` + n.id + `">删除</button>
 							</td>
 						</tr>`;
@@ -315,7 +315,14 @@ function getOrdersByPageNum(pageNum) {
 			});
 			/* 订单明细 */
 			$(".my_order_detail").click(function() {
-				
+				var orderId = $(this).data("orderid");
+				$.ajax({
+					method: "GET",
+					url: APP_PATH + "/backstage/orderdetail?orderId=" + orderId,
+					success: function() {
+						
+					}
+				});
 			});
 		}
 	});

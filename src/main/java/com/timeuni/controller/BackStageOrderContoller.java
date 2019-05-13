@@ -1,6 +1,7 @@
 package com.timeuni.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,4 +39,10 @@ public class BackStageOrderContoller {
 		return backstageOrderService.removeOrders(orderIds);
 	}
 	
+	/* 获取订单明细 */
+	@RequestMapping(value = "/backstage/orderdetail", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> handleGetOrderDetailRequest(Integer orderId) {
+		return backstageOrderService.getOrderDetailByOrderId(orderId);
+	}
 }

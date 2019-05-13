@@ -116,6 +116,7 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
+											<td>#</td>
 											<td>商品</td>
 											<td>参数</td>
 											<td>单价</td>
@@ -125,6 +126,7 @@
 									</thead>
 									<tbody>
 										<tr>
+										
 											<td>1</td>
 											<td>Call of Duty</td>
 											<td>455-981-221</td>
