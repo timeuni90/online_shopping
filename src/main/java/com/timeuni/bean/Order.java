@@ -2,6 +2,8 @@ package com.timeuni.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Order {
     private Integer id;
 
@@ -14,7 +16,8 @@ public class Order {
     private String userName;
 
     private String storeName;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date generateTime;
 
     private Integer status;

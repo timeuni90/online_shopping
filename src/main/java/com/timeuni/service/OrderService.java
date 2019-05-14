@@ -110,12 +110,12 @@ public class OrderService {
 		for (Order order : orders) {
 			Map<OrderDetail, String> map1 = new HashMap<OrderDetail,String>();
 			for (OrderDetail orderDetail : orderDetails) {
-				if(orderDetail.getOrderId() == order.getId()) {
+				if(orderDetail.getOrderId().intValue() == order.getId().intValue()) {
 					String location = new ResourceLocation().getCommodityCoverImageLocation();
 					orderDetail.setCommodityCover(location + orderDetail.getCommodityCover());
 					String param = "";
 					for (OrderCommoditySelectProperty orderCommoditySelectProperty : commoditySelectProperties) {
-						if(orderCommoditySelectProperty.getOrderDetailId() == orderDetail.getId()) {
+						if(orderCommoditySelectProperty.getOrderDetailId().intValue() == orderDetail.getId().intValue()) {
 							String[] split = orderCommoditySelectProperty.getPropertyValue().split("jpg\\+");
 							if(split.length > 1) {
 								param += split[1] + " ";

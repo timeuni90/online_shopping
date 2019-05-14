@@ -30,7 +30,7 @@ public class CartService {
 		CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
 		commodityVariableExample.createCriteria().andSelectPropertyRowEqualTo(cartItem.getSelectPropertyRow());
 		List<CommodityVariable> commodityVariables = commodityVariableMapper.selectByExample(commodityVariableExample);
-		if(commodityVariables.get(0).getStock() < cartItem.getQuantity()) {
+		if(commodityVariables.get(0).getStock().intValue() < cartItem.getQuantity().intValue()) {
 			return false;
 		}
 		/* 更新购物车 */

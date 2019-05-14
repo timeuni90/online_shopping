@@ -233,7 +233,7 @@ function getOrdersByPageNum(pageNum) {
 								<td>` + n.orderNumber + `</td>
 								<td>` + n.generateTime + `</td>`;
 				switch(n.status) {
-					case 1: html += `<td><span class="label label-warning">待发货</span></td>`; break;
+					case 1: html += `<td><span class="label label-warning my_delieve" data-orderid=" ` + n.id + ` " style="cursor: pointer;" title="点击发货">待发货</span></td>`; break;
 					case 2: html += `<td><span class="label label-primary">已发货</span></td>`; break;
 					case 3: html += `<td><span class="label label-success">已完成</span></td>`; break;
 				}
@@ -319,8 +319,89 @@ function getOrdersByPageNum(pageNum) {
 				$.ajax({
 					method: "GET",
 					url: APP_PATH + "/backstage/orderdetail?orderId=" + orderId,
-					success: function() {
-						
+					success: function(data) {
+						var html = `<div class="row">
+										<div class="col-xs-12">
+											<h2 class="page-header">
+												<i class="fa fa-globe"></i> 
+												` + data.order.storeName + `
+												<small class="pull-right">日期: ` + data.order.generateTime +`</small>
+											</h2>
+										</div>
+									</div>`;
+						html += `<div class="row"><div class="col-xs-12 table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<td>#</td>
+												<td>商品</td>
+												<td>参数</td>
+												<td>单价</td>
+												<td>数量</td>
+												<td>小计</td>
+											</tr>
+										</thead>
+									<tbody>`;
+						$.each(data.orderDetail, function(i, n) {
+							html += `<tr>
+										<td>` + (i+1) + `</td>
+										<td title="` + n.orderDetail.commotityName + `">` + n.orderDetail.commotityName.substring(0, 7) + `</td>
+										<td>` + n.param + `</td>
+										<td>￥` + n.orderDetail.price.toFixed(2) + `</td>
+										<td>` + n.orderDetail.quantity + `</td>
+										<td>￥` + (n.orderDetail.price * n.orderDetail.quantity).toFixed(2) + `</td>
+									</tr>`;
+						});
+						html += `</tbody></table></div></div>`;
+						html += `<div class="row invoice-info">
+							<div class="col-sm-6 invoice-col">
+								<address>
+									<strong>收货地址信息</strong>
+									<br> 
+										姓名：` + data.order.receiveAddress.split("+")[2] + `
+									<br>
+										联系方式：` + data.order.receiveAddress.split("+")[3] + `
+									<br>
+										收货地址：` + data.order.receiveAddress.split("+")[0] + data.order.receiveAddress.split("+")[1] + `
+								</address>
+							</div>
+							<div class="col-xs-6">
+								<div class="table-responsive">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 50%">运费:</th>
+											<td>￥0.00</td>
+										</tr>
+										<tr>
+											<th>共计:</th>
+											<td>￥` + data.totalPrice.toFixed(2) + `</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>`;
+						html += `<div class="row no-print">
+									<div class="col-xs-12">
+										<a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+									</div>
+								</div>`;
+						$(".invoice").empty();
+						$(".invoice").append(html);
+					}
+				});
+			});
+			/* 发货 */
+			$(".my_delieve").click(function() {
+				var orderId = $(this).data("orderid");
+				$.ajax({
+					method: "POST",
+					url: APP_PATH + "/backstage/delieve",
+					data: "orderId=" + orderId,
+					success: function(data) {
+						if(data > 0) {
+							getOrdersByPageNum($(".pagination .active a").data("pagenum"));
+						}
 					}
 				});
 			});

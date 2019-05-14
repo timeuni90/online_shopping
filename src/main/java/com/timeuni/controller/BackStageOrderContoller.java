@@ -45,4 +45,11 @@ public class BackStageOrderContoller {
 	public Map<String, Object> handleGetOrderDetailRequest(Integer orderId) {
 		return backstageOrderService.getOrderDetailByOrderId(orderId);
 	}
+	
+	/* 发货 */
+	@RequestMapping(value = "/backstage/delieve", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer handleDelieveRequest(Integer orderId) {
+		return backstageOrderService.delieve(orderId);
+	}
 }

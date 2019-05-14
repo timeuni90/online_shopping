@@ -62,13 +62,15 @@ public class BackStageOrderService {
 		orderCommoditySelectPropertyExample.createCriteria().andOrderDetailIdIn(detailIds);
 		List<OrderCommoditySelectProperty> properties = orderCommoditySelectPropertyMapper.selectByExample(orderCommoditySelectPropertyExample);
 		List<Map<String, Object>> orderDetailsWithParam = new ArrayList<Map<String,Object>>();
+		float totalPrice = 0;
 		for (OrderDetail orderDetail : orderDetails) {
+			totalPrice += orderDetail.getQuantity() * orderDetail.getPrice();
 			Map<String, Object> orderDetailMap = new HashMap<String, Object>();
-			orderDetailMap.put("orderDetail", orderDetails);
+			orderDetailMap.put("orderDetail", orderDetail);
 			String param = "";
 			for (OrderCommoditySelectProperty property : properties) {
-				if(orderDetail.getId() == property.getOrderDetailId()) {
-					param += property.getPropertyValue();
+				if(orderDetail.getId().equals(property.getOrderDetailId())) {
+					param += property.getPropertyValue() + " ";
 				}
 			}
 			orderDetailMap.put("param", param);
@@ -77,6 +79,15 @@ public class BackStageOrderService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("order", order);
 		map.put("orderDetail", orderDetailsWithParam);
+		map.put("totalPrice", totalPrice);
 		return map;
+	}
+	
+	/* 发货 */
+	public Integer delieve(Integer orderId) {
+		Order order = new Order();
+		order.setId(orderId);
+		order.setStatus(OrderStatus.DELIVERED.ordinal());
+		return orderMapper.updateByPrimaryKeySelective(order);
 	}
 }

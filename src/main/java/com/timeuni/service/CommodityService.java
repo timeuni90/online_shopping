@@ -169,9 +169,9 @@ public class CommodityService {
 		 	for (Comment comment : comments) {
 		 		List<OrderCommoditySelectProperty> orderCommoditySelectPropertys1 = new ArrayList<OrderCommoditySelectProperty>();
 				for (OrderDetail orderDetail : orderDetails) {
-					if(comment.getOrderId() == orderDetail.getOrderId()) {
+					if(comment.getOrderId().intValue() == orderDetail.getOrderId().intValue()) {
 						for (OrderCommoditySelectProperty orderCommoditySelectProperty : orderCommoditySelectProperties) {
-							if(orderDetail.getId() == orderCommoditySelectProperty.getOrderDetailId()) {
+							if(orderDetail.getId().intValue() == orderCommoditySelectProperty.getOrderDetailId().intValue()) {
 								orderCommoditySelectPropertys1.add(orderCommoditySelectProperty);
 							}
 						}
@@ -194,7 +194,7 @@ public class CommodityService {
 		 		List<CommentImage> commentImages1 = new ArrayList<CommentImage>();
 		 		boolean flag = false;
 				for (CommentImage commentImage : commentImages) {
-					if(commentAppend.getId() == commentImage.getCommentAppendId()) {
+					if(commentAppend.getId().intValue() == commentImage.getCommentAppendId().intValue()) {
 						flag = true;
 						commentImages1.add(commentImage);
 					}
@@ -206,7 +206,7 @@ public class CommodityService {
 		 	for (Comment comment : comments) {
 		 		List<CommentAppend> commentAppends1 = new ArrayList<CommentAppend>();
 				for(CommentAppend commentAppend : commentAppends) {
-					if(comment.getId() == commentAppend.getCommentId()) {
+					if(comment.getId().intValue() == commentAppend.getCommentId().intValue()) {
 						commentAppends1.add(commentAppend);
 					}
 				}
