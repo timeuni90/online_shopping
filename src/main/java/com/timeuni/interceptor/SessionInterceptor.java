@@ -12,7 +12,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		request.getSession(true).setAttribute("userId", 1);
-		request.getSession(true).setAttribute("sellerId", 5);
+		request.getSession(true).setAttribute("sellerId", 7);
 		return true;
 	}
 

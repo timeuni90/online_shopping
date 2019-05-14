@@ -2,6 +2,7 @@ package com.timeuni.dao;
 
 import com.timeuni.bean.Commodity;
 import com.timeuni.bean.CommodityExample;
+import com.timeuni.mybean.ProductWithSaleQuantity;
 import com.timeuni.mybean.SellerProduct;
 
 import java.util.List;
@@ -61,4 +62,7 @@ public interface CommodityMapper {
 	
 	/* 获取商家的商品 */
 	public List<SellerProduct> selectBySellerId(Integer sellerId);
+	
+	/* 统计每个商品的销量 */
+	public List<ProductWithSaleQuantity> selectSumSaleQuantityBySellerId(Integer sellerId);
 }

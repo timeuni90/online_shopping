@@ -160,7 +160,8 @@
 		#{coverImage,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARCHAR})
 	</insert>
 	<insert id="insertSelective"
-		parameterType="com.timeuni.bean.Commodity" useGeneratedKeys="true" keyProperty="id">
+		parameterType="com.timeuni.bean.Commodity" useGeneratedKeys="true"
+		keyProperty="id">
 		insert into tb_commodity
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -509,7 +510,8 @@
 		CONCAT(
 		#{coverLocation},
 		c.cover_image
-		) cover_image,
+		)
+		cover_image,
 		c.title,
 		tmp.min_price,
 		tmp.min_promotion_price
@@ -536,9 +538,10 @@
 		count(cc.commodity_id) DESC
 		LIMIT 10
 	</select>
-	
+
 	<!-- public List<Commodity> selectByCommodityIds(List<Integer> commodityId); -->
-	<select id="selectByCommodityIds" resultMap="CommodityMapWithSeller">
+	<select id="selectByCommodityIds"
+		resultMap="CommodityMapWithSeller">
 		SELECT
 		c.id,
 		c.title,
@@ -572,9 +575,10 @@
 		od.commodity_id
 		LEFT JOIN tb_order o ON od.order_id = o.id
 		WHERE
-		c.id IN 
-		<foreach collection="commodityIds" item="commodityId" separator="," open="(" close=")">
-		#{commodityId}
+		c.id IN
+		<foreach collection="commodityIds" item="commodityId"
+			separator="," open="(" close=")">
+			#{commodityId}
 		</foreach>
 		AND ABS(
 		DATEDIFF(o.generate_time, now())
@@ -592,7 +596,7 @@
 			min_price ASC
 		</if>
 	</select>
-	
+
 	<!-- public List<SellerProduct> selectBySellerId(Integer sellerId); -->
 	<select id="selectBySellerId"
 		resultType="com.timeuni.mybean.SellerProduct">
@@ -604,7 +608,8 @@
 		IFNULL(SUM(od.quantity), 0) month_sale,
 		c_csp_cv.stock
 		FROM
-		tb_commodity c
+		tb_commodity
+		c
 		INNER JOIN (
 		SELECT
 		tmp.commodity_id,
@@ -623,11 +628,14 @@
 		csp.commodity_id
 		GROUP BY
 		csp.select_property_row
-		) tmp ON cv.select_property_row = tmp.`row`
+		) tmp ON cv.select_property_row =
+		tmp.`row`
 		GROUP BY
 		tmp.commodity_id
-		) c_csp_cv ON c.id = c_csp_cv.commodity_id
-		LEFT JOIN tb_order_detail od ON c.id = od.commodity_id
+		) c_csp_cv ON c.id =
+		c_csp_cv.commodity_id
+		LEFT JOIN tb_order_detail od ON c.id =
+		od.commodity_id
 		LEFT JOIN tb_order o ON od.order_id = o.id
 		WHERE
 		c.seller_id = #{sellerId}
@@ -636,5 +644,22 @@
 		c.id
 		ORDER BY
 		c.create_time desc
+	</select>
+
+	<!-- public Integer selectSumSaleQuantityBySellerId(Integer sellerId); -->
+	<select id="selectSumSaleQuantityBySellerId"
+		resultType="com.timeuni.mybean.ProductWithSaleQuantity">
+		SELECT
+		c.id commodity_id,
+		c.title,
+		IFNULL(SUM(od.quantity), 0) sale_quantity
+		FROM
+		tb_commodity c
+		LEFT JOIN tb_order_detail od ON c.id = od.commodity_id
+		LEFT JOIN tb_order o ON od.order_id = o.id
+		WHERE
+		c.seller_id = #{sellerId}
+		GROUP BY
+		c.id
 	</select>
 </mapper>

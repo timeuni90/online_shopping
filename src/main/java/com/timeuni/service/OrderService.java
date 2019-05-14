@@ -251,6 +251,7 @@ public class OrderService {
 			/* 插入订单 */
 			orderMapper.insertSelective(order);
 			for (SubmitOrderCommodity submitOrderCommodity : SubmitOrderCommodities) {
+				Commodity com = commodityMapper.selectByPrimaryKey(submitOrderCommodity.getCommodityId());
 				CommodityVariableExample commodityVariableExample = new CommodityVariableExample();
 				commodityVariableExample.createCriteria().andSelectPropertyRowEqualTo(submitOrderCommodity.getRow());
 				CommodityVariable commodityVariable = commodityVariableMapper.selectByExample(commodityVariableExample).get(0);
@@ -258,8 +259,8 @@ public class OrderService {
 				commoditySelectPropertyExample.createCriteria().andSelectPropertyRowEqualTo(submitOrderCommodity.getRow());
 				List<CommoditySelectProperty> commoditySelectProperties = commoditySelectPropertyMapper.selectByExample(commoditySelectPropertyExample);
 				OrderDetail orderDetail = new OrderDetail();
-				orderDetail.setOrderId(order.getId()).setCommodityId(commodity.getId()).setCommotityName(commodity.getTitle()).
-					setCommodityCover(commodity.getCoverImage()).setPrice(commodityVariable.getPrice()).
+				orderDetail.setOrderId(order.getId()).setCommodityId(com.getId()).setCommotityName(com.getTitle()).
+					setCommodityCover(com.getCoverImage()).setPrice(commodityVariable.getPrice()).
 					setPromotionPrice(commodityVariable.getPromotionPrice()).setQuantity(submitOrderCommodity.getQuantity());
 				/* 插入订单详情 */
 				orderDetailMapper.insertSelective(orderDetail);
