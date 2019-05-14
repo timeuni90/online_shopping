@@ -25,4 +25,8 @@ public class BackStageViewController {
 		return "backstage/content/order";
 	}
 	
+	@RequestMapping(value = "/backstage/statisticview")
+	public String handleGetStatisticViewRequest() {
+		return "backstage/content/statistic";
+	}
 }

@@ -37,6 +37,23 @@ $("#my_order_opener").click(function() {
 	});
 });
 
+/* 打开销量统计 */
+$("#my_sale_quantity_statistic").click(function() {
+	if($(this).hasClass("active")) {
+		return;
+	}
+	myLoadding();
+	$(".sidebar-menu.tree li").removeClass("active");
+	$(this).addClass("active");
+	$.ajax({
+		method: "GET",
+		url: APP_PATH + "/backstage/statisticview",
+		success: function(html) {
+			$(".content-wrapper").empty();
+			$(".content-wrapper").append(html);
+		}
+	});
+});
 /* loadding */
 function myLoadding() {
 	var string = `<div class="container">

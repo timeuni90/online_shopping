@@ -282,6 +282,9 @@ desired effect
 						<li id="commodity_center_opener">
 							<a href="#"><i class="fa fa-link"></i> <span>商品中心</span></a>
 						</li>
+						<li id="my_sale_quantity_statistic">
+							<a href="#"><i class="fa fa-link"></i> <span>销量统计</span></a>
+						</li>
 						<li class="treeview">
 							<a href="#"><i class="fa fa-link"></i> <span>商品中心</span>
 								<span class="pull-right-container">
@@ -400,9 +403,11 @@ desired effect
 		
 		<script src="${APP_PATH }/static/js/sco.message.js"></script>
 		
-		<script src="${APP_PATH }/static/js/starter.js"></script>
-		
 		<script src="${APP_PATH }/static/js/jquery-confirm.min.js"></script>
+		
+		<script src="${APP_PATH }/static/js/Chart.min.js"></script>
+		
+		<script src="${APP_PATH }/static/js/starter.js"></script>
 	</body>
 
 </html>
