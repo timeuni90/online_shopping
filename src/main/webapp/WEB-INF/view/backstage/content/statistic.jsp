@@ -62,7 +62,6 @@
 				labels.push(n.title.substring(0, 10));
 				backgroundColors.push(colors[i%colors.length]);
 			});
-			console.log(backgroundColors);
 			generateChart(data, labels, backgroundColors);
 		}
 	});
