@@ -426,4 +426,125 @@ function getOrdersByPageNum(pageNum) {
 	});
 }
 
+var websocket = null;
+//判断当前浏览器是否支持WebSocket  
+if ('WebSocket' in window) {
+	websocket = new WebSocket(
+			"ws://localhost:8080/online-shopping/sellerwebsocket");
+} else {
+	alert('当前浏览器 Not support websocket');
+}
+
+//接收到消息的回调方法
+websocket.onmessage = function(eve) {
+	var number = $("#message_tip").text();
+	if(number == null || number == "") {
+		number = 0;
+	}
+	var data = JSON.parse(eve.data);
+	$("#message_tip").text(++number);
+	/* 插入内容 */
+	var flag = false;
+	$.each($(".direct-chat-messages"), function(i, n) {
+		if($(n).data("userid") == data.fromId) {
+			flag = true;
+			var html = `<div class="direct-chat-msg">
+							<div class="direct-chat-info clearfix">
+								<span class="direct-chat-name pull-left">` + data.name + `</span>
+								<span class="direct-chat-timestamp pull-right">` + data.time + `</span>
+							</div>
+							<img class="direct-chat-img" src="` + data.image + `" alt="message user image">
+							<div class="direct-chat-text">` + data.message + `</div>
+						</div>`;
+			$(n).append(html);
+		}
+	});
+	if(!flag) {
+		var html = `<div class="direct-chat-messages hidden" data-userid="` + data.fromId + `">
+						<div class="direct-chat-msg">
+							<div class="direct-chat-info clearfix">
+								<span class="direct-chat-name pull-left">` + data.name + `</span> 
+								<span class="direct-chat-timestamp pull-right">` + data.time + `</span>
+							</div>
+							<img class="direct-chat-img" src="` + data.image + `" alt="message user image">
+							<div class="direct-chat-text">` + data.message + `</div>
+						</div>
+					</div>`;
+		$(".direct-chat-contacts").before(html);
+	}
+	/* 插入提示信息 */
+	var message = data.message;
+	if(data.message.length > 35) {
+		message = data.message.substring(0, 35) + "...";
+	}
+	var tag = false;
+	$.each($("#message_dropdown .message_unit"), function(i, n) {
+		if($(n).data("userid") == data.fromId) {
+			tag = true;
+			$(n).find("small label").text(data.time);
+			$(n).find("p").text(message);
+			var tip_quantity = $(n).find(".number_tip").text();
+			if(tip_quantity == null || tip_quantity == "") {
+				tip_quantity = 0
+			}
+			$(n).find(".number_tip").text(++tip_quantity);
+			return false;
+		}
+	});
+	if(!tag) {
+		var drop_down_li = `<li class="message_unit" data-userid="` + data.fromId + `">
+								<a>
+									<div class="pull-left" style="position: relative;">
+										<img src="`+ data.image +`"class="img-circle" alt="User Image">
+										<span class="number_tip label label-danger" style="
+											    position: absolute;
+											    top: -2px;
+											    right: 5px;
+											    text-align: center;
+											    font-size: 9px;
+											    padding: 2px 3px;
+											    line-height: .9;">1</span>
+									</div>
+									<h4>
+										` + data.name + `
+										<small>
+											<i class="fa fa-clock-o"></i>
+											<label>` + data.time + `</label>
+										</small>
+									</h4>
+									<p>` + message + `</p>
+								</a>
+							</li>`;
+		$("#message_dropdown .menu").append(drop_down_li);
+		/* 打开聊天中心 */
+		$(".message_unit").click(function() {
+			var cur = this;
+			$(".direct-chat-messages").addClass("hidden");
+			$.each($(".direct-chat-messages"), function(i, n) {
+				if($(n).data("userid") == $(cur).data("userid")) {
+					$(n).removeClass("hidden");
+				}
+			});
+			$('#chat_modal').modal('show');
+		});
+	}
+		
+}
+//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。  
+window.onbeforeunload = function() {
+	websocket.close();
+}
+
+/* 改动chat的滚动条 */
+$('#chat_modal').on('shown.bs.modal', function(e) {
+	$.each($(".direct-chat-messages"), function(i, n) {
+		if(!$(n).hasClass("hidden")) {
+			var scrollHeight = $(n).prop("scrollHeight");
+			$(n)[0].scrollTop = scrollHeight;
+			return false;
+		}
+	});
+});
+
+
 

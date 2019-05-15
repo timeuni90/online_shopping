@@ -21,12 +21,24 @@
 <!DOCTYPE html>
 <html
 	class="w1190 ks-webkit537 ks-webkit ks-chrome73 ks-chrome browser-Chromium">
-
 <head>
+<title>商品</title>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>商品</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+
+<!-- adminlte的样式 -->
+<link rel="stylesheet"
+	href="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/backstage/bower_components/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/backstage/bower_components/Ionicons/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="${APP_PATH }/static/backstage/dist/css/AdminLTE.min.css">
 
 <!-- globalmodule version: 3.0.83 -->
 <link rel="stylesheet"
@@ -70,12 +82,14 @@
 <link href="${APP_PATH }/static/css/commodity_detail/try.css"
 	rel="stylesheet">
 
+
+
 <!-- 新增css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
-<%@ include file="/WEB-INF/view/public/public_css.jsp" %>
+<%@ include file="/WEB-INF/view/public/public_css.jsp"%>
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 </head>
 
@@ -86,7 +100,7 @@ button {
 }
 </style>
 	<!--from fragment-->
-	<%@ include file="/WEB-INF/view/header.jsp" %>
+	<%@ include file="/WEB-INF/view/header.jsp"%>
 
 	<div data-spm="1998132232" id="J_dingtian">
 
@@ -123,8 +137,7 @@ button {
 											<div class="rel" data-title="power by junezx 3.0"
 												style="position: relative; overflow: hidden; width: 1920px; height: 150px; background: #FFFFFF; line-height: normal; margin-left: 50%; left: -960px; z-index: 1;"
 												data-rn="abqns">
-												<a
-													class="job  abs imghover none  asHMt-Hju6"
+												<a class="job  abs imghover none  asHMt-Hju6"
 													data-linkmode="ptlink" data-appid="asHMt-Hju6"
 													style="text-decoration: none; margin-top: 30px; overflow: hidden; background: url(${APP_PATH }/static/images/other/guanzhu.png) 50% 50% no-repeat; width: 110px; height: 114px; top: 0px; left: 683px; z-index: 10; opacity: 1;"
 													target="_blank"
@@ -133,8 +146,7 @@ button {
 													<img class=" "
 													style="width: 110px; height: 114px; background: url1(// gdp.alicdn.com/ imgextra/ i1/ 1695308781/ TB2DGnmpSXlpuFjy0FeXXcJbFXa_ !! 1695308781.png) 50% 50% no-repeat;"
 													src="//assets.alicdn.com/s.gif">
-												</a> <a class="jsib abs aB2BQ-SNYq"
-													target="_blank"
+												</a> <a class="jsib abs aB2BQ-SNYq" target="_blank"
 													style="outline-color: #FFFFFF; margin-top: 30px; display: block; width: 323px; height: 114px; top: 0px; left: 360px; border: none; z-index: 10;"
 													data-linkmode="ptlink" data-appid="aB2BQ-SNYq"
 													data-spm-wangpu-module-id="14208996-14888858591"
@@ -368,8 +380,10 @@ button {
 														type="text" class="tb-text mui-amount-input" value="1"
 														maxlength="8" title="请输入购买量"> <span
 														class="mui-amount-btn"> <span
-															class="mui-amount-increase oi icon" data-glyph="chevron-top" style="font-size: 2px;"></span><span
-															class="mui-amount-decrease oi icon" data-glyph="chevron-bottom" style="font-size: 2px;"></span>
+															class="mui-amount-increase oi icon"
+															data-glyph="chevron-top" style="font-size: 2px;"></span><span
+															class="mui-amount-decrease oi icon"
+															data-glyph="chevron-bottom" style="font-size: 2px;"></span>
 													</span> <span class="mui-amount-unit">件</span>
 													</span> <em id="J_EmStock" class="tb-hidden"
 														style="display: inline;">库存${commodity.stock }件</em> <span
@@ -387,8 +401,8 @@ button {
 														role="button">立即购买<span class="ensureText">确认</span></a>
 												</div>
 												<div class="tb-btn-basket tb-btn-sku">
-													<a href="#" rel="nofollow" id="J_LinkBasket" class="noPost" role="button"><i></i>加入购物车<span
-														class="ensureText">确认</span></a>
+													<a href="#" rel="nofollow" id="J_LinkBasket" class="noPost"
+														role="button"><i></i>加入购物车<span class="ensureText">确认</span></a>
 												</div>
 												<div class="tb-btn-add tb-btn-sku tb-hidden">
 													<a href="#" rel="nofollow" id="J_LinkAdd" role="button"><i></i>加入购物车</a>
@@ -403,21 +417,15 @@ button {
 										<dt class="tb-metatit">服务承诺</dt>
 										<dd class="tm-laysku-dd">
 											<ul class="tb-serPromise">
+												<li><a title="全国联保">全国联保</a></li>
 												<li><a
-													title="全国联保">全国联保</a></li>
+													title="信誉评级为“极好”或“优秀”的会员，签收7天内交易状态为“交易成功”或“交易关闭”之前因质量问题申请退换货免举证，0秒响应">免举证退换货</a></li>
+												<li><a title="商品支持正品保障服务">正品保证</a></li>
 												<li><a
-													title="信誉评级为“极好”或“优秀”的会员，签收7天内交易状态为“交易成功”或“交易关闭”之前因质量问题申请退换货免举证，0秒响应"
-													>免举证退换货</a></li>
-												<li><a
-													title="商品支持正品保障服务" >正品保证</a></li>
-												<li><a
-													title="极速退款是为诚信会员提供的退款退货流程的专享特权，额度是根据每个用户当前的信誉评级情况而定"
-													>极速退款</a></li>
-												<li><a
-													title="卖家为您购买的商品投保退货运费险（保单生效以下单显示为准）" target="_blank">赠运费险</a>
-												</li>
-												<li><a
-													title="七天无理由退换">七天无理由退换</a></li>
+													title="极速退款是为诚信会员提供的退款退货流程的专享特权，额度是根据每个用户当前的信誉评级情况而定">极速退款</a></li>
+												<li><a title="卖家为您购买的商品投保退货运费险（保单生效以下单显示为准）"
+													target="_blank">赠运费险</a></li>
+												<li><a title="七天无理由退换">七天无理由退换</a></li>
 											</ul>
 										</dd>
 									</dl>
@@ -429,13 +437,14 @@ button {
 
 							<div class="tb-booth">
 								<a href="javascript:void(0);"> <!-- <span class="zoomIcon"
-									style="">󰄬</span> --><span class="ks-imagezoom-wrap"><img
+									style="">󰄬</span> --> <span class="ks-imagezoom-wrap"><img
 										id="J_ImgBooth" src="${commodity.coverImage }"
 										data-haszoom="700"><span
 										style="position: absolute; top: 1.00637px; left: 302.018px; width: 116.483px; height: 116.483px; display: none;"
 										class="ks-imagezoom-lens"></span></span>
-								</a> <!-- <i class="tm-video-play J_playVideo" style="">󰀓</i> --><i
-									class="tm-video-stop J_stopVideo" style="display: none;"><b></b><s
+								</a>
+								<!-- <i class="tm-video-play J_playVideo" style="">󰀓</i> -->
+								<i class="tm-video-stop J_stopVideo" style="display: none;"><b></b><s
 									data-spm-anchor-id="a220o.1000855.1997427645.i0.7b036adb8j58J2"></s></i>
 							</div>
 							<div class="tb-thumb-warp">
@@ -464,7 +473,7 @@ button {
 							<ul class="tb-meta-icons">
 								<li title="天猫网厅"
 									href="//wt.tmall.com/?spm=813.7729269.1998733182.d4920745"
-									style="width: 40px; height: 42px; background: url1(&amp; amp; quot; // img .alicdn.com/tps/i4/TB1dicEIXXXXXXyXFXX03.AGpXX-40-42.png&amp;amp; quot; ) no-repeat; margin-left: 5px; position: relative; top: 20px; display: block; zoom: 1; float: left;">
+									style="width: 40px; height: 42px; background: url1(&amp; amp; amp; amp; amp; amp; amp; amp; amp; quot; // img .alicdn.com/tps/i4/TB1dicEIXXXXXXyXFXX03.AGpXX-40-42.png&amp;amp; amp; amp; amp; amp; amp; amp; amp; quot; ) no-repeat; margin-left: 5px; position: relative; top: 20px; display: block; zoom: 1; float: left;">
 									<a href="//wt.tmall.com/?spm=813.7729269.1998733182.d4920745"
 									title="天猫网厅" target="_blank"
 									style="width: 40px; height: 42px; display: block; position: absolute; top: 0px; left: 0px;"></a>
@@ -517,7 +526,8 @@ button {
 										hidefocus="true" data-index="1"
 										data-spm-anchor-id="a220o.1000855.0.0">规格参数</a>
 									</li> -->
-									<li id="my_review" tabindex="0" role="tab" aria-selected="false"
+									<li id="my_review" tabindex="0" role="tab"
+										aria-selected="false"
 										data-spm-anchor-id="a220o.1000855.0.i3.7b036adb8j58J2"
 										class=""><a tabindex="-1" href="#J_Reviews"
 										rel="nofollow" hidefocus="true" data-index="2">累计评价 <em
@@ -527,22 +537,24 @@ button {
 							<div class="tabbar-bg" style="display: none;"></div>
 							<div
 								style="height: 0px; margin-top: 0px; margin-bottom: 0px; overflow: hidden; width: 790px;"></div>
-							
-							<c:if test="${commodity.commodityExtendProperties!=null&&fn:length(commodity.commodityExtendProperties)>0 }">
-							<div id="attributes" class="attributes">
-								<div class="attributes-list" id="J_AttrList">
-									<p class="attr-list-hd tm-clear">
-										<em>产品参数：</em>
-									</p>
-									<ul id="J_AttrUL">
-										<c:forEach items="${commodity.commodityExtendProperties }" var="commodityExtendProperty">
-										<li title="2018011606090990">${commodityExtendProperty.propertyName }：${commodityExtendProperty.propertyValue }</li>
-										</c:forEach>
-										<!-- 健字号相关-->
-									</ul>
 
+							<c:if
+								test="${commodity.commodityExtendProperties!=null&&fn:length(commodity.commodityExtendProperties)>0 }">
+								<div id="attributes" class="attributes">
+									<div class="attributes-list" id="J_AttrList">
+										<p class="attr-list-hd tm-clear">
+											<em>产品参数：</em>
+										</p>
+										<ul id="J_AttrUL">
+											<c:forEach items="${commodity.commodityExtendProperties }"
+												var="commodityExtendProperty">
+												<li title="2018011606090990">${commodityExtendProperty.propertyName }：${commodityExtendProperty.propertyValue }</li>
+											</c:forEach>
+											<!-- 健字号相关-->
+										</ul>
+
+									</div>
 								</div>
-							</div>
 							</c:if>
 							<div id="mall-banner">
 								<div data-spm="1998132255">
@@ -640,54 +652,60 @@ button {
 											<table>
 												<tbody>
 													<c:forEach items="${commodity.comments }" var="comment">
-													<tr>
-														<td class="tm-col-master">
-															<c:forEach items="${comment.commentAppends }" var="commentAppend" varStatus="status">
-															<div class="tm-rate-premiere">
-																<div class="tm-rate-tag">
-																	<c:if test="${status.index==0 }">
-																	<div class="tm-rate-title">初次评论:</div>
-																	</c:if>
-																	<c:if test="${status.index!=0 }">
-																	<div class="tm-rate-title">追加评论:</div>
-																	</c:if>
-																	<div class="tm-rate-date"><fmt:formatDate value="${commentAppend.commentTime }" type="date"/></div>
-																</div>
-																<div class="tm-rate-content">
-																	<div class="tm-rate-fulltxt">${commentAppend.comment }</div>
-																	<c:if test="${commentAppend.commentImages!=null }">
-																	<div class="tm-m-photos">
-																		<ul class="tm-m-photos-thumb">
-																			<c:forEach items="${commentAppend.commentImages }" var="commentImage">
-																			<li>
-																				<img src="${comment_images_location }${commentImage.commentImage }">  
-																			</li>
-																			</c:forEach>
-																		</ul>
+														<tr>
+															<td class="tm-col-master"><c:forEach
+																	items="${comment.commentAppends }" var="commentAppend"
+																	varStatus="status">
+																	<div class="tm-rate-premiere">
+																		<div class="tm-rate-tag">
+																			<c:if test="${status.index==0 }">
+																				<div class="tm-rate-title">初次评论:</div>
+																			</c:if>
+																			<c:if test="${status.index!=0 }">
+																				<div class="tm-rate-title">追加评论:</div>
+																			</c:if>
+																			<div class="tm-rate-date">
+																				<fmt:formatDate
+																					value="${commentAppend.commentTime }" type="date" />
+																			</div>
+																		</div>
+																		<div class="tm-rate-content">
+																			<div class="tm-rate-fulltxt">${commentAppend.comment }</div>
+																			<c:if test="${commentAppend.commentImages!=null }">
+																				<div class="tm-m-photos">
+																					<ul class="tm-m-photos-thumb">
+																						<c:forEach items="${commentAppend.commentImages }"
+																							var="commentImage">
+																							<li><img
+																								src="${comment_images_location }${commentImage.commentImage }">
+																							</li>
+																						</c:forEach>
+																					</ul>
+																				</div>
+																			</c:if>
+																		</div>
+																		<div class="tm-rate-reply">
+																			<div class="tm-rate-fulltxt">${commentAppend.reply }</div>
+																		</div>
 																	</div>
-																	</c:if>
+																</c:forEach></td>
+															<td class="col-meta">
+																<div class="rate-sku">
+																	<c:forEach
+																		items="${comment.orderCommoditySelectPropertys }"
+																		var="orderCommoditySelectProperty">
+																		<p>
+																			<span>${orderCommoditySelectProperty.propertyName }：</span>${orderCommoditySelectProperty.propertyValue }
+																		</p>
+																	</c:forEach>
 																</div>
-																<div class="tm-rate-reply">
-																	<div class="tm-rate-fulltxt">${commentAppend.reply }</div>
+															</td>
+															<td class="col-author">
+																<div class="rate-user-info">
+																	<span>${comment.userName }</span>
 																</div>
-															</div>
-															</c:forEach>
-														</td>
-														<td class="col-meta">
-															<div class="rate-sku">
-																<c:forEach items="${comment.orderCommoditySelectPropertys }" var="orderCommoditySelectProperty">
-																<p>
-																	<span>${orderCommoditySelectProperty.propertyName }：</span>${orderCommoditySelectProperty.propertyValue }
-																</p>
-																</c:forEach>
-															</div>
-														</td>
-														<td class="col-author">
-															<div class="rate-user-info">
-																<span>${comment.userName }</span>
-															</div>
-														</td>
-													</tr>
+															</td>
+														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
@@ -713,9 +731,8 @@ button {
 
 									<h3 class="hd" style="">
 										<div class="name">
-											<a data-spm="d4918065" class="shopLink"
-												 target="_blank">${commodity.seller.storeName }</a> <span
-												class="ww-light ww-small" data-icon="small"
+											<a data-spm="d4918065" class="shopLink" target="_blank">${commodity.seller.storeName }</a>
+											<span class="ww-light ww-small" data-icon="small"
 												data-nick="%E9%AD%85%E6%97%8F%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97"
 												data-tnick="%E9%AD%85%E6%97%8F%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97"
 												data-encode="true" data-display="inline"
@@ -731,8 +748,9 @@ button {
 										style="height: 0px; margin-top: 0px; margin-bottom: 0px; overflow: hidden; width: 123px;"></div>
 
 									<div class="btnArea">
-										<a data-spm="d4918061"
-											target="_blank" class="enterShop">进店逛逛</a> <a
+										<a class="enterShop" id="my_contact_seller"
+											style="cursor: pointer;" data-toggle="modal"
+											data-target="#chat_modal">联系商家</a> <a
 											id="xshop_collection_href"
 											mercury:params="id=104682877&amp;itemid=104682877&amp;itemtype=0&amp;ownerid=d5f9d85f714d80f326b071bdc89360a9"
 											class="J_PopupTrigger collection xshop_sc J_TDialogTrigger J_TokenSign favShop"
@@ -743,7 +761,7 @@ button {
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 			<div id="J_DcFt" class="J_DcAsyn tb-shop">
@@ -2208,8 +2226,117 @@ button {
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="chat_modal" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- DIRECT CHAT PRIMARY -->
+						<div class="box box-primary direct-chat direct-chat-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Direct Chat</h3>
+								<div class="box-tools pull-right">
+									<span data-toggle="tooltip" title="3 New Messages"
+										class="badge bg-light-blue">3</span>
+									<button class="btn btn-box-tool" data-widget="collapse">
+										<i class="fa fa-minus"></i>
+									</button>
+									<button class="btn btn-box-tool" data-toggle="tooltip"
+										title="Contacts" data-widget="chat-pane-toggle">
+										<i class="fa fa-comments"></i>
+									</button>
+									<button class="btn btn-box-tool" data-widget="remove">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<!-- Conversations are loaded here -->
+								<div class="direct-chat-messages">
+									<!-- Message. Default to the left -->
+									<div class="direct-chat-msg">
+										<div class="direct-chat-info clearfix">
+											<span class="direct-chat-name pull-left">Alexander
+												Pierce</span> <span class="direct-chat-timestamp pull-right">23
+												Jan 2:00 pm</span>
+										</div>
+										<!-- /.direct-chat-info -->
+										<img class="direct-chat-img"
+											src="../dist/img/user1-128x128.jpg" alt="message user image">
+										<!-- /.direct-chat-img -->
+										<div class="direct-chat-text">Is this template really
+											for free? That's unbelievable!</div>
+										<!-- /.direct-chat-text -->
+									</div>
+									<!-- /.direct-chat-msg -->
+
+									<!-- Message to the right -->
+									<div class="direct-chat-msg right">
+										<div class="direct-chat-info clearfix">
+											<span class="direct-chat-name pull-right">Sarah
+												Bullock</span> <span class="direct-chat-timestamp pull-left">23
+												Jan 2:05 pm</span>
+										</div>
+										<!-- /.direct-chat-info -->
+										<img class="direct-chat-img"
+											src="../dist/img/user3-128x128.jpg" alt="message user image">
+										<!-- /.direct-chat-img -->
+										<div class="direct-chat-text">You better believe it!</div>
+										<!-- /.direct-chat-text -->
+									</div>
+									<!-- /.direct-chat-msg -->
+								</div>
+								<!--/.direct-chat-messages-->
+
+								<!-- Contacts are loaded here -->
+								<div class="direct-chat-contacts">
+									<ul class="contacts-list">
+										<li><a href="#"> <img class="contacts-list-img"
+												src="../dist/img/user1-128x128.jpg" alt="Contact Avatar">
+												<div class="contacts-list-info">
+													<span class="contacts-list-name"> Count Dracula <small
+														class="contacts-list-date pull-right">2/28/2015</small>
+													</span> <span class="contacts-list-msg">How have you been?
+														I was...</span>
+												</div> <!-- /.contacts-list-info -->
+										</a></li>
+										<!-- End Contact Item -->
+									</ul>
+									<!-- /.contatcts-list -->
+								</div>
+								<!-- /.direct-chat-pane -->
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<div class="input-group">
+									<input type="text" name="message"
+										placeholder="Type Message ..." class="form-control"> <span
+										id="chat_send" data-sellerid="${sellerId }"
+										class="input-group-btn">
+										<button type="button" class="btn btn-primary btn-flat">发送</button>
+									</span>
+								</div>
+							</div>
+							<!-- /.box-footer-->
+						</div>
+						<!--/.direct-chat -->
+					</div>
+					<!-- /.col -->
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
 </body>
+<script
+	src="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH }/static/backstage/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
+	var user_id = ${userId };
+	var seller_id = ${sellerId };
 	var commodity_id = ${commodity.id};
 	var select_property_row = null;
 	var commodity_stock = ${commodity.stock };

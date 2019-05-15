@@ -3,11 +3,7 @@ package com.timeuni.resourcebundle;
 import java.util.ResourceBundle;
 
 public class ResourceLocation {
-	private ResourceBundle resourceBundle;
-	
-	public ResourceLocation() {
-		this.resourceBundle = ResourceBundle.getBundle("resource-loc");
-	}
+	private ResourceBundle resourceBundle = ResourceBundle.getBundle("resource-loc");
 	
 	public String getCommodityCoverImageLocation() {
 		return resourceBundle.getString("commodity_cover_image");
@@ -27,5 +23,9 @@ public class ResourceLocation {
 	
 	public String getCommentImagesLocation() {
 		return resourceBundle.getString("comment_images");
+	}
+	
+	public String getUserImageLocation() {
+		return resourceBundle.getString("user_image");
 	}
 }

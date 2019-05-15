@@ -1,6 +1,9 @@
 package com.timeuni.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -9,7 +12,8 @@ public class BackStageViewController {
 	
 	/* 返回后台界面 */
 	@RequestMapping(value = "/backstage", method = RequestMethod.GET)
-	public String handleGetBackStageViewRequest() {
+	public String handleGetBackStageViewRequest(HttpSession session, Model model) {
+		model.addAttribute("sellerId", session.getAttribute("sellerId"));
 		return "backstage/starter";
 	}
 	

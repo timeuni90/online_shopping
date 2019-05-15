@@ -2,6 +2,8 @@ package com.timeuni.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,10 +39,11 @@ public class CommodityController {
 
 	/* 处理获取商品信息请求 */
 	@RequestMapping(value = "/product/{commodityId}", method = RequestMethod.GET)
-	public ModelAndView handleGetCommodityRequest(@PathVariable Integer commodityId) {
+	public ModelAndView handleGetCommodityRequest(HttpSession session, @PathVariable Integer commodityId) {
 		Map<String, Object> map = commodityService.getCommodityById(commodityId);
 		ModelAndView modelAndView = new ModelAndView("commodity_detail");
 		modelAndView.addAllObjects(map);
+		modelAndView.addObject("userId", session.getAttribute("userId"));
 		return modelAndView;
 	}
 

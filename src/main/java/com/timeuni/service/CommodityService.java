@@ -278,6 +278,7 @@ public class CommodityService {
 			}
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sellerId", commodity.getSellerId());
 		map.put("commodity", commodity);
 		map.put("commodityPropertyGroup", commodityPropertyGroup);
 		return map;
