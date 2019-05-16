@@ -14,10 +14,9 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="${APP_PATH }/static/css/shouye/a_003.css">
-<link href="${APP_PATH }/static/css/shouye/a_005.css" rel="stylesheet">
-<link href="${APP_PATH }/static/css/shouye/a.css" rel="stylesheet">
-<link href="${APP_PATH }/static/css/shouye/a_002.css" rel="stylesheet">
-<%@ include file="/WEB-INF/view/public/public_css.jsp" %>
+<link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
+
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 <script>
 	var APP_PATH = "${APP_PATH}";
@@ -38,10 +37,10 @@
 </style>
 </head>
 <body class="w1230" style="">
-	
+	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
 	<div id="mallPage" class="mui-global-biz-mallfp  ">
 		<!--from fragment-->
-		<%@ include file="/WEB-INF/view/header.jsp" %>
+		<!-- <%@ include file="/WEB-INF/view/header.jsp" %> -->
 		<div id="header" data-spm="a2226n0"
 			data-spm-anchor-id="875.7931836/B.0.a2226n0.66144265Vx5b6f">
 			<div class="headerLayout">

@@ -437,96 +437,136 @@ if ('WebSocket' in window) {
 
 //接收到消息的回调方法
 websocket.onmessage = function(eve) {
-	var number = $("#message_tip").text();
-	if(number == null || number == "") {
-		number = 0;
+	/* 消息内容 */
+	var map = JSON.parse(eve.data);
+	var data = map.messager;
+	var direct_chat_msg = "";
+	var direct_chat_name = "pull-left";
+	var direct_chat_timestamp = "pull-right";
+	var text_align = "";
+	if(map.isFromSelf) {
+		direct_chat_msg = "right";
+		direct_chat_name = "pull-right";
+		direct_chat_timestamp = "pull-left";
+		text_align = "style='text-align: right'";
 	}
-	var data = JSON.parse(eve.data);
-	$("#message_tip").text(++number);
-	/* 插入内容 */
 	var flag = false;
 	$.each($(".direct-chat-messages"), function(i, n) {
 		if($(n).data("userid") == data.fromId) {
 			flag = true;
-			var html = `<div class="direct-chat-msg">
+			var html = `<div class="direct-chat-msg `+ direct_chat_msg +`">
 							<div class="direct-chat-info clearfix">
-								<span class="direct-chat-name pull-left">` + data.name + `</span>
-								<span class="direct-chat-timestamp pull-right">` + data.time + `</span>
+								<span class="direct-chat-name `+ direct_chat_name +`">` + data.name + `</span>
+								<span class="direct-chat-timestamp ` + direct_chat_timestamp + `">` + data.time + `</span>
 							</div>
 							<img class="direct-chat-img" src="` + data.image + `" alt="message user image">
-							<div class="direct-chat-text">` + data.message + `</div>
+							<div class="direct-chat-text" ` + text_align + ` >` + data.message + `</div>
 						</div>`;
 			$(n).append(html);
+			if(!$(n).hasClass("hidden")) {
+				var scrollHeight = $(n).prop("scrollHeight");
+				$(n).animate({scrollTop: scrollHeight}, "slow");
+			}
 		}
 	});
 	if(!flag) {
 		var html = `<div class="direct-chat-messages hidden" data-userid="` + data.fromId + `">
-						<div class="direct-chat-msg">
+						<div class="direct-chat-msg `+ direct_chat_msg +`">
 							<div class="direct-chat-info clearfix">
-								<span class="direct-chat-name pull-left">` + data.name + `</span> 
-								<span class="direct-chat-timestamp pull-right">` + data.time + `</span>
+								<span class="direct-chat-name `+ direct_chat_name +`">` + data.name + `</span> 
+								<span class="direct-chat-timestamp ` + direct_chat_timestamp + `">` + data.time + `</span>
 							</div>
 							<img class="direct-chat-img" src="` + data.image + `" alt="message user image">
-							<div class="direct-chat-text">` + data.message + `</div>
+							<div class="direct-chat-text" ` + text_align + `>` + data.message + `</div>
 						</div>
 					</div>`;
 		$(".direct-chat-contacts").before(html);
 	}
+	
 	/* 插入提示信息 */
-	var message = data.message;
-	if(data.message.length > 35) {
-		message = data.message.substring(0, 35) + "...";
-	}
-	var tag = false;
-	$.each($("#message_dropdown .message_unit"), function(i, n) {
-		if($(n).data("userid") == data.fromId) {
-			tag = true;
-			$(n).find("small label").text(data.time);
-			$(n).find("p").text(message);
-			var tip_quantity = $(n).find(".number_tip").text();
-			if(tip_quantity == null || tip_quantity == "") {
-				tip_quantity = 0
+	if(!map.isFromSelf) {
+		/* 面板显示不提示 */
+		if(!$("#chat_modal").hasClass("in")) {
+			var number = $("#message_tip").text();
+			if(number == null || number == "") {
+				number = 0;
 			}
-			$(n).find(".number_tip").text(++tip_quantity);
-			return false;
+			$("#message_tip").text(++number);
 		}
-	});
-	if(!tag) {
-		var drop_down_li = `<li class="message_unit" data-userid="` + data.fromId + `">
-								<a>
-									<div class="pull-left" style="position: relative;">
-										<img src="`+ data.image +`"class="img-circle" alt="User Image">
-										<span class="number_tip label label-danger" style="
-											    position: absolute;
-											    top: -2px;
-											    right: 5px;
-											    text-align: center;
-											    font-size: 9px;
-											    padding: 2px 3px;
-											    line-height: .9;">1</span>
-									</div>
-									<h4>
-										` + data.name + `
-										<small>
-											<i class="fa fa-clock-o"></i>
-											<label>` + data.time + `</label>
-										</small>
-									</h4>
-									<p>` + message + `</p>
-								</a>
-							</li>`;
-		$("#message_dropdown .menu").append(drop_down_li);
-		/* 打开聊天中心 */
-		$(".message_unit").click(function() {
-			var cur = this;
-			$(".direct-chat-messages").addClass("hidden");
-			$.each($(".direct-chat-messages"), function(i, n) {
-				if($(n).data("userid") == $(cur).data("userid")) {
-					$(n).removeClass("hidden");
+		/* 提示体 */
+		var message = data.message;
+		if(data.message.length > 35) {
+			message = data.message.substring(0, 35) + "...";
+		}
+		var tag = false;
+		$.each($("#message_dropdown .message_unit"), function(i, n) {
+			if($(n).data("userid") == data.fromId) {
+				tag = true;
+				$(n).find("small label").text(data.time);
+				$(n).find("p").text(message);
+				/* 面板显示不提示 */
+				if(!$("#chat_modal").hasClass("in")) {
+					var tip_quantity = $(n).find(".number_tip").text();
+					if(tip_quantity == null || tip_quantity == "") {
+						tip_quantity = 0
+					}
+					$(n).find(".number_tip").text(++tip_quantity);
 				}
-			});
-			$('#chat_modal').modal('show');
+				return false;		
+			}
 		});
+		if(!tag) {
+			var drop_down_li = `<li class="message_unit" data-userid="` + data.fromId + `">
+									<a>
+										<div class="pull-left" style="position: relative;">
+											<img src="`+ data.image +`"class="img-circle" alt="User Image">
+											<span class="number_tip label label-danger" style="
+												    position: absolute;
+												    top: -2px;
+												    right: 5px;
+												    text-align: center;
+												    font-size: 9px;
+												    padding: 2px 3px;
+												    line-height: .9;">1</span>
+										</div>
+										<h4>
+											` + data.name + `
+											<small>
+												<i class="fa fa-clock-o"></i>
+												<label>` + data.time + `</label>
+											</small>
+										</h4>
+										<p>` + message + `</p>
+									</a>
+								</li>`;
+			$("#message_dropdown .menu").append(drop_down_li);
+			/* 打开聊天中心 */
+			$(".message_unit").last().click(function() {
+				var cur = this;
+				$(".direct-chat-messages").addClass("hidden");
+				$.each($(".direct-chat-messages"), function(i, n) {
+					if($(n).data("userid") == $(cur).data("userid")) {
+						$(n).removeClass("hidden");
+						return false;
+					}
+				});
+				$('#chat_modal').modal('show');
+				$("#chat_send").data("userid", $(cur).data("userid"));
+				/* 更改提示数量 */
+				/* 确认是否已经查看 */
+				if($(this).find(".number_tip").text() == null || $(this).find(".number_tip").text() == "") {
+					return;
+				}
+				var tip_count = parseInt($(this).find(".number_tip").text());
+				var tip_count_message = parseInt($("#message_tip").text());
+				var cur_count = tip_count_message - tip_count;
+				if(cur_count < 1) {
+					cur_count = "";
+				}
+				$(this).find(".number_tip").text("");
+				$("#message_tip").text(cur_count);
+			});
+		}
 	}
 		
 }
@@ -540,11 +580,35 @@ $('#chat_modal').on('shown.bs.modal', function(e) {
 	$.each($(".direct-chat-messages"), function(i, n) {
 		if(!$(n).hasClass("hidden")) {
 			var scrollHeight = $(n).prop("scrollHeight");
-			$(n)[0].scrollTop = scrollHeight;
+			$(n).animate({scrollTop: scrollHeight}, "slow");
 			return false;
 		}
 	});
 });
 
+/* 点击发送 */
+$("#chat_send").click(function() {
+	mySendMessage();
+});
 
+/* 回车发送 */
+$("#chat_send").prev().keydown(function(eve) {
+	if(eve.keyCode == 13) {
+		mySendMessage();
+	}
+	
+});
 
+/* 发送消息 */
+function mySendMessage() {
+	var message = $("#chat_send").prev().val();
+	if(message == null || message == "") {
+		return;
+	}
+	var data = {
+			message: message,
+			toId: $("#chat_send").data("userid")
+	}
+	$("#chat_send").prev().val("");
+	websocket.send(JSON.stringify(data));
+}

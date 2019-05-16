@@ -231,32 +231,62 @@ $("#my_contact_seller").click(function() {
 	    alert('当前浏览器不支持websocket')  
 	}
 	  
-	//连接发生错误的回调方法  
-	websocket.onerror = function() { 
-	}
-	  
-	//连接成功建立的回调方法  
-	websocket.onopen = function() {
-	}
-	  
 	//接收到消息的回调方法  
-	websocket.onmessage = function(event) {
+	websocket.onmessage = function(eve) {
+		var map = JSON.parse(eve.data);
+		var data = map.messager;
+		var direct_chat_msg = "";
+		var direct_chat_name = "pull-left";
+		var direct_chat_timestamp = "pull-right";
+		var text_align = "";
+		if(map.isFromSelf) {
+			direct_chat_msg = "right";
+			direct_chat_name = "pull-right";
+			direct_chat_timestamp = "pull-left";
+			text_align = "style='text-align: right'";
+		}
+		var html = `<div class="direct-chat-msg ` + direct_chat_msg + `">
+			<div class="direct-chat-info clearfix">
+				<span class="direct-chat-name ` + direct_chat_name + `">` + data.name + `</span>
+				<span class="direct-chat-timestamp ` + direct_chat_timestamp + `">` + data.time + `</span>
+			</div>
+			<img class="direct-chat-img" src="` + data.image + `" alt="message user image">
+			<div class="direct-chat-text" ` + text_align + ` >` + data.message + `</div>
+		</div>`;
+		$(".direct-chat-messages").append(html);
+		var scrollHeight = $(".direct-chat-messages").prop("scrollHeight");
+		$('.direct-chat-messages').animate({scrollTop: scrollHeight}, "slow");
 	}
-	  
-	//连接关闭的回调方法  
-	websocket.onclose = function() {
-	}
-	
+	  	
 	//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。  
 	window.onbeforeunload = function() {  
-		//websocket.close();
+		websocket.close();
 	}
 });
 
+/* 点击发送 */
 $("#chat_send").click(function() {
-	var data = {
-			message: $(this).prev().val(),
-			toId: $(this).data("sellerid")
-	}
-	websocket.send(JSON.stringify(data));
+	mySendMessage();
 });
+
+/* 回车发送 */
+$("#chat_send").prev().keydown(function(eve) {
+	if(eve.keyCode == 13) {
+		mySendMessage();
+	}
+	
+});
+
+/* 发送消息 */
+function mySendMessage() {
+	var message = $("#chat_send").prev().val();
+	if(message == null || message == "") {
+		return;
+	}
+	var data = {
+			message: message,
+			toId: $("#chat_send").data("sellerid")
+	}
+	$("#chat_send").prev().val("");
+	websocket.send(JSON.stringify(data));
+}

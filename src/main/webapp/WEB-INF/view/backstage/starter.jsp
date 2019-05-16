@@ -412,7 +412,7 @@ desired effect
 								<div class="input-group">
 										<input type="text" name="message"
 											placeholder="输入消息 ..." class="form-control">
-										<span id="chat_send" data-sellerid="${sellerId }"
+										<span id="chat_send"
 											class="input-group-btn">
 											<button type="button" class="btn btn-primary btn-flat">发送</button>
 										</span>

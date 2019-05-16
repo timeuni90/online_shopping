@@ -11,6 +11,7 @@
 <title>我的订单</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
 <link rel="stylesheet" href="${APP_PATH }/static/css/myorder/layout-a2ae44047d.css">
 
 <link rel="stylesheet" href="${APP_PATH }/static/css/myorder/c53414.css">
@@ -32,16 +33,11 @@
 </head>
 
 <body>
+	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
 	<div id="nTalk_post_hiddenElement"
 		style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
-	<!-- common header -->
-	<%-- <%@ include file="/WEB-INF/view/header.jsp"%> --%>
+
 	<div class="store-wrap">
-		<!-- <div class="crumbs">
-			<a href="//store.meizu.com/index.html">首页 &gt;&nbsp;</a> <a
-				href="//me.meizu.com/member/index">我的商城 &gt;&nbsp;</a> <a href=""
-				class="active">我的订单&nbsp;</a>
-		</div> -->
 		<div class="main clearfix">
 			<%@ include file="/WEB-INF/view/public/mysider.jsp"%>
 			<div class="right-content f-fr">

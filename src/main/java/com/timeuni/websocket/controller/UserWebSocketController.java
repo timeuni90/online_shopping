@@ -33,6 +33,7 @@ public class UserWebSocketController implements WebSocketHandler {
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		 ObjectMapper objectMapper = new ObjectMapper();
 	     ReceiveMessage receiveMessage = objectMapper.readValue(message.getPayload().toString(), ReceiveMessage.class);
+	     /* 封装发送消息 */
 	     SendMessage sendMessage = new SendMessage();
 	     sendMessage.setFromId((String) session.getHandshakeAttributes().get("id"));
 	     sendMessage.setMessage(receiveMessage.getMessage());
@@ -40,9 +41,17 @@ public class UserWebSocketController implements WebSocketHandler {
 	     User user = userMapper.selectByPrimaryKey((Integer)session.getHandshakeAttributes().get("userId"));
 	     sendMessage.setName(user.getName());
 	     sendMessage.setImage(new ResourceLocation().getUserImageLocation() + user.getProfilePhoto());
+	     Map<String, Object> map = new HashMap<String, Object>();
+	     map.put("messager", sendMessage);
+	     map.put("isFromSelf", false);
+	     /* 给商家发消息 */
 	     WebSocketSession sellerSession = SellerWebSocketController.map.get(receiveMessage.getToId());
-	     TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(sendMessage), true);
+	     TextMessage textMessage = new TextMessage(objectMapper.writeValueAsString(map), true);
 	     sellerSession.sendMessage(textMessage);
+	     /* 给普通用户发消息 */
+	     map.put("isFromSelf", true);
+	     textMessage = new TextMessage(objectMapper.writeValueAsString(map), true);
+	     session.sendMessage(textMessage);
 	}
 
 	@Override

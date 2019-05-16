@@ -47,70 +47,22 @@
 	href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
 <link rel="stylesheet"
 	href="${APP_PATH }/static/css/commodity_detail/modules-other-tmall-default-min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/css/commodity_detail/tmall.css">
-<link href="${APP_PATH }/static/css/commodity_detail/cart-layer.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/cspu.css"
-	rel="stylesheet">
-<link href="${APP_PATH}/static/css/commodity_detail/relateGroup.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/combo.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/progressive.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/index.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/suggest.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/brandbar.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/mallbar.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${APP_PATH }/static/css/commodity_detail/tstart.css">
-<link rel="stylesheet"
-	href="${APP_PATH }/static/css/commodity_detail/tdog.css">
-<link href="${APP_PATH }/static/css/commodity_detail/floatcartlink.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/tabRight.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/waterfall.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/mallphotos.css"
-	rel="stylesheet">
-<link href="${APP_PATH }/static/css/commodity_detail/try.css"
-	rel="stylesheet">
 
-
+<link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
 
 <!-- 新增css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
-<%@ include file="/WEB-INF/view/public/public_css.jsp"%>
+<link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
+
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 </head>
 
-<body class="enableHover" data-spm="1000855">
-	<style>
-button {
-	border-radius: 0;
-}
-</style>
-	<!--from fragment-->
-	<%@ include file="/WEB-INF/view/header.jsp"%>
-
-	<div data-spm="1998132232" id="J_dingtian">
-
-		<!--  ESIBanner开始 -->
-		<!-- position : TOP , params: {st=1547049600000, link=/act/dingtian, id=10001, et=1547740799000} -->
-
-		<!--  ESIBanner结束 -->
-	</div>
-
-	<div id="page" class="">
+<body class="enableHover">
+	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
+	<div id="page">
 		<div id="content" data-cat="J_Cat" data-type="normal"
 			data-spm-anchor-id="a220o.1000855.0.i0.7b036adb8j58J2">
 
@@ -1890,342 +1842,7 @@ button {
 				style="position: absolute; top: 0px; left: -1082px; width: 1500px; height: 1500px;">
 		</div>
 	</div>
-	<div id="J_MUIMallbar" class="mui-mbar-outer j_Mallbar_3.2.4"
-		style="height: 944px;">
-		<div class="mui-mbar mui-mbar-status-standard"
-			style="height: 944px; visibility: visible; right: -235px;">
-			<div class="mui-mbar-plugins" style="height: 944px;">
-				<div class="mui-mbar-plugin  mui-mbar-plugin-prof"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_blank" href="//vip.tmall.com?scm=1048.1.2.1"
-							class="mui-mbar-plugin-hd-title ">会员权益</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-cart"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd" style="">
-						<a target="_self" href="javascript:;"
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">购物车</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-asset"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_blank"
-							href="//taoquan.taobao.com/framework/got_bonus.htm?tabIndex=1&amp;scm=1048.1.3.1"
-							class="mui-mbar-plugin-hd-title ">我的资产</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-favor"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_self" href="javascript:;"
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">我的收藏</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-					<div class="mui-mbarp-favor-detail">
-						<div class="mui-mbarp-favor-detail-hd">
-							<h2>搭配/同款</h2>
-							<span class="mui-mbarp-favor-detail-back">我的收藏</span>
-						</div>
-						<div class="mui-mbarp-favor-detail-bd">
-							<div class="mui-mbarp-favor-item-b"></div>
-							<div class="mui-mbarp-favor-recommand-box">
-								<ul class="mui-mbarp-favor-recommand-tab">
-									<li
-										class="mui-mbarp-favor-recommand-tab-item mui-mbarp-favor-recommand-tab-item-match"
-										data-type="match">找搭配<b></b></li>
-									<li
-										class="mui-mbarp-favor-recommand-tab-item mui-mbarp-favor-recommand-tab-item-fx"
-										data-type="fx">找同款<b></b></li>
-								</ul>
-								<div
-									class="mui-mbar-favor-recommand-content mui-mbar-favor-recommand-content-match"></div>
-								<div
-									class="mui-mbar-favor-recommand-content mui-mbar-favor-recommand-content-fx"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-foot"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_self" href="javascript:;"
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">我看过的</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-charge"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_self" href="javascript:;"
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">我要充值</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-top"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_self" href=""
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">返回顶部</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-qrcode"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_self" href="javascript:;"
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">二维码</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-				<div class="mui-mbar-plugin  mui-mbar-plugin-ue"
-					style="height: 944px; z-index: 999997;">
-					<div class="mui-mbar-plugin-hd">
-						<a target="_self" href=""
-							class="mui-mbar-plugin-hd-title mui-mbar-plugin-hd-title-txt">用户反馈</a>
-						<div class="mui-mbar-plugin-hd-tip"></div>
-						<div class="mui-mbar-plugin-cover"></div>
-						<div class="mui-mbar-plugin-hd-close mui-mbar-iconfont"></div>
-					</div>
-					<div class="mui-mbar-plugin-bd" style="height: 909px;">
-						<div class="mui-mbar-plugin-load"></div>
-					</div>
-				</div>
-			</div>
-			<div class="mui-mbar-tabs mui-mbar-tabs-narrow"
-				style="height: 944px;">
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-prof"
-					style="top: 13866px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-cart"
-					style="top: 16317px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-asset"
-					style="top: 22508px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-favor"
-					style="top: 24959px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-foot"
-					style="top: 27410px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-charge"
-					style="top: 0px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-top"
-					style="top: 46805px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-qrcode"
-					style="top: 44810px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tab-bubble mui-mbar-tab-bubble-ue"
-					style="top: 41945px; display: none;">
-					<div class="mui-mbar-tab-bubble-bd"></div>
-				</div>
-				<div class="mui-mbar-tabs-mask" style="height: 1000px;">
-					<div class="mui-mbar-tabs-top-wide" style="height: 0px;">
-						<div class="mui-mbar-tab-top-left"></div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-prof"
-						style="top: 0px; margin: 287.5px 0px 0px;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-prof"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip"
-							style="right: 70px; opacity: 0; display: none;">
-							会员权益
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div
-						class="mui-mbar-tab mui-mbar-tab-cart mui-mbar-tab-cart-nologin"
-						style="top: 0px; margin: 8px 0px;">
-						<div
-							class="mui-mbar-tab-logo mui-mbar-tab-logo-cart mui-mbar-tab-logo-nologin-cart"></div>
-						<div class="mui-mbar-tab-txt">购物车</div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup" style="display: none;"></div>
-						<div class="mui-mbar-tab-tip">
-							购物车
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-						<div
-							class="mui-mbarp-tab-cart-border mui-mbarp-tab-cart-border-nologin"
-							style=""></div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-asset"
-						style="top: 0px; margin: 8px 0px;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-asset"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip"
-							style="right: 70px; opacity: 0; display: none;">
-							我的资产
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-favor"
-						style="top: 0px; margin: 8px 0px;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-favor"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip"
-							style="right: 70px; opacity: 0; display: none;">
-							我的收藏
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-foot"
-						style="top: 0px; margin: 8px 0px;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-foot"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip"
-							style="right: 70px; opacity: 0; display: none;">
-							我看过的
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-charge"
-						style="top: 0px; margin: 8px 0px;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-charge"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip">
-							我要充值
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-top"
-						style="bottom: 0px; position: absolute;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-top"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip">
-							返回顶部
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-qrcode"
-						style="bottom: 35px; position: absolute;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-qrcode"></div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip">
-							二维码
-							<div class="mui-mbar-arr mui-mbar-tab-tip-arr">◆</div>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-					<div class="mui-mbar-tab mui-mbar-tab-ue"
-						style="bottom: 70px; position: absolute;">
-						<div class="mui-mbar-tab-logo mui-mbar-tab-logo-ue">
-							<a
-								style="display: block; width: 35px; height: 35px; overflow: hidden; text-indent: -40px"
-								href="//feedback.taobao.com/pc/feedbacks?productId=339&amp;source=Web">UE</a>
-						</div>
-						<div class="mui-mbar-tab-txt"></div>
-						<div class="mui-mbar-tab-new" style="display: none;"></div>
-						<div class="mui-mbar-tab-sup"></div>
-						<div class="mui-mbar-tab-tip">
-							<a target="_blank" style="color: #fff;"
-								href="//feedback.taobao.com/pc/feedbacks?productId=339&amp;source=Web">用户反馈</a>
-						</div>
-						<div class="mui-mbar-arr mui-mbar-tab-logo-arr ">◆</div>
-					</div>
-				</div>
-			</div>
-			<div class="mui-mbar-mini">
-				<div class="mui-mbar-mini-avatar-def"></div>
-				<div class="mui-mbar-mini-mask"></div>
-				<div class="mui-mbar-tab-sup"></div>
-			</div>
-			<div class="mui-mbar-mini-logo" style="visibility: hidden;"></div>
-			<div class="mui-mbarp-prof" style="display: none;"></div>
-			<div class="mui-mbarp-qrcode" style="display: none;">
-				<div class="mui-mbarp-qrcode-tip"
-					style="background-image: url1(// img.alicdn.com/ tfs/ TB1uwIcRXXXXXXsaXXXXXXXXXXX-154-207.png)">
-					<div class="mui-mbarp-qrcode-hd mui-mbarp-qrcode-hd-d">
-						<img
-							src="//img.alicdn.com/tfs/TB1GPVXRpXXXXXsapXXXXXXXXXX-175-175.jpg">
-					</div>
-					<div class="mui-mbarp-qrcode-bd ">
-						<img src="//img.alicdn.com/tps/i4/TB1tQeoOFXXXXbsXVXXwu0bFXXX.png">
-					</div>
-				</div>
-				<div class="mui-mbar-arr mui-mbarp-qrcode-arr "
-					style="color: #FF0036">◆</div>
-				<div class="mui-mbar-bubble-close mui-mbarp-qrcode-bubble-close"></div>
-			</div>
-		</div>
-	</div>
+	
 	<div class="modal fade" id="chat_modal" style="display: none;">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -2234,10 +1851,8 @@ button {
 						<!-- DIRECT CHAT PRIMARY -->
 						<div class="box box-primary direct-chat direct-chat-primary">
 							<div class="box-header with-border">
-								<h3 class="box-title">Direct Chat</h3>
+								<h3 class="box-title">${commodity.seller.storeName }</h3>
 								<div class="box-tools pull-right">
-									<span data-toggle="tooltip" title="3 New Messages"
-										class="badge bg-light-blue">3</span>
 									<button class="btn btn-box-tool" data-widget="collapse">
 										<i class="fa fa-minus"></i>
 									</button>
@@ -2254,38 +1869,7 @@ button {
 							<div class="box-body">
 								<!-- Conversations are loaded here -->
 								<div class="direct-chat-messages">
-									<!-- Message. Default to the left -->
-									<div class="direct-chat-msg">
-										<div class="direct-chat-info clearfix">
-											<span class="direct-chat-name pull-left">Alexander
-												Pierce</span> <span class="direct-chat-timestamp pull-right">23
-												Jan 2:00 pm</span>
-										</div>
-										<!-- /.direct-chat-info -->
-										<img class="direct-chat-img"
-											src="../dist/img/user1-128x128.jpg" alt="message user image">
-										<!-- /.direct-chat-img -->
-										<div class="direct-chat-text">Is this template really
-											for free? That's unbelievable!</div>
-										<!-- /.direct-chat-text -->
-									</div>
-									<!-- /.direct-chat-msg -->
-
-									<!-- Message to the right -->
-									<div class="direct-chat-msg right">
-										<div class="direct-chat-info clearfix">
-											<span class="direct-chat-name pull-right">Sarah
-												Bullock</span> <span class="direct-chat-timestamp pull-left">23
-												Jan 2:05 pm</span>
-										</div>
-										<!-- /.direct-chat-info -->
-										<img class="direct-chat-img"
-											src="../dist/img/user3-128x128.jpg" alt="message user image">
-										<!-- /.direct-chat-img -->
-										<div class="direct-chat-text">You better believe it!</div>
-										<!-- /.direct-chat-text -->
-									</div>
-									<!-- /.direct-chat-msg -->
+									
 								</div>
 								<!--/.direct-chat-messages-->
 
@@ -2311,7 +1895,7 @@ button {
 							<div class="box-footer">
 								<div class="input-group">
 									<input type="text" name="message"
-										placeholder="Type Message ..." class="form-control"> <span
+										placeholder="输入消息 ..." class="form-control"> <span
 										id="chat_send" data-sellerid="${sellerId }"
 										class="input-group-btn">
 										<button type="button" class="btn btn-primary btn-flat">发送</button>
@@ -2329,7 +1913,6 @@ button {
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
-
 </body>
 <script
 	src="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

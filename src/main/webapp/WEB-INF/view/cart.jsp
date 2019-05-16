@@ -10,16 +10,16 @@
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>购物车</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+		
+		<link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
 		<link rel="stylesheet" href="${APP_PATH }/static/css/cart/layout-a2ae44047d.css">
-
 		<link href="${APP_PATH }/static/css/cart/cart-189e8e56b7.css" rel="stylesheet">
 		
 		<script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 	</head>
 
 	<body>
-		
+		<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
 		<div class="cart" id="cart">
 			<div class="cart-login-tips" id="cartLoginTips">
 				<i class="cart-login-tips-icon"></i> 您还没有登录！登录后可显示您账号中已加入的商品哦~
@@ -144,27 +144,6 @@
 			</div>
 		</div>
 
-		<!-- <div class="mz-mask hide">
-			<div class="mz-dialog tips ">
-				<div class="mz-dialog-header">
-					<div class="mz-dialog-title">提示</div>
-					<div class="mz-dialog-close"></div>
-				</div>
-				<div class="mz-dialog-main">
-					<div class="mz-dialog-warp">
-
-						<div class="mz-dialog-content"></div>
-					</div>
-				</div>
-
-				<div class="mz-dialog-bottom">
-
-					<div class="mz-btn success">确定</div>
-
-				</div>
-
-			</div>
-		</div> -->
 		<div class="mz-mask hide" id="confirm_box">
 			<div class="mz-dialog dialog ">
 				<div class="mz-dialog-header">
@@ -189,45 +168,7 @@
 			</div>
 
 		</div>
-		<!-- <div class="mz-mask hide">
-			<div class="mz-dialog tips ">
-				<div class="mz-dialog-header">
-					<div class="mz-dialog-title">提示</div>
-					<div class="mz-dialog-close"></div>
-				</div>
-				<div class="mz-dialog-main">
-					<div class="mz-dialog-warp">
-
-						<div class="mz-dialog-content"></div>
-					</div>
-				</div>
-
-				<div class="mz-dialog-bottom">
-
-					<div class="mz-btn success">确定</div>
-
-				</div>
-
-			</div>
-		</div> -->
-		<!-- <div class="mz-mask hide">
-			<div class="mz-dialog dialog ">
-				<div class="mz-dialog-header">
-					<div class="mz-dialog-title">删除</div>
-					<div class="mz-dialog-close"></div>
-				</div>
-				<div class="mz-dialog-main">
-					<div class="mz-dialog-warp">
-						<div class="mz-dialog-content">您确定要删除选中商品吗？</div>
-					</div>
-				</div>
-
-				<div class="mz-dialog-bottom">
-					<div class="mz-btn cancel">删除</div>
-					<div class="mz-btn success">取消</div>
-				</div>
-			</div>
-		</div> -->
+		
 		<%@ include file="/WEB-INF/view/public/loading.jsp"%>
 	</body>
 <script src="${APP_PATH }/static/js/cart.js"></script>
