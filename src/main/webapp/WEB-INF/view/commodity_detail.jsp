@@ -61,7 +61,7 @@
 </head>
 
 <body class="enableHover">
-	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
+	<%@ include file="/WEB-INF/view/public/header.jsp" %>
 	<div id="page">
 		<div id="content" data-cat="J_Cat" data-type="normal"
 			data-spm-anchor-id="a220o.1000855.0.i0.7b036adb8j58J2">

@@ -110,6 +110,9 @@ public class CommodityService {
 		String commodityCoverImageLocation = new ResourceLocation().getCommodityCoverImageLocation();
 		PageHelper.startPage(page, 30);
 		List<Commodity> commodities = commodityMapper.selectByCommodityIds(commodityIds, sortType, commodityCoverImageLocation);
+		if(commodities == null || commodities.size() < 1) {
+			throw new NoFindException();
+		}
 		PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodities, 5);
 		return pageInfo;
 	}

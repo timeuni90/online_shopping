@@ -79,7 +79,7 @@
 							<b class="ui-page-num"> <c:if
 									test="${pageInfo.hasPreviousPage }">
 									<a class="ui-page-prev"
-										href="${APP_PATH }/search_product?key=${key }&page=${pageInfo.prePage }">上一页</a>
+										href="${APP_PATH }/search_product?varietyId=${varietyId }&page=${pageInfo.prePage }">上一页</a>
 								</c:if> <c:if test="${!pageInfo.hasPreviousPage }">
 									<b class="ui-page-prev">上一页</b>
 								</c:if> <c:forEach items="${pageInfo.navigatepageNums }" var="pageNum">
@@ -88,19 +88,19 @@
 									</c:if>
 									<c:if test="${pageInfo.pageNum != pageNum }">
 										<a
-											href="${APP_PATH }/search_product?key=${key }&page=${pageNum }">${pageNum }</a>
+											href="${APP_PATH }/search_product?varietyId=${varietyId }&page=${pageNum }">${pageNum }</a>
 									</c:if>
 								</c:forEach> <c:if test="${pageInfo.hasNextPage }">
 									<a class="ui-page-next"
-										href="${APP_PATH }/search_product?key=${key }&page=${pageInfo.nextPage }">下一页</a>
+										href="${APP_PATH }/search_product?varietyId=${varietyId }&page=${pageInfo.nextPage }">下一页</a>
 								</c:if> <c:if test="${!pageInfo.hasNextPage }">
 									<b class="ui-page-next">下一页</b>
 								</c:if>
 							</b> <b class="ui-page-skip">
-								<form action="${APP_PATH }/search_product" method="get">
+								<form action="${APP_PATH }/products" method="get">
 									共${pageInfo.pages }页，到第 <input type="text" name="page"
 										class="ui-page-skipTo" size="3" value="${pageInfo.pageNum }">页
-									<input type="hidden" name="key" value=${key }>
+									<input type="hidden" name="varietyId" value=${varietyId }>
 									<button type="submit" class="ui-btn-s">确定</button>
 								</form>
 							</b>

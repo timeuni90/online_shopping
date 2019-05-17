@@ -19,7 +19,7 @@
 	</head>
 
 	<body>
-		<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
+		<%@ include file="/WEB-INF/view/public/header.jsp" %>
 		<div class="cart" id="cart">
 			<div class="cart-login-tips" id="cartLoginTips">
 				<i class="cart-login-tips-icon"></i> 您还没有登录！登录后可显示您账号中已加入的商品哦~
@@ -167,9 +167,9 @@
 
 			</div>
 
-		</div>
-		
+		</div>　
 		<%@ include file="/WEB-INF/view/public/loading.jsp"%>
+		<%@ include file="/WEB-INF/view/public/footer.jsp" %>
 	</body>
 <script src="${APP_PATH }/static/js/cart.js"></script>
 </html>

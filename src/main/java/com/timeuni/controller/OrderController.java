@@ -32,7 +32,6 @@ public class OrderController {
 		return modelAndView;
 	}
 	
-	
 	/* 准备订单 */
 	@RequestMapping(value = "/prepareorder", method = RequestMethod.GET)
 	public ModelAndView handlePrepareOrderRequest(HttpSession httpSession, Integer commodityId, String row,
@@ -74,5 +73,19 @@ public class OrderController {
 	public String handleAlipaySuceessRequest(String out_trade_no) {
 		orderService.alipaySuccess(out_trade_no);
 		return "redirect:/orders";
+	}
+	
+	/* 确认收货 */
+	@RequestMapping(value = "/confirm_receive", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer handleConfirmReceived(Integer orderId) {
+		return orderService.confirmReceived(orderId);
+	}
+	
+	/* 删除订单 */
+	@RequestMapping(value = "/remove_order", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer handleRemoveOrder(Integer orderId) {
+		return orderService.removeOrder(orderId);
 	}
 }

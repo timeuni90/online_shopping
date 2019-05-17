@@ -9,7 +9,7 @@ $("#commodity_center_opener").click(function() {
 	$(this).addClass("active");
 	$.ajax({
 		method: "GET",
-		url: APP_PATH + "/commoditycenter",
+		url: APP_PATH + "/backstage/commoditycenter",
 		success: function(commodity_center) {
 			$(".content-wrapper").empty();
 			$(".content-wrapper").append(commodity_center);
@@ -71,7 +71,7 @@ function myLoadding() {
 function getCommditiesByPageNumber(pageNum) {
 	$.ajax({
 		method: "get",
-		url: APP_PATH + "/backstageproducts?pageNum=" + pageNum,
+		url: APP_PATH + "/backstage/products?pageNum=" + pageNum,
 		success: function(pageInfo) {
 			$(".table.table-condensed.table-bordered.table-striped.dataTable tbody").empty();
 			var string = '';
@@ -377,9 +377,9 @@ function getOrdersByPageNum(pageNum) {
 									<br> 
 										姓名：` + data.order.receiveAddress.split("+")[2] + `
 									<br>
-										联系方式：` + data.order.receiveAddress.split("+")[3] + `
+										手机：` + data.order.receiveAddress.split("+")[3] + `
 									<br>
-										收货地址：` + data.order.receiveAddress.split("+")[0] + data.order.receiveAddress.split("+")[1] + `
+										地址：` + data.order.receiveAddress.split("+")[0] + data.order.receiveAddress.split("+")[1] + `
 								</address>
 							</div>
 							<div class="col-xs-6">
@@ -397,12 +397,7 @@ function getOrdersByPageNum(pageNum) {
 									</tbody>
 								</table>
 							</div>
-						</div>`;
-						html += `<div class="row no-print">
-									<div class="col-xs-12">
-										<a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-									</div>
-								</div>`;
+						</div>`; 
 						$(".invoice").empty();
 						$(".invoice").append(html);
 					}

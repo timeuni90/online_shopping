@@ -15,6 +15,8 @@
 
 <link rel="stylesheet" href="${APP_PATH }/static/css/shouye/a_003.css">
 <link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
+<link rel="stylesheet" href="${APP_PATH }/static/css/myorder/layout-a2ae44047d.css">
+
 <link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
 
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
@@ -37,67 +39,9 @@
 </style>
 </head>
 <body class="w1230" style="">
-	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
-	<div id="mallPage" class="mui-global-biz-mallfp  ">
-		<!--from fragment-->
-		<!-- <%@ include file="/WEB-INF/view/header.jsp" %> -->
-		<div id="header" data-spm="a2226n0"
-			data-spm-anchor-id="875.7931836/B.0.a2226n0.66144265Vx5b6f">
-			<div class="headerLayout">
-				<div class="headerCon">
-					<h1 id="mallLogo">
-						<span class="mlogo"> <a href="https://www.tmall.com/"
-							title="天猫Tmall.com">天猫Tmall.com</a>
-
-						</span>
-
-					</h1>
-					<div class="header-extra"
-						data-spm-anchor-id="875.7931836/B.a2226n0.i0.66144265Vx5b6f">
-
-						<div class="header-banner">
-
-							<div></div>
-
-						</div>
-
-						<div id="mallSearch" class="mall-search">
-							<form name="searchTop" style="border: solid #00c3f5;"
-								action="${APP_PATH}/search_product"
-								class="mallSearch-form clearfix">
-								<fieldset>
-									<legend>搜索</legend>
-									<div class="mallSearch-input clearfix">
-										<!-- <label for="mq" style="visibility: visible; display: none;">搜索商品/店铺</label> -->
-										<div class="s-combobox" id="s-combobox-137"
-											aria-pressed="false">
-											<div class="s-combobox-input-wrap">
-												<input type="text" name="key" accesskey="s" autocomplete="off"
-													id="mq" class="s-combobox-input" placeholder="搜索  商品 / 店铺">
-											</div>
-											<!-- <label for="mq" class="s-combobox-placeholder"
-												style="color: rgb(102, 102, 102); visibility: visible;">搜索  商品 / 店铺</label> -->
-										</div>
-										<button type="submit" style="background-color: #00c3f5;">
-											搜索
-										</button>
-										<input id="J_Type" type="hidden" name="type" value="p">
-										<input id="J_MallSearchStyle" type="hidden" name="style"
-											value=""> <input id="J_Cat" type="hidden" name="cat"
-											value="all"> <input type="hidden" name="vmarket"
-											value="">
-									</div>
-								</fieldset>
-							</form>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
+	<%@ include file="/WEB-INF/view/public/header.jsp" %>
+	<div id="mallPage" class="mui-global-biz-mallfp">
 		<div id="content">
-
 			<div class="main-nav" data-spm="2016004" style="border-color: #00c3f5;"></div>
 
 			<style>
@@ -115,10 +59,6 @@
 </style>
 			<div class="j_category category-con">
 				<div class="category-inner-con j_categoryInnerCon j_categoryTab">
-					<div class="j_logo logo-con" data-spm="2015002">
-						<!--<img class="tmall-logo-img" src="static/images/shouye/logo.png" style="margin: 1px auto;display:block" width="240px" height="130px">-->
-					</div>
-
 					<div class="category-type" style="background-color: #00c3f5;">
 						<i class="oi fp-iconfont" data-glyph="menu" aria-hidden="true"></i>
 						<div class="text">商品分类</div>
@@ -143,7 +83,7 @@
 									data-spm="26,37"><i class="oi icon"
 									data-glyph="globe" aria-hidden="true"></i><i
 									class="dot fp-iconfont"></i> 
-									<a href="${APP_PATH }/products?varietyId=1002">男装</a>
+									<a href="${APP_PATH }/products?varietyId=26">男装</a>
 
 									/ <a
 									href="${APP_PATH }/products?varietyId=1003">运动户外</a>
@@ -359,13 +299,13 @@
 							<div class="main-banner slider-pannel j_tanxContainer"
 								style="background: rgb(232, 232, 232) none repeat scroll 0% 0%; position: absolute; z-index: 1; opacity: 1; display: block;">
 								<a>
-									<div class="tanx-banner-con">
-										<img class="tanx-banner"
-											src="https://img.alicdn.com/tps/i4/TB1LhmVUzDpK1RjSZFrwu178VXa.png_q100.jpg_.webp">
+									<div id="my_lunbo" class="tanx-banner-con">
+										<!-- <img class="tanx-banner"
+											src="https://img.alicdn.com/tps/i4/TB1LhmVUzDpK1RjSZFrwu178VXa.png_q100.jpg_.webp"> -->
 									</div>
 								</a>
 							</div>
-							<div class="main-banner slider-pannel j_tanxContainer"
+							<!-- <div class="main-banner slider-pannel j_tanxContainer"
 								style="background: rgb(232, 232, 232) none repeat scroll 0% 0%; position: absolute; z-index: 1; opacity: 1; display: none;">
 								<a>
 									<div class="tanx-banner-con">
@@ -382,12 +322,7 @@
 											src="http://img.alicdn.com/tps/i4/TB1s2pnUSzqK1RjSZPxSuw4tVXa.jpg">
 									</div>
 								</a>
-							</div>
-						</div>
-						<div class="slider-nav">
-							<li class="selected" data-num="0"></li>
-							<li class="" data-num="1"></li>
-							<li class="" data-num="2"></li>
+							</div> -->
 						</div>
 					</div>
 
@@ -403,7 +338,6 @@
 				<div class="module-content j_wonderfulList">
 					<div data-spm="20161015">
 						<ul class="wonderful-line  j_exposureExtra9 ">
-						
 							<c:forEach items="${commodities }" var="commodity" end="4" varStatus="status">
 							<c:if test="${status.index==4 }">
 							<li class="wonderful-item last">
@@ -445,7 +379,7 @@
 						</ul>
 
 						<ul class="wonderful-line" >
-							<c:forEach items="${commodities }" var="commodity" begin="5">
+							<c:forEach items="${commodities }" varStatus="status" var="commodity" begin="5"> 
 							<c:if test="${status.index==9 }">
 							<li class="wonderful-item last">
 							</c:if>
@@ -550,6 +484,23 @@
 		</div>
 		<b data-mark="eea298cd6a372e6741f9bd4c83a9e059"></b>
 	</div>
+	<%@ include file="/WEB-INF/view/public/footer.jsp" %>
+	<script type="text/javascript" src="${APP_PATH }/static/js/vue.min.js"></script>
+	<script type="text/javascript" src="${APP_PATH }/static/js/vue-slideshow.min.js"></script>
+	<script type="text/javascript">
+		new Vue().VueSlideShow("#my_lunbo", {
+	        images: [
+	            { src: "${APP_PATH }/static/images/lunbo/TB1LhmVUzDpK1RjSZFrwu178VXa.png_q100.jpg_.webp"},
+	            { src: "${APP_PATH }/static/images/lunbo/TB1BNOpKQzoK1RjSZFlSuui4VXa.jpg"},
+	            { src: "${APP_PATH }/static/images/lunbo/TB1s2pnUSzqK1RjSZPxSuw4tVXa.jpg"}
+	        ],
+	        config: {
+	            effect: "slide",
+	            autoplay: 5000,
+	            arrow: false,
+	        }
+		});
+	</script>
 	<script type="text/javascript" src="static/js/shouye.js"></script>
 </body>
 </html>

@@ -1,10 +1,14 @@
 package com.timeuni.bean;
 
+import javax.validation.constraints.NotEmpty;
+
 public class User {
     private Integer id;
-
+    
+    @NotEmpty(message = "请输入账号")
     private String username;
-
+    
+    @NotEmpty(message = "请输入密码")
     private String password;
 
     private String name;

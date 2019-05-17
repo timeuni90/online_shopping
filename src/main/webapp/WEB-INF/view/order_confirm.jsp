@@ -18,11 +18,12 @@
 	href="${APP_PATH }/static/css/order_confirm/layout-a2ae44047d.css">
 <link href="${APP_PATH }/static/css/order_confirm/add-8f4ba0d484.css"
 	rel="stylesheet">
+
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
-	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
+	<%@ include file="/WEB-INF/view/public/header.jsp" %>
 	<div class="order">
 		<div class="mzcontainer">
 			<div class="order-address" id="addressModule">
@@ -243,7 +244,7 @@
 
 						</div>
 
-						<div class="order-total-pay-row clearfix">
+						<!-- <div class="order-total-pay-row clearfix">
 							<div class="order-total-pay-title">微信支付</div>
 							<ul class="order-total-pay-list clearfix">
 
@@ -256,7 +257,7 @@
 
 							</ul>
 
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -574,6 +575,7 @@
 		</a>
 	</div>
 	<%@ include file="/WEB-INF/view/public/loading.jsp"%>
+	<%@ include file="/WEB-INF/view/public/footer.jsp" %>
 </body>
 <script type="text/javascript"
 	src="${APP_PATH }/static/js/order_confirm.js"></script>

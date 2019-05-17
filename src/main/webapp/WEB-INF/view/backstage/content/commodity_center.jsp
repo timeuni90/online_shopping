@@ -167,7 +167,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<label class="col-sm-2 control-label">上传视频</label>
 												<div class="col-sm-7">
 													<div class="input-group">
@@ -178,7 +178,7 @@
 														</span>
 													</div>
 												</div>
-											</div>
+											</div> -->
 											<div id="my_params">
 												<div class="form-group">
 													<label class="col-sm-2 control-label">参数名</label>
@@ -346,7 +346,7 @@
 										}
 										$.ajax({
 											method: "POST",
-											url: APP_PATH + "/backstageproduct",
+											url: APP_PATH + "/backstage/product",
 											data: JSON.stringify(product),
 											contentType: "application/json",
 											success: function(data) {
@@ -530,17 +530,4 @@
 					</div>
 				</section>
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				

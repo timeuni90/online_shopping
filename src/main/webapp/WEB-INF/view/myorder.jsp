@@ -10,11 +10,14 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>我的订单</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="${APP_PATH }/static/css/jquery-confirm.min.css">
 
 <link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
 <link rel="stylesheet" href="${APP_PATH }/static/css/myorder/layout-a2ae44047d.css">
-
 <link rel="stylesheet" href="${APP_PATH }/static/css/myorder/c53414.css">
+
+<link rel="stylesheet" href="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 <style>
 .sureGet .ui-pop-main .ui-pop-cont {
 	line-height: 28px !important;
@@ -33,7 +36,7 @@
 </head>
 
 <body>
-	<%@ include file="/WEB-INF/view/header/meizu_header.jsp" %>
+	<%@ include file="/WEB-INF/view/public/header.jsp" %>
 	<div id="nTalk_post_hiddenElement"
 		style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
 
@@ -44,7 +47,8 @@
 				<div class="order-main">
 					<div class="type-tab-btn">
 						<a href="javascript:;" class="allOrder active" data-type="-1"
-							data-bh="click_store_mc_orderstatus_all">全部订单</a><i class="line">|</i>
+							data-bh="click_store_mc_orderstatus_all">全部订单</a>
+							<!-- <i class="line">|</i>
 						<a class="waitPay" href="javascript:;" data-type="0"
 							data-bh="click_store_mc_orderstatus_1">待付款<span
 							class="amount _actAmount"></span></a><i class="line">|</i> <a
@@ -53,7 +57,7 @@
 						<a class="hasDeliver" href="javascript:;" data-type="2"
 							data-bh="click_store_mc_orderstatus_3">已发货</a><i class="line">|</i>
 						<a class="other" href="javascript:;" data-type="99"
-							data-bh="click_store_mc_orderstatus_other">其他</a>
+							data-bh="click_store_mc_orderstatus_other">其他</a> -->
 					</div>
 					<div class="list-head">
 						<ul class="clearfix">
@@ -88,9 +92,6 @@
 												<span class="orderNumber">
 													${order.key.orderNumber }
 												</span>
-												 <a href="javascript:;" class="kefu j-kefu">
-												 	<i class="iconfont icon-kefu"></i>&nbsp;联系客服
-												 </a>
 											</div>
 										</td>
 									</tr>
@@ -102,7 +103,7 @@
 													<c:forEach items="${order.value }" var="commodity">
 													<div class="item b-t clearfix j-iamMain">
 														<a class="productDetail nameWidth"
-															href="//detail.meizu.com/item/meizu_power_bank_3.html"
+															href="${APP_PATH }/product/${commodity.key.commodity }"
 															target="_blank"> 
 															<img
 																src="${commodity.key.commodityCover }"
@@ -167,13 +168,25 @@
 													</a>
 												</li>
 												</c:if>
-												<li class="more">
-													<a
-													href="//ordercenter.meizu.com/detail.html?sn=51050643590921833081&amp;isOld=0&amp;isCart=1"
-													target="_blank">
-														查看详情
-													</a>
+												<c:if test="${order.key.status == 2 }">
+												<li data-orderid="${order.key.id }" class="confirm_receive"
+													 style="margin-bottom: 5px;
+														    width: 70px;
+														    height: 24px;
+														    background: #367fa9;
+														    color: #fff;
+														    text-align: center;
+														    line-height: 24px;
+														    border-radius: 4px;
+														    cursor: pointer;">
+														确认收货
 												</li>
+												</c:if>
+												<c:if test="${order.key.status == 3 }">
+												<li data-orderid="${order.key.id }" class="goPay remove_order" style="background: #ff851b">
+														删除订单
+												</li>
+												</c:if>
 											</ul>
 										</td>
 									</tr>
@@ -191,10 +204,11 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- common js -->
-
-	<!-- end content -->
-	<%-- <%@ include file="/WEB-INF/view/public/footer.jsp" %> --%>
+	<%@ include file="/WEB-INF/view/public/footer.jsp" %>
+	<script type="text/javascript">
+		var APP_PATH = "${APP_PATH }";
+	</script>
+	<script src="${APP_PATH }/static/js/jquery-confirm.min.js"></script>
+	<script src="${APP_PATH }/static/js/myorder.js"></script>
 </body>
 </html>

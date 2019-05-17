@@ -34,7 +34,7 @@ public class BackStageCommodityController {
 	}
 	
 	/* 获得商家所有商品 */
-	@RequestMapping(value = "/backstageproducts", method = RequestMethod.GET)
+	@RequestMapping(value = "/backstage/products", method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<SellerProduct> HandleGetProductsRequest(HttpSession httpSession,
 			@RequestParam(required = false) Integer pageNum) {
@@ -46,7 +46,7 @@ public class BackStageCommodityController {
 	}
 
 	/* 添加商品 */
-	@RequestMapping(value = "/backstageproduct", method = RequestMethod.POST)
+	@RequestMapping(value = "/backstage/product", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> handleAddProductRquest(HttpSession httpSession, @RequestBody BackstageProduct product) {
 		return backStageCommodityService.addProduct(product, (Integer) httpSession.getAttribute("sellerId"));

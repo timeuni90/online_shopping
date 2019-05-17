@@ -311,4 +311,21 @@ public class OrderService {
 		orderExample.createCriteria().andGroupIdEqualTo(groupId);
 		orderMapper.updateByExampleSelective(order, orderExample);
 	}
+	
+	/* 确认收货 */
+	public Integer confirmReceived(Integer orderId) {
+		Order order = new Order();
+		order.setId(orderId);
+		order.setStatus(OrderStatus.RECEIVED.ordinal());
+		return orderMapper.updateByPrimaryKeySelective(order);
+	}
+	
+	/* 删除订单 */
+	public Integer removeOrder(Integer orderId) {
+		Order order = new Order();
+		order.setId(orderId);
+		order.setUserIsDelete(true);
+		return orderMapper.updateByPrimaryKeySelective(order);
+	}
+	
 }

@@ -58,8 +58,9 @@ public class CommodityController {
 			sortType = 0;
 		}
 		PageInfo<Commodity> pageInfo = commodityService.getCommoditiesByCategoryId(varietyId, page, sortType);
-		ModelAndView modelAndView = new ModelAndView("sousuo");
+		ModelAndView modelAndView = new ModelAndView("variety_commodity");
 		modelAndView.addObject("pageInfo", pageInfo);
+		modelAndView.addObject("varietyId", varietyId);
 		return modelAndView;
 	}
 }

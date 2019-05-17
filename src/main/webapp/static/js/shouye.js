@@ -45,12 +45,3 @@ $(".j_MenuNav.nav-item").mouseenter(function() {
 		}
 	});
 });
-
-
-/* 点击切换图片 */
-$(".slider-nav li").click(function() {
-	$(".slider-nav li").removeClass("selected");
-	$(this).addClass("selected");
-	$(this).parent().parent().find(".main-banner.slider-pannel.j_tanxContainer").css("display", "none");
-	$($(this).parent().parent().find(".main-banner.slider-pannel.j_tanxContainer")[$(this).data("num")]).css("display", "block");
-});

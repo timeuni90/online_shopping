@@ -18,7 +18,7 @@ public class BackStageViewController {
 	}
 	
 	/* 获取商品中心界面 */
-	@RequestMapping(value = "/commoditycenter", method = RequestMethod.GET)
+	@RequestMapping(value = "/backstage/commoditycenter", method = RequestMethod.GET)
 	public String handleGetCommodityCenterViewRequest() {
 		return "backstage/content/commodity_center";
 	}
@@ -29,6 +29,7 @@ public class BackStageViewController {
 		return "backstage/content/order";
 	}
 	
+	/* 获取统计界面 */
 	@RequestMapping(value = "/backstage/statisticview")
 	public String handleGetStatisticViewRequest() {
 		return "backstage/content/statistic";
