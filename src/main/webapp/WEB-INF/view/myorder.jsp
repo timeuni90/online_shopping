@@ -103,8 +103,7 @@
 													<c:forEach items="${order.value }" var="commodity">
 													<div class="item b-t clearfix j-iamMain">
 														<a class="productDetail nameWidth"
-															href="${APP_PATH }/product/${commodity.key.commodity }"
-															target="_blank"> 
+															href="#"> 
 															<img
 																src="${commodity.key.commodityCover }"
 																class="f-fl">
@@ -115,8 +114,7 @@
 																	<a
 																		title="${commodity.key.commotityName }"
 																		class="productDetail nameWidth"
-																		href="//detail.meizu.com/item/meizu_power_bank_3.html"
-																		target="_blank"> 
+																		href="#"> 
 																		${commodity.key.commotityName }
 																	</a>
 																	<p>${commodity.value }</p>
