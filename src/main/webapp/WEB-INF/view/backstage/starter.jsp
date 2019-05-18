@@ -40,13 +40,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="${APP_PATH }/static/css/jquery-confirm.min.css">
 <style>
-td {
+/*td {
 	text-align: center;
 }
 
 tr {
 	line-height:;
-}
+}*/
 
 thead td {
 	font-weight: bolder;

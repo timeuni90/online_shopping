@@ -50,7 +50,7 @@
 										<div class="row">
 											<div class="col-sm-12">
 
-												<table class="table table-condensed table-bordered table-striped dataTable">
+												<table class="table table-hover table-condensed dataTable">
 													<thead>
 														<tr>
 															<td>
