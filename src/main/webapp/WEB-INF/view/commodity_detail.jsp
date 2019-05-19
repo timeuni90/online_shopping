@@ -41,20 +41,33 @@
 	href="${APP_PATH }/static/backstage/dist/css/AdminLTE.min.css">
 
 <!-- globalmodule version: 3.0.83 -->
-<link rel="stylesheet"
-	href="${APP_PATH }/static/css/commodity_detail/detail.css">
-<link rel="stylesheet"
-	href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
-<link rel="stylesheet"
-	href="${APP_PATH }/static/css/commodity_detail/modules-other-tmall-default-min.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/modules-other-tmall-default-min.css">
+
+<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tmall.css">
+<link href="${APP_PATH }/static/css/commodity_detail/cart-layer.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/cspu.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/relateGroup.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/combo.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/progressive.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/index.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/suggest.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/brandbar.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/mallbar.css" rel="stylesheet">
+<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tstart.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/tdog.css">
+<link href="${APP_PATH }/static/css/commodity_detail/floatcartlink.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/tabRight.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/waterfall.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/mallphotos.css" rel="stylesheet">
+<link href="${APP_PATH }/static/css/commodity_detail/try.css" rel="stylesheet">
 
 <link href="${APP_PATH }/static/css/header/meizu_header/header.css" rel="stylesheet">
 
 <!-- 新增css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
 <link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
 
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>

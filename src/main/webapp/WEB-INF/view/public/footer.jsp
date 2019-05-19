@@ -6,72 +6,57 @@
 		<div class="meizu-footer-wrap">
 			<div class="meizu-row">
 				<ul class="meizu-footer-service" id="meizu-footer-service">
-					<li><a href="#"
-						data-bh="click_store_index_bottom_support_1"
+					<li><a href="#" data-bh="click_store_index_bottom_support_1"
 						data-mtype="store_index_bottom_support_1"><img
 							src="https://fms.res.meizu.com/dms/2018/07/13/2c69bf7c-2d29-4fd4-852e-0aa497f36f51.png"><span>满80免运费</span></a>
 					</li>
-					<li><a href="#"
-						data-bh="click_store_index_bottom_support_2"
+					<li><a href="#" data-bh="click_store_index_bottom_support_2"
 						data-mtype="store_index_bottom_support_2"><img
 							src="https://fms.res.meizu.com/dms/2018/07/13/d28eac8b-b915-49dc-9dbd-80884a07d44f.png"><span>100+
 								城市次日送达</span></a></li>
-					<li><a
-						href="#"
-						data-bh="click_store_index_bottom_support_3"
+					<li><a href="#" data-bh="click_store_index_bottom_support_3"
 						data-mtype="store_index_bottom_support_3"><img
 							src="https://fms.res.meizu.com/dms/2018/07/13/b21f3e65-f7f4-4693-914c-c070faf96770.png"><span>7天无理由退货</span></a>
 					</li>
-					<li><a
-						href="#"
-						data-bh="click_store_index_bottom_support_4"
+					<li><a href="#" data-bh="click_store_index_bottom_support_4"
 						data-mtype="store_index_bottom_support_4"><img
 							src="https://fms.res.meizu.com/dms/2018/07/13/1998f0da-a439-4e07-9736-e6a1c39fb0ae.png"><span>15天换货保障</span></a>
 					</li>
-					<li><a
-						href="#"
-						data-bh="click_store_index_bottom_support_5"
+					<li><a href="#" data-bh="click_store_index_bottom_support_5"
 						data-mtype="store_index_bottom_support_5"><img
 							src="https://fms.res.meizu.com/dms/2018/07/13/420825c1-4763-436d-b3e1-721651ccc70c.png"><span>1年免费保修</span></a>
 					</li>
-					<li><a
-						href="#"
-						data-bh="click_store_index_bottom_support_6"
+					<li><a href="#" data-bh="click_store_index_bottom_support_6"
 						data-mtype="store_index_bottom_support_6"><img
 							src="https://fms.res.meizu.com/dms/2018/07/13/1c5cfeff-1b35-499e-bc2a-1fd29305be69.png"><span>上门快修</span></a>
 					</li>
 				</ul>
-				
+				<div class="onlive-server">
+					<span>周一至周日 7:30-24:00</span>
+					<p class="tel">400-788-3333</p>
+				</div>
 			</div>
 			<hr class="footer-hr">
 			<div class="meizu-footer-co">
 				<div class="meizu-row">
 					<div class="meizu-footer-info">
 						<div class="meizu-footer-info-left">
-							
+
 
 							<div class="meizu-footer-language-wp clearfix"></div>
 
 							<div class="meizu-footer-certificate">
-								©2019 timeuni90@outlook.com
-								reserved.&nbsp;&nbsp;&nbsp;&nbsp; 
-								<a
-									href="#" hidefocus="true">粤ICP备13003602号</a>
-								<a
-									href="#" hidefocus="true">合字B2-20170010
-								</a> <a
-									href="#"
-									hidefocus="true">营业执照</a> <a
-									href="#" hidefocus="true">法律声明</a>
-								<span class="footer-info-record" href="">
-									<i></i> 粤公网安备 44049102496009 号
-								</span> <a class="footer-info-license" rel="nofollow"
-									href="#" hidefocus="true"> <i></i>
-								</a> <a class="footer-info-wel" rel="nofollow"
-									href="#"
+								©2019 timeuni90@outlook.com reserved.&nbsp;&nbsp;&nbsp;&nbsp; <a
+									href="#" hidefocus="true">粤ICP备13003602号</a> <a href="#"
+									hidefocus="true">合字B2-20170010 </a> <a href="#"
+									hidefocus="true">营业执照</a> <a href="#" hidefocus="true">法律声明</a>
+								<span class="footer-info-record" href=""> <i></i> 粤公网安备
+									44049102496009 号
+								</span> <a class="footer-info-license" rel="nofollow" href="#"
 									hidefocus="true"> <i></i>
-								</a> <a class="footer-info-trust" rel="nofollow"
-									href="#"
+								</a> <a class="footer-info-wel" rel="nofollow" href="#"
+									hidefocus="true"> <i></i>
+								</a> <a class="footer-info-trust" rel="nofollow" href="#"
 									hidefocus="true"> <i></i>
 								</a>
 							</div>

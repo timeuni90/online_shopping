@@ -105,7 +105,7 @@
     values (#{id,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, 
       #{reply,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.timeuni.bean.CommentAppend">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.timeuni.bean.CommentAppend">
     insert into tb_comment_append
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
