@@ -28,6 +28,8 @@
 	href="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${APP_PATH }/static/backstage/bower_components/font-awesome/css/font-awesome.min.css">
+<!-- 消息提示 -->
+<link rel="stylesheet" href="${APP_PATH }/static/css/sco.message.css">
 	
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 <script
@@ -139,7 +141,7 @@
 																		</div>
 																	</div>
 																	<c:if test="${order.key.status==3 }">
-																		<label class="comment-btn" data-toggle="modal" data-orderid="${order.key.id }" data-commodityid="${commodity.key.id }"
+																		<label class="comment-btn" data-toggle="modal" data-orderid="${order.key.id }" data-commodityid="${commodity.key.commodityId }"
 																			data-target="#modal_comment"
 																			style="margin-top: 50px; width: 70px; height: 24px; background: #F66567; color: #fff; text-align: center; line-height: 24px; border-radius: 4px; float: right; cursor: pointer;">
 																			评价 </label>
@@ -214,7 +216,7 @@
 					<h4 class="modal-title" id="myModalLabel">评论</h4>
 				</div>
 				<div class="modal-body">
-					<div class="tm-rate-premiere">
+					<!-- <div class="tm-rate-premiere">
 						<div class="tm-rate-tag">
 							<div class="tm-rate-title">初次评论:</div>
 							<div class="tm-rate-title">2019-4-30</div>
@@ -245,7 +247,7 @@
 						<div class="tm-rate-reply">
 							<div class="tm-rate-fulltxt" style="color: #AF874D;">解释：一千几百块，买不了楼房，买不了跑车，但是，您可以买到魅妹爱您的心漫天星辰夜寂寥，魅妹为您解烦忧，如您有疑问或不清楚的地方，记得来联系魅妹哦！魅妹会给您解答疑惑哒！欢迎再次光临，么么哒！</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label for="name">评论输入</label>
 						<textarea id="comment" class="form-control" rows="6" name="comment"></textarea>
@@ -320,6 +322,7 @@
 		var APP_PATH = "${APP_PATH }";
 	</script>
 	<script src="${APP_PATH }/static/js/jquery-confirm.min.js"></script>
+	<script src="${APP_PATH }/static/js/sco.message.js"></script>
 	<script src="${APP_PATH }/static/js/myorder.js"></script>
 </body>
 </html>

@@ -30,4 +30,7 @@ public interface VarietyMapper {
     
     /* 根据parentIds查找类别id */
     public List<Integer> selectIdsByParentIds(@Param("parentIds")List<Integer> parentIds);
+    
+    /* 找出商家的所有分类 */
+    public List<Variety> selectBySellerId(Integer sellerId);
 }

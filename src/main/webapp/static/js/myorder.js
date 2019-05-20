@@ -3,6 +3,14 @@
 $(".comment-btn").click(function() {
 	$("#modal_comment").data("orderid", $(this).data("orderid"));
 	$("#modal_comment").data("commodityid", $(this).data("commodityid"));
+	/* 获取历史评论 */
+	$.ajax({
+		method: "GET",
+		url: APP_PATH + "/comments?orderId=" + $("#modal_comment").data("orderid") + "&commodityId=" + $("#modal_comment").data("commodityid"),
+		success: function(data) {
+			
+		}
+	});
 });
 
 /* 确认收货 */
@@ -139,7 +147,20 @@ $("#comment_btn").click(function() {
 		contentType: false,
 		success: function(data) {
 			if(data > 0) {
-				
+				$("#comment").val("");
+				/* 删除添加图片，只保留一个 */
+				$.each($(".images-upload li"), function(i, n) {
+					if($(".images-upload li").length > 1) {
+						$(n).remove();
+					}
+				});
+				$(".images-upload li").find("input:file").val("");
+				$(".images-upload li").find("img").attr("src", "");
+				$(".images-upload li").find("img").css("display", "none");
+				$(".images-upload li").find(".my-icon").css("display", "block");
+				$(".images-upload li").find(".my-remove-image").remove();
+				$("#modal_comment").modal("hide");
+				$.scojs_message('评论完成', $.scojs_message.TYPE_OK);
 			}
 		}
 	});

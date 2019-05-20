@@ -56,13 +56,19 @@ public interface CommodityMapper {
 	/* 获取收藏量前10的商品 */
 	public List<Commodity> selectRotCommodities(String coverLocation);
 
-	/* 按一些列商品id获取商品 */
-	public List<Commodity> selectByCommodityIds(@Param("commodityIds")List<Integer> commodityIds, @Param("sortType") Integer sortType,
+	/* 按一系列商品id获取商品 */
+	public List<Commodity> selectByCommodityIds(@Param("commodityIds") List<Integer> commodityIds,
+			@Param("sortType") Integer sortType,
 			@Param("commodityCoverImageLocation") String commodityCoverImageLocation);
-	
+
 	/* 获取商家的商品 */
 	public List<SellerProduct> selectBySellerId(Integer sellerId);
-	
+
 	/* 统计每个商品的销量 */
 	public List<ProductWithSaleQuantity> selectSumSaleQuantityBySellerId(Integer sellerId);
+
+	/* 按一系列商品id和商家id获取商品 */
+	public List<Commodity> selectByCommodityIdsAndSellerId(@Param("sellerId") Integer sellerId,
+			@Param("commodityIds") List<Integer> commodityIds, @Param("sortType") Integer sortType,
+			@Param("coverLocation") String coverLocation);
 }

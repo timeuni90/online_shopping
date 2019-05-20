@@ -214,9 +214,26 @@
 		tb_variety v
 		WHERE
 		v.parent_id IN
-		<foreach collection="parentIds" item="parentId" separator="," open="(" close=")">
+		<foreach collection="parentIds" item="parentId" separator=","
+			open="(" close=")">
 			#{parentId}
 		</foreach>
 	</select>
 
+	<!-- 以下为新增SQL -->
+
+	<!-- public List<Variety> selectBySellerId(Integer sellerId); -->
+	<select id="selectBySellerId" resultMap="BaseResultMap">
+		SELECT
+		v.id,
+		v.`name`
+		FROM
+		tb_variety v
+		INNER JOIN tb_commodity_variety cv ON v.id = cv.variety_id
+		INNER JOIN tb_commodity c ON cv.commodity_id = c.id
+		INNER JOIN tb_seller s ON c.seller_id = s.id
+		WHERE
+		s.id = #{sellerId}
+		GROUP BY v.id
+	</select>
 </mapper>
