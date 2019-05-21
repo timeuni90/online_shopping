@@ -14,9 +14,6 @@
 			data-mdesc="地址管理">地址管理</a> <a
 			href="//me.meizu.com/member/favorite/index" class="ml "
 			data-mtype="store_mc_me_favorite"
-			data-bh="click_store_mc_me_favorite" data-mdesc="我的收藏">我的收藏</a> <a
-			href="//me.meizu.com/member/message/index" class="ml "
-			data-mtype="store_mc_me_msg" data-bh="click_store_mc_me_msg"
-			data-mdesc="消息提醒">消息提醒</a>
+			data-bh="click_store_mc_me_favorite" data-mdesc="我的收藏">我的收藏</a>
 	</div>
 </div>

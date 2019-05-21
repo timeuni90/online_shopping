@@ -303,8 +303,8 @@
 					</div>
 					<div class="order-total-row order-total-valid-row clearfix">
 						<div class="order-total-valid" id="validCode"></div>
-						<div class="mz-btn success" id="submitForm" data-mdesc="下单并支付"
-							data-mtype="store_se_pay" data-bh="click_store_se_pay">下单并支付</div>
+						<a href="#"><div class="mz-btn success" id="submitForm" data-mdesc="下单并支付"
+							data-mtype="store_se_pay" data-bh="click_store_se_pay">下单并支付</div></a>a>
 						<div class="order-stock-tips-wrap" id="orderStockTips"
 							style="display: block;">
 							<div class="order-stock-tips">该订单含付款减库存商品，支付完成后才会为您预留库存！</div>

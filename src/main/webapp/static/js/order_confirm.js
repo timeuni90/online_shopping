@@ -195,6 +195,10 @@ $("#address_inf .mz-btn.success").click(function() {
 					'</li>';
 			$("#address_inf").addClass("hide");
 			$(".order-address-checkbox.add").before(domString);
+			$(".order-address-checkbox.add").prev().click(function() {
+				$(".order-address-checkbox.checked").removeClass("checked");
+				$(this).addClass("checked");
+			});
 			$("#addressList").css("height", Math.ceil($(".order-address-list.clearfix li").length / 4) * 174 + "px");
 		}
 	});
@@ -260,7 +264,7 @@ $(".order-address-checkbox").click(function() {
 
 /* 提交订单 */
 $("#submitForm").click(function() {
-	/* 若未选着收货地址，直接返回 */
+	/* 若未选择收货地址，直接返回 */
 	if($(".order-address-checkbox.checked").length < 1) {
 		$($(".mz-mask")[0]).find(".mz-dialog-content").text("请选着收货地址");
 		$($(".mz-mask")[0]).removeClass("hide");

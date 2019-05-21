@@ -16,14 +16,15 @@ import com.github.pagehelper.PageInfo;
 import com.timeuni.bean.Commodity;
 import com.timeuni.myexception.NoFindException;
 import com.timeuni.service.CommodityService;
+import com.timeuni.status.CommoditySort;
 
 @Controller
 public class CommodityController {
 	@Autowired
 	private CommodityService commodityService;
-
+	
 	/* 处理搜索商品请求请求 */
-	@RequestMapping(value = "/search_product", method = RequestMethod.GET)
+	@RequestMapping(value = "/search_products", method = RequestMethod.GET)
 	public ModelAndView handleSearchProductRequest(String key, @RequestParam(required = false) Integer sortType,
 			@RequestParam(required = false) Integer page) throws NoFindException {
 		if (sortType == null)
@@ -31,9 +32,10 @@ public class CommodityController {
 		if (page == null)
 			page = 1;
 		PageInfo<Commodity> pageInfo = commodityService.getCommoditiesBySearchKey(key.trim(), sortType, page);
-		ModelAndView modelAndView = new ModelAndView("sousuo");
+		ModelAndView modelAndView = new ModelAndView("search_products");
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("key", key.trim());
+		modelAndView.addObject("sortType", sortType);
 		return modelAndView;
 	}
 
@@ -49,18 +51,20 @@ public class CommodityController {
 
 	/* 按类别获取商品 */
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public ModelAndView handleGetProductsByCategoryIdRequest(Integer varietyId, @RequestParam(required = false) Integer page,
-			@RequestParam(required = false) Integer sortType) throws NoFindException {
+	public ModelAndView handleGetProductsByVarietyRequest(Integer varietyId,
+			@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer sortType)
+			throws NoFindException {
 		if(page == null) {
 			page = 1;
 		}
 		if(sortType == null) {
-			sortType = 0;
+			sortType = CommoditySort.GENERATE_TIME_DESC.ordinal();
 		}
-		PageInfo<Commodity> pageInfo = commodityService.getCommoditiesByCategoryId(varietyId, page, sortType);
-		ModelAndView modelAndView = new ModelAndView("variety_commodity");
-		modelAndView.addObject("pageInfo", pageInfo);
+		Map<String, Object> map = commodityService.getProducts(varietyId, page, sortType);
+		ModelAndView modelAndView = new ModelAndView("products");
+		modelAndView.addAllObjects(map);
 		modelAndView.addObject("varietyId", varietyId);
+		modelAndView.addObject("sortType", sortType);
 		return modelAndView;
 	}
 }

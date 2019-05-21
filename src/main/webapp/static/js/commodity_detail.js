@@ -212,8 +212,22 @@ $("#J_LinkBasket").click(function() {
 			type: "POST",
 			url: "http://localhost:8080/online-shopping/cart",
 			data: "selectPropertyRow=" + select_property_row + "&quantity=" + $(".tb-text.mui-amount-input").val(),
-			success: function() {
-				alert("success");
+			success: function(data) {
+				if(data) {
+					$.scojs_message('添加成功', $.scojs_message.TYPE_OK);
+					/* 更新头部 */
+					$.ajax({
+						method: "GET",
+						url: APP_PATH + "/header",
+						success: function(data) {
+							if(data.isLogined) {
+								$(".layout-header-service-cart-num").text(data.cartCount);
+							}
+						}
+					});
+				} else {
+					$.scojs_message('库存不足', $.scojs_message.TYPE_ERROR);
+				}
 			}
 		});
 	}

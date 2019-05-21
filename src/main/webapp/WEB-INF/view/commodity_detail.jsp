@@ -39,7 +39,7 @@
 	href="${APP_PATH }/static/backstage/bower_components/Ionicons/css/ionicons.min.css">
 <link rel="stylesheet"
 	href="${APP_PATH }/static/backstage/dist/css/AdminLTE.min.css">
-
+	
 <!-- globalmodule version: 3.0.83 -->
 <link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail.css">
 <link rel="stylesheet" href="${APP_PATH }/static/css/commodity_detail/detail-3c.css">
@@ -69,8 +69,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/innerstyle.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/commodity_detail/commodity_detail.css">
 <link href="${APP_PATH }/static/css/open-iconic.min.css" rel="stylesheet">
+<!-- 消息提示 -->
+<link rel="stylesheet" href="${APP_PATH }/static/css/sco.message.css">
 
 <script src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
+<script src="${APP_PATH }/static/js/sco.message.js"></script>
 </head>
 
 <body class="enableHover">
@@ -78,91 +81,6 @@
 	<div id="page">
 		<div id="content" data-cat="J_Cat" data-type="normal"
 			data-spm-anchor-id="a220o.1000855.0.i0.7b036adb8j58J2">
-
-			<!-- 店铺异步，不会显示页头 -->
-			<!--hdkey:new_p_lazy_sid104682877_pid1322100871,cacheAt:2019-04-19 23:57:01,ip:sitemisc011020246244.center.na61-->
-			<div class="tb-shop" id="hd">
-				<div class="layout grid-m J_TLayout" data-widgetid="14678610106"
-					data-componentid="23" data-prototypeid="23" data-id="14678610106"
-					data-max="">
-					<div class="col-main">
-						<div class="main-wrap J_TRegion" data-modules="main"
-							data-width="h990" data-max="">
-							<div class="J_TModule" data-widgetid="14888858591"
-								id="shop14888858591" data-componentid="14208996"
-								data-spm="110.0.14208996-14888858591"
-								microscope-data="14208996-14888858591" data-title="店招模块"
-								data-spm-max-idx="16">
-
-								<div class="tb-module tshop-um tshop-um-topbanner">
-									<div class="headcd" style="height: 150px;"></div>
-									<div class="topbanner" style="height: 150px;">
-										<div class="abs"
-											style="z-index: 1; width: 990px; display: block; left: 0px; top: 0px;">
-											<div class="rel" data-title="power by junezx 3.0"
-												style="position: relative; overflow: hidden; width: 1920px; height: 150px; background: #FFFFFF; line-height: normal; margin-left: 50%; left: -960px; z-index: 1;"
-												data-rn="abqns">
-												<a class="job  abs imghover none  asHMt-Hju6"
-													data-linkmode="ptlink" data-appid="asHMt-Hju6"
-													style="text-decoration: none; margin-top: 30px; overflow: hidden; background: url(${APP_PATH }/static/images/other/guanzhu.png) 50% 50% no-repeat; width: 110px; height: 114px; top: 0px; left: 683px; z-index: 10; opacity: 1;"
-													target="_blank"
-													data-spm-wangpu-module-id="14208996-14888858591"
-													data-spm-anchor-id="a220o.1000855.w14208996-14888858591.1">
-													<img class=" "
-													style="width: 110px; height: 114px; background: url1(// gdp.alicdn.com/ imgextra/ i1/ 1695308781/ TB2DGnmpSXlpuFjy0FeXXcJbFXa_ !! 1695308781.png) 50% 50% no-repeat;"
-													src="//assets.alicdn.com/s.gif">
-												</a> <a class="jsib abs aB2BQ-SNYq" target="_blank"
-													style="outline-color: #FFFFFF; margin-top: 30px; display: block; width: 323px; height: 114px; top: 0px; left: 360px; border: none; z-index: 10;"
-													data-linkmode="ptlink" data-appid="aB2BQ-SNYq"
-													data-spm-wangpu-module-id="14208996-14888858591"
-													data-spm-anchor-id="a220o.1000855.w14208996-14888858591.16">
-													<img class="abs sy img-ks-lazyload"
-													src="${commodity.seller.storeCover }" width="100%"
-													data-spm-anchor-id="a220o.1000855.14208996-14888858591.i2.7b036adb8j58J2">
-												</a>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-							<div class="J_TModule" data-widgetid="14678610108"
-								id="shop14678610108" data-componentid="5002"
-								data-spm="110.0.5002-14678610108"
-								microscope-data="5002-14678610108" data-title="导航">
-								<!-- navigatorForCharge,${renderForDetailLeft}, ${showForceShow} dcPageId: -->
-								<!--hasDcOnNav :  , hasDcPage :  , isMQQ:${isMQQ}, pageType:2 -->
-								<div
-									class="skin-box tb-module tshop-pbsm tshop-pbsm-shop-nav-ch "
-									style="display: block; visibility: visible;">
-									<s class="skin-box-tp"><b></b></s>
-
-									<div class="skin-box-bd" style="height: auto !important;">
-										<div class="all-cats popup-container">
-											<div class="all-cats-trigger popup-trigger">
-												<a class="link "
-													href="//meizu.tmall.com/search.htm?search=y"> <span
-													class="title"> 本店所有商品 </span> <i class="popup-icon"></i>
-												</a>
-											</div>
-
-										</div>
-										<ul class="menu-list">
-											<li class="menu" data-page-id="1322100899"><a
-												class="link" href="//meizu.tmall.com/index.htm"
-												rel="nofollow"><span class="title">首页</span></a> <!--444 1322100899   0 444-->
-											</li>
-
-										</ul>
-									</div>
-									<s class="skin-box-bt"><b></b></s>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
 			<div id="detail"
 				data-spm-anchor-id="a220o.1000855.0.i2.7b036adb8j58J2">
 				<div id="J_DetailMeta" class="tm-detail-meta tm-clear" role="form">
@@ -238,7 +156,7 @@
 										<dt class="tb-metatit">运费</dt>
 										<dd>
 											<div class="tb-postAge">
-												<span class="tb-deliveryAdd" id="J_deliveryAdd">广东珠海</span>
+												<span class="tb-deliveryAdd" id="J_deliveryAdd">包邮</span>
 											</div>
 										</dd>
 									</dl>
@@ -345,9 +263,9 @@
 														type="text" class="tb-text mui-amount-input" value="1"
 														maxlength="8" title="请输入购买量"> <span
 														class="mui-amount-btn"> <span
-															class="mui-amount-increase oi icon"
+															class="mui-amount-increase oi icon" style="font-size: 1px; text-align: center"
 															data-glyph="chevron-top" style="font-size: 2px;"></span><span
-															class="mui-amount-decrease oi icon"
+															class="mui-amount-decrease oi icon" style="font-size: 1px; text-align: center"
 															data-glyph="chevron-bottom" style="font-size: 2px;"></span>
 													</span> <span class="mui-amount-unit">件</span>
 													</span> <em id="J_EmStock" class="tb-hidden"
@@ -367,11 +285,9 @@
 												</div>
 												<div class="tb-btn-basket tb-btn-sku">
 													<a href="#" rel="nofollow" id="J_LinkBasket" class="noPost"
-														role="button"><i></i>加入购物车<span class="ensureText">确认</span></a>
+														role="button">加入购物车<span class="ensureText">确认</span></a>
 												</div>
-												<div class="tb-btn-add tb-btn-sku tb-hidden">
-													<a href="#" rel="nofollow" id="J_LinkAdd" role="button"><i></i>加入购物车</a>
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -693,10 +609,9 @@
 						<div id="J_DcShopArchive" class="J_DcAsyn" role="complementary">
 							<div id="side-shop-info" data-spm="1997427133">
 								<div class="shop-intro" style="">
-
 									<h3 class="hd" style="">
 										<div class="name">
-											<a data-spm="d4918065" class="shopLink" target="_blank">${commodity.seller.storeName }</a>
+											<a data-spm="d4918065" class="shopLink" target="_blank">CLUVIO</a>
 											<span class="ww-light ww-small" data-icon="small"
 												data-nick="%E9%AD%85%E6%97%8F%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97"
 												data-tnick="%E9%AD%85%E6%97%8F%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97"
@@ -712,14 +627,10 @@
 									<div
 										style="height: 0px; margin-top: 0px; margin-bottom: 0px; overflow: hidden; width: 123px;"></div>
 
-									<div class="btnArea">
+									<div class="btnArea" style="width: 70px">
 										<a class="enterShop" id="my_contact_seller"
 											style="cursor: pointer;" data-toggle="modal"
-											data-target="#chat_modal">联系商家</a> <a
-											id="xshop_collection_href"
-											mercury:params="id=104682877&amp;itemid=104682877&amp;itemtype=0&amp;ownerid=d5f9d85f714d80f326b071bdc89360a9"
-											class="J_PopupTrigger collection xshop_sc J_TDialogTrigger J_TokenSign favShop"
-											data-width="440" data-height="260" data-closebtn="true">收藏店铺</a>
+											data-target="#chat_modal">联系商家</a>
 									</div>
 								</div>
 								<div style="height: 0px; overflow: hidden;"></div>
@@ -1931,6 +1842,7 @@
 	src="${APP_PATH }/static/backstage/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="${APP_PATH }/static/backstage/dist/js/adminlte.min.js"></script>
 <script type="text/javascript">
+	var APP_PATH = "${APP_PATH }";
 	var user_id = ${userId };
 	var seller_id = ${sellerId };
 	var commodity_id = ${commodity.id};

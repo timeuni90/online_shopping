@@ -41,7 +41,7 @@ public interface CommodityMapper {
 
 	/* 按照关键字查找商品 */
 	public List<Commodity> selectByKey(@Param("key") String key, @Param("sortType") Integer sortType,
-			@Param("commodityCoverImageLocation") String commodityCoverImageLocation);
+			@Param("coverLocation") String coverLocation);
 
 	/* 按照id找商品 */
 	public Commodity selectByCommodityIdFromMultiTable(@Param("commodityId") Integer commodityId,
@@ -68,7 +68,6 @@ public interface CommodityMapper {
 	public List<ProductWithSaleQuantity> selectSumSaleQuantityBySellerId(Integer sellerId);
 
 	/* 按一系列商品id和商家id获取商品 */
-	public List<Commodity> selectByCommodityIdsAndSellerId(@Param("sellerId") Integer sellerId,
-			@Param("commodityIds") List<Integer> commodityIds, @Param("sortType") Integer sortType,
-			@Param("coverLocation") String coverLocation);
+	public List<Commodity> selectByCommodityIdsAndSellerId(@Param("commodityIds") List<Integer> commodityIds,
+			@Param("sortType") Integer sortType, @Param("coverLocation") String coverLocation);
 }

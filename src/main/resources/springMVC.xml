@@ -38,11 +38,10 @@
 			<mvc:exclude-mapping path="/index"/>
 			<mvc:exclude-mapping path="/login"/>
 			<mvc:exclude-mapping path="/user_validation"/>
-			<mvc:exclude-mapping path="/search_product"/>
+			<mvc:exclude-mapping path="/search_products"/>
 			<mvc:exclude-mapping path="/products"/>
 			<mvc:exclude-mapping path="/indexclass"/>
 			<mvc:exclude-mapping path="/header"/>
-			<mvc:exclude-mapping path="/store"/>
 			<bean class="com.timeuni.interceptor.UserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

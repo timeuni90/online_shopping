@@ -59,10 +59,9 @@
 					<div class="p-title">分类：</div>
 					<div class="p-default">
 						<ul>
-							<li id="first-category" <c:if test="${varietyId==null }">class="selected"</c:if>>
-								<a href="${APP_PATH }/store?sellerId=${sellerId }">全部</a>
+							<li id="first-category" class="selected" style="margin-right: 20px">
+								<a href="${APP_PATH }/products?varietyId=${root.id }">${root.name }</a>
 							</li>
-
 						</ul>
 					</div>
 
@@ -73,11 +72,11 @@
 							<a href="javascript:;" onclick="ec.product.more(this)" class="more more-expand">更多<s></s></a>
 						</div>
 						<!-- 一行的高度为30px,显示n行，p-expand的高度为nx30 -->
-						<div class="p-expand">
+						<div class="p-expand" style="height: auto">
 							<ul class="clearfix">
 								<c:forEach items="${varieties }" var="variety">
 								<li <c:if test="${variety.id==varietyId }">class="selected"</c:if>>
-									<a href="${APP_PATH }/store?varietyId=${variety.id }&sellerId=${sellerId }">${variety.name }</a>
+									<a href="${APP_PATH }/products?varietyId=${variety.id }">${variety.name }</a>
 								</li>
 								</c:forEach>
 							</ul>
@@ -90,38 +89,39 @@
 					<div class="p-values" style="margin-left:95px;">
 						<div class="p-expand">
 							<ul class="clearfix">
-								<!-- 升序选择（从低到高）： sort-asc selected   降序选择（从高到低）： sort-desc selected -->
 								<c:if test="${varietyId!=null }">
 									<c:set value="&varietyId=${varietyId }" var="vid"></c:set>
 								</c:if>
-								<c:if test="0">
+								<c:set value="&sortType=0" var="sort1"></c:set>
+								<c:if test="${sortType==0 }">
 									<c:set value="&sortType=1" var="sort1"></c:set>
-									<c:set value="sort-desc selected" var="sortMethod"></c:set>
+									<c:set value="sort-desc selected" var="sortMethod1"></c:set>
 								</c:if>
-								<c:if test="1">
+								<c:if test="${sortType==1 }">
 									<c:set value="&sortType=0" var="sort1"></c:set>
-									<c:set value="sort-asc selected" var="sortMethod"></c:set>
+									<c:set value="sort-asc selected" var="sortMethod1"></c:set>
 								</c:if>
-								<li id="sort-3" class="${sortMethod }">									
-									<a href="${APP_PATH }/store?sellerId=${sellerId}${vid }${sort1 }" class="sort-added">上架时间<s></s></a>
+								<li id="sort-3" class="${sortMethod1 }">									
+									<a href="${APP_PATH }/products?unuse=1${vid }${sort1 }" class="sort-added">上架时间<s></s></a>
 								</li>
-								<c:if test="2">
+								<c:set value="&sortType=2" var="sort2"></c:set>
+								<c:if test="${sortType==2 }">
 									<c:set value="&sortType=3" var="sort2"></c:set>
-									<c:set value="sort-desc selected" var="sortMethod"></c:set>
+									<c:set value="sort-desc selected" var="sortMethod2"></c:set>
 								</c:if>
-								<c:if test="3">
+								<c:if test="${sortType==3 }">
 									<c:set value="&sortType=2" var="sort2"></c:set>
-									<c:set value="sort-asc selected" var="sortMethod"></c:set>
+									<c:set value="sort-asc selected" var="sortMethod2"></c:set>
 								</c:if>
-								<li id="sort-1" class="${sortMethod }">
-									<a href="${APP_PATH }/store?sellerId=${sellerId}${vid }${sort2 }" class="sort-price">价格<s></s></a>
+								<li id="sort-1" class="${sortMethod2 }">
+									<a href="${APP_PATH }/products?unuse=1${vid }${sort2 }" class="sort-price">价格<s></s></a>
 								</li>
-								<c:if test="4">
-									<c:set value="&sortType=4" var="sort2"></c:set>
-									<c:set value="sort-desc" var="sortMethod"></c:set>
+								<c:set value="&sortType=4" var="sort3"></c:set>
+								<c:if test="${sortType==4 }">
+									<c:set value="sort-desc selected" var="sortMethod3"></c:set>
 								</c:if>
-								<li id="sort-2">
-									<a href="javascript:;" class="sort-eval" onclick="ec.product.sort('2')">评价<s></s></a>
+								<li id="sort-2" class="${sortMethod3 }">
+									<a href="${APP_PATH }/products?unuse=1${vid }${sort3 }" class="sort-eval">评价<s></s></a>
 								</li>
 							</ul>
 						</div>
@@ -172,7 +172,7 @@
 										<tbody>
 											<tr>
 												<td>
-													<a href="${APP_PATH }/product/${commodity.id }" class="p-button-cart"><span>选购</span></a>
+													<a href="${APP_PATH }/product/${commodity.id }" class="p-button-cart"><span>查看</span></a>
 												</td>
 												<td><label class="p-button-score"><span>${commodity.commentQuantity }人评价</span></label></td>
 											</tr>
@@ -189,35 +189,38 @@
 				<div id="list-pager-117" class="pager">
 					<input id="pageTotal" value="6" type="hidden">
 					<ul id="page_ul">
-						<li class="pgNext link first first-empty">|&lt;</li>
-						<li class="pgNext link pre pre-empty">&lt;</li>
-
-						<a id="page_1" href="list-117-1-3-0" title="第1页">
-							<li class="page-number link pgCurrent">1</li>
+						<c:if test="${varietyId!=null }">
+							<c:set value="&varietyId=${varietyId }" var="varietyId"></c:set>
+						</c:if>
+						<c:if test="${sortType!=null }">
+							<c:set value="&sortType=${sortType }" var="sortType"></c:set>
+						</c:if>
+						<c:if test="${pageInfo.hasPreviousPage }">
+						<a href="${APP_PATH }/products?unuse=1&page=${pageInfo.prePage }${sortType }${varietyId }">
+							<li class="pgNext link pre">&lt;</li>
 						</a>
-						<a id="page_2" href="list-117-2-3-0" title="第2页">
-							<li class="page-number link">2</li>
+						</c:if>
+						<c:if test="${!pageInfo.hasPreviousPage }">
+						<li class="pgNext link pre">&lt;</li>
+						</c:if>
+						<c:forEach items="${pageInfo.navigatepageNums }" var="page">
+						<a href="${APP_PATH }/products?unuse=1&page=${page }${sortType }${varietyId }" title="第${page }页">
+							<c:if test="${page==pageInfo.pageNum }">
+							<li class="page-number link pgCurrent">${page }</li>
+							</c:if>
+							<c:if test="${page!=pageInfo.pageNum }">
+							<li class="page-number link">${page }</li>
+							</c:if>
 						</a>
-						<a id="page_3" href="list-117-3-3-0" title="第3页">
-							<li class="page-number link">3</li>
+						</c:forEach>
+						<c:if test="${pageInfo.hasNextPage }">
+						<a href="${APP_PATH }/products?unuse=1&page=${pageInfo.nextPage }${sortType }${varietyId }">
+							<li class="pgNext link next">&gt;</li>
 						</a>
-						<a id="page_4" href="list-117-4-3-0" title="第4页">
-							<li class="page-number link">4</li>
-						</a>
-						<a id="page_5" href="list-117-5-3-0" title="第5页">
-							<li class="page-number link">5</li>
-						</a>
-						<a id="page_6" href="list-117-6-3-0" title="第6页">
-							<li class="page-number link">6</li>
-						</a>
+						</c:if>
+						<c:if test="${!pageInfo.hasNextPage }">
 						<li class="pgNext link next">&gt;</li>
-						<li class="pgNext link last">&gt;|</li>
-						<li class="text quickPager">
-							<select id="pageChecked">
-								<option value="1" selected="">1</option>
-								<option value="2">2</option>
-							</select>
-						</li>
+						</c:if>
 					</ul>
 				</div>
 			</div>

@@ -98,7 +98,7 @@
 		if(key == null || key == "") {
 			return;
 		}
-		window.location.href = "${APP_PATH}/search_product?key=" + key;
+		window.location.href = "${APP_PATH}/search_products?key=" + key;
 	}
 	$("#search_input").keydown(function(eve) {
 		if(eve.keyCode == 13) {
