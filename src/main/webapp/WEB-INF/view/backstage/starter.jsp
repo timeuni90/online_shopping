@@ -27,9 +27,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="${APP_PATH }/static/backstage/dist/css/skins/skin-blue.min.css">
 
-<script
-	src="${APP_PATH }/static/backstage/bower_components/jquery/dist/jquery.min.js"></script>
-
 <!-- 新增style -->
 <link rel="stylesheet"
 	href="${APP_PATH }/static/backstage/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
@@ -38,6 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- 确认框 -->
 <link rel="stylesheet"
 	href="${APP_PATH }/static/css/jquery-confirm.min.css">
+
 <style>
 /*td {
 	text-align: center;
@@ -51,6 +49,9 @@ thead td {
 	font-weight: bolder;
 }
 </style>
+
+<script
+	src="${APP_PATH }/static/backstage/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
 	var APP_PATH = '${APP_PATH}';
 </script>
