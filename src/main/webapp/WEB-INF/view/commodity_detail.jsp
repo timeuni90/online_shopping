@@ -345,11 +345,27 @@
 								<a class="tb-thumb-right"><i></i></a>
 							</div>
 							<p class="tm-action tm-clear">
-								<a id="J_AddFavorite" href="javascript:;" class="favorite">
-									<i class="oi icon" data-glyph="star"></i><span>收藏商品</span>
+								<style>
+									.my_hidden {
+										display: none;
+									}
+								</style>
+								<c:if test="${isCollect }">
+									<c:set value="my_hidden" var="remove_hidden"></c:set>
+								</c:if>
+								<c:if test="${!isCollect }">
+									<c:set value="my_hidden" var="add_hidden"></c:set>
+								</c:if>
+								<a id="J_RemoveFavorite" href="javascript:;" class="favorite ${add_hidden }" title="取消收藏" data-commodityid="${commodityId }">
+									<i class="oi icon" data-glyph="star" style="color: red"></i>
+									<span>已收藏</span>
 								</a>
-								<!-- ruleBanner-->
-								<span id="J_CollectCount">（${commodity.collectQuantity }人气）</span>
+								<a id="J_AddFavorite" href="javascript:;" class="favorite ${remove_hidden }" title="收藏" data-commodityid="${commodityId }">
+									<i class="oi icon" data-glyph="star"></i>
+									<span>收藏商品</span>
+								</a>
+								
+								
 							</p>
 							<ul class="tb-meta-icons">
 								<li title="天猫网厅"

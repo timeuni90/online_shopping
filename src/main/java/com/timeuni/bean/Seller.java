@@ -2,13 +2,17 @@ package com.timeuni.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Seller {
     private Integer id;
 
     private Integer cityId;
-
+    
+    @NotEmpty(message = "请输入账号！")
     private String username;
-
+    
+    @NotEmpty(message = "请输入密码！")
     private String password;
 
     private String storeName;

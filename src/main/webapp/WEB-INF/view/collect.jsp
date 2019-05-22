@@ -32,8 +32,8 @@
 	<!-- common header -->
 	<%@ include file="/WEB-INF/view/public/header.jsp"%>
 	<div class="store-wrap">
-
 		<div class="main clearfix">
+			<c:set value="active" var="mysider_status3"></c:set>
 			<%@ include file="/WEB-INF/view/public/mysider.jsp"%>
 			<div class="right-content f-fr">
 				<div class="collect-main">
@@ -50,9 +50,9 @@
 							<div class="ui-load-content">
 								<div class="clearfix">
 									<c:forEach items="${commodities }" var="commodity">
-										<div class="item j-hover-item f-fl" style="z-index: 18; height: 260px">
+										<div class="item j-hover-item f-fl" style="z-index: 18; height: 260px; margin-left: 15px;">
 											<i class="icon-del j-icon-del" data-id="12486"
-												data-commodityid="${commodity.id }"></i> <a
+												data-commodityid="${commodity.id }" style="cursor: pointer;"></i> <a
 												href="${APP_PATH }/product/${commodity.id }"> <img
 												src="${commodity.coverImage }">
 											</a> <a href="${APP_PATH }/product/${commodity.id }">

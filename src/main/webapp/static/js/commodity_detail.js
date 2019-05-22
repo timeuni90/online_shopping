@@ -304,3 +304,40 @@ function mySendMessage() {
 	$("#chat_send").prev().val("");
 	websocket.send(JSON.stringify(data));
 }
+
+/* 收藏 */
+$("#J_AddFavorite").click(function() {
+	var cur = this;
+	var commodityId = $(this).data("commodityid");
+	$.ajax({
+		method: "POST",
+		url: APP_PATH + "/collect",
+		data: "commodityId=" + commodityId,
+		success: function(data) {
+			if(data > 0) {
+				$(cur).addClass("my_hidden");
+				$("#J_RemoveFavorite").removeClass("my_hidden");
+			}
+		}
+	});
+});
+
+/* 取消收藏 */
+$("#J_RemoveFavorite").click(function() {
+	var cur = this;
+	var commodityId = $(this).data("commodityid");
+	$.ajax({
+		method: "POST",
+		url: APP_PATH + "/collect",
+		data: "_method=delete&commodityId=" + commodityId,
+		success: function(data) {
+			if(data > 0) {
+				$(cur).addClass("my_hidden");
+				$("#J_AddFavorite").removeClass("my_hidden");
+			}
+		}
+	});
+});
+
+
+

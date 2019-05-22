@@ -55,7 +55,7 @@
 			</li>
 			<li class="layout-header-nav-item">
 				<a
-					href="#"
+					href="${APP_PATH }/collect"
 					class="layout-header-nav-link" data-mtype="store_index_dh_0"
 					data-bh="store_index_dh_0">
 					个人中心

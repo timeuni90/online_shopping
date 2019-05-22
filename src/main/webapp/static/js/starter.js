@@ -1,4 +1,15 @@
 
+/* 默认打开订单中心 */
+$.ajax({
+	method: "GET",
+	url: APP_PATH + "/backstage/orderview",
+	success: function(orderview) {
+		$(".content-wrapper").empty();
+		$(".content-wrapper").append(orderview);
+		getOrdersByPageNum(1);
+	}
+});
+
 /* 打开商品中心 */
 $("#commodity_center_opener").click(function() {
 	if($(this).hasClass("active")) {

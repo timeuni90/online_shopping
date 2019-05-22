@@ -58,6 +58,7 @@
 
 	<div class="store-wrap">
 		<div class="main clearfix">
+			<c:set value="active" var="mysider_status1"></c:set>
 			<%@ include file="/WEB-INF/view/public/mysider.jsp"%>
 			<div class="right-content f-fr">
 				<div class="order-main">

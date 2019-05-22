@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.PageInfo;
 import com.timeuni.bean.Commodity;
 import com.timeuni.myexception.NoFindException;
+import com.timeuni.service.CollectService;
 import com.timeuni.service.CommodityService;
 import com.timeuni.status.CommoditySort;
 
@@ -22,6 +23,8 @@ import com.timeuni.status.CommoditySort;
 public class CommodityController {
 	@Autowired
 	private CommodityService commodityService;
+	@Autowired
+	private CollectService collectService;
 	
 	/* 处理搜索商品请求请求 */
 	@RequestMapping(value = "/search_products", method = RequestMethod.GET)
@@ -42,10 +45,13 @@ public class CommodityController {
 	/* 处理获取商品信息请求 */
 	@RequestMapping(value = "/product/{commodityId}", method = RequestMethod.GET)
 	public ModelAndView handleGetCommodityRequest(HttpSession session, @PathVariable Integer commodityId) {
+		Integer userId = (Integer) session.getAttribute("userId");
 		Map<String, Object> map = commodityService.getCommodityById(commodityId);
+		Boolean isCollect = collectService.isCollect(userId, commodityId);
 		ModelAndView modelAndView = new ModelAndView("commodity_detail");
 		modelAndView.addAllObjects(map);
-		modelAndView.addObject("userId", session.getAttribute("userId"));
+		modelAndView.addObject("isCollect", isCollect);
+		modelAndView.addObject("userId", userId);
 		return modelAndView;
 	}
 

@@ -26,10 +26,14 @@
 	
 	<!-- 注册拦截器 -->
 	<mvc:interceptors>
+		<!-- 后台拦截器 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="com.timeuni.interceptor.SessionInterceptor"></bean>
+			<mvc:mapping path="/backstage/**"/>
+			<mvc:exclude-mapping path="/backstage/login"/>
+			<mvc:exclude-mapping path="/backstage/login_validation"/>
+			<bean class="com.timeuni.interceptor.BackstageInterceptor"></bean>
 		</mvc:interceptor>
+		<!-- 前台拦截器 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/> 
 			<mvc:exclude-mapping path="/static/**"/>
