@@ -540,31 +540,119 @@
 					<div class="col-md-12">
 						<div class="box box-primary">
 							<div class="box-header with-border">
-								<h3 class="box-title">添加商品</h3>
+								<h3 class="box-title" style="margin-right: 45%;">添加商品</h3>
+								<label id="my_add_key" style="margin-right: 5%;"> <i
+									class="fa fa-fw fa-plus-square"></i> 参数
+								</label> <label id="my_add_value"> <i class="fa fa-fw fa-plus-square"></i> 参数值
+								</label>
 							</div>
-							<form role="form">
+							<form>
 								<div class="box-body">
 									<div class="form-group">
-										<label for="exampleInputEmail1">商品标题</label> <input
+										<label>类别</label>
+										<div class="filter-box">
+											<div class="filter-text" style="border: 1px solid #d2d6de;">
+												<input type="text" class="input-combobox filter-title"
+													placeholder="选择类别" readonly="readonly"><span
+													class="icon icon-filter-arrow"></span>
+											</div>
+											<style>
+.my-combobox-li {
+	position: relative
+}
+
+.my-combobox-li:hover>ul {
+	display: block !important;
+}
+
+.my-combobox-ul {
+	display: none;
+	width: 200px;
+	left: 197px;
+	top: -15px;
+}
+.filter-list li a {
+	color: white;
+}
+</style>
+											<ul id="root_varities" class="filter-list filter-open"
+												style="display: none; width: 200px;">
+												<!-- <li class="my-combobox-li"><a title="苏州">苏州</a>
+													<ul class="filter-list filter-open my-combobox-ul">
+														<li class="my-combobox-li"><a title="苏州">苏州</a></li>
+														<li class="my-combobox-li"><a title="连云港">连云港</a>
+															<ul class="filter-list filter-open my-combobox-ul">
+																<li class="my-combobox-li"><a title="苏州">苏州</a></li>
+																<li class="my-combobox-li"><a title="连云港">连云港</a></li>
+															</ul></li>
+													</ul></li>
+												<li class="my-combobox-li"><a title="连云港">连云港</a></li> -->
+											</ul>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">商品标题</label> <input id="my_product_title"
 											type="text" class="form-control" placeholder="输入商品名">
 									</div>
-									<div class="form-group">
-										<label>类别</label>
-										
-									</div>
-									<div class="form-group">
-										<label for="exampleInputFile">File input</label> <input
-											type="file" id="exampleInputFile">
 
-										<p class="help-block">Example block-level help text here.</p>
+									<div class="my-key-group">
+										<div class="form-group">
+											<label>参数名</label>
+											<div class="row">
+												<div class="col-md-4">
+													<input type="text" class="form-control my-key-input" placeholder="输入参数名">
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="checkbox">
-										<label> <input type="checkbox"> Check me out
-										</label>
+									<style>
+.my-value-background {
+	background: 100% center/35px 35px no-repeat;
+}
+</style>	
+									<div class="my-value-rows">
+										<div class="my-value-row">
+											<div class="form-group value">
+												<label>参数值</label>
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="input-group">
+															<input type="text" class="form-control my-value-background"
+																placeholder="参数值"> <span
+																class="input-group-addon open-image" title="上传图片">
+																<input type="file" accept="images/*"
+																style="display: none;"> <i
+																class="fa fa-fw fa-file-image-o"></i>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group variable">
+												<div class="row">
+													<div class="col-sm-6">
+														<input type="text" class="my-price form-control" placeholder="价格￥">
+													</div>
+													<div class="col-sm-6">
+														<input type="text" class="my-stock form-control" placeholder="库存">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputFile">图片上传</label>
+										<ul class="images-upload">
+											<li>
+												<div class="my-icon"></div> <img style="display: none;">
+												<input type="file" accept="image/*">
+											</li>
+										</ul>
+										<div class="clearfix"></div>
 									</div>
 								</div>
 								<div class="box-footer">
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="button" id="my_product_submit" class="btn btn-primary pull-right">提交商品</button>
 								</div>
 							</form>
 						</div>
@@ -576,4 +664,264 @@
 	<button type="button" class="btn btn-default" data-toggle="modal"
 		data-target="#my_add_product_modal">Launch Default Modal</button>
 </section>
-
+<script>
+	/* 点击combobox */
+	$(".input-combobox").click(function() {
+		if($(this).hasClass("down")) {
+			$(this).parent().parent().find("ul").first().css("display", "none");
+			$(this).removeClass("down");
+			$(this).next().removeClass("filter-show");
+		} else {
+			$(this).parent().parent().find("ul").first().css("display", "block");
+			$(this).addClass("down");
+			$(this).next().addClass("filter-show");
+			varietyChildren(0, createRootVarieties, null);
+		}
+	});
+	/* combobox失去焦点 */
+	$(".input-combobox").blur(function() {
+		$(this).parent().parent().find("ul").first().css("display", "none");
+		$(this).removeClass("down");
+		$(this).next().removeClass("filter-show");
+	});
+	/* 获得子分类，并生成子节点 */
+	function varietyChildren(parentId, createDomNode, parentNode) {
+		$.ajax({
+			method: "GET",
+			url: "${APP_PATH }/backstage/varieties?parentId=" + parentId,
+			success: function(data) {
+				createDomNode(parentNode, data);
+			}
+		});
+	}
+	/* 生成根类 */
+	function createRootVarieties(parentNode, varieties) {
+		var html ="";
+		$.each(varieties, function(i, n) {
+			html += `<li class="my-combobox-li" data-id=`+ n.id +`>
+						<a>` + n.name + `</a>
+					</li>`;
+		});
+		$("#root_varities").empty();
+		$("#root_varities").append(html);
+		/* 后续子类 */
+		$("#root_varities>li").mouseenter(function() {
+			varietyChildren($(this).data("id"), createChildrenVarieties, $(this));
+		});
+		/* 点击子类 */
+		$("#root_varities>li").mousedown(function(eve) {
+			eve.stopPropagation();
+			showVarietiesOnInput($(this));
+		});
+	}
+	/* 生成后续子类 */
+	function createChildrenVarieties(parentNode, varieties) {
+		/* 没有子类数据直接返回 */
+		if(varieties.length < 1) {
+			return;
+		}
+		var html ='<ul class="filter-list filter-open my-combobox-ul">';
+		$.each(varieties, function(i, n) {
+			html += `<li class="my-combobox-li" data-id=`+ n.id +`>
+						<a>` + n.name + `</a>
+					</li>`;
+		});
+		html += "</ul>";
+		parentNode.find("ul").remove();
+		parentNode.append(html);
+		/* 后续子类 */
+		parentNode.find("ul").first().find("li").mouseenter(function() {
+			varietyChildren($(this).data("id"), createChildrenVarieties, $(this));
+		});
+		/* 点击分类 */
+		parentNode.find("ul").first().find("li").mousedown(function(eve) {
+			eve.stopPropagation();
+			showVarietiesOnInput($(this));
+		});
+	}
+	/* 选择分类，向上回溯 */
+	function showVarietiesOnInput(currentNode) {
+		var value = currentNode.find(">a").text();
+		$.each(currentNode.parents(".my-combobox-li"), function(i, n) {
+			value = $(n).find(">a").text() + "  >>  " + value;
+		});
+		$(".input-combobox.filter-title").val(value);
+		$(".input-combobox.filter-title").data("varietyid", currentNode.data("id"));
+	}
+	/* 增加参数名输入框 */
+	function addKeyInput() {
+		var row = $(".my-key-group").find(".row").last();
+		/* 数量大于3另起一行 */
+		if(row.find("input").length < 3) {
+			var dom = $(`<div class="col-md-4">
+						<input type="text" class="form-control my-key-input" placeholder="输入参数名">
+					</div>`);
+			row.append(dom);
+		} else {
+			var dom = `<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<input type="text" class="form-control my-key-input" placeholder="输入参数名">
+								</div>
+							</div>
+						</div>`;
+			$(".my-key-group").append(dom);
+		}
+	}
+	
+	/* 增加参数值输入框 */
+	function addValueInput() {
+		var row = $(".my-value-row").last().find(".form-group.value").last().find(">.row");
+		if(row.children().length < 3) {
+			var dom = `<div class="col-sm-4">
+							<div class="input-group">
+								<input type="text" class="form-control my-value-background" placeholder="参数值"> <span class="input-group-addon open-image" title="上传图片">
+									<input type="file" accept="images/*" style="display: none;"> <i class="fa fa-fw fa-file-image-o"></i>
+								</span>
+							</div>
+						</div>`;
+			$(".my-value-row .form-group.variable").prev().find(">.row").append(dom);
+		} else {
+			var dom = `<div class="form-group value">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input type="text" class="form-control my-value-background" placeholder="参数值"> 
+									<span class="input-group-addon open-image" title="上传图片">
+										<input type="file" accept="images/*" style="display: none;"> 
+										<i class="fa fa-fw fa-file-image-o"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>`;
+			$(".my-value-row .form-group.variable").before(dom);
+		}
+		/* 给新增dom绑定事件 */
+		$(".my-value-row .form-group.variable").prev().find(".col-sm-4:last-child .open-image").click(function() {
+			$(this).find("input")[0].click();
+		});
+		/* 阻止冒泡 */
+		$(".my-value-row .form-group.variable").prev().find(".col-sm-4:last-child .open-image").find("input").click(function(eve) {
+			eve.stopPropagation();
+			console.log("a");
+		});
+		$(".my-value-row .form-group.variable").prev().find(".col-sm-4:last-child .open-image").find("input").change(function() {
+			my_changeImage(this);
+		});
+		/* 同步key-value */
+		$(".my-key-input").last().keyup(function() {
+			tongbukeyvalue(this);
+		});
+	}
+	/* 点击'添加参数' */
+	$("#my_add_key").click(function() {
+		addKeyInput();
+		addValueInput();
+	});
+	/* 打开资源选择器 */
+	$(".open-image").click(function() {
+		$(this).find("input")[0].click();
+	});
+	/* 阻止冒泡 */
+	$(".open-image input").click(function(eve) {
+		eve.stopPropagation();
+	});
+	/* 更换图片 */
+	function my_changeImage(cur) {
+		if($(cur).val() == null || $(cur).val() == "") {
+			$(cur).parent().prev().css("background-image", "url()");
+		} else {
+			var file = $(cur)[0].files[0];
+			var url = null;
+			if (window.createObjcectURL != undefined) {
+		        url = window.createOjcectURL(file);
+		    } else if (window.URL != undefined) {
+		        url = window.URL.createObjectURL(file);
+		    } else if (window.webkitURL != undefined) {
+		        url = window.webkitURL.createObjectURL(file);
+		    }
+			$(cur).parent().prev().css("background-image", "url(" + url + ")");
+		}
+	}
+	$(".open-image").find("input").change(function() {
+		my_changeImage(this);
+	});
+	/* 另起一行参数值 */
+	$("#my_add_value").click(function() {
+		var copy = $(".my-value-rows").children().last().clone(true);
+		copy.find("input").val("");
+		copy.find("input:text").css("background-image", "url()");
+		$(".my-value-rows").append(copy);
+	});
+	/* 将key同步到value上 */
+	function tongbukeyvalue(cur) {
+		var index = 0;
+		$.each($(".my-key-input"), function(i, n) {
+			if(n == cur) {
+				index = i;
+				return false;
+			}
+		});
+		$.each($(".my-value-row"), function(i, n) {
+			$(n).find(".my-value-background:eq(" + index + ")").attr("placeholder", $(cur).val());
+			$(n).find(".my-value-background:eq(" + index + ")").data("key", $(cur).val());
+		});
+	}
+	$(".my-key-input").keyup(function() {
+		tongbukeyvalue(this);
+	});
+	/* 价格输入 */
+	$(".my-price").keyup(function() {
+		var value = $(this).val();
+		$(this).val(value.replace(/^(0+|\.)|[^\d\.]+/g, ""));
+	});
+	/* 库存输入 */
+	$(".my-stock").keyup(function() {
+		var value = $(this).val();
+		$(this).val(value.replace(/^(0+)|[^\d]+/g, ""));
+	});
+	/* 封装产品基本信息 */
+	function prepareProduct() {
+		/* 遍历所有行 */
+		var rows = new Array();
+		$.each($(".my-value-row"), function(i, n) {
+			var properties = new Array();
+			/* 遍历当前行的key-value */
+			$.each($(n).find(".my-value-background"), function(i, n) {
+				var type = 2;
+				var file_value = $(n).next().find("input").val();
+				if(file_value == null || file_value == "") {
+					type = 0;
+				}
+				properties.push({
+					propertyName: $(n).data("key"),
+					propertyValue: $(n).val(),
+					type: type
+				});
+			});
+			rows.push({
+				price: $(n).find(".my-price").val(),
+				stock: $(n).find(".my-stock").val(),
+				properties: properties
+			});
+		});
+		var product = {
+				varietyId: $(".input-combobox.filter-title").data("varietyid"),
+				name: $("#my_product_title").val(),
+				rows: rows
+		}
+		return product;
+	}
+	/* 点击提交商品按钮 */
+	$("#my_product_submit").click(function() {
+		var product = prepareProduct();
+		$.ajax({
+			method: "POST",
+			url: APP_PATH + "/backstage/product",
+			data: JSON.stringify(product),
+			contentType: "application/json",
+		});
+	});
+</script>
+<script src="${APP_PATH }/static/js/my_upload.js"></script>

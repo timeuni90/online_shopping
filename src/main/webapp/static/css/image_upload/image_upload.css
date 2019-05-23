@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.images-upload li {
+	border: 1px dotted #ccc;
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	float: left;
+	margin-left: 10px;
+	position: relative;
+}
+
+.my-clear-float {
+	clear: both;
+}
+
+.my-icon {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	background-position: -716px -332px;
+	margin-top: 25px;
+	background-image: url(/online-shopping/static/images/icons.png);
+	transition: background .2s ease;
+}
+
+.images-upload li:hover {
+	border: 1px solid #00a1d6;
+}
+
+.images-upload li:hover .my-icon {
+	background-position: -716px -396px;
+}
+
+.images-upload li input {
+	display: none;
+}
+
+.images-upload li img {
+	width: 98px;
+	height: 98px;
+}
+
+.my-remove-image {
+	position: absolute;
+	top: 5px;
+	right: 2px;
+	display: none;
+	color:
+}
+
+.images-upload li:hover .my-remove-image {
+	display: block;
+}

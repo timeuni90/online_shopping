@@ -61,7 +61,7 @@ $(".remove_order").click(function() {
 	});
 });
 
-/* 添加评论图片 */
+/* 添加图片 */
 function addImage(cur) { 
 	if($(cur).find("input:file").val() == null || $(cur).find("input:file").val() == "") {
 		$(cur).find("input:file")[0].click();

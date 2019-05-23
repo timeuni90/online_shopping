@@ -1,8 +1,12 @@
 package com.timeuni.mybean;
 
+import javax.validation.constraints.NotEmpty;
+
 /* 接收前端传来的商品的可选属性信息 */
 public class BackStageProductKeyValue {
+	@NotEmpty(message = "请输入所有参数名！")
 	private String propertyName;
+	@NotEmpty(message = "请输入所有参数值！")
 	private String propertyValue;
 	private Integer type;
 

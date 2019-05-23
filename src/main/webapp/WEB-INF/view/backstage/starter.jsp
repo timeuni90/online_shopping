@@ -35,6 +35,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- 确认框 -->
 <link rel="stylesheet"
 	href="${APP_PATH }/static/css/jquery-confirm.min.css">
+<!-- combobox -->
+<link rel="stylesheet" href="${APP_PATH }/static/css/combobox/jquery-ui.css">
+<link rel="stylesheet" href="${APP_PATH }/static/css/combobox/combobox.css">
+<!-- image-upload -->
+<link rel="stylesheet" href="${APP_PATH }/static/css/image_upload/image_upload.css">
 
 <style>
 /*td {
