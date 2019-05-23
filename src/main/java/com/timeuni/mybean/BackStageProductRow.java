@@ -2,14 +2,16 @@ package com.timeuni.mybean;
 
 import java.util.List;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 public class BackStageProductRow {
 	private String rowId;
-	@NotEmpty(message = "请输入价格")
+	@NotNull(message = "请输入价格")
 	private Float price;
-	@NotEmpty(message = "请输入库存")
+	@NotNull(message = "请输入库存")
 	private Integer stock;
+	@Valid
 	private List<BackStageProductKeyValue> properties;
 	
 	@Override

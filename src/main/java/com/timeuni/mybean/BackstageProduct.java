@@ -2,6 +2,7 @@ package com.timeuni.mybean;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 public class BackstageProduct {
 	@NotEmpty(message = "请输入商品标题！")
 	private String name;
+	@Valid
 	private List<BackStageProductRow> rows;
 	@NotNull(message = "请选择类别！")
 	private Integer varietyId;
