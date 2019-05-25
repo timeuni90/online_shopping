@@ -64,8 +64,9 @@ public interface CommodityMapper {
 	/* 获取商家的商品 */
 	public List<SellerProduct> selectBySellerId(Integer sellerId);
 
-	/* 统计每个商品的销量 */
-	public List<ProductWithSaleQuantity> selectSumSaleQuantityBySellerId(Integer sellerId);
+	/* 统计商品的销量 */
+	public List<ProductWithSaleQuantity> selectSumSaleQuantityBySellerId(@Param("sellerId") Integer sellerId,
+			@Param("commodityIds") List<Integer> commodityIds);
 
 	/* 按一系列商品id和商家id获取商品 */
 	public List<Commodity> selectByCommodityIdsAndSellerId(@Param("commodityIds") List<Integer> commodityIds,

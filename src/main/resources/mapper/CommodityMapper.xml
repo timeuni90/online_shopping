@@ -636,7 +636,7 @@
 		c.create_time desc
 	</select>
 
-	<!-- public Integer selectSumSaleQuantityBySellerId(Integer sellerId); -->
+	<!-- public Integer selectSumSaleQuantityBySellerId(Integer sellerId, List<Integer> commodityIds); -->
 	<select id="selectSumSaleQuantityBySellerId"
 		resultType="com.timeuni.mybean.ProductWithSaleQuantity">
 		SELECT
@@ -651,6 +651,11 @@
 		LEFT JOIN tb_order o ON od.order_id = o.id
 		WHERE
 		c.seller_id = #{sellerId}
+		<if test="commodityIds!=null">
+			<foreach collection="commodityIds" item="commodityId" open="AND c.id IN (" close=")" separator=",">
+				#{commodityId}
+			</foreach>
+		</if>
 		GROUP BY
 		c.id
 	</select>

@@ -15,6 +15,9 @@ public class BackStageVarietyService {
 	private VarietyMapper varietyMapper;
 	
 	public List<Variety> getVarieties(Integer parentId) {
+		if(parentId == null) {
+			return null;
+		}
 		VarietyExample varietyExample = new VarietyExample();
 		varietyExample.createCriteria().andParentIdEqualTo(parentId);
 		List<Variety> varieties = varietyMapper.selectByExample(varietyExample);

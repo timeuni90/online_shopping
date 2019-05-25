@@ -33,7 +33,7 @@
 
 												<div class="m-form-group">
 													<div class="m-input-group ">
-														<input type="text" placeholder="网易云账号/网易邮箱账号" class="m-input m-input-large account-input" name="username">
+														<input type="text" placeholder="登录账号" class="m-input m-input-large account-input" name="username">
 														<div class="m-input-in-icon">
 														</div>
 														<i class="icomoon icon-user"></i>
@@ -56,13 +56,12 @@
 												<div class="f-clearfix">
 													<div class="f-sm-font f-fl">
 														还没有账号？
-														<a rel="noopener noreferrer" target="_blank" href="/register?referrer=https://console.163yun.com&amp;h=wyygw" class="link">免费注册</a>
+														<a href="${APP_PATH }/register" class="link">免费注册</a>
 													</div>
 												</div>
 											</form>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -73,6 +72,11 @@
 			</div>
 		</div>
 	<%@ include file="/WEB-INF/view/public/loading.jsp"%>
+	<style>
+		#meizu-footer {
+			position: relative;
+		}
+	</style>
 	<%@ include file="/WEB-INF/view/public/footer.jsp" %>
 	</body>
 	<script type="text/javascript">

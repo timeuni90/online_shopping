@@ -7,10 +7,6 @@
 	<h1>
 		商品信息 <small>维护</small>
 	</h1>
-	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-		<li class="active">Here</li>
-	</ol>
 </section>
 
 <!-- Main content -->
@@ -19,11 +15,10 @@
 	<!--------------------------
         | Your Page Content Here |
         -------------------------->
-	<br>
 	<div class="row">
 		<div class="col-xs-3 col-md-offset-9">
 			<button type="button" class="btn btn-sm btn-primary"
-				data-toggle="modal" data-target="#modal-product">
+				data-toggle="modal" data-target="#my_add_product_modal">
 				<i class="fa fa-fw fa-plus-circle"></i>添加
 			</button>
 			<button type="button" id="my_shangjia" class="btn btn-sm bg-orange">
@@ -54,7 +49,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 
-								<table class="table table-hover table-condensed dataTable">
+								<table class="table table-hover">
 									<thead>
 										<tr>
 											<td><input id="my_check_all" type="checkbox"></td>
@@ -81,7 +76,7 @@
 							<div class="col-sm-7">
 								<div class="dataTables_paginate paging_simple_numbers"
 									id="example1_paginate">
-									<ul class="pagination">
+									<ul class="pagination pagination-sm ">
 										<li class="paginate_button previous disabled"
 											id="example1_previous"><a href="#"
 											aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
@@ -537,13 +532,14 @@
 		<div class="modal-dialog">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-						<div class="box box-primary">
+					<div class="col-md-12" id="my_box_container">
+						<div class="box box-primary" id="my_box">
 							<div class="box-header with-border">
 								<h3 class="box-title" style="margin-right: 45%;">添加商品</h3>
 								<label id="my_add_key" style="margin-right: 5%;"> <i
 									class="fa fa-fw fa-plus-square"></i> 参数
-								</label> <label id="my_add_value"> <i class="fa fa-fw fa-plus-square"></i> 参数值
+								</label> <label id="my_add_value"> <i
+									class="fa fa-fw fa-plus-square"></i> 参数值
 								</label>
 							</div>
 							<form>
@@ -571,6 +567,7 @@
 	left: 197px;
 	top: -15px;
 }
+
 .filter-list li a {
 	color: white;
 }
@@ -591,8 +588,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="exampleInputEmail1">商品标题</label> <input id="my_product_title"
-											type="text" class="form-control" placeholder="输入商品名">
+										<label for="exampleInputEmail1">商品标题</label> <input
+											id="my_product_title" type="text" class="form-control"
+											placeholder="输入商品名">
 									</div>
 
 									<div class="my-key-group">
@@ -600,7 +598,8 @@
 											<label>参数名</label>
 											<div class="row">
 												<div class="col-md-4">
-													<input type="text" class="form-control my-key-input" placeholder="输入参数名">
+													<input type="text" class="form-control my-key-input"
+														placeholder="输入参数名">
 												</div>
 											</div>
 										</div>
@@ -609,7 +608,7 @@
 .my-value-background {
 	background: 100% center/35px 35px no-repeat;
 }
-</style>	
+</style>
 									<div class="my-value-rows">
 										<div class="my-value-row">
 											<div class="form-group value">
@@ -617,7 +616,8 @@
 												<div class="row">
 													<div class="col-sm-4">
 														<div class="input-group">
-															<input type="text" class="form-control my-value-background"
+															<input type="text"
+																class="form-control my-value-background"
 																placeholder="参数值"> <span
 																class="input-group-addon open-image" title="上传图片">
 																<input type="file" accept="images/*"
@@ -631,10 +631,12 @@
 											<div class="form-group variable">
 												<div class="row">
 													<div class="col-sm-6">
-														<input type="text" class="my-price form-control" placeholder="价格￥">
+														<input type="text" class="my-price form-control"
+															placeholder="价格￥">
 													</div>
 													<div class="col-sm-6">
-														<input type="text" class="my-stock form-control" placeholder="库存">
+														<input type="text" class="my-stock form-control"
+															placeholder="库存">
 													</div>
 												</div>
 											</div>
@@ -652,7 +654,10 @@
 									</div>
 								</div>
 								<div class="box-footer">
-									<button type="button" id="my_product_submit" class="btn btn-primary pull-right">提交商品</button>
+									<label id="error_message"
+										style="font-weight: normal; color: red;"></label>
+									<button type="button" id="my_product_submit"
+										class="btn btn-primary pull-right">提交商品</button>
 								</div>
 							</form>
 						</div>
@@ -661,8 +666,6 @@
 			</div>
 		</div>
 	</div>
-	<button type="button" class="btn btn-default" data-toggle="modal"
-		data-target="#my_add_product_modal">Launch Default Modal</button>
 </section>
 <script>
 	/* 点击combobox */
@@ -804,7 +807,6 @@
 		/* 阻止冒泡 */
 		$(".my-value-row .form-group.variable").prev().find(".col-sm-4:last-child .open-image").find("input").click(function(eve) {
 			eve.stopPropagation();
-			console.log("a");
 		});
 		$(".my-value-row .form-group.variable").prev().find(".col-sm-4:last-child .open-image").find("input").change(function() {
 			my_changeImage(this);
@@ -913,6 +915,49 @@
 		}
 		return product;
 	}
+	/* 封装参数图片 */
+	function prepareParamsImages(data) {
+		var formData = new FormData();
+		var hasFile = false;
+		/* 搜寻文件 */
+		$.each($(".my-value-rows .open-image"), function(i, n) {
+			if($(n).find("input").val() != null && $(n).find("input").val() != "") {				
+				var cur = n;
+				var key = $(n).prev().data("key") + $(n).prev().val();
+				$.each(data.propertyMap, function(i, n) {
+					if(key == i) {
+						if(!formData.has(n)) {
+							formData.append("files", $(cur).find("input")[0].files[0]);
+							formData.append("fileNames", n);
+							formData.append(n, null);
+							hasFile = true;
+						}
+						return false;
+					}
+				});
+			}
+		});
+		return {
+			hasFile: hasFile,
+			formData: formData
+		}
+	}
+	/* 封装宣传图片 */
+	function prepareProductImages(data) {
+		var hasFiles = false;
+		var formData = new FormData();
+		$.each($(".images-upload input:file"), function(i, n) {
+			if($(n).val() != "") {
+				hasFiles = true;
+				formData.append("files", n.files[0]);
+			}
+		});
+		formData.append("commodityId", data.commodityId);
+		return {
+			hasFiles: hasFiles,
+			formData: formData
+		}
+	}
 	/* 点击提交商品按钮 */
 	$("#my_product_submit").click(function() {
 		var product = prepareProduct();
@@ -921,7 +966,48 @@
 			url: APP_PATH + "/backstage/product",
 			data: JSON.stringify(product),
 			contentType: "application/json",
+			success: function(data) {
+				if(!data.isPassed) {
+					$("#error_message").text(data.errorMessage);
+					return;
+				}
+				/* 上传参数图片 */
+				var fileMap = prepareParamsImages(data);
+				if(fileMap.hasFile) {
+					$.ajax({
+						method: "POST",
+						url: APP_PATH + "/backstage/product_prop_images",
+						data: fileMap.formData,
+						processData: false,
+						contentType: false
+					});
+				}
+				/* 上传宣传图片 */
+				var fileMap2 = prepareProductImages(data);
+				if(fileMap2.hasFiles) {
+					$.ajax({
+						method: "POST",
+						url: APP_PATH + "/backstage/product_images",
+						data: fileMap2.formData,
+						processData: false,
+						contentType: false
+					});	
+				}
+				$('#my_add_product_modal').modal('hide');
+				initialModal();
+				getCommditiesByPageNumber(1);
+				$.scojs_message('添加商品成功', $.scojs_message.TYPE_OK);
+			}
 		});
-	});
+	});	
 </script>
 <script src="${APP_PATH }/static/js/my_upload.js"></script>
+<script>
+/* 保存初始添加模板 */
+var my_box_copy = $("#my_box").clone(true);
+function initialModal() {
+	$("#my_box_container").empty();
+	$("#my_box_container").append(my_box_copy);
+	my_box_copy = $(my_box_copy).clone(true);
+}
+</script>

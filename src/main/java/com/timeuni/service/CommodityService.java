@@ -108,7 +108,6 @@ public class CommodityService {
 			}
 			commodityIds.add(commodityId);
 		}
-
 		if (commodityIds.size() < 1) {
 			throw new NoFindException();
 		}

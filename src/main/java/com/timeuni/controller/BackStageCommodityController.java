@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,15 +52,8 @@ public class BackStageCommodityController {
 	@ResponseBody
 	public Map<String, Object> handleAddProductRquest(HttpSession httpSession,
 			@RequestBody @Valid BackstageProduct product, BindingResult result) {
-		if(result.hasErrors()) {
-			List<FieldError> fieldErrors = result.getFieldErrors();
-			for (FieldError fieldError : fieldErrors) {
-				System.out.println(fieldError.getDefaultMessage());
-			}
-		}
-		return null;
-		// return backStageCommodityService.addProduct(product, (Integer)
-		// httpSession.getAttribute("sellerId"));
+		return backStageCommodityService.addProduct(product, (Integer)
+		httpSession.getAttribute("sellerId"), result);
 	}
 
 	/* 添加商品参数的图片 */
@@ -83,7 +75,8 @@ public class BackStageCommodityController {
 	public String handleAddProductImagesRequest(HttpSession session, MultipartFile[] files, Integer commodityId)
 			throws IllegalStateException, IOException {
 		String realPath = session.getServletContext().getRealPath("static/images/commodity_media_resources");
-		backStageCommodityService.addProductImages(commodityId, realPath, files);
+		String realPath2 = session.getServletContext().getRealPath("static/images/commodity_cover");
+		backStageCommodityService.addProductImages(commodityId, realPath, realPath2, files);
 		return null;
 	}
 

@@ -16,8 +16,6 @@
 <link rel="stylesheet"
 	href="${APP_PATH }/static/css/jquery-confirm.min.css">
 
-<link href="${APP_PATH }/static/css/header/meizu_header/header.css"
-	rel="stylesheet">
 <link rel="stylesheet"
 	href="${APP_PATH }/static/css/myorder/layout-a2ae44047d.css">
 <link rel="stylesheet" href="${APP_PATH }/static/css/myorder/c53414.css">

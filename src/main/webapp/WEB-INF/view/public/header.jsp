@@ -69,6 +69,14 @@
 					地址管理
 				</a>
 			</li>
+			<li class="layout-header-nav-item">
+				<a
+					href="${APP_PATH }/backstage"
+					class="layout-header-nav-link" data-mtype="store_index_dh_0"
+					data-bh="store_index_dh_0">
+					后台登录
+				</a>
+			</li>
 		</ul>
 	</div>
 </header>

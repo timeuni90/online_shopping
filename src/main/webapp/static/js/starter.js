@@ -84,11 +84,11 @@ function getCommditiesByPageNumber(pageNum) {
 		method: "get",
 		url: APP_PATH + "/backstage/products?pageNum=" + pageNum,
 		success: function(pageInfo) {
-			$(".table.table-condensed.dataTable tbody").empty();
+			$(".table.table-hover tbody").empty();
 			var string = '';
 			$.each(pageInfo.list, function(i, n) {
 				var status = "下架";
-				var cls = 'label-danger';
+				var cls = 'label-primary';
 				if(n.status == 1) {
 					status = "上架";
 					var cls = 'label-success';
@@ -100,20 +100,20 @@ function getCommditiesByPageNumber(pageNum) {
 				string += `<tr>
 							  	<td><input data-productid="` + n.id + `" class="my_checkbox" type="checkbox"></td>
 					 		  	<td>` + i + `</td>
-								<td title="` + n.title + `">` + name + `</td>
+								<td title="` + n.title + `"><a style="color: black;" target="_blank" href="` + APP_PATH + `/product/` + n.id + `">` + name + `</a></td>
 								<td><span class="label ` + cls + `">` + status + `</span></td>
 								<td>￥` + n.price.toFixed(2) + `</td>
 							  	<td>` + n.stock + `</td>
 								<td>` + n.monthSale + `</td>
 								<td>
-									<button type="button" data-toggle="modal" data-target="#modal-product-detail" class="btn btn-sm btn-primary my_detail">查看</button>
+									<!--<button type="button" data-toggle="modal" data-target="#modal-product-detail" class="btn btn-sm btn-primary my_detail">查看</button>-->
 									<!--<button type="button" class="btn btn-sm btn-warning">修改</button>-->
 									<button type="button" class="my_remove_product btn btn-sm btn-danger">删除</button>
 								</td>
 							</tr>`;
 			});
 			var table_info = '共' + pageInfo.total + '条数据，共' + pageInfo.pages + '页，当前第' + pageInfo.pageNum + '页';
-			$(".table.table-condensed.dataTable tbody").append(string);
+			$(".table.table-hover tbody").append(string);
 			$(".dataTables_info").text(table_info);
 			var navigatepageNums = '';
 			if(pageInfo.hasPreviousPage) {

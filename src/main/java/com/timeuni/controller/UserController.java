@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.timeuni.bean.User;
+import com.timeuni.mybean.NewUser;
 import com.timeuni.service.UserService;
 
 @Controller
@@ -39,6 +40,19 @@ public class UserController {
 	public String handleQuitRequest(HttpSession session) {
 		session.removeAttribute("userId");
 		return "redirect:/login";
+	}
+	
+	/* 注册视图 */
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String handleUserRegisterReqeust() {
+		return "register";
+	}
+	
+	/* 注册验证 */
+	@RequestMapping(value = "/register_validation", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> handleUserRegisterValidation(@Valid NewUser newUser, BindingResult result) {
+		return userService.userRegisterValidation(newUser, result);
 	}
 	
 }

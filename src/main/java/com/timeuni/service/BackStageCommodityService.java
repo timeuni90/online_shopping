@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
@@ -21,10 +22,12 @@ import com.timeuni.bean.CommoditySelectProperty;
 import com.timeuni.bean.CommoditySelectPropertyExample;
 import com.timeuni.bean.CommodityVariable;
 import com.timeuni.bean.CommodityVariableExample;
+import com.timeuni.bean.CommodityVariety;
 import com.timeuni.dao.CommodityMapper;
 import com.timeuni.dao.CommodityMediaResourceMapper;
 import com.timeuni.dao.CommoditySelectPropertyMapper;
 import com.timeuni.dao.CommodityVariableMapper;
+import com.timeuni.dao.CommodityVarietyMapper;
 import com.timeuni.mybean.BackStageProductKeyValue;
 import com.timeuni.mybean.BackStageProductRow;
 import com.timeuni.mybean.BackstageProduct;
@@ -43,6 +46,8 @@ public class BackStageCommodityService {
 	private CommodityVariableMapper commodityVariableMapper;
 	@Autowired
 	private CommodityMediaResourceMapper commodityMediaResourceMapper;
+	@Autowired
+	private CommodityVarietyMapper commodityVarietyMapper;
 	
 	/* 获取商家的商品 */
 	public PageInfo<SellerProduct> getCommoditiesBySellerId(Integer sellerId, Integer page) {
@@ -53,14 +58,27 @@ public class BackStageCommodityService {
 	}
 	
 	/* 添加商品 */
-	public Map<String, Object> addProduct(BackstageProduct product, Integer sellerId) {
+	public Map<String, Object> addProduct(BackstageProduct product, Integer sellerId, BindingResult result) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("isPassed", true);
+		if(result.hasErrors()) {
+			map.put("isPassed", false);
+			map.put("errorMessage", result.getFieldError().getDefaultMessage());
+			return map;
+		}
 		Map<String, String> propertyMap = new HashMap<String, String>();
+		/* 插入商品 */
 		Commodity commodity = new Commodity();
 		commodity.setTitle(product.getName());
 		commodity.setSellerId(sellerId);
 		CommodityExample commodityExample = new CommodityExample();
 		commodityExample.createCriteria().andSellerIdEqualTo(sellerId);
 		commodityMapper.insertSelective(commodity);
+		/* 插入商品所属类别 */
+		CommodityVariety commodityVariety = new CommodityVariety();
+		commodityVariety.setCommodityId(commodity.getId());
+		commodityVariety.setVarietyId(product.getVarietyId());
+		commodityVarietyMapper.insertSelective(commodityVariety);
 		for (BackStageProductRow row : product.getRows()) {
 			String rowNumber = UUID.randomUUID().toString();
 			for (BackStageProductKeyValue property : row.getProperties()) {
@@ -86,19 +104,28 @@ public class BackStageCommodityService {
 			commodityVariable.setStock(row.getStock());
 			commodityVariableMapper.insertSelective(commodityVariable);
 		}
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("commodityId", commodity.getId());
 		map.put("propertyMap", propertyMap);
 		return map;
 	}
 	
 	/* 添加商品的宣传图片 */
-	public void addProductImages(Integer commodityId, String realPath, MultipartFile[] multipartFiles)
+	public void addProductImages(Integer commodityId, String realPath, String realPath2, MultipartFile[] multipartFiles)
 			throws IllegalStateException, IOException {
+		boolean flag = true;
 		for (MultipartFile multipartFile : multipartFiles) {
 			String originalFilename = multipartFile.getOriginalFilename();
 			String type = originalFilename.substring(originalFilename.lastIndexOf("."));
 			String imageName = UUID.randomUUID().toString() + type;
+			if(flag) {
+				flag = false;
+				Commodity commodity = new Commodity();
+				commodity.setId(commodityId);
+				commodity.setCoverImage(imageName);
+				commodityMapper.updateByPrimaryKeySelective(commodity);
+				multipartFile.transferTo(new File(realPath2 + "/" +imageName));
+				continue;
+			}
 			CommodityMediaResource commodityMediaResource = new CommodityMediaResource();
 			commodityMediaResource.setCommodityId(commodityId);
 			commodityMediaResource.setLocation(imageName);
