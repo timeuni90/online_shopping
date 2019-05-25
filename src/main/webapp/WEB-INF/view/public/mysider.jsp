@@ -11,8 +11,7 @@
 		<a href="javascript:;" class="type-title">
 			<i class="iconfont icon-selfCenter"></i>
 			个人中心
-		</a> 
-		<a href="#" class="ml ${mysider_status2 }">地址管理</a> 
+		</a>
 		<a href="${APP_PATH }/collect" class="ml ${mysider_status3 }">我的收藏</a>
 	</div>
 </div>

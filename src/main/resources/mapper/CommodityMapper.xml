@@ -407,6 +407,8 @@
 		) tmp ON c.id = tmp.commodity_id
 		WHERE
 		c.title LIKE #{key}
+		AND c.is_delete = 0
+		AND c.status = 1
 		GROUP BY
 		c.id
 		<if test="sortType==0">
@@ -460,6 +462,8 @@
 		WHERE
 		c.id =
 		#{commodityId}
+		AND c.status = 1
+		AND c.is_delete = 0
 	</select>
 
 	<!-- public Integer selectMonthSaleByCommodityId(Integer commodityId); -->
@@ -691,8 +695,9 @@
 		) tmp ON c.id =
 		tmp.commodity_id
 		WHERE
-		<!-- c.seller_id = #{sellerId} -->
-		<foreach collection="commodityIds" open="c.id IN (" close=")"
+		c.status = 1
+		AND c.is_delete = 0
+		<foreach collection="commodityIds" open="AND c.id IN (" close=")"
 			separator="," item="id">
 			#{id}
 		</foreach>

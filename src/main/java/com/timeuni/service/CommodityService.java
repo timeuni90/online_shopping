@@ -158,12 +158,15 @@ public class CommodityService {
 	}
 	
 	/* 按商品id获取商品信息 */
-	public Map<String, Object> getCommodityById(Integer commodityId) {
+	public Map<String, Object> getCommodityById(Integer commodityId) throws NoFindException {
 		/* 获取商品基本信息 */
 		ResourceLocation resourceLocation = new ResourceLocation();
 		String commodityCoverImageLocation = resourceLocation.getCommodityCoverImageLocation();
 		String storeLogoLocation = resourceLocation.getStoreLogoLocation();
 		Commodity commodity = commodityMapper.selectByCommodityIdFromMultiTable(commodityId, commodityCoverImageLocation, storeLogoLocation);
+		if(commodity == null) {
+			throw new NoFindException();
+		}
 		/* 封装商品的评论 */
 		List<Comment> comments = commentMapper.selectByCommodityIdWithUserName(commodityId);
 		commodity.setComments(comments);

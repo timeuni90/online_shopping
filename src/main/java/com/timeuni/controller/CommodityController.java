@@ -44,7 +44,7 @@ public class CommodityController {
 
 	/* 处理获取商品信息请求 */
 	@RequestMapping(value = "/product/{commodityId}", method = RequestMethod.GET)
-	public ModelAndView handleGetCommodityRequest(HttpSession session, @PathVariable Integer commodityId) {
+	public ModelAndView handleGetCommodityRequest(HttpSession session, @PathVariable Integer commodityId) throws NoFindException {
 		Integer userId = (Integer) session.getAttribute("userId");
 		Map<String, Object> map = commodityService.getCommodityById(commodityId);
 		Boolean isCollect = collectService.isCollect(userId, commodityId);

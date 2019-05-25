@@ -63,14 +63,6 @@
 			</li>
 			<li class="layout-header-nav-item">
 				<a
-					href="#"
-					class="layout-header-nav-link" data-mtype="store_index_dh_0"
-					data-bh="store_index_dh_0">
-					地址管理
-				</a>
-			</li>
-			<li class="layout-header-nav-item">
-				<a
 					href="${APP_PATH }/backstage"
 					class="layout-header-nav-link" data-mtype="store_index_dh_0"
 					data-bh="store_index_dh_0">
@@ -92,7 +84,7 @@
 				$("#login_block").remove();
 				var quit_li = `<li class="layout-header-nav-item">
 									<a href="${APP_PATH }/quit" class="layout-header-nav-link">
-										退出登录
+										退出
 									</a>
 								</li>`;
 				$("#layoutHeaderNav").append(quit_li);

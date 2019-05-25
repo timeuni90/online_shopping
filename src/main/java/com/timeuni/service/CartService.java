@@ -45,10 +45,12 @@ public class CartService {
 	
 	/* 获得购物车商品 */
 	public Map<String, Object> getCartItemsByUserId(Integer userId) {
+		Boolean hasItem = false;
 		String coverLocation = new ResourceLocation().getCommodityCoverImageLocation();
 		List<CartItem> cartItems = cartMapper.selectCartItemsByUserId(userId, coverLocation, null);
 		Map<String, List<CartItem>> groups = new HashMap<String, List<CartItem>>();
 		for (CartItem cartItem : cartItems) {
+			hasItem = true;
 			if(groups.containsKey(cartItem.getStoreName())) {
 				groups.get(cartItem.getStoreName()).add(cartItem);
 			} else {
@@ -60,6 +62,7 @@ public class CartService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("groups", groups);
 		map.put("totalCount", cartItems.size());
+		map.put("hasItem", hasItem);
 		return map;
 	}
 	

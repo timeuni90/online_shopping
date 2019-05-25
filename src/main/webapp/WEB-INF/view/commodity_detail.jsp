@@ -1793,14 +1793,14 @@
 							<div class="box-header with-border">
 								<h3 class="box-title">${commodity.seller.storeName }</h3>
 								<div class="box-tools pull-right">
-									<button class="btn btn-box-tool" data-widget="collapse">
+									<button class="btn btn-box-tool">
 										<i class="fa fa-minus"></i>
 									</button>
-									<button class="btn btn-box-tool" data-toggle="tooltip"
-										title="Contacts" data-widget="chat-pane-toggle">
+									<button class="btn btn-box-tool"
+										title="Contacts">
 										<i class="fa fa-comments"></i>
 									</button>
-									<button class="btn btn-box-tool" data-widget="remove">
+									<button class="btn btn-box-tool">
 										<i class="fa fa-times"></i>
 									</button>
 								</div>

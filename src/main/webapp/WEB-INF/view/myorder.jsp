@@ -117,14 +117,14 @@
 															<c:forEach items="${order.value }" var="commodity">
 																<div class="item b-t clearfix j-iamMain"
 																	style="width: 100%;">
-																	<a class="productDetail nameWidth" href="#"> <img
+																	<a class="productDetail nameWidth" href="${APP_PATH }/product/${commodity.key.commodityId }"> <img
 																		src="${commodity.key.commodityCover }" class="f-fl">
 																	</a>
 																	<div class="describe f-fl ">
 																		<div class="vertic clearfix">
 																			<span class="clearfix"> <a
 																				title="${commodity.key.commotityName }"
-																				class="productDetail nameWidth" href="#">
+																				class="productDetail nameWidth" href="${APP_PATH }/product/${commodity.key.commodityId }">
 																					${commodity.key.commotityName } </a>
 																				<p>${commodity.value }</p>
 																				<p>
